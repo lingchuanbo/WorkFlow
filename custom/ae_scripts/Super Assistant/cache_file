@@ -1,0 +1,48 @@
+try{
+var mk = thisComp.layer("marker").marker;//标记图层
+var transT = effect("转场时间")(1);
+if(transT < 0) transT = 0;
+
+var k = getMarker(time);
+if(k[0] && animate = getAnimate( k[0].index)){
+var prevmk = k[0];
+var startT = prevmk.time;
+/******************改这里*******************************/
+var animateT = animate.rotation.numKeys ? animate.rotation.key(animate.rotation.numKeys).time-animate.inPoint : 0;
+/*******************************************************/
+if(k[1] && (nextAnimate = getAnimate(prevmk.index+1)) && time >= k[1].time - transT) {//存在后一节点的情况下，并且处于转场阶段
+	var endT = k[1].time;
+	/******************改这里*******************************/
+	ease(time, endT-transT, endT, animate.parent.rotation+animate.rotation.valueAtTime(endT-transT-startT+animate.inPoint), nextAnimate.parent.rotation+nextAnimate.rotation.valueAtTime(nextAnimate.inPoint));
+	/*******************************************************/
+}else if(time < startT + animateT) {//动画阶段
+	/******************改这里*******************************/
+	animate.parent.rotation + animate.rotation.valueAtTime(animate.inPoint + time - startT);
+	/*******************************************************/
+}else {//静止阶段
+	/******************改这里*******************************/
+	animate.parent.rotation + animate.rotation.valueAtTime(startT + animateT);
+	/*******************************************************/
+}
+}else {value}
+
+function getMarker(t) {
+	var prevmk = mk.nearestKey(t);
+	if( prevmk.time > t ) {
+		 if( prevmk.index > 1 ) return [ mk.key(prevmk.index - 1) , prevmk ];
+		else return [ null, prevmk ];
+	}else {
+		if( prevmk.index < mk.numKeys) return [ prevmk , mk.key(prevmk.index + 1) ];
+		else return [ prevmk , null ];
+	}
+}
+
+function getAnimate( index) {
+	var count = 0;
+	for(var i = 1; i <= thisComp.numLayers;  i++) {
+		if(thisComp.layer(i).name.substr(0, 13) == "text_animate_") count++;
+		if(count == index) return thisComp.layer(i);
+	}
+	return null;
+}
+}catch(err){value}

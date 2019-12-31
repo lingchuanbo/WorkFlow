@@ -1,0 +1,22 @@
+try{
+
+fadein = 1;//淡入持续时间
+fadeout = 1;//淡出持续时间
+value1 = 0;//最小值
+value2 = value;//最大值
+
+if(outPoint - inPoint < fadein + fadeout) {
+	t = inPoint + fadein;
+}else {
+	t = outPoint - fadeout;
+}
+
+if(time < inPoint + fadein) {
+	linear(time, inPoint, inPoint + fadein, value1, value2);
+}else {
+	linear(time, t, outPoint, value2, value1);
+}
+
+}catch(err) {
+value;
+}

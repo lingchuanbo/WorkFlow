@@ -1,0 +1,30 @@
+Sun Sep 29 2019 10:48:30 GMT+0800    ===========  Build Motion Tools Interface  ============
+   Started script
+Sun Sep 29 2019 10:48:30 GMT+0800   Build Motion Tools Interface   end
+
+
+
+Sun Sep 29 2019 10:48:32 GMT+0800   aboutButtonClick   start
+Sun Sep 29 2019 10:48:32 GMT+0800   aboutButtonClick   end
+
+Sun Sep 29 2019 10:48:32 GMT+0800   aboutButtonClick   start
+Sun Sep 29 2019 10:48:32 GMT+0800   aboutButtonClick   end
+
+Sun Sep 29 2019 10:50:57 GMT+0800   linearButtonCapture   start
+Sun Sep 29 2019 10:50:57 GMT+0800   linearButtonCapture   end
+
+Sun Sep 29 2019 10:50:57 GMT+0800   linearButtonCapture   start
+Sun Sep 29 2019 10:50:57 GMT+0800   linearButtonCapture   end
+
+Sun Sep 29 2019 10:58:41 GMT+0800   bezierButtonCapture   start
+Sun Sep 29 2019 10:58:41 GMT+0800   bezierButtonCapture   end
+
+Sun Sep 29 2019 10:58:41 GMT+0800   bezierButtonCapture   start
+Sun Sep 29 2019 10:58:41 GMT+0800   bezierButtonCapture   end
+
+Sun Sep 29 2019 10:58:41 GMT+0800   aboutButtonClick   start
+Sun Sep 29 2019 10:58:41 GMT+0800   aboutButtonClick   end
+
+Sun Sep 29 2019 10:58:41 GMT+0800   aboutButtonClick   start
+Sun Sep 29 2019 10:58:41 GMT+0800   aboutButtonClick   end
+

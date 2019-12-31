@@ -1,0 +1,31 @@
+//Immigration User Preferences File
+Immigration_Data.prefsVersion = " v1.41";
+ 
+//Please be careful when editing this document to make sure you leave all the formatting including quotes and punctuation the same as it is.
+//Please restart the script for the changes to take effect (you do not need to restart after effects).
+//Delete this file to reset it to its default setting.
+ 
+ 
+///////// FILE EXTENSIONS /////////
+ 
+//Valid File Sequence Extensions, files with these extensions will be treated as file sequences.  Make sure there are no spaces between commas and that there is no comma after the last extension.
+ 
+Immigration_Data.validSeqExtensions = "ai,bmp,bw,cin,cr2,crw,dcr,dng,dib,dpx,eps,erf,exr,gif,hdr,icb,iff,jpe,jpeg,jpg,mos,mrw,nef,orf,pbm,pef,pct,pcx,pdf,pic,pict,png,ps,psd,pxr,raf,raw,rgb,rgbe,rla,rle,rpf,sgi,srf,tdi,tga,tif,tiff,vda,vst,x3f,xyze";
+ 
+ 
+//Valid File Non-Sequence Extensions, files with these extensions will not be treated as file sequences.  Make sure there are no spaces between commas and that there is no comma after the last extension.
+ 
+Immigration_Data.validNonSeqExtensions = "aec,aep,aif,aiff,avi,dv,qt,mov,m4v,mpg,mxf,xml,r3d,wav,wvm";
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+///////// SAFETY /////////
+ 
+//Number of minutes that a project goes unsaved before Immigration warns to save before starting.  Set to 0 (zero) to disable this feature.
+ 
+Immigration_Data.projSaveMins = 0;
+ 

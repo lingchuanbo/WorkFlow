@@ -1,0 +1,12 @@
+﻿var idslct = charIDToTypeID( "slct" );
+    var desc = new ActionDescriptor();
+    var idnull = charIDToTypeID( "null" );
+        var ref = new ActionReference();
+        var idmarqueeRectTool = stringIDToTypeID( "marqueeRectTool" );
+        ref.putClass( idmarqueeRectTool );
+    desc.putReference( idnull, ref );
+    var iddontRecord = stringIDToTypeID( "dontRecord" );
+    desc.putBoolean( iddontRecord, true );
+    var idforceNotify = stringIDToTypeID( "forceNotify" );
+    desc.putBoolean( idforceNotify, true );
+executeAction( idslct, desc, DialogModes.NO );

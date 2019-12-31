@@ -1,0 +1,12 @@
+﻿var idslct = charIDToTypeID( "slct" );
+    var desc31 = new ActionDescriptor();
+    var idnull = charIDToTypeID( "null" );
+        var ref5 = new ActionReference();
+        var idmarqueeEllipTool = stringIDToTypeID( "marqueeEllipTool" );
+        ref5.putClass( idmarqueeEllipTool );
+    desc31.putReference( idnull, ref5 );
+    var iddontRecord = stringIDToTypeID( "dontRecord" );
+    desc31.putBoolean( iddontRecord, true );
+    var idforceNotify = stringIDToTypeID( "forceNotify" );
+    desc31.putBoolean( idforceNotify, true );
+executeAction( idslct, desc31, DialogModes.NO );

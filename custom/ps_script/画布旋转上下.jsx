@@ -1,0 +1,1 @@
+﻿activeDocument.activeLayer.resize(-100,undefined);

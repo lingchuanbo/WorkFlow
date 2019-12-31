@@ -1,0 +1,14 @@
+﻿Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System] 
+"ConsentPromptBehaviorAdmin"=dword:00000000
+;用户账户控制:提示提升时切换到安全桌面
+"PromptOnSecureDesktop"=dword:00000000
+;用户账户控制:以管理员批准模式运行所有管理员
+"EnableLUA"=dword:00000000
+;用户账户控制:用于内置管理员账户的管理员批准模式
+"FilterAdministratorToken"=dword:00000000
+;用户账户控制:允许 UIAccess应用程序不使用安全桌面的情况下提升权限
+"EnableUIADesktopToggle"=dword:00000000
+;只提升签名并验证的可执行文件
+"ValidateAdminCodeSignatures"=dword:00000000

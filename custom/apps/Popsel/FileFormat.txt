@@ -1,0 +1,24 @@
+ahk例子
+带图标
+#g::run %COMMANDER_PATH%\Tools\popsel\PopSel.exe /is /pc /n
+不带图标
+#g::run %COMMANDER_PATH%\Tools\popsel\PopSel.exe /pc /n
+#RButton::run %COMMANDER_PATH%\Tools\popsel\PopSel.exe /n
+
+Menu lines:
+	Menu item name = semicolon separated item data
+
+Submenu lines:
+	Entry name/		     = submenu          (for submenu entry item)
+	Entry name/Menu item name    = item data	(for submenu items)
+
+Item data in menu line:
+#1	Command
+#2	Parameters (if any)
+#3	Folder (run in.., default: folder of command file)
+#4	Min/maximize ("min"|"max" or empty)
+#5	Icon string (comma separated):
+	#1 Icon file path
+	#2 Icon position 0.. (or empty)
+
+*

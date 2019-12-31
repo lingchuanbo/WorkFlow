@@ -1,0 +1,1 @@
+convertTo $ SplineShape

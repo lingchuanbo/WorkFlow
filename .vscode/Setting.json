@@ -1,0 +1,8 @@
+{
+   "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${appName}",
+   "files.encoding": "utf8bom",
+   "code-runner.executorMap": {
+       "ahk": "\"C:/Program Files/AutoHotkey/AutoHotkey.exe\""
+   }
+
+}

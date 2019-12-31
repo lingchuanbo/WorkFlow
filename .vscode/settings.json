@@ -1,0 +1,11 @@
+{
+    "python.pythonPath": "C:\\Python27\\python.exe"
+    "python.autoComplete.extraPaths": [        
+        "C:/Program Files/Autodesk/3ds Max 2020",        
+        "C:/Program Files/Autodesk/3ds Max 2020/MaxPlus.py",        
+        "C:/Program Files/Autodesk/3ds Max 2020/MaxPlusExtend.py",    
+        ],    
+     "python.pythonPath": "C:\\Program Files\\Autodesk\\3ds Max 2020\\3dsmaxpy.exe",    
+     "python.linting.enabled": true,    
+     "cSpell.enabled": false
+}

@@ -1,0 +1,1 @@
+﻿app.preferences.rulerUnits = Units.PIXELS;

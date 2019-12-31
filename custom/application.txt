@@ -1,0 +1,49 @@
+C:\Windows\explorer.exe
+C:\Users\Administrator\AppData\Local\HYJiang\HYSearch.exe
+C:\Program Files (x86)\WGestures\WGestures.exe
+C:\Users\ADMINI~1\AppData\Local\Temp\is-PJBKC.tmp\CodeSetup-stable-1dfc5e557209371715f655691b1235b6b26a06be.tmp
+C:\Program Files (x86)\Microsoft VS Code\Code.exe
+D:\Program Files\Google\chrome.exe
+E:\Dropbox\04_PCtools\ahk\Quick_Z\Apps\TotalCMD\Totalcmd64.exe
+C:\Program Files\Google\Drive\googledrivesync.exe
+E:\Dropbox\04_PCtools\ahk\Quick_Z\Apps\OCR\天若OCR文字识别.exe
+C:\Program Files (x86)\Notepad++\notepad++.exe
+D:\Program Files\Adobe\Photoshop CC\Photoshop.exe
+C:\Windows\System32\notepad.exe
+D:\Program Files\Autodesk\3ds Max 2018\3dsmax.exe
+C:\Program Files\Microsoft Office\Office15\EXCEL.EXE
+C:\Program Files\Adobe\Adobe After Effects CC 2018\Support Files\AfterFX.exe
+E:\Dropbox\04_PCtools\ahk\Quick_Z\Apps\firefox\firefox.exe
+E:\Dropbox\04_PCtools\ahk\Quick_Z\Apps\XnView Extended\xnview.exe
+D:\Program Files\LayaAirIDE\LayaAir.exe
+C:\Program Files (x86)\Tencent\TIM\Bin\TIM.exe
+E:\Dropbox\04_PCtools\ahk\Quick_Z\Apps\TotalCMD\Tools\Snipaste\Snipaste.exe
+C:\Program Files\AutoHotkey\AutoHotkey.exe
+C:\Program Files\Adobe\Adobe After Effects CC 2018\Support Files\CEPHtmlEngine\CEPHtmlEngine.exe
+C:\Program Files (x86)\Dropbox\Client\Dropbox.exe
+C:\Program Files\Common Files\Autodesk Shared\CLM\V5\MSVC14\cliccore\acwebbrowser.exe
+E:\Dropbox\04_PCtools\ahk\Quick_Z\Apps\OCR\澶╄嫢OCR鏂囧瓧璇嗗埆.exe
+D:\Program Files\Listary Pro\Listary.exe
+E:\Dropbox\04_PCtools\ahk\Quick_Z\Apps\FindAndRunRobotP\FindAndRunRobot.exe
+C:\Program Files (x86)\Huorong\Sysdiag\bin\PopBlock.exe
+C:\Users\Administrator\AppData\Local\HYJiang\hy_engine.exe
+C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe
+C:\Windows\System32\taskhost.exe
+E:\Dropbox\04_PCtools\ahk\Vimdesktop\vimd.exe
+E:\Dropbox\04_PCtools\ahk\Quick_Z\QuickZ.exe
+E:\Dropbox\04_PCtools\ahk\Quick_Z\Apps\IDM\IDMan.exe
+D:\Program Files\Adobe\Photoshop CC\node.exe
+D:\Program Files\Adobe\Photoshop CC\Required\CEP\CEPHtmlEngine\CEPHtmlEngine.exe
+E:\Dropbox\04_PCtools\ahk\Quick_Z\Apps\闃垮憜鍠礬ADM.exe
+C:\Program Files (x86)\Huorong\Sysdiag\bin\HipsTray.exe
+E:\Dropbox\04_PCtools\ahk\Quick_Z\Apps\SSR\temp\ShadowsocksR-dotnet4.0.exe
+E:\Dropbox\04_PCtools\ahk\Quick_Z\Apps\SSR\ShadowsocksR-dotnet4.0.exe
+C:\Program Files\Adobe\Adobe After Effects CC 2018\Support Files\32\Adobe QT32 Server.exe
+E:\Dropbox\04_PCtools\ahk\Quick_Z\Apps\TotalCMD\Tools\TCIMG\TCIMG.exe
+C:\Windows\SysWOW64\PBCCRCNew\PBCCRCPassGuardXInput.exe
+C:\Program Files\NVIDIA Corporation\Display.NvContainer\NVDisplay.Container.exe
+C:\Users\Administrator\AppData\Local\Programs\Google\MusicManager\MusicManager.exe
+E:\Dropbox\04_PCtools\ahk\Quick_Z\Apps\TotalCMD\Tools\dnschooser\dnschooser-winclient.exe
+C:\Windows\System32\taskeng.exe
+C:\Windows\System32\dwm.exe
+C:\Windows\System32\conhost.exe

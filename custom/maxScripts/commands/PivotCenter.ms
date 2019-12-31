@@ -1,0 +1,2 @@
+CenterPivot $
+--$.pivot = $.center

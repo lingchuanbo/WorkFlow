@@ -1,0 +1,1 @@
+﻿app.activeDocument.changeMode(ChangeMode.RGB);

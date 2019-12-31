@@ -1,0 +1,13 @@
+﻿var idRtte = charIDToTypeID( "Rtte" );
+    var desc2610 = new ActionDescriptor();
+    var idnull = charIDToTypeID( "null" );
+        var ref507 = new ActionReference();
+        var idDcmn = charIDToTypeID( "Dcmn" );
+        var idOrdn = charIDToTypeID( "Ordn" );
+        var idFrst = charIDToTypeID( "Frst" );
+        ref507.putEnumerated( idDcmn, idOrdn, idFrst );
+    desc2610.putReference( idnull, ref507 );
+    var idAngl = charIDToTypeID( "Angl" );
+    var idAng = charIDToTypeID( "#Ang" );
+    desc2610.putUnitDouble( idAngl, idAng, 180.000000 );
+executeAction( idRtte, desc2610, DialogModes.NO );

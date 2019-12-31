@@ -1,0 +1,534 @@
+{
+   "source": "com.khanyu.kbar",
+   "schema": 1,
+   "toolbars": [
+      {
+         "name": "Default",
+         "buttons": [
+            {
+               "name": "KBar Settings",
+               "description": "",
+               "icon": {
+                  "type": 1,
+                  "path": "cog",
+                  "color": ""
+               },
+               "type": 6,
+               "extensionId": "com.khanyu.kbar.config",
+               "id": "com.khanyu.kbar.config",
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               }
+            },
+            {
+               "name": "Invoke \"New Composition...\"",
+               "description": "",
+               "icon": {
+                  "type": 1,
+                  "path": "file",
+                  "color": ""
+               },
+               "type": 5,
+               "menuCommand": "New Composition...",
+               "id": "7bf02f9a-7500-4cda-bba0-0d9cb482096a",
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               }
+            },
+            {
+               "name": "Show off a sample scriptlet",
+               "description": "",
+               "icon": {
+                  "type": 1,
+                  "path": "star",
+                  "color": ""
+               },
+               "type": 2,
+               "script": "alert('Hello from KBar!');\n",
+               "id": "4d8026d4-956c-4233-8730-3ea2abfaad35",
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               }
+            },
+            {
+               "name": "Apply Effect \"Camera Lens Blur\"",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "path": "LENSBLUR",
+                  "color": ""
+               },
+               "type": 3,
+               "matchName": "ADBE Camera Lens Blur",
+               "id": "2532e6ba-6c6f-46f9-9466-8ab3cc9e0499",
+               "displayName": "Camera Lens Blur",
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               }
+            },
+            {
+               "name": "Apply Effect \"S_TexturePlasma\"",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "color": "",
+                  "path": "PLASMA"
+               },
+               "type": 3,
+               "matchName": "S_TexturePlasma",
+               "displayName": "S_TexturePlasma",
+               "id": "a627a2c9-109e-436f-8178-e5da7c341b98",
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               }
+            },
+            {
+               "name": "xy",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "path": "XY",
+                  "color": ""
+               },
+               "type": 0,
+               "expression": "comp(\"Global\").layer(\"Global_Role\").effect(\"Transform\")(\"Position\")",
+               "id": "6e4c5650-794f-4299-a41f-234193442e3d",
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               }
+            },
+            {
+               "name": "辉光",
+               "description": "",
+               "icon": {
+                  "type": 1,
+                  "color": "",
+                  "path": "ravelry"
+               },
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               },
+               "type": 4,
+               "presetPath": "E:/BoBOAHK/Vimdesktop/custom/ae_presetAnimation/deepGlow1.ffx",
+               "id": "b98f2a82-3475-4209-9192-e91b3d5afdb4"
+            },
+            {
+               "name": "S_Glow",
+               "description": "",
+               "icon": {
+                  "type": 1,
+                  "path": "eercast",
+                  "color": ""
+               },
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               },
+               "type": 3,
+               "matchName": "S_Glow",
+               "displayName": "S_Glow",
+               "id": "35e612be-724e-4b16-b4c2-84b68ba2381c"
+            },
+            {
+               "name": "VC ",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "path": "VC",
+                  "color": ""
+               },
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               },
+               "type": 3,
+               "matchName": "VIDEOCOPILOT VIBRANCE",
+               "displayName": "VC Color Vibrance",
+               "id": "4e3aa3d6-b817-48a5-9c56-7324e8a3f71d"
+            },
+            {
+               "name": "去黑",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "path": "UM",
+                  "color": ""
+               },
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               },
+               "type": 3,
+               "matchName": "KNSW Unmult",
+               "displayName": "UnMult",
+               "id": "6d3bd971-b507-4930-9433-60db66752081"
+            },
+            {
+               "name": "复制平移",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "path": "E_PINGYI",
+                  "color": ""
+               },
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               },
+               "type": 0,
+               "expression": "numLayers=index-1;\nx=128*(index-1);\n[position[0]+x,position[1]]",
+               "id": "e5e5d20d-d614-4cd4-93f3-d0dfb49c5069"
+            },
+            {
+               "name": "抖动",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "color": "",
+                  "path": "抖"
+               },
+               "type": 0,
+               "expression": "wiggle(1,10);",
+               "id": "ed4a7c92-46c6-41fa-9d71-17cb14b5e6e6",
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               }
+            },
+            {
+               "name": "闪烁_缩放",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "color": "",
+                  "path": "闪"
+               },
+               "type": 0,
+               "expression": "x=wiggle(50,50);\n[x[0],x[0]];",
+               "id": "176090a5-9643-4f90-93b3-6e58ad3c644f",
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               }
+            },
+            {
+               "name": "如果你想闪烁的时候生硬一些，就是透明度0直接到100，那你就把最后一句else {t} 里面的t改为 value",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "color": "",
+                  "path": "闪"
+               },
+               "type": 0,
+               "expression": "t=Math.sin(time*10)*100; //建立透明度的循环从-100到100；\nif(t>100) //判断循环，如果t>100的时候；\n{t=100} //t就等于100；\nelse if(t<0) //t小于0的时候；\n{t=0} //t就等于0；\nelse //其他的情况；\n{t} //就等于t本身的数值；",
+               "id": "cfea30a9-fa28-4b24-b26d-7001454d9174",
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               }
+            },
+            {
+               "name": "AE圆周率运动表达式",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "path": "圆",
+                  "color": ""
+               },
+               "type": 0,
+               "expression": "a=10;r=150;value+[Math.sin(time*a)*r,Math.cos(time*a)*r]",
+               "id": "66a1654a-62e9-447d-bcf7-95c78266d61e",
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               }
+            },
+            {
+               "name": "Wiggle",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "path": "WIGGLE",
+                  "color": ""
+               },
+               "type": 0,
+               "expression": "wiggle(10, 5);",
+               "id": "c65dbe5d-b999-443c-99ed-2587a8d5d63d",
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               }
+            },
+            {
+               "name": "人物显示",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "color": "",
+                  "path": "人"
+               },
+               "type": 0,
+               "expression": "check = comp(\"Global\").layer(\"Global_Role\").effect(\"开关\")(\"Checkbox\").value;\nif (check) 0;\nelse value;",
+               "id": "3abbb099-7b0f-44b8-b979-a2e0bb7fa4b4",
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               }
+            },
+            {
+               "name": "老胡传奇火焰脚本",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "path": "老胡",
+                  "color": ""
+               },
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               },
+               "type": 1,
+               "filePath": "E:/BoBOAHK/Vimdesktop/custom/ae_scripts/otherScriptCommand/老胡传奇火焰脚本0.2.jsx",
+               "argument": "胡",
+               "id": "e7757449-38ea-4653-ae9e-ab108ca5a144"
+            },
+            {
+               "name": "SuperAssistant",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "path": "SUPERASSISTANT",
+                  "color": ""
+               },
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               },
+               "type": 1,
+               "filePath": "E:/BoBOAHK/Vimdesktop/custom/ae_scripts/SuperAssistant.jsx",
+               "argument": "A",
+               "id": "d990f743-dcfd-4e62-980e-b4a7110d3dc1"
+            },
+            {
+               "name": "Glow@边缘",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "path": "GL",
+                  "color": ""
+               },
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               },
+               "type": 4,
+               "presetPath": "F:/BoBOAHK/Vimdesktop/custom/ae_presetAnimation/Glow@边缘.ffx",
+               "id": "1203d7f8-459d-4168-a96f-342aa6c35010"
+            },
+            {
+               "name": "1",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "color": "",
+                  "path": "1"
+               },
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               },
+               "type": 1,
+               "filePath": "C:/Users/BoBO/Desktop/快速批量设置起始帧为1.jsx",
+               "argument": "",
+               "id": "8aa27fd7-600b-4779-9852-3c5576425a77"
+            },
+            {
+               "name": "0",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "color": "",
+                  "path": "0"
+               },
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               },
+               "type": 1,
+               "filePath": "C:/Users/BoBO/Desktop/设置起始帧为0.jsx",
+               "argument": "",
+               "id": "bcf80489-369f-47ca-874d-3599f9868013"
+            },
+            {
+               "name": "循环3层",
+               "description": "",
+               "icon": {
+                  "type": 0,
+                  "path": "O",
+                  "color": "rgba(42, 82, 235, 1)"
+               },
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               },
+               "type": 1,
+               "filePath": "F:/BoBOAHK/Vimdesktop/custom/ae_scripts/commands/BoBO_Loop3.jsx",
+               "argument": "Loop",
+               "id": "d269bede-e269-4dcf-ac5a-1f5453bfff86"
+            },
+            {
+               "name": "循环2层",
+               "description": "",
+               "icon": {
+                  "type": 2,
+                  "path": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAAeCAYAAABwmH1PAAAACXBIWXMAAAABAAAAAQBPJcTWAAAAJHpUWHRDcmVhdG9yAAAImXNMyU9KVXBMK0ktUnBNS0tNLikGAEF6Bs5qehXFAAAMYklEQVRYhcWZ2Y8l113HP79zartrd9+exZ6JGTmJjePYAoNsUFiCPUSgYB7wHxAQ4hUeLF4Ika2gIB7ygoQfEASQJRwpCA15YJNxgCxgHGMsOxOHiWfM2B7PeHp6u2ut5/x4qKrbt2d6zBNwpFJXV/1u1fn+9t+3hKPWE9qeCX0MDoPBIFgUOSQrKB6PwePxWJQpHlDOyc1P/n9fwQfcE4YYKmQJFiwGC4ACAigeweEBA81ZjfQJ1aMf/b+8PkDRt95ZtW4X2wANMISARQiXVq4BO5QScECF4vA40sbK//fr8DvP3eyQN68asDDAoA1YIUJIgAhpgLdwa7AlSoFS4imXoGWpmoNAkJUtaXPlZrXc/JvDMI6Sr2UNygy95Q0roG/v0g7BYoGwAdsJArq9Dv04omsNQVaQZzlpmjMHcqDAUuApMTgUt7L52hdqJdXbNJjlXdNI+ka2PvfL/azK1uAOy3s8iidp8ohFmTRe9oQuQd8esF8BDDFCNwpZXxtwZ7/DsSAgmS0Y703ZTgt2gWwJ2lBQu7hrYrzejGkASAMXpPlraO1qUbTZqL3JloJpAJvltVrGYXB4Smzz3gJHH5g173xClXNyW8BCgEExSGNhoReGjPpd7v7MI+7sz93nHvqVL0fPpgVvI1iEDCVFKRAKlKrxE9eA9835gc3aRMgKgPrtHhrQ2kBsgbbHQUjVuQNKDHkTWgVB8/4ejnnz3if0SMCtqwimSVKNhcWwHgScKlXucGq7QcjdxlJiKFEyIEMoqGO6TWStpasGRJvFa7AHoNtA06Vc7R2telrFrCpIESqgQMkQUpQUyPBkjfKVPtpYWg8DXs3QB6UoAGKgg9BH2KhUhk4IVTipwhhDhpIDuWgNWKDSGqjTNnvX4NuXWMCKECBYadxUFa+6ArjdzQFYi2DkIIJLlEyVBcoMmKIETaTXSmlzB7eL4c4hFwobKycKXa90KiXyKtYpQwcjsWTW4JIQujFBEmEDg3qlLErSRcYszVkUJYUqXgQJLGES0+kmdRIMDKFXfFGSpzmLRUZaVlQiiLUEoSUyhsBaoigkikMia8F7sqJgf5GylWZsVxWh+qZXqBNlHd89PPObLXywVnNrCzpWSDwkTom8Yjz0VRiFEb6fEA27dHsJnU5EtN7BznOKec48zRmPZ+xOF0zykjIMCPod+sMeG70O63FIb6NLnBa4WU6W5kzGc/anC2ZekSSi0+8wiEI6gSUKLFEUEG32CKcZaVawM095Zzzl8mROUORAG0ayLJNHuPTq0mXZaF0p0Bpo7CFQRDx0jWW91yUeDVh/5AwnfvVhHd5/kmBRoP0ILu/j/vwVdl+4IG+rYUsyFnFIvDHk2IMf4kO/9oje8cOnCLMSuhFcn+K/8jqTr35H3lXDduVwvYThZz+l913cFfvWHvzyj2j80CmCykM3hG+/S/bMt+T8ZUPsFT92FK6iAApkWTkM4I4G3LaNbQGpQQdAoBCqYhFEhU4YMYpj5LH7OPnUY4R/9oro0//AeJ6ThQHhox9h+Juf5EQnZnDuNd61IfMkIvnRuzn9xU8z/Oob4r/4DSb7C7LAEvzYGYa//gk21rsM/vhFrmYleSdheGJD1sIBfOZh+NJL4j//AmPAn16j++RPkfzup/Wh3/grycuSWZoxSR1zlAVC1BQ4oYP5oF66de62zButy5j1iEVAhE4SEwwSos8+Svj7L8HzbzCbzNkuK7LAEv3dBcx2zvrvnKXzzbc5E8xJo4Dotx6j+5XvwnP/Tjqes1uUpNYQfP0SvD9n85lfJPjHS5x+a5csjuiGMTx+Bn776/DiRbLJnAlKkRXkn/8aoz/6JYkfv1/v+/LLci2JuZZm7CAkKCF1t2jxt7PwzZAP/hpdKQvGEkeW+Gfvg50MXriA352ys73PVlmRW0tUeuwr79J/e0Jw9mPEz18kfvAOWEvgL16HvRl7W3tsFSWZsdjcgRj6L10j/vkHsH/yMr0gBhU4vwuvvgM7M8Z7E3a9J0sL5tZgn3+TYw//AGt/+RqjOGKIEKPLhFvXbUXMbUCuure/9VK9bAhRDB87Aa9tQVaQznPSvKJyipQOv8gpspLieztw7wnorsEDp+CNXZhnFPOcLCtxTqGs0LSWz8/fgHs3IeyAhOA8vL4F0zma5pSlg8ohaUGZlWQXblDd0cdaQxIEdKhD0Lbe2W76aMAHvXZbv9qa6KmVrQDG1Mcghu0FOI9zDt8OhargFe88fj+DtRiCEPoR7NTy3nm86kHWcB51io5zGCYgQb1Lr7CbQuXwThHVOqGqgipaOnxQFyMjh9tWWUV0ewtL09bVIB1QSX2UUl9DK1AHRQm9EIwgxqw8XZprgvQjWJTgHBSuzq7tPWmLYK1EMYIZRLCoaqUBiEASgpimSakPsQZrDHbUxUxzVJXSecqlkdq+/H8A3M4zrVXr9g1yA4VBKxS8o6gKqks78IMjiEOiTkgUWETABwaSkDAOCT+6ARe3IZ3Axa2lfJhERKHFCGhgkCQkigOiezfh0i5UBXgP1sKZDej1IA6JrcFYg0ki4iQk+fhJgrd2yCvHvCyZQzO2HvTxCujRgNOm5dAVsEpmlIURFkYoRVF1TIuCva9dYP7gcXjgTuLRkNGJdTaPr7FxYp3RaMD6PceIPr4JL7xBNdlj/q3vUw5C+OmPYEZ9Nk5u1PLH1xltDhid2iD+ydPw9/8J6Rx8WYfOJ0/BXXfCaMDGsTVGx9fY3Bxy/NQ6g5/5MOaFN7me59zIcvab3r6gbWubmflwlj4nbT/d8lQti5EDC2Ciyp6FieDXqspsZTn5exWdZ1/h7qcfJfrCPzE8fxVfOvLAEN1zgsFTZ+FPX6a4ust7i5x5kdN95l84/eQniKuS3ouX2SwrMmsIT28w/Nxj8DcX4LvvMssdGlkGonAlhc/9ODw9x17dYtMoxR1DwqfOEvzrZV38xzvy/VnK1bxgj7q3zpdW9ngy/FFlqU4gppkz62EgQ5h7x35VctXir1v0WJGby4uUTITw2W+Tlk4//IVPMdiZs7m9wK8nyIk+5rlXGT/3ilyeTLm+yEmLiM5fn2ci6Jknf4L19BE2rk3RfoTctY6cOy/FH/4bO5MZEwyJi4lcRfziNRhY+NIvwKVdQvWE927CP1/S2R98U14dT3lzOudKWbEPLNBmYqrnZaVOuDetluJJCAiJURIMA4RhknBsNOSubofTYhhNFvh5hlcIhz021/ocH3YYPXCnjtYSwnFG8fpV2Zmm7I9nbE8WTPKCIgqJhl0Ga32ODbps3H9SR5s9kmmO/841me3NWYwXZNOUqpMwOrbOXb/3OMfe2IW//R5Yx+KeDcrQaPHmDbmxNeGd2ZxL4ykXZwuuVCU3UHZRJg3pk+IoSD+o8WgtXM+bGYqtSsxkjmYFE4RBXhDkFaFXQl9xvSgYLhKGe1PpGCFwniovWSwyJouUeV6Se4/PHWbsiMuSbpoyHE+lZwyR90hW4hY51TyH0hF2IrxRhurYLFP8dMLWbMH1d95nakRmrmI7z7m6SLmS5bxflWyjjFHmjYXr4cF+0HgILdVSM5JSN5hVhZvNyYFxw3MlCDEQpY44zwnH9TQTGkG84ipH5RyF6nImxnskc9g8x06mtbwYAlVs5bBOCbV+dtcogYUNixZWyYpcruyNeSvNuIEyVc+uq9hRz6569hqrTvDMEXI8BbpkUW8LuCbTuwhC1UR1S6eUjcVrBlOJqIm+0EPoHbY6TMG0mb5lPeqQEayCrRxBVS1ZD0vNjLaEQ9cogSj9UPSjoTDGyXu+4kqRcx1lijLGs4+y3/w/A1KkoXs8jnBZh48YDw8yNYQoJQ5DyzW2Saxt2wJkha9eYSRWnuiaBqBaljrB4BFqtqOlg1t2JVzxnq53mKokDMX9UCTmuqv4L3VcwbPdAJw05plSJ6qUthwJFQF++SWEo3hpOEz1rDVfH2oWs92obTbaEmoH3FTLLB4szypHdfDkloFc5apaBUYIXYTOoMdorc/xXocN53CzlPH+lO0sXyakGTDHN1Rxm5U9DotvuazWmLf/JrEKGmDYkKzLnqVRQLvpljDQld/UZ3VNX2kfl+uAcpVGWauAOwidKKQfR/SjkMQrFCVZnjOvHLOm1i7wLGAZr9UtvHQD9vYWvhX0UbJ1U97yXwf0eb3tllytVu60MA+PJ6uKqz/pyBJwF1kmxqCRd9SsZErrwr4hEZWK7BBReMuXh/8GFIOEdQlJLz8AAAAASUVORK5CYII=",
+                  "color": ""
+               },
+               "modifiers": {
+                  "ctrl": null,
+                  "alt": null,
+                  "shift": null,
+                  "altshift": null,
+                  "ctrlalt": null,
+                  "ctrlshift": null,
+                  "ctrlaltshift": null
+               },
+               "type": 1,
+               "filePath": "F:/BoBOAHK/Vimdesktop/custom/ae_scripts/commands/BoBO_Loop2.jsx",
+               "argument": "",
+               "id": "c434b785-efa4-475f-876e-e9ed723794e0"
+            }
+         ],
+         "id": "45fa5721-eb68-45b9-977b-be9c36fda7b3"
+      },
+      {
+         "name": "Configure",
+         "buttons": [],
+         "id": "3bc34cc9-1eed-40a2-9c49-aded45f7c875"
+      }
+   ],
+   "scale": 0.37,
+   "margin": 0.37
+}
