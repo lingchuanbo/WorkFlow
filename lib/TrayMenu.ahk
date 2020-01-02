@@ -249,8 +249,6 @@ start "" "%A_ScriptDir%\%A_ScriptName%"
 exit
 ),%A_Temp%\vimd_Update.bat
 return
-; 生成ctrl+v
-~^C:: DoublePress()
 ~LButton:: 
 ToolTip
 return
