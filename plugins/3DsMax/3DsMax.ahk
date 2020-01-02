@@ -976,33 +976,6 @@ return
     return
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ;更新
 <3DsMax_UpDater>:
 ; Gui,Updating: +LastFound +AlwaysOnTop -Caption +ToolWindow
