@@ -17,11 +17,8 @@ CapsLock & d::SendInput,{Blind}{Right}
 CapsLock & q::SendInput,{Blind}{PgUp}
 CapsLock & e::SendInput,{Blind}{PgDn}
 
-<BoBO_CtrlC>:
-{
-	DoublePress()
-	return
-}
+~^!a:: Gosub,<ShareX_PrintScreen>
+~^c:: DoublePress()
 ;双击关闭显示器
 <BoBO_CloseScreen>:
 {
@@ -209,6 +206,35 @@ CapsLock & e::SendInput,{Blind}{PgDn}
 	!9::CoordWinClick(TG_Start_X, TG_Start_Y+(9-1)*TG_Bar_Height)
 	!0::CoordWinClick(TG_Start_X, TG_Start_Y+(10-1)*TG_Bar_Height)
 }
+; ShareX截图相关
+<ShareX_PrintScreen>:
+{
+    t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
+    settimer, ShareX_tappedkey_PrintScreen, %t%
+    if (t == "off")
+    goto ShareX_double_PrintScreen
+    return
+    ShareX_tappedkey_PrintScreen:
+        {
+			SendInput,^{PrintScreen}
+			return
+        }
+    return
+
+    ShareX_double_PrintScreen:
+        {
+			Menu, ShareX, Add, (&A) 矩形区域截图, mPrintScreen
+			Menu, ShareX, Add, (&D) 矩形截图屏幕, mPrintScreenAll
+			Menu, ShareX, Add, (&T) 捕捉当前活动窗口, mPrintScreenActive
+			Menu, ShareX, Add, (&R) 录制屏幕, mRecordingScreen
+			Menu, ShareX, Add, (&G) 录制屏幕_GIF, mRecordingScreenGif
+			Menu, ShareX, Add, (&G) 截图OCR, mPandaOCR
+			Menu, ShareX, Show
+            return
+        }
+    return
+}
+
 ;启动记事本并去标题等
 #n::
 	run F:\BoBOProgram\TotalCMD\Tools\Notepad3\x64\Notepad3.exe /f F:\BoBOProgram\TotalCMD\Tools\Notepad3\x64\Notepad3.ini, , , OutputVarPID
@@ -326,6 +352,29 @@ return
 	!w::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
 	return
 }
+mPandaOCR:
+    ; ExePath := ini.BOBOPath_Config.AEPath
+    ; tClass := ini.ahk_class_Config.AEClass
+    FunBoBO_RunActivation(ExePath:="F:\BoBOProgram\PandaOCR\PandaOCR.exe",tClass:="WTWindow")
+		sleep 2000
+		Send,{F4}
+		return
+return
+mPrintScreen:
+	SendInput,^{PrintScreen}
+return
+mPrintScreenAll:
+	SendInput,{PrintScreen}
+return
+mPrintScreenActive:
+	SendInput,!{PrintScreen}
+return
+mRecordingScreen:
+	SendInput,+{PrintScreen}
+return
+mRecordingScreenGif:
+	SendInput,^+{PrintScreen}
+return
 ; 用法：选中文字，按两次Ctrl+C翻译或搜索或加解密
 ; 热键：Ctrl+C, Ctrl+C 
 ; 快捷键位置在TrayMenu.ahk
@@ -420,3 +469,16 @@ mSaveAs:
   Filecopy,%f%,%nf%,1
 return
 ;--------------------------------------------------
+;常用浏览器设置
+GroupAdd, group_browser,ahk_class Chrome_WidgetWin_0    ;Chrome内核浏览器
+GroupAdd, group_browser,ahk_class Chrome_WidgetWin_1    ;Chrome内核浏览器
+GroupAdd, group_browser,ahk_exe chrome.exe
+GroupAdd, group_browser,ahk_exe msedge.exe
+
+#IfWinActive, ahk_group group_browser
+    F1:: SendInput,^t
+    F2:: send,{Blind}^+{Tab}
+    F3:: send,{Blind}^{Tab}
+    F4:: SendInput,^w
+    ~LButton & RButton:: send ^w
+#IfWinActive
