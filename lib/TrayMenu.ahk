@@ -92,13 +92,6 @@ Return
 
 <VIMD_EnvSystem>:
 {
-
-    ; EnvPath = %A_ScriptDir%
-    ; ; MsgBox, %NewStr%
-    ; ; Env_UserNew("", "911")
-    ; Env_SystemAdd("WorkWork", %EnvPath%)
-
-
     Gui, Color, 37474F
     Gui -Caption
 
@@ -127,7 +120,7 @@ ExitApp
 
 ; 用户自定义配置
 <EditConfig>:
-    run , %A_ScriptDir%\Editor.exe
+    run , %A_ScriptDir%\Editor.ahk
 return
 
 <VIMD_WorkFlowWeb>:
