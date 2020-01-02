@@ -1,5 +1,4 @@
 ﻿GoogleChrome:
-
     ;定义注释
     vim.SetAction("<Google_NormalMode>", "返回正常模式")
     vim.SetAction("<Google_InsertMode>", "进入VIM模式")
@@ -21,24 +20,7 @@
     vim.Map("<f9>2", "<GoogleChrome_OpenTranslate>", "GoogleChrome")
     vim.Map("<f9>3", "<GoogleChrome_OpenDogeDoge>", "GoogleChrome")
     vim.Map("<f9>4", "<GoogleChrome_下载>", "GoogleChrome")
-    
     vim.map("?","<ShowHelp>","GoogleChrome")
-
-    ;常用浏览器默认全局设置
-    GroupAdd, group_browser,ahk_class Chrome_WidgetWin_0    ;Chrome内核浏览器
-    GroupAdd, group_browser,ahk_class Chrome_WidgetWin_1    ;Chrome内核浏览器
-    GroupAdd, group_browser,ahk_exe chrome.exe
-    GroupAdd, group_browser,ahk_exe msedge.exe
-
-    #IfWinActive, ahk_group group_browser
-        F1:: SendInput,^t
-        F2:: send,{Blind}^+{Tab}
-        F3:: send,{Blind}^{Tab}
-        F4:: SendInput,^w
-        ~LButton & RButton:: send ^w
-    #IfWinActive
-
-
 return
 
 ;【全局运行AE】
@@ -56,6 +38,7 @@ return
 return
 
 <GoogleChrome_清除浏览数据>:
+{
         MsgBox, 4,BoBO问你, 要不要 清除浏览数据 继续?
         IfMsgBox Yes
             {
@@ -73,7 +56,7 @@ return
                 return
             }
 return
-
+}
 <GoogleChrome_无痕>:
 {
     ; t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
