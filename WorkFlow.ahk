@@ -45,7 +45,7 @@ SetTitleMatchMode, 2
 SetWinDelay,0
 ; ;--20191216
 
-global Version:="3.6.1"
+global Version:="3.6.2"
 
 FeedbackLink=https://www.kancloud.cn/funbobosky/vim_unity
 HelpLink=https://www.kancloud.cn/funbobosky/vim_unity

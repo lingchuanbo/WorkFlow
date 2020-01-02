@@ -1,3 +1,5 @@
+### 最更新版本为3.6.2 
+
 ### 本软件为小众软件，会用牛逼，不会用垃圾！
 ____________________________________________________
 ### **什么是[WorkFLows？](https://github.com/BoBOVFX/Vimdesktop_BoBO/releases)**
@@ -49,5 +51,5 @@ WorkFLows是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxin
 
 感谢**Array & kawvin & EZ & liuyukuan & 天甜** 大大们 提供优质代码！
 
-##### 如果想**捐赠**，捐赠了也没用，但后续会赠予超强【F1】模式！目前只有AE版后续如有需求在开发！捐赠方式(捐赠备注WorkFLows，否则心小，猜不到你是谁！)
+#### 7.请喝咖啡支持！
 ![微信支付](https://i.loli.net/2019/08/28/5F9byl4WXnfhkUs.png)![支付宝支付](https://i.loli.net/2019/08/28/TtQ5l1ChLBzj3sS.png)
