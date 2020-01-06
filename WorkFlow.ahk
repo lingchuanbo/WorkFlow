@@ -71,7 +71,12 @@ global    TG_Start_X := 100
 global    TG_Start_Y := 110
 global    TG_Bar_Height := 62 
 
-; global  N4:=new UMSS("`","2")
+;常用浏览器设置
+GroupAdd, group_browser,ahk_class Chrome_WidgetWin_0    ;Chrome内核浏览器
+GroupAdd, group_browser,ahk_class Chrome_WidgetWin_1    ;Chrome内核浏览器
+GroupAdd, group_browser,ahk_exe chrome.exe
+GroupAdd, group_browser,ahk_exe msedge.exe
+
 ; ----------------------------------
 #Include %A_ScriptDir%\lib\checkUser.ahk
 #Include %A_ScriptDir%\lib\DownloadFile.ahk

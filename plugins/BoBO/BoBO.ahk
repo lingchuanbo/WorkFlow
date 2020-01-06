@@ -469,16 +469,13 @@ mSaveAs:
   Filecopy,%f%,%nf%,1
 return
 ;--------------------------------------------------
-;常用浏览器设置
-GroupAdd, group_browser,ahk_class Chrome_WidgetWin_0    ;Chrome内核浏览器
-GroupAdd, group_browser,ahk_class Chrome_WidgetWin_1    ;Chrome内核浏览器
-GroupAdd, group_browser,ahk_exe chrome.exe
-GroupAdd, group_browser,ahk_exe msedge.exe
 
-#IfWinActive, ahk_group group_browser
-    F1:: SendInput,^t
-    F2:: send,{Blind}^+{Tab}
-    F3:: send,{Blind}^{Tab}
-    F4:: SendInput,^w
-    ~LButton & RButton:: send ^w
-#IfWinActive
+; #常用浏览器设置
+#If WinActive("ahk_group group_browser")
+{
+	F1::SendInput,^t
+    F2::send,{Blind}^+{Tab}
+    F3::send,{Blind}^{Tab}
+    F4::SendInput,^w
+    ~LButton & RButton::send ^w
+}
