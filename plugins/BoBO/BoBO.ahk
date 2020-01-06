@@ -390,8 +390,10 @@ DoublePress() ; Simulate double press
     ;   ToolTip % GoogleTranslate(keyword)
         Menu, MyMenu, Add, (&G) %_searchGoogle%, mGoogle
         Menu, MyMenu, Add, (&D) %_searchDogeDoge%, mDogeDoge
-        Menu, MyMenu, Add, (&T) %_googleTranslateCn%, mGoogleTranslateCn
-		Menu, MyMenu, Add, (&T) %_googleTranslateEn%, mGoogleTranslateEn
+		Menu, MyMenu, Add, (&T) %_googleTranslate%, mGoogleTranslate
+        ; Menu, MyMenu, Add, (&T) %_googleTranslateCn%, mGoogleTranslateCn
+		; Menu, MyMenu, Add, (&T) %_googleTranslateEn%, mGoogleTranslateEn
+		Menu, MyMenu, Add, (&T) 智能处理, mSmartSearch
         ; Menu, MyMenu, Add  ; 添加分隔线.
         Menu, MyMenu, Add, (&B) %_Base64En%, mBase64En
         Menu, MyMenu, Add, (&B) %_Base64De%, mBase64De
@@ -414,12 +416,14 @@ mGoogleTranslateCn:
     ToolTipColor("053445", "40A1EC")
     ToolTip % GoogleTranslate(keyword)
 return
+
 mGoogleTranslateEn:
     keyword=%Clipboard%
 	ToolTipFont("s12","Microsoft YaHei")
     ToolTipColor("053445", "40A1EC")
     ToolTip % GoogleTranslate(keyword,from := "auto", to :=0409)
 return
+
 mDogeDoge:
     keyword=%Clipboard%
     DogeDoge(keyword)
@@ -467,6 +471,84 @@ mSaveAs:
     return
   nf := RegExMatch(nf,"i)\.png") ? nf : nf ".png"
   Filecopy,%f%,%nf%,1
+return
+
+mSmartSearch:
+	;智能处理
+	;自动打开网址
+	;自动打路径
+	txt = %Clipboard%
+	Loop, parse, txt, `n, `r
+	{
+		S_LoopField=%A_LoopField%
+		if (RegExMatch(S_LoopField,"iS)^([\w-]+://?|www[.]).*"))
+		{
+			run, S_LoopField
+			return
+		}
+		if (RegExMatch(S_LoopField,"S)^(\\\\|.:\\)"))
+		{
+			If ProcessExist("TOTALCMD.exe")
+			{
+				run,"%TCPath%" /T /O /S /L= "%A_LoopField%"
+				return
+			}else{
+				Run, % "explorer /select, " S_LoopField
+				return
+			}
+			return
+		}
+	}
+return
+
+mGoogleTranslate:
+	;选中文本
+	txt = %Clipboard%
+	; 判断如果是中文就翻译成英文
+	Loop, parse, txt, `n, `r
+	{
+		S_LoopField=%A_LoopField%
+		if (RegExMatch(S_LoopField,"[^\x00-\xff]+"))
+		{
+			; MsgBox, 中文
+			ToolTipFont("s12","Microsoft YaHei")
+			ToolTipColor("053445", "40A1EC")
+			ToolTip % GoogleTranslate(S_LoopField,from := "auto", to :=0409)
+			return
+		}
+		; ; 判断如果是英文就翻译成中文
+		if (RegExMatch(S_LoopField,"^[A-Za-z]+"))
+		{
+			ToolTipFont("s12","Microsoft YaHei")
+			ToolTipColor("053445", "40A1EC")
+			ToolTip % GoogleTranslate(S_LoopField)
+			return
+		}
+
+		; if (RegExMatch(S_LoopField,"iS)^([\w-]+://?|www[.]).*"))
+		; {
+		; 	MsgBox, 打开网址
+		; 	return
+		; }
+		; if (RegExMatch(S_LoopField,"S)^(\\\\|.:\\)"))
+		; {
+		; 	MsgBox, 打开目录
+		; 	return
+		; }
+	}
+
+	; if (RegExMatch(txt,"^\d{6,10}\s*$")=1)
+	; run,https://search.jd.com/Search?keyword=%txt%
+	; else 
+	; if (RegExMatch(txt,"[a-zA-z]+://[^\s]*")=0)
+	; 	Run  https://www.baidu.com/s?wd=%txt%
+	; else
+	; {
+	; 	while (p := RegExMatch(txt, "[a-zA-z]+://[^\s]*", m, p?p+StrLen(m):1))
+	; 	{
+	; 		Run % "D:\Program\GoogleChrome\App\chrome.exe" " " m
+	; 	}
+	; }
 return
 ;--------------------------------------------------
 
