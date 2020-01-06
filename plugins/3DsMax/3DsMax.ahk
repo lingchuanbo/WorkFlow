@@ -927,8 +927,41 @@ return
     symbolicPaths.setUserPathValue "$maxScripts" evnPath
     ), %A_ScriptDir%\custom\maxScripts\Startup\setEvn.ms,UTF-8
 
-    sleep 500
-    run, %A_ScriptDir%\plugins\3DsMax\3DsMaxInfo.bat
+    sleep 2000
+
+    ; run, %A_ScriptDir%\plugins\3DsMax\3DsMaxInfo.bat
+    Max2020:="C:\Program Files\Autodesk\3ds Max 2020"
+    if FileExist("C:\Program Files\Autodesk\3ds Max 2020\3dsmax.exe")
+    {
+        FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2020%\scripts\Startup, 1
+        Return
+    }
+    Max2019:="C:\Program Files\Autodesk\3ds Max 2019"
+    if FileExist("C:\Program Files\Autodesk\3ds Max 2019\3dsmax.exe")
+    {
+        FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2019%\scripts\Startup, 1
+        Return
+    }
+    Max2018:="C:\Program Files\Autodesk\3ds Max 2018"
+    if FileExist("C:\Program Files\Autodesk\3ds Max 2018\3dsmax.exe")
+    {
+        FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2018%\scripts\Startup, 1
+        Return
+    }
+    Max2016:="C:\Program Files\Autodesk\3ds Max 2016"
+    if FileExist("C:\Program Files\Autodesk\3ds Max 2016\3dsmax.exe")
+    {
+        FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2016%\scripts\Startup, 1
+        Return
+    }
+    Max2014:="C:\Program Files\Autodesk\3ds Max 2014"
+    if FileExist("C:\Program Files\Autodesk\3ds Max 2014\3dsmax.exe")
+    {
+        FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2014%\scripts\Startup, 1
+        Return
+    }
+    ; FileCopyDir %A_ScriptDir%\custom\maxScripts\Startup
+
     return
 }
 
