@@ -372,7 +372,7 @@ menuAe:
 return 
 
 WHATSUP:
-    msgbox, 脚本库目录 `n`n %dirMenu0% `n`n 脚本库目录 `n`n %dirMenu1% `n`n 预设目录 `n`n %dirMenu2%
+    msgbox, 特效库目录 `n`n %dirMenu0% `n`n 脚本库目录 `n`n %dirMenu1% `n`n 预设目录 `n`n %dirMenu2%
 RETURN
 
 

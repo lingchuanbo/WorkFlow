@@ -35,8 +35,8 @@ Photoshop:
     vim.Map("<insert>", "<Photoshop_SwithMode>", "Photoshop")
 
     ; vim.Map("q", "<PS_Duplicate_画笔橡皮擦涂抹>", "Photoshop")
-    vim.Map("q", "<PS_OneKeyDefault>", "Photoshop")
-    vim.Map("w", "<PS_选区切换>", "Photoshop")
+    vim.Map("w", "<PS_OneKeyDefault>", "Photoshop")
+    vim.Map("q", "<PS_选区切换>", "Photoshop")
 
     vim.Map("e", "<PS_橡皮檫合并>", "Photoshop")
     ; vim.Map("e", "<PS_OneKeyDefaultSmudgePath>", "Photoshop")

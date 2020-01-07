@@ -38,8 +38,6 @@
 
     vim.map("[","<Ae_Double_[>","AfterEffects")
     vim.map("]","<Ae_Double_]>","AfterEffects")
-    ; vim.map(",","<Ae_Double_,>","AfterEffects")
-    ; vim.map(".","<Ae_Double_.>","AfterEffects")
     vim.map("?","<ShowHelp>","AfterEffects")
     vim.map(":?","<ShowHelp2>","AfterEffects")
 ;Double类型
@@ -86,13 +84,6 @@
     vim.Map("<LB-[>", "<Ae_LayerInterceptLeft>", "AfterEffects")
     vim.Map("<LB-]>", "<Ae_LayerInterceptRight>", "AfterEffects")
 
-;RunScript
-;调用预设按键
-    ; vim.Map("A1", "<Ae_Preset_Ani1>", "AfterEffects")
-    ; vim.Map("A2", "<Ae_Preset_Ani2>", "AfterEffects")
-    ; vim.Map("A3", "<Ae_Preset_Ani3>", "AfterEffects")
-    ; vim.Map("A4", "<Ae_Preset_Ani4>", "AfterEffects")
-    ; vim.Map("A5", "<Ae_Preset_Ani5>", "AfterEffects")
     ; vim.Map("R", "<Ae_Remove>", "AfterEffects")
     vim.Map("vcn", "<AfterEffects_新建合成>", "AfterEffects")
     vim.Map("vcc", "<AfterEffects_固态层>", "AfterEffects")

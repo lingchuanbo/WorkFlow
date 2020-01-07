@@ -21,8 +21,8 @@ WorkFLows是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxin
 
 #### 1.下载
 ####
-请使用 **[WorkFLows最新版本](https://github.com/lingchuanbo/WorkFlow_B/releases)**,否则不能正常工作！
-[下载地址](https://github.com/lingchuanbo/WorkFlow_B/archive/3.6.2.zip)
+请使用 **[WorkFLows最新版本](https://github.com/lingchuanbo/WorkFlow_B/archive/master.zip)**,否则不能正常工作！
+[下载地址](https://github.com/lingchuanbo/WorkFlow_B/archive/master.zip)
 
 #### 2.运行
 
@@ -40,6 +40,7 @@ WorkFLows是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxin
 
 #### 4.可能会遇到的问题
 1. Win10用户请管理员运行目录下Windows10设置.reg
+2. 请点击 右键任务栏WorkFLows-关于我-WorkFLows添加为系统变量
 
 ### 注意事项
 1. 安装完[AHK环境](https://www.autohotkey.com/download/ahk-install.exe)后，在运行WorkFlow.ahk！
@@ -48,6 +49,7 @@ WorkFLows是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxin
 4. 升级记得备份config.ini
 5. 遇到问题请参照帮助自行解决 , 实在不行有偿解决(慎重很贵的，按分计费看心情！不喜欢请卸载！) 验证码请输入WorkFLows！
 6. 目前在Win10系统运行正常！其它其它未知.
+7. 一些脚本(AEScript&MaxScript)来自网络如有侵权请联系删除！
 
 #### 5.为何更名为WorkFlow
 
