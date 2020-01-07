@@ -16,7 +16,6 @@ if not A_IsAdmin
 #Include %A_ScriptDir%\lib\Language.ahk
 #NoEnv
 #SingleInstance Force
-; #SingleInstance ignore
 #Persistent
 #InstallKeybdHook
 #MaxHotkeysPerInterval 1000
@@ -44,8 +43,9 @@ Process Priority,,High           	    ;线程,主,高级别
 SetTitleMatchMode, 2
 SetWinDelay,0
 ; ;--20191216
+SetWorkingDir %A_ScriptDir%
 
-global Version:="3.6.2"
+global Version:="3.6.3"
 
 FeedbackLink=https://www.kancloud.cn/funbobosky/vim_unity
 HelpLink=https://www.kancloud.cn/funbobosky/vim_unity

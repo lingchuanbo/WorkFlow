@@ -1,6 +1,12 @@
-### 最更新版本为3.6.2 
+### 最更新版本为3.6.3
 
-### 本软件为小众软件，会用牛逼，不会用垃圾！
+2020-01-07  
+1. 更新AE脚本库和预设为动态模式,快捷键shift+右键
+2. Ctrl+C+C优化翻译智能判断中文时翻译英文，英文时翻译中文！
+3. 新增智能处理,目前规则支持网站和本地路径
+
+
+### **本软件为小众软件，会用牛逼，不会用垃圾！**
 ____________________________________________________
 ### **什么是[WorkFLows？](https://github.com/lingchuanbo/WorkFlow_B/releases)**
 
@@ -51,5 +57,5 @@ WorkFLows是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxin
 
 致谢**Array & kawvin & EZ & liuyukuan & 天甜** 大大们 提供优质代码！
 
-#### 7.请喝咖啡支持！
-![微信支付](https://i.loli.net/2019/08/28/5F9byl4WXnfhkUs.png)![支付宝支付](https://i.loli.net/2019/08/28/TtQ5l1ChLBzj3sS.png)
+#### 7.请我喝杯饮料？
+![微信支付](https://i.loli.net/2019/08/28/5F9byl4WXnfhkUs.png)
