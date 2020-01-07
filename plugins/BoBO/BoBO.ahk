@@ -1,4 +1,7 @@
 ﻿BoBO:
+
+
+
 ; 全局控制
 ; `剪贴复制粘贴删除
 ` & 1:: SendInput,^x
@@ -349,9 +352,70 @@ return
 ;AE快速打开文件所在位置 至于是否启用TC到时候在考虑目前可以一直按alt+w
 #If WinActive("ahk_exe AfterFX.exe")
 {
+	
 	!w::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
+	+RButton::Gosub,menuAe
+
 	return
 }
+
+
+menuAe:
+	dirMenu1=%A_ScriptDir%\custom\ae_scripts\otherScriptCommand\
+	dirMenu2=%A_ScriptDir%\custom\ae_scripts\PresetAnimation\
+    menu, thismenu, add, AE动态脚本菜单, WHATSUP
+	menu_fromfiles("filelist1", "(&S)_脚本库", "RunAeScript1", dirMenu1, "*.jsx", "thismenu", 1)
+	menu_fromfiles("filelist2", "(&P)_预设", "RunAePreset", dirMenu2, "*.ffx", "thismenu", 1)
+    Menu, thismenu, Show
+
+return 
+
+WHATSUP:
+    msgbox, 脚本库目录 `n`n %A_ScriptDir%\custom\ae_scripts\otherScriptCommand\ `n`n 预设目录 `n`n %A_ScriptDir%\custom\ae_scripts\PresetAnimation\
+RETURN
+
+RunAeScript1:
+    curpath := menu_itempath("filelist1", dirMenu1)
+	WinActivate, ahk_exe AfterFX.exe
+    global AeExePath := ini.BOBOPath_Config.AEPath
+    RunWait, %AeExePath% -s -r %curpath%,,Hide
+    return
+RETURN
+
+RunAePreset:
+    curpath := menu_itempath("filelist2", dirMenu2)
+	dirMenu2=%A_ScriptDir%\custom\ae_presetAnimation
+	setPath:=StrReplace(curpath,"/", "//")
+    setPreset=%A_ScriptDir%\custom\ae_scripts\PresetAnimation\setPreset.jsx
+
+    FileDelete, %setPreset% ;避免重复删除文件
+    FileAppend,  ; 这里需要逗号.
+    (
+var	myPreset=File("%setPath%")
+var activeItem = app.project.activeItem;
+if (activeItem instanceof CompItem) {
+    var selectedLayers = activeItem.selectedLayers;
+    var numSelectedLayers = selectedLayers.length;
+    if (numSelectedLayers >= 1) {
+        for (var i = 0; i < numSelectedLayers; i += 1) {
+          var layer = app.project.activeItem.selectedLayers[0];
+          layer.applyPreset(mypreset);
+        }
+    } else {
+        alert("请选择一个或多个图层.", "BoBO提示你");
+    }
+}
+    ), %A_ScriptDir%\custom\ae_scripts\PresetAnimation\setPreset.jsx,UTF-8
+
+	sleep 500
+	WinActivate, ahk_exe AfterFX.exe
+	global AeExePath := ini.BOBOPath_Config.AEPath
+    RunWait, %AeExePath% -s -r %setPreset%,,Hide
+	sleep 500
+	FileDelete, %setPreset% ;避免重复删除文件
+    return
+RETURN
+
 mPandaOCR:
     ; ExePath := ini.BOBOPath_Config.AEPath
     ; tClass := ini.ahk_class_Config.AEClass
@@ -561,3 +625,4 @@ return
     F4::SendInput,^w
     ~LButton & RButton::send ^w
 }
+
