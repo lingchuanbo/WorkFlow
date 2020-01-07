@@ -231,7 +231,7 @@ CapsLock & e::SendInput,{Blind}{PgDn}
 			Menu, ShareX, Add, (&T) 捕捉当前活动窗口, mPrintScreenActive
 			Menu, ShareX, Add, (&R) 录制屏幕, mRecordingScreen
 			Menu, ShareX, Add, (&G) 录制屏幕_GIF, mRecordingScreenGif
-			Menu, ShareX, Add, (&G) 截图OCR, mPandaOCR
+			; Menu, ShareX, Add, (&G) 截图OCR, mPandaOCR
 			Menu, ShareX, Show
             return
         }
@@ -361,20 +361,23 @@ return
 
 
 menuAe:
+	dirMenu0=%A_ScriptDir%\custom\ae_scripts\Effect
 	dirMenu1=%A_ScriptDir%\custom\ae_scripts\otherScriptCommand\
-	dirMenu2=%A_ScriptDir%\custom\ae_scripts\PresetAnimation\
+	dirMenu2=%A_ScriptDir%\custom\ae_scripts\PresetAnimation
     menu, thismenu, add, AE动态脚本菜单, WHATSUP
-	menu_fromfiles("filelist1", "(&S)_脚本库", "RunAeScript1", dirMenu1, "*.jsx", "thismenu", 1)
-	menu_fromfiles("filelist2", "(&P)_预设", "RunAePreset", dirMenu2, "*.ffx", "thismenu", 1)
+	menu_fromfiles("filelist0", "(&S)_特效库", "RunAePreset0", dirMenu0, "*.ffx", "thismenu", 1)
+	menu_fromfiles("filelist1", "(&S)_脚本库", "RunAeScript", dirMenu1, "*.jsx", "thismenu", 1)
+	menu_fromfiles("filelist2", "(&P)_预设", "RunAePreset1", dirMenu2, "*.ffx", "thismenu", 1)
     Menu, thismenu, Show
-
 return 
 
 WHATSUP:
-    msgbox, 脚本库目录 `n`n %A_ScriptDir%\custom\ae_scripts\otherScriptCommand\ `n`n 预设目录 `n`n %A_ScriptDir%\custom\ae_scripts\PresetAnimation\
+    msgbox, 脚本库目录 `n`n %dirMenu0% `n`n 脚本库目录 `n`n %dirMenu1% `n`n 预设目录 `n`n %dirMenu2%
 RETURN
 
-RunAeScript1:
+
+
+RunAeScript:
     curpath := menu_itempath("filelist1", dirMenu1)
 	WinActivate, ahk_exe AfterFX.exe
     global AeExePath := ini.BOBOPath_Config.AEPath
@@ -382,11 +385,11 @@ RunAeScript1:
     return
 RETURN
 
-RunAePreset:
-    curpath := menu_itempath("filelist2", dirMenu2)
-	dirMenu2=%A_ScriptDir%\custom\ae_presetAnimation
-	setPath:=StrReplace(curpath,"/", "//")
-    setPreset=%A_ScriptDir%\custom\ae_scripts\PresetAnimation\setPreset.jsx
+; AE预设库
+RunAePreset0:
+    curpath := menu_itempath("filelist0", dirMenu0)
+	setPath:=StrReplace(curpath,"\", "/")
+    setPreset=%dirMenu0%\setPreset.jsx
 
     FileDelete, %setPreset% ;避免重复删除文件
     FileAppend,  ; 这里需要逗号.
@@ -399,19 +402,51 @@ if (activeItem instanceof CompItem) {
     if (numSelectedLayers >= 1) {
         for (var i = 0; i < numSelectedLayers; i += 1) {
           var layer = app.project.activeItem.selectedLayers[0];
-          layer.applyPreset(mypreset);
+          layer.applyPreset(myPreset);
         }
     } else {
         alert("请选择一个或多个图层.", "BoBO提示你");
     }
 }
-    ), %A_ScriptDir%\custom\ae_scripts\PresetAnimation\setPreset.jsx,UTF-8
+    ), %dirMenu0%\setPreset.jsx,UTF-8
 
-	sleep 500
+	sleep 50
 	WinActivate, ahk_exe AfterFX.exe
 	global AeExePath := ini.BOBOPath_Config.AEPath
     RunWait, %AeExePath% -s -r %setPreset%,,Hide
-	sleep 500
+	sleep 50
+	FileDelete, %setPreset% ;避免重复删除文件
+    return
+RETURN
+RunAePreset1:
+    curpath := menu_itempath("filelist2", dirMenu2)
+	setPath:=StrReplace(curpath,"\", "/")
+    setPreset=%dirMenu2%\setPreset.jsx
+
+    FileDelete, %setPreset% ;避免重复删除文件
+    FileAppend,  ; 这里需要逗号.
+    (
+var	myPreset=File("%setPath%")
+var activeItem = app.project.activeItem;
+if (activeItem instanceof CompItem) {
+    var selectedLayers = activeItem.selectedLayers;
+    var numSelectedLayers = selectedLayers.length;
+    if (numSelectedLayers >= 1) {
+        for (var i = 0; i < numSelectedLayers; i += 1) {
+          var layer = app.project.activeItem.selectedLayers[0];
+          layer.applyPreset(myPreset);
+        }
+    } else {
+        alert("请选择一个或多个图层.", "BoBO提示你");
+    }
+}
+    ), %dirMenu2%\setPreset.jsx,UTF-8
+
+	sleep 50
+	WinActivate, ahk_exe AfterFX.exe
+	global AeExePath := ini.BOBOPath_Config.AEPath
+    RunWait, %AeExePath% -s -r %setPreset%,,Hide
+	sleep 50
 	FileDelete, %setPreset% ;避免重复删除文件
     return
 RETURN
@@ -588,31 +623,7 @@ mGoogleTranslate:
 			ToolTip % GoogleTranslate(S_LoopField)
 			return
 		}
-
-		; if (RegExMatch(S_LoopField,"iS)^([\w-]+://?|www[.]).*"))
-		; {
-		; 	MsgBox, 打开网址
-		; 	return
-		; }
-		; if (RegExMatch(S_LoopField,"S)^(\\\\|.:\\)"))
-		; {
-		; 	MsgBox, 打开目录
-		; 	return
-		; }
 	}
-
-	; if (RegExMatch(txt,"^\d{6,10}\s*$")=1)
-	; run,https://search.jd.com/Search?keyword=%txt%
-	; else 
-	; if (RegExMatch(txt,"[a-zA-z]+://[^\s]*")=0)
-	; 	Run  https://www.baidu.com/s?wd=%txt%
-	; else
-	; {
-	; 	while (p := RegExMatch(txt, "[a-zA-z]+://[^\s]*", m, p?p+StrLen(m):1))
-	; 	{
-	; 		Run % "D:\Program\GoogleChrome\App\chrome.exe" " " m
-	; 	}
-	; }
 return
 ;--------------------------------------------------
 
