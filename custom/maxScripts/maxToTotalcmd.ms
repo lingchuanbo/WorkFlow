@@ -1,12 +1,6 @@
---macroScript TotalCommanderRCM
---			category:"IllusionBoxStudio"
---			tooltip:"TotalCommanderRCM"
-(
-	
--- CloseDialog
+
 	try(destroydialog select_node_maps_dialog)catch()
 	
--- Globals
 	global all_maps_in_scene = #()
 	global bitmap_tex = #()
 	global bitmap_tex_list = #()
@@ -272,4 +266,3 @@ Include "$scripts\\Startup\setEvn.ms"
 		registerRightClickMenu Totalcmd
 		PopupMenu Totalcmd
 	)
-)
