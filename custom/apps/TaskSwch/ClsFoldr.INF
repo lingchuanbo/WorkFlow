@@ -1,0 +1,59 @@
+; ClsFolder Install Inf by H.Hirayama
+[version]
+signature="$CHICAGO$"
+
+[DefaultInstall]
+CopyFiles = INF.FILE
+AddReg = UNINST.REG,PROG.REG
+Uninstall = FILESREMOVE
+
+[FILESREMOVE]
+DelFiles = INF.FILE
+DelReg = UNINST.REG,PROG.REG
+
+[UNINST.REG]
+HKLM,%UIREG%\%ApliTitle%,,,
+HKLM,%UIREG%\%ApliTitle%,DisplayName,,"%RemoveTitle%"
+HKLM,%UIREG%\%ApliTitle%,UninstallString,,"RunDll setupx.dll,InstallHinfSection FILESREMOVE 4 %17%Clsfoldr.INF"
+
+[DefaultInstall.ntx86]
+CopyFiles = INF.FILE
+AddReg = UNINST.REG.NT,PROG.REG
+Uninstall = FILESREMOVENT
+
+[FILESREMOVENT]
+DelFiles = INF.FILE
+DelReg = UNINST.REG.NT,PROG.REG
+
+[UNINST.REG.NT]
+HKLM,%UIREG%\%ApliTitle%,,,
+HKLM,%UIREG%\%ApliTitle%,DisplayName,,"%RemoveTitle%"
+HKLM,%UIREG%\%ApliTitle%,UninstallString,,"%11%\rundll32.exe syssetup.dll,SetupInfObjectInstallAction FILESREMOVENT 132 %17%\Clsfoldr.INF"
+
+
+[SourceDisksNames]
+55="%ApliTitle%","",1
+
+[DestinationDirs]
+;WIN.FILES=10
+INF.FILE=17
+
+[SourceDisksFiles]
+Clsfoldr.INF=55
+Clsfoldr.EXE=55
+
+[INF.FILE]
+Clsfoldr.INF
+
+[WIN.FILES]
+;Clsfoldr.EXE
+
+[PROG.REG]
+HKCR,"Folder\shell\Clsfoldr"
+HKCR,"Folder\shell\Clsfoldr",,,"フォルダーを閉じる (&Z)"
+HKCR,"Folder\shell\Clsfoldr\command",,,"%01%\Clsfoldr.EXE"
+
+[Strings]
+UIREG="Software\Microsoft\Windows\CurrentVersion\Uninstall"
+ApliTitle = "フォルダーを閉じる"
+RemoveTitle = "フォルダーを閉じる (Remove)"
