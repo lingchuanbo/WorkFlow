@@ -3,7 +3,6 @@
 #include *i %A_ScriptDir%\plugins\BeyondCompare4\BeyondCompare4.ahk
 #include *i %A_ScriptDir%\plugins\Blender\Blender.ahk
 #include *i %A_ScriptDir%\plugins\BoBO\BoBO.ahk
-#include *i %A_ScriptDir%\plugins\CapsPlus+\CapsPlus+.ahk
 #include *i %A_ScriptDir%\plugins\EveryThing\EveryThing.ahk
 #include *i %A_ScriptDir%\plugins\Excel\Excel.ahk
 #include *i %A_ScriptDir%\plugins\Explorer\Explorer.ahk
@@ -13,7 +12,6 @@
 #include *i %A_ScriptDir%\plugins\General\General.ahk
 #include *i %A_ScriptDir%\plugins\GoogleChrome\GoogleChrome.ahk
 #include *i %A_ScriptDir%\plugins\Photoshop\Photoshop.ahk
-#include *i %A_ScriptDir%\plugins\Swf2SpriteSheetPack\Swf2SpriteSheetPack.ahk
 #include *i %A_ScriptDir%\plugins\TCCompare\TCCompare.ahk
 #include *i %A_ScriptDir%\plugins\TCDialog\TCDialog.ahk
 #include *i %A_ScriptDir%\plugins\TotalCommander\TotalCommander.ahk
