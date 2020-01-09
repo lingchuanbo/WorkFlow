@@ -14,7 +14,6 @@
 #include *i %A_ScriptDir%\plugins\GoogleChrome\GoogleChrome.ahk
 #include *i %A_ScriptDir%\plugins\Photoshop\Photoshop.ahk
 #include *i %A_ScriptDir%\plugins\Swf2SpriteSheetPack\Swf2SpriteSheetPack.ahk
-#include *i %A_ScriptDir%\plugins\TaskSwch\TaskSwch.ahk
 #include *i %A_ScriptDir%\plugins\TCCompare\TCCompare.ahk
 #include *i %A_ScriptDir%\plugins\TCDialog\TCDialog.ahk
 #include *i %A_ScriptDir%\plugins\TotalCommander\TotalCommander.ahk

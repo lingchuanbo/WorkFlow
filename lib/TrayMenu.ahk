@@ -133,7 +133,7 @@ return
 
 <VIMD_Update>:
 ; 先执行访问，后面在执行下面
-FileCopy, %A_ScriptDir%\config.ini, %A_ScriptDir%\vimd_已经帮你备份_%d%.ini ,1
+FileCopy, %A_ScriptDir%\config.ini, %A_ScriptDir%\config_back_%d%.ini ,1
 ; FileCopy, %A_ScriptDir%\config.ini, %A_ScriptDir%\vimd_备份_还原.ini ,1
 Run, https://github.com/BoBOVFX/Vimdesktop_BoBO
 ; 执行备份文件
