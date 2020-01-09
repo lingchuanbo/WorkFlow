@@ -25,19 +25,19 @@
     vim.map("?","<ShowHelp>","3DsMax")
 
 
-    vim.map("<SP-1>","<3DsMax_1>","3DsMax")
-    vim.map("<SP-2>","<3DsMax_2>","3DsMax")
-    vim.map("<SP-3>","<3DsMax_3>","3DsMax")
-    vim.map("<SP-4>","<3DsMax_4>","3DsMax")
-    vim.map("<SP-5>","<3DsMax_5>","3DsMax")
+    ; vim.map("<SP-1>","<3DsMax_1>","3DsMax")
+    ; vim.map("<SP-2>","<3DsMax_2>","3DsMax")
+    ; vim.map("<SP-3>","<3DsMax_3>","3DsMax")
+    ; vim.map("<SP-4>","<3DsMax_4>","3DsMax")
+    ; vim.map("<SP-5>","<3DsMax_5>","3DsMax")
     ; vim.map("<SP-q>6","<3DsMax_Exit>","3DsMax")
     ; vim.map("<SP-q>7","<3DsMax_Import>","3DsMax")
     ; vim.map("<SP-q>8","<3DsMax_Export>","3DsMax")
     ; vim.map("<SP-q>9","<3DsMax_UpDater>","3DsMax")
 
-    vim.Map("<F2>", "<3DsMax_getUp>", "3DsMax")
-    vim.Map("<F3>", "<3DsMax_getDown>", "3DsMax")
-    vim.Map("<F4>", "<3DsMax_Key>", "3DsMax")
+    ; vim.Map("<F2>", "<3DsMax_getUp>", "3DsMax")
+    ; vim.Map("<F3>", "<3DsMax_getDown>", "3DsMax")
+    ; vim.Map("<F4>", "<3DsMax_Key>", "3DsMax")
 
     vim.Map("<F5>", "<3DsMax_Play>", "3DsMax")
     vim.map("<F7>","<3DsMax_maxToTotalcmd>","3DsMax")
@@ -80,9 +80,9 @@
 
     vim.map("?","<ShowHelp>","3DsMax")
 
-    vim.Map("1", "<3DsMax_Enter>", "3DsMax")
-    vim.Map("2", "<3DsMax_RButton>", "3DsMax")
-    vim.Map("5", "<3DsMax_SwithObjectMode>", "3DsMax")
+    ; vim.Map("1", "<3DsMax_Enter>", "3DsMax")
+    ; vim.Map("2", "<3DsMax_RButton>", "3DsMax")
+    ; vim.Map("5", "<3DsMax_SwithObjectMode>", "3DsMax")
     vim.Map("<LB-5>", "<3DsMax_Viewport_EdgedFaces>", "3DsMax")
 
     

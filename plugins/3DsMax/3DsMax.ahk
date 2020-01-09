@@ -103,7 +103,7 @@ return
 return
 
 <3DsMax_InsertMode>:
-    GoSub,<3DsMax_ScritAll>
+    ; GoSub,<3DsMax_ScritAll>
     vim.SetMode("insert", "3DsMax")
     Gui,Ae_insert: +LastFound +AlwaysOnTop -Caption +ToolWindow
     Gui,Ae_insert: Color, %color2%
@@ -416,15 +416,18 @@ Return
     KeyWait, h, % "d T"DoubleClickTime/1000
     If ! Errorlevel
         {
-            runPath = actionMan.executeAction 0 "281"
+            runPath = hide Selection
             runMaxScriptTxt(runPath)
             return
+            ; runPath = actionMan.executeAction 0 "281"
+            ; runMaxScriptTxt(runPath)
+            ; return
         }
     else
         {
-            ; send {h}
-            runPath = hide Selection
-            runMaxScriptTxt(runPath)
+            send {h}
+            ; runPath = hide Selection
+            ; runMaxScriptTxt(runPath)
             return
         }
     return
@@ -509,8 +512,8 @@ Return
 
 
     3DsMax_double_W:
-    
-    runMaxScriptCommands("MaximizeViewport.ms")
+    ; runMaxScriptCommands("MaximizeViewport.ms")
+    SendInput, !{w}
     return  
 
 }
