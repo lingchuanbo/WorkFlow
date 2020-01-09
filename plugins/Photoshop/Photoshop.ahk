@@ -27,6 +27,7 @@ Photoshop:
 
 ;normal模式
     vim.SetMode("normal", "Photoshop")
+    vim.Comment("<Photoshop_SwithMode>", "【-----模式切换-----】")
     vim.map("<insert>","<Photoshop_SwithMode>","Photoshop")
 ;insert模式
     ;载入自定义注释
@@ -64,8 +65,6 @@ Photoshop:
 
     vim.Map("3", "<PS_明颜色>", "Photoshop")
     vim.Map("4", "<PS_暗颜色>", "Photoshop")
-    vim.Map("<SP-3>", "<PS_透明度加>", "Photoshop")
-    vim.Map("<SP-4>", "<PS_透明度减>", "Photoshop")
     vim.Map("5", "<PS_加暗加亮>", "Photoshop")
 
     vim.Map("<F2>", "<PS_切换标签>", "Photoshop")
@@ -76,25 +75,12 @@ Photoshop:
     vim.Map("<F8>3", "<PS_Script_RotateMe>", "Photoshop")
     vim.Map("<F8>4", "<PS_Script_TransformEach>", "Photoshop") 
 
-
-    vim.Map("<SP-n>", "<PS_Script_LayersRenamer>", "Photoshop")
-    vim.Map("<SP-w>", "<PS_层上>", "Photoshop")
-    vim.Map("<SP-s>", "<PS_层下>", "Photoshop")
-
-
-
-    vim.Map("<SP-i>", "<PS_Help>", "Photoshop")
-
-    vim.Map("<Space>", "<PS_Space>", "Photoshop")
-        
-
-
     vim.map("?","<ShowHelp>","Photoshop")
 
     vim.Map("/u", "<PS_AutoUpdate>", "Photoshop")
     
 
-    vim.Map("<F1>", "<PS-Test>", "Photoshop")
+    ; vim.Map("<F1>", "<PS-Test>", "Photoshop")
     vim.Map("<LB-d>", "<PS_向下合并>", "Photoshop")
     vim.Map("<LB-e>", "<PS_多边形选区>", "Photoshop")
 
@@ -156,7 +142,6 @@ PSCheckInput()
 
 ;【全局运行PS】
 <RunPS>:
-    
     ExePath := ini.BOBOPath_Config.PSPath
     tClass := ini.ahk_class_Config.PSClass
     FunBoBO_RunActivation(ExePath,tClass)
@@ -275,8 +260,8 @@ return
 
 <PS_Space>:
 {
-    ; send {Space}
-    send, {Enter}
+    SendInput,{Space}
+    ; send, {Enter}
     return
 }
 ; ^#l::MouseClick,WheelDown,,,10,0,D,R
@@ -645,7 +630,7 @@ return
 
 
 <PS_Duplicate_X>:
-    ; 单按新建图层|双按复制图层|长按删除
+ 
     DoubleClickTime := DllCall("GetDoubleClickTime") ; in milliseconds
     ; Wait for 'd' to be released
     KeyWait, x
