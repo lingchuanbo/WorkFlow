@@ -855,10 +855,10 @@ fun_GetFormatTime(f,t="")
 
 ; 谷歌翻译
 GoogleTranslate(str, from := "auto", to :=0)  {
-   static JS := CreateScriptObj(), _ := JS.( GetJScript() ) := JS.("delete ActiveXObject; delete GetObject;")
+   static JS := CreateScriptObj(), _ := JS.( GetJScripObject() ) := JS.("delete ActiveXObject; delete GetObject;")
+;  static JS := CreateScriptObj(), _ := JS.( GetJScript() ) := JS.("delete ActiveXObject; delete GetObject;")
    if(!to)				; If no "to" parameter was passed
       to := GetISOLanguageCode()	; Assign the system (OS) language to "to"
- 
    if(from = to)			; If the "from" and "to" parameters are the same
       Return str			; Abort translation and return the original string
    json := SendRequest(JS, str, to, from, proxy := "")
@@ -1037,45 +1037,62 @@ URIEncode(str, encoding := "UTF-8")  {
    Return UrlStr
 }
  
-GetJScript()
-{
-   script =
+; GetJScript()
+; {
+;    script =
+;    (
+;       var TKK = ((function() {
+;         var a = 561666268;
+;         var b = 1526272306;
+;         return 406398 + '.' + (a + b);
+;       })());
+ 
+;       function b(a, b) {
+;         for (var d = 0; d < b.length - 2; d += 3) {
+;             var c = b.charAt(d + 2),
+;                 c = "a" <= c ? c.charCodeAt(0) - 87 : Number(c),
+;                 c = "+" == b.charAt(d + 1) ? a >>> c : a << c;
+;             a = "+" == b.charAt(d) ? a + c & 4294967295 : a ^ c
+;         }
+;         return a
+;       }
+ 
+;       function tk(a) {
+;           for (var e = TKK.split("."), h = Number(e[0]) || 0, g = [], d = 0, f = 0; f < a.length; f++) {
+;               var c = a.charCodeAt(f);
+;               128 > c ? g[d++] = c : (2048 > c ? g[d++] = c >> 6 | 192 : (55296 == (c & 64512) && f + 1 < a.length && 56320 == (a.charCodeAt(f + 1) & 64512) ?
+;               (c = 65536 + ((c & 1023) << 10) + (a.charCodeAt(++f) & 1023), g[d++] = c >> 18 | 240,
+;               g[d++] = c >> 12 & 63 | 128) : g[d++] = c >> 12 | 224, g[d++] = c >> 6 & 63 | 128), g[d++] = c & 63 | 128)
+;           }
+;           a = h;
+;           for (d = 0; d < g.length; d++) a += g[d], a = b(a, "+-a^+6");
+;           a = b(a, "+-3^+b+-f");
+;           a ^= Number(e[1]) || 0;
+;           0 > a && (a = (a & 2147483647) + 2147483648);
+;           a `%= 1E6;
+;           return a.toString() + "." + (a ^ h)
+;       }
+;    )
+;    Return script
+; }
+
+GetJScripObject()  {   ; Here we create temp file to get a custom COM server using Windows Script Components (WSC) technology.
+   VarSetCapacity(tmpFile, ((MAX_PATH := 260) - 14) << !!A_IsUnicode, 0)
+   DllCall("GetTempFileName", Str, A_Temp, Str, "AHK", UInt, 0, Str, tmpFile)
+   
+   FileAppend,
    (
-      var TKK = ((function() {
-        var a = 561666268;
-        var b = 1526272306;
-        return 406398 + '.' + (a + b);
-      })());
- 
-      function b(a, b) {
-        for (var d = 0; d < b.length - 2; d += 3) {
-            var c = b.charAt(d + 2),
-                c = "a" <= c ? c.charCodeAt(0) - 87 : Number(c),
-                c = "+" == b.charAt(d + 1) ? a >>> c : a << c;
-            a = "+" == b.charAt(d) ? a + c & 4294967295 : a ^ c
-        }
-        return a
-      }
- 
-      function tk(a) {
-          for (var e = TKK.split("."), h = Number(e[0]) || 0, g = [], d = 0, f = 0; f < a.length; f++) {
-              var c = a.charCodeAt(f);
-              128 > c ? g[d++] = c : (2048 > c ? g[d++] = c >> 6 | 192 : (55296 == (c & 64512) && f + 1 < a.length && 56320 == (a.charCodeAt(f + 1) & 64512) ?
-              (c = 65536 + ((c & 1023) << 10) + (a.charCodeAt(++f) & 1023), g[d++] = c >> 18 | 240,
-              g[d++] = c >> 12 & 63 | 128) : g[d++] = c >> 12 | 224, g[d++] = c >> 6 & 63 | 128), g[d++] = c & 63 | 128)
-          }
-          a = h;
-          for (d = 0; d < g.length; d++) a += g[d], a = b(a, "+-a^+6");
-          a = b(a, "+-3^+b+-f");
-          a ^= Number(e[1]) || 0;
-          0 > a && (a = (a & 2147483647) + 2147483648);
-          a `%= 1E6;
-          return a.toString() + "." + (a ^ h)
-      }
-   )
-   Return script
+   <component>
+   <public><method name='eval'/></public>
+   <script language='JScript'></script>
+   </component>
+   ), % tmpFile
+   
+   JS := ObjBindMethod( ComObjGet("script:" . tmpFile), "eval" ) ; ComObjGet("script:" . tmpFile) is the way to invoke com-object without registration in the system
+   FileDelete, % tmpFile
+   Return JS
 }
- 
+
 CreateScriptObj() {
    static doc
    doc := ComObjCreate("htmlfile")
