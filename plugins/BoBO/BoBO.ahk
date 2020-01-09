@@ -22,6 +22,15 @@ CapsLock & e::SendInput,{Blind}{PgDn}
 
 ~^!a:: Gosub,<ShareX_PrintScreen>
 ~^c:: DoublePress()
+
+;软件启动器
+#RButton::Gosub,<BoBO_PopSel>
+;任务栏切换
+!RButton::Gosub,<BoBO_TaskSwch>
+;窗口居中
+#z::Gosub,<BoBO_CenterWindow>
+;窗口Vim
+~^v:: DoublePressV()
 ;双击关闭显示器
 <BoBO_CloseScreen>:
 {
@@ -37,12 +46,18 @@ CapsLock & e::SendInput,{Blind}{PgDn}
     return
 }
 ;集成快捷启动
+<BoBO_HuntAndPeck>:
+{
+    run %A_ScriptDir%\custom\apps\HuntAndPeck\hap.exe /hint
+	return
+;    run %A_ScriptDir%\custom\apps\Popsel\PopSel.exe /pc /n
+}
+;集成快捷启动
 <BoBO_PopSel>:
 {
     run %A_ScriptDir%\custom\apps\Popsel\PopSel.exe /n
 	return
 ;    run %A_ScriptDir%\custom\apps\Popsel\PopSel.exe /pc /n
-
 }
 <BoBO_CenterWindow>:
 {
@@ -53,7 +68,7 @@ CapsLock & e::SendInput,{Blind}{PgDn}
 ;任务栏切换
 <BoBO_TaskSwch>:
 {
-    run %A_ScriptDir%\custom\apps\TaskSwch\TaskSwch.exe /n
+    run %A_ScriptDir%\custom\apps\TaskSwch\TaskMuEx.exe 
 	return
 }
 ;社交软件便捷
@@ -238,33 +253,7 @@ CapsLock & e::SendInput,{Blind}{PgDn}
     return
 }
 
-;启动记事本并去标题等
-#n::
-	run F:\BoBOProgram\TotalCMD\Tools\Notepad3\x64\Notepad3.exe /f F:\BoBOProgram\TotalCMD\Tools\Notepad3\x64\Notepad3.ini, , , OutputVarPID
-	sleep 100
-	WinWait ahk_pid %OutputVarPID%
-	if ErrorLevel
-	{
-		toolTip 超时了，再试一下？
-		sleep 2000
-		tooltip
-		return
-	}
 
-return
-;启动记事本并去标题等，并收集剪贴板
-^#b::
-	run F:\BoBOProgram\TotalCMD\Tools\Notepad3\x64\Notepad3.exe /b /f F:\BoBOProgram\TotalCMD\Tools\Notepad3\x64\Notepad3.ini, , , OutputVarPID
-	sleep 100
-	WinWait ahk_pid %OutputVarPID%
-	if ErrorLevel
-	{
-		toolTip 超时了，再试一下？
-		sleep 2000
-		tooltip
-		return
-	}
-return
 #IfWinActive ahk_class TTOTAL_CMD
 	,:: 
 		ControlGetFocus, TC_CurrentControl, A
@@ -317,6 +306,7 @@ return
 	!w::openPathTc() ;Explorer到 TC 互相调用【alt+w】
 	NumpadDiv::HideShowfiles() ;显示隐藏文件
 	^!t::Gosub,<BoBO_OpenLocalDirCommander>
+	^!w::Run,%A_ScriptDir%\custom\apps\TaskSwch\ClsFoldr.EXE ;关闭重复窗口
 	return
 }
 
@@ -350,15 +340,60 @@ return
 }
 
 ;AE快速打开文件所在位置 至于是否启用TC到时候在考虑目前可以一直按alt+w
-#If WinActive("ahk_exe AfterFX.exe")
+#If WinActive("ahk_exe 3dsmax.exe")
 {
 	
-	!w::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
-	+RButton::Gosub,menuAe
+	!w::runMaxScript("maxToTotalcmd.ms")
+	; +RButton::Gosub,menuAe
+	` & 1:: Gosub, <3DsMax_getUp>
+    ` & 2:: Gosub, <3DsMax_getDown>
+    ` & 3:: Gosub, <3DsMax_Key>
 
 	return
 }
 
+;AE快速打开文件所在位置 至于是否启用TC到时候在考虑目前可以一直按alt+w
+#If WinActive("ahk_exe AfterFX.exe")
+{	
+	!w::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
+	+RButton::Gosub,menuAe
+	return
+}
+
+#If WinActive("ahk_exe Photoshop.exe")
+{	
+	` & 1:: Gosub, <PS_透明度减>
+	` & 2:: Gosub, <PS_透明度加>
+	return
+}
+
+;启动记事本并去标题等
+#n::
+	run, %COMMANDER_PATH%\Tools\Notepad3\x64\Notepad3.exe /f %COMMANDER_PATH%\Tools\Notepad3\x64\Notepad3.ini, , , OutputVarPID
+	sleep 100
+	WinWait ahk_pid %OutputVarPID%
+	if ErrorLevel
+	{
+		toolTip 超时了，再试一下？
+		sleep 2000
+		tooltip
+		return
+	}
+
+return
+;启动记事本并去标题等，并收集剪贴板
+^#b::
+	run, %COMMANDER_PATH%\Tools\Notepad3\x64\Notepad3.exe /b /f %COMMANDER_PATH%\Tools\Notepad3\x64\Notepad3.ini, , , OutputVarPID
+	sleep 100
+	WinWait ahk_pid %OutputVarPID%
+	if ErrorLevel
+	{
+		toolTip 超时了，再试一下？
+		sleep 2000
+		tooltip
+		return
+	}
+return
 
 menuAe:
 	dirMenu0=%A_ScriptDir%\custom\ae_scripts\Effect
@@ -374,8 +409,6 @@ return
 WHATSUP:
     msgbox, 特效库目录 `n`n %dirMenu0% `n`n 脚本库目录 `n`n %dirMenu1% `n`n 预设目录 `n`n %dirMenu2%
 RETURN
-
-
 
 RunAeScript:
     curpath := menu_itempath("filelist1", dirMenu1)
@@ -509,6 +542,29 @@ DoublePress() ; Simulate double press
       pressed1 = 1
 }
 
+DoublePressV() ; Simulate double press
+{
+	t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
+    settimer, hap_tappedkey, %t%
+    if (t == "off")
+    goto hap_double
+    return
+    hap_tappedkey:
+        {
+            ; SendInput,^{v}
+            return
+        }
+    return
+
+    hap_double:
+        {
+            Run, %A_ScriptDir%\custom\apps\HuntAndPeck\hap.exe /hint
+            return
+        }
+    return
+     
+}
+
 mGoogleTranslateCn:
     keyword=%Clipboard%
 	ToolTipFont("s12","Microsoft YaHei")
@@ -626,7 +682,7 @@ mGoogleTranslate:
 	}
 return
 ;--------------------------------------------------
-
+; #软件补充设置
 ; #常用浏览器设置
 #If WinActive("ahk_group group_browser")
 {
