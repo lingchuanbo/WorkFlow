@@ -1073,6 +1073,9 @@ ClickContextMenu(key)
 #If MouseIsOver("ahk_class Shell_TrayWnd")
 WheelUp::Send {Volume_Up}
 WheelDown::Send {Volume_Down}
+
+; LWin & WheelUp::Gosub,<BoBO_TaskSwch>
+; LWin & WheelDown::Gosub,<BoBO_TaskSwch>
 #If
 MouseIsOver(WinTitle) {
     MouseGetPos,,, Win
@@ -1294,7 +1297,7 @@ EWD_WatchMouse:
 return
 
 ;按住caps加右键放大和缩小窗口
-Capslock & RButton::
+; Capslock & RButton::
 Escape & RButton::
 	CoordMode, Mouse, Screen ; Switch to screen/absolute coordinates.
 	MouseGetPos, EWD_MouseStartX, EWD_MouseStartY, EWD_MouseWin

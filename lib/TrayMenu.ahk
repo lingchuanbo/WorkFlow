@@ -13,9 +13,9 @@ menu, Tray, add, %_StartUp%(&S),StartUp
 ;menu, Tray, check, %_StartUp%
 ;menu, Tray, add, %_UpdatPlugins% &U, <UpdatPlugins>
 ;menu, tray, disable, %_Author%
-Menu, Tray, add, %_HotKeyManagement%(&H), <VimDConfig_KeymapEdit>
-Menu, Tray, Add, %_Config%(&C), <VimDConfig_EditConfig>
-Menu, Tray, Add, %_Path%(&P), <EditConfig>
+; Menu, Tray, add, %_HotKeyManagement%(&H), <VimDConfig_KeymapEdit>
+; Menu, Tray, Add, %_Config%(&C), <VimDConfig_EditConfig>
+; Menu, Tray, Add, %_Path%(&P), <EditConfig>
 ;Menu, Tray, Add,
 ;Menu, Tray, Add, 编辑Custom &C, <VimDConfig_EditCustom>
 Menu, Tray, Add,

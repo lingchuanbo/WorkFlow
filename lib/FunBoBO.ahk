@@ -83,8 +83,26 @@ uStr(str)
     out.="{U+ " . ord(val) . "}"
 	return out
 }
-
-
+isExplorerLike() {
+	; Windows Explorer or Desktop
+	return FunBoBO_Explorer_GetPath()
+}
+ActiveFolderPath()
+{
+	return PathCreateFromURL(ExplorerPath(WinExist("A")))
+}
+ExplorerPath(_hwnd)
+{
+	for Item in ComObjCreate("Shell.Application").Windows
+		if (Item.hwnd = _hwnd)
+			return, Item.LocationURL
+}
+PathCreateFromURL(URL)
+{
+	VarSetCapacity(fPath, Sz := 2084, 0)
+	DllCall("shlwapi\PathCreateFromUrl" (A_IsUnicode ? "W" : "A" ), Str, URL, Str, fPath, UIntP,Sz, UInt, 0)
+	return fPath
+}
 ;获取当前目录
 FunBoBO_CustomFunc_getCurrentDir(ByRef CurWinClass="")
 {
@@ -1308,3 +1326,7 @@ file_isfolder(whatfile){
         return true
 }
 ;动态菜单结束
+PostMsg(CommandID)
+{
+    PostMessage 1075, %CommandID%, 0, , ahk_class TTOTAL_CMD
+}

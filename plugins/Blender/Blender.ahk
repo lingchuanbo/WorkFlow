@@ -117,4 +117,11 @@ return
             return
         }
     return
+
+}
+; #右键
+<Blender_MButton>:
+{
+    SendInput, {mbutton}
+    return
 }

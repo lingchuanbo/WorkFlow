@@ -20,14 +20,16 @@ CapsLock & d::SendInput,{Blind}{Right}
 CapsLock & q::SendInput,{Blind}{PgUp}
 CapsLock & e::SendInput,{Blind}{PgDn}
 
+CapsLock & RButton::Gosub,<BoBO_TaskSwch>
+
 ~^!a:: Gosub,<ShareX_PrintScreen>
 ~^c:: DoublePress()
 
 ;软件启动器
 #RButton::Gosub,<BoBO_PopSel>
 ;任务栏切换
-!RButton::Gosub,<BoBO_TaskSwch>
-;窗口居中
+
+;窗口居
 #z::Gosub,<BoBO_CenterWindow>
 ;窗口Vim
 ~^v:: DoublePressV()
@@ -68,7 +70,7 @@ CapsLock & e::SendInput,{Blind}{PgDn}
 ;任务栏切换
 <BoBO_TaskSwch>:
 {
-    run %A_ScriptDir%\custom\apps\TaskSwch\TaskMuEx.exe 
+    run %A_ScriptDir%\custom\apps\TaskSwch\TaskMuEx.exe /n
 	return
 }
 ;社交软件便捷
@@ -151,7 +153,10 @@ CapsLock & e::SendInput,{Blind}{PgDn}
 	}
 	return
 }
-
+<BoBO_Test>:
+global BoBO_Test=ini.BOBOPath_Config.testPath
+msgbox %BoBO_Test%
+return
 
 ; Tim/QQ客户端
 #IfWinActive ahk_class TXGuiFoundation
@@ -170,6 +175,7 @@ CapsLock & e::SendInput,{Blind}{PgDn}
 	!7::CoordWinClick(Tim_Start_X, Tim_Start_Y+(8-1)*Tim_Bar_Height)
 	!8::CoordWinClick(Tim_Start_X, Tim_Start_Y+(9-1)*Tim_Bar_Height)
 	!9::CoordWinClick(Tim_Start_X, Tim_Start_Y+(10-1)*Tim_Bar_Height)
+	; ^r::Gosub, <BoBO_Test>
 }
 
 ;微信PC客户端
@@ -253,6 +259,17 @@ CapsLock & e::SendInput,{Blind}{PgDn}
     return
 }
 
+;--------------------------------------------------
+; #软件补充设置
+; #常用浏览器设置
+#If WinActive("ahk_group group_browser")
+{
+	F1::SendInput,^t
+    F2::send,{Blind}^+{Tab}
+    F3::send,{Blind}^{Tab}
+    F4::SendInput,^w
+    ~LButton & RButton::send ^w
+}
 
 #IfWinActive ahk_class TTOTAL_CMD
 	,:: 
@@ -301,12 +318,14 @@ CapsLock & e::SendInput,{Blind}{PgDn}
 		Run, % "explorer /select, " ActiveDocumentFile
 #IfWinActive
 
+; #资源浏览器
 #If WinActive("ahk_class CabinetWClass") or WinActive("ahk_class ExploreWClass")
 {
 	!w::openPathTc() ;Explorer到 TC 互相调用【alt+w】
 	NumpadDiv::HideShowfiles() ;显示隐藏文件
 	^!t::Gosub,<BoBO_OpenLocalDirCommander>
 	^!w::Run,%A_ScriptDir%\custom\apps\TaskSwch\ClsFoldr.EXE ;关闭重复窗口
+	^#z::Gosub,ZipDirectory
 	return
 }
 
@@ -322,7 +341,7 @@ CapsLock & e::SendInput,{Blind}{PgDn}
 	!w::openPathExplorer() ;TC 到 Explorer
 	NumpadDiv::TcSendPos(2011) ;显示隐藏文件
 	^!t::Gosub,<BoBO_OpenLocalDirCommander>
-
+	^Up::Gosub,<TcPostMsg>
 	; 2011
 	return
 }
@@ -351,6 +370,13 @@ CapsLock & e::SendInput,{Blind}{PgDn}
 
 	return
 }
+#If WinActive("ahk_exe blender.exe")
+{
+	; ^LButton::Send,{MButton} 
+	; !w:: msgbox,sadsds
+	; +RButton::Gosub,menuAe
+	return
+}
 
 ;AE快速打开文件所在位置 至于是否启用TC到时候在考虑目前可以一直按alt+w
 #If WinActive("ahk_exe AfterFX.exe")
@@ -366,6 +392,15 @@ CapsLock & e::SendInput,{Blind}{PgDn}
 	` & 2:: Gosub, <PS_透明度加>
 	return
 }
+
+<TcPostMsg>:
+Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
+Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_OpenNewTab`)"
+Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
+Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_MatchSrc`)"
+Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CloseCurrentTab`)"
+Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
+return
 
 ;启动记事本并去标题等
 #n::
@@ -681,15 +716,102 @@ mGoogleTranslate:
 		}
 	}
 return
-;--------------------------------------------------
-; #软件补充设置
-; #常用浏览器设置
-#If WinActive("ahk_group group_browser")
-{
-	F1::SendInput,^t
-    F2::send,{Blind}^+{Tab}
-    F3::send,{Blind}^{Tab}
-    F4::SendInput,^w
-    ~LButton & RButton::send ^w
-}
 
+
+; #默认资源管理器相关
+; #源码来源 https://itenium.be/Mi-Ke/
+ZipDirectory:
+	currentPath := ActiveFolderPath()
+	if currentPath =
+		return
+
+	selectedFiles := Explorer_GetSelected()
+
+	; If one file selected, probably by accident?, default to zipping entire directory
+	if selectedFiles
+	{
+		StringReplace, selectedFiles, selectedFiles, `n, `n, UseErrorLevel
+		selectedFilesCount := ErrorLevel + 1
+		if (selectedFilesCount = 1) {
+			MsgBox, 4, Zippy, Selected one file:`n%selectedFiles%`n`nNo to zip just this file`nYes to zip the entire folder instead., 5
+			IfMsgBox, Yes
+				selectedFiles :=
+		}
+	}
+
+	if selectedFiles
+	{
+		; Zip selected file(s)
+		toZip =
+		Loop, Parse, selectedFiles, `n
+		{
+			toZip .= """" A_LoopField """ "
+		}
+	}
+	else
+	{
+		; Zip entire directory
+		toZip := """" currentPath "\*"""
+	}
+
+
+	If selectedFilesCount = 1
+	{
+		; One filename: use that filename for the zip
+		SplitPath, selectedFiles, , , , selectedFileName
+		zipFileName := selectedFileName
+	}
+	else
+	{
+		; Use active directory name as name for the zip
+		SplitPath, currentPath, topDirName
+
+
+		; .NET: If bin/debug/release foldername, go up for full .net name
+		; I assume that adding the AssemblyVersion is overkill for this script? :)
+		if (topDirName = "Debug" or topDirName = "Release" or topDirName = "bin")
+		{
+			parentDirectory := GetParentDirectoryName(currentPath)
+			SplitPath, parentDirectory, topDirName
+			if (topDirName = "bin")
+			{
+				parentDirectory := GetParentDirectoryName(parentDirectory)
+				SplitPath, parentDirectory, topDirName
+			}
+		}
+		zipFileName := topDirName
+
+
+		; If the target zip already exists?
+		; Simply continuing would overwrite the existing zip with the original zip inside it (ie doubling size because 7zip doesn't see what happened)
+		fullZipName = %currentPath%\%topDirName%.zip
+		if FileExist(fullZipName)
+		{
+			MsgBox, 4, Zippy already exists?, %topDirName%.zip already exists!`n`nYes to delete it.`nNo to abort
+			IfMsgBox, Yes
+				FileDelete %fullZipName%
+			IfMsgBox, No
+				return
+		}
+	}
+
+	; The actual zipping :)
+	fullZipName = %currentPath%\%zipFileName%.zip
+
+	downloadPath := ini.config.zipper
+		; downloadPath := ReadMikeIni("core", "zipper", true)
+	StringReplace, downloadPath, downloadPath, <fullZipName>, %fullZipName%
+	StringReplace, downloadPath, downloadPath, <toZip>, %toZip%
+
+	RunWait, %downloadPath%
+
+	; RunWait so that we can determine file size
+	; Which works - sometimes :p
+	FileGetSize, zipFileSize, %fullZipName%, M
+
+return
+
+GetParentDirectoryName(path)
+{
+	return SubStr(path, 1, InStr(SubStr(path, 1, -1), "\", 0, 0) - 1)
+}
