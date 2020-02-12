@@ -251,8 +251,9 @@ return
 			Menu, ShareX, Add, (&D) 矩形截图屏幕, mPrintScreenAll
 			Menu, ShareX, Add, (&T) 捕捉当前活动窗口, mPrintScreenActive
 			Menu, ShareX, Add, (&R) 录制屏幕, mRecordingScreen
-			Menu, ShareX, Add, (&G) 录制屏幕_GIF, mRecordingScreenGif
-			; Menu, ShareX, Add, (&G) 截图OCR, mPandaOCR
+			Menu, ShareX, Add, (&G) 录制GIF, mRecordingScreenGif
+			Menu, ShareX, Add, (&G) 录制GIF>>ScreenToGif, mRecordingScreenGif2
+			; 需要设置ScreenToGif快捷方式为Ctrl+Alt+PrintScreen
 			Menu, ShareX, Show
             return
         }
@@ -519,14 +520,14 @@ if (activeItem instanceof CompItem) {
     return
 RETURN
 
-mPandaOCR:
-    ; ExePath := ini.BOBOPath_Config.AEPath
-    ; tClass := ini.ahk_class_Config.AEClass
-    FunBoBO_RunActivation(ExePath:="F:\BoBOProgram\PandaOCR\PandaOCR.exe",tClass:="WTWindow")
-		sleep 2000
-		Send,{F4}
-		return
-return
+; mPandaOCR:
+;     ; ExePath := ini.BOBOPath_Config.AEPath
+;     ; tClass := ini.ahk_class_Config.AEClass
+;     FunBoBO_RunActivation(ExePath:="F:\BoBOProgram\PandaOCR\PandaOCR.exe",tClass:="WTWindow")
+; 		sleep 2000
+; 		Send,{F4}
+; 		return
+; return
 mPrintScreen:
 	SendInput,^{PrintScreen}
 return
@@ -541,6 +542,11 @@ mRecordingScreen:
 return
 mRecordingScreenGif:
 	SendInput,^+{PrintScreen}
+return
+mRecordingScreenGif2:
+	Run,F:\BoBOProgram\ShareX\ScreenToGif.exe
+	sleep 300
+	SendInput,^!{PrintScreen}
 return
 ; 用法：选中文字，按两次Ctrl+C翻译或搜索或加解密
 ; 热键：Ctrl+C, Ctrl+C 
