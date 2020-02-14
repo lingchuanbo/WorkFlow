@@ -775,11 +775,10 @@ openPathTc(){
 	MouseGetPos, , , id, control
 	WinGetTitle, title, ahk_id %id%
 	getPath=%title%
-	appName:=RegExMatch(getPath,"(\\|.:\\).*\\",candysel)
-
+	; appName:=RegExMatch(getPath,"(\\|.:\\).*\\",candysel)
 	tc_open_path:=Explorer_Get()
-
-	candysel=%candysel%  ;去掉首尾空格
+	; candysel=%candysel%  ;去掉首尾空格
+	candysel=%title%  ;去掉首尾空格
 	if !candysel			;没有选中文件
 	{
 		if WinActive("ahk_exe explorer.exe")		;如果当前活动窗口是资管，则用tc打开当前资管所在路径
