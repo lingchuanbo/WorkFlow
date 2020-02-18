@@ -1329,3 +1329,18 @@ PostMsg(CommandID)
 {
     PostMessage 1075, %CommandID%, 0, , ahk_class TTOTAL_CMD
 }
+
+fun_KeyClickAction(act){
+	If RegExMatch(act,"i)^(run,)",m) {
+		run,% substr(act,strlen(m1)+1)
+	}
+	else If RegExMatch(act,"i)^(send,)",m) {
+		Send,% substr(act,strlen(m1)+1)
+	}
+	else If RegExMatch(act,"i)^(SendInput,)",m) {		
+		SendInput,% substr(act,strlen(m1)+1)
+	}
+	else If RegExMatch(act,"i)^(GoSub,)",m) {
+		GoSub,% substr(act,strlen(m1)+1)
+	}
+}

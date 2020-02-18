@@ -57,7 +57,8 @@ global color1=004073
 global color2=004073
 global color3=007310
 global color4=303030
-
+;tab系列组合键，适合左键右鼠，启用后直接按tab会感觉有一点延迟，默认开启，开关为ctrl+win+alt+花号
+global GV_ToggleTabKeys := 1
 ; Tim/QQ位置
 global    Tim_Start_X := 100
 global    Tim_Start_Y := 100

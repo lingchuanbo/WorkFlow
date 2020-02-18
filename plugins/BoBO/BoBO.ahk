@@ -1,9 +1,7 @@
 ﻿BoBO:
-
-
-
 ; 全局控制
 ; `剪贴复制粘贴删除
+
 ` & 1:: SendInput,^x
 ` & 2:: SendInput,^c
 ` & 3:: SendInput,^v
@@ -18,16 +16,67 @@ CapsLock & a::SendInput,{Blind}{Left}
 CapsLock & d::SendInput,{Blind}{Right}
 
 CapsLock & q::SendInput,{Blind}{PgUp}
-CapsLock & e::SendInput,{Blind}{PgDn}
+CapsLock & f::SendInput,{Blind}{PgDn}
 
-CapsLock & RButton::Gosub,<BoBO_TaskSwch>
+; #################Tab#################
+#If GV_ToggleTabKeys=1
+    Tab & s::SendInput,{Blind}{Down}
+    Tab & w::SendInput,{Blind}{Up}
+    Tab & a::SendInput,{Blind}{Left}
+    Tab & d::SendInput,{Blind}{Right}
+    Tab & q::SendInput,{Blind}{PgUp}
+    Tab & f::SendInput,{Blind}{PgDn}
 
+    Tab & 1::SendInput,send,#1
+    Tab & 2::SendInput,send,#2
+    Tab & 3::SendInput,send,#3
+    Tab & 4::SendInput,send,#4
+    Tab & 5::SendInput,send,#5
+
+    Tab & r::SendInput,{Blind}{Del}
+    Tab & e::SendInput,{Blind}{Enter}send,send,send,send,
+    Tab & Space::SendInput,{Blind}{Backspace}
+    Tab & RButton::Gosub,<BoBO_TaskSwch>
+
+		;恢复tab自身功能
+	Tab::
+		GV_KeyClickAction1 := "SendInput,{Tab}"
+		GV_KeyClickAction2 := "SendInput,#{Tab}"
+		GoSub,Sub_KeyClick
+	return		
+
+	#Tab:: SendInput,#{Tab}
+	+Tab:: SendInput,+{Tab}
+	^Tab:: SendInput,^{Tab}
+	^+Tab:: SendInput,^+{Tab}
+#If 
+
+Sub_KeyClick:
+{
+	t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
+    settimer, tappedkey, %t%
+    if (t == "off")
+    goto double
+    return
+    tappedkey:
+        {
+            fun_KeyClickAction(GV_KeyClickAction1)
+            return
+        }
+    return
+
+    double:
+        {
+            fun_KeyClickAction(GV_KeyClickAction2)
+            return
+        }
+return
+}
+; 菜单增强
 ~^!a:: Gosub,<ShareX_PrintScreen>
 ~^c:: DoublePress()
-
-;软件启动器
+;软件启动器							
 #RButton::Gosub,<BoBO_PopSel>
-;任务栏切换
 
 ;窗口居
 #z::Gosub,<BoBO_CenterWindow>
@@ -52,7 +101,6 @@ CapsLock & RButton::Gosub,<BoBO_TaskSwch>
 {
     run %A_ScriptDir%\custom\apps\HuntAndPeck\hap.exe /hint
 	return
-;    run %A_ScriptDir%\custom\apps\Popsel\PopSel.exe /pc /n
 }
 ;集成快捷启动
 <BoBO_PopSel>:
@@ -67,6 +115,13 @@ CapsLock & RButton::Gosub,<BoBO_TaskSwch>
 	CenterWindow(var_title)
 	return
 }
+;窗口居中
+~LButton & z:: 
+    WinGet, activePath, ProcessPath, % "ahk_id" winActive("A")
+    tool_pathandname = "%activePath%"
+    KeyWait, LButton
+    Gosub,<BoBO_CenterWindow>
+return
 ;任务栏切换
 <BoBO_TaskSwch>:
 {
@@ -260,6 +315,16 @@ return
     return
 }
 
+
+#IfWinActive ahk_class EVERYTHING
+^Enter::
+ControlGetText,Keywords,Edit1,A
+OutputDebug %Keywords%
+; run, http://www.baidu.com/s?wd=%Keywords% 
+run, https://www.dogedoge.com/results?q=%Keywords%
+return
+#IfWinActive
+
 ;--------------------------------------------------
 ; #软件补充设置
 ; #常用浏览器设置
@@ -371,6 +436,12 @@ return
 
 	return
 }
+; #If WinActive("ahk_exe mpv.exe")
+; {
+	
+; 	Esc::SendInput, !{F4}
+; 	return
+; }
 #If WinActive("ahk_exe blender.exe")
 {
 	; ^LButton::Send,{MButton} 
@@ -810,7 +881,6 @@ ZipDirectory:
 	StringReplace, downloadPath, downloadPath, <toZip>, %toZip%
 
 	RunWait, %downloadPath%
-
 	; RunWait so that we can determine file size
 	; Which works - sometimes :p
 	FileGetSize, zipFileSize, %fullZipName%, M
@@ -821,3 +891,13 @@ GetParentDirectoryName(path)
 {
 	return SubStr(path, 1, InStr(SubStr(path, 1, -1), "\", 0, 0) - 1)
 }
+
+^+#`::
+	GV_ToggleTabKeys := !GV_ToggleTabKeys
+	if(GV_ToggleTabKeys == 1)
+		tooltip Tab组合键启用
+	else
+		tooltip Tab组合键关闭
+	sleep 2000
+	tooltip
+return
