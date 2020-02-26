@@ -81,7 +81,20 @@ return
 ;窗口居
 #z::Gosub,<BoBO_CenterWindow>
 ;窗口Vim
-~^v:: DoublePressV()
+~^v::DoublePressV()
+;Ctrl+Alt+点击，定位程序对应的目录 打开当前程序所在位置
+^!LButton::opemLocalDirExe()
+
+; 打开当前程序所在位置
+opemLocalDirExe()
+{
+	WinGet, pPath, Processpath, A
+	SplitPath,pPath,pName,pDir,,pNameNoExt
+	Run % "explorer.exe /select," pPath
+	sleep,200
+	send,{esc}
+return
+}
 ;双击关闭显示器
 <BoBO_CloseScreen>:
 {
@@ -212,28 +225,47 @@ return
 global BoBO_Test=ini.BOBOPath_Config.testPath
 msgbox %BoBO_Test%
 return
-
-; Tim/QQ客户端
-#IfWinActive ahk_class TXGuiFoundation
+;##########程序便捷.社交##########大部份参考EZ
+; Tim
+#If WinActive("ahk_class TXGuiFoundation") and WinActive("ahk_exe Tim.exe")
 {
     ;快速到QQ接收的文件目录，请在config.ini对应修改qq号
 	F4::Gosub, <BoBO_F4Close>
     !w::Gosub, <Tx_OpenWithTc>
-	!`::CoordWinClick(Tim_Start_X, Tim_Start_Y+(1-1)*Tim_Bar_Height)
+	; !`::CoordWinClick(Tim_Start_X, Tim_Start_Y+(1-1)*Tim_Bar_Height)
 
-	!1::CoordWinClick(Tim_Start_X, Tim_Start_Y+(2-1)*Tim_Bar_Height)
-	!2::CoordWinClick(Tim_Start_X, Tim_Start_Y+(3-1)*Tim_Bar_Height)
-	!3::CoordWinClick(Tim_Start_X, Tim_Start_Y+(4-1)*Tim_Bar_Height)
-	!4::CoordWinClick(Tim_Start_X, Tim_Start_Y+(5-1)*Tim_Bar_Height)
-	!5::CoordWinClick(Tim_Start_X, Tim_Start_Y+(6-1)*Tim_Bar_Height)
-	!6::CoordWinClick(Tim_Start_X, Tim_Start_Y+(7-1)*Tim_Bar_Height)
-	!7::CoordWinClick(Tim_Start_X, Tim_Start_Y+(8-1)*Tim_Bar_Height)
-	!8::CoordWinClick(Tim_Start_X, Tim_Start_Y+(9-1)*Tim_Bar_Height)
-	!9::CoordWinClick(Tim_Start_X, Tim_Start_Y+(10-1)*Tim_Bar_Height)
+	!1::CoordWinClick(Tim_Start_X, Tim_Start_Y+(1-1)*Tim_Bar_Height)
+	!2::CoordWinClick(Tim_Start_X, Tim_Start_Y+(2-1)*Tim_Bar_Height)
+	!3::CoordWinClick(Tim_Start_X, Tim_Start_Y+(3-1)*Tim_Bar_Height)
+	!4::CoordWinClick(Tim_Start_X, Tim_Start_Y+(4-1)*Tim_Bar_Height)
+	!5::CoordWinClick(Tim_Start_X, Tim_Start_Y+(5-1)*Tim_Bar_Height)
+	!6::CoordWinClick(Tim_Start_X, Tim_Start_Y+(6-1)*Tim_Bar_Height)
+	!7::CoordWinClick(Tim_Start_X, Tim_Start_Y+(7-1)*Tim_Bar_Height)
+	!8::CoordWinClick(Tim_Start_X, Tim_Start_Y+(8-1)*Tim_Bar_Height)
+	!9::CoordWinClick(Tim_Start_X, Tim_Start_Y+(9-1)*Tim_Bar_Height)
+	!0::CoordWinClick(Tim_Start_X, Tim_Start_Y+(10-1)*Tim_Bar_Height)
+	!-::CoordWinClick(Tim_Start_X, Tim_Start_Y+(11-1)*Tim_Bar_Height)
+	!=::CoordWinClick(Tim_Start_X, Tim_Start_Y+(12-1)*Tim_Bar_Height)
 	; ^r::Gosub, <BoBO_Test>
 }
-
-;微信PC客户端
+; QQ
+#If WinActive("ahk_class TXGuiFoundation") and WinActive("ahk_exe qq.exe")
+{
+	!1::CoordWinClick(QQ_Start_X, QQ_Start_Y+(1-1)*QQ_Bar_Height)
+	!2::CoordWinClick(QQ_Start_X, QQ_Start_Y+(2-1)*QQ_Bar_Height)
+	!3::CoordWinClick(QQ_Start_X, QQ_Start_Y+(3-1)*QQ_Bar_Height)
+	!4::CoordWinClick(QQ_Start_X, QQ_Start_Y+(4-1)*QQ_Bar_Height)
+	!5::CoordWinClick(QQ_Start_X, QQ_Start_Y+(5-1)*QQ_Bar_Height)
+	!6::CoordWinClick(QQ_Start_X, QQ_Start_Y+(6-1)*QQ_Bar_Height)
+	!7::CoordWinClick(QQ_Start_X, QQ_Start_Y+(7-1)*QQ_Bar_Height)
+	!8::CoordWinClick(QQ_Start_X, QQ_Start_Y+(8-1)*QQ_Bar_Height)
+	!9::CoordWinClick(QQ_Start_X, QQ_Start_Y+(9-1)*QQ_Bar_Height)
+	!0::CoordWinClick(QQ_Start_X, QQ_Start_Y+(10-1)*QQ_Bar_Height)
+	!-::CoordWinClick(QQ_Start_X, QQ_Start_Y+(11-1)*QQ_Bar_Height)
+	!=::CoordWinClick(QQ_Start_X, QQ_Start_Y+(12-1)*QQ_Bar_Height)
+	!w::Gosub, <Tx_OpenWithTc>
+}
+;微信
 #IfWinActive ahk_exe WeChat.exe
 {
 	;聚焦搜索框
@@ -268,7 +300,7 @@ return
 	!w::Gosub, <Wx_OpenWithTc>
 	return
 }
-;telegram客户端
+;telegram
 #IfWinActive ahk_exe Telegram.exe
 {
 	!w::Gosub, <Tg_OpenWithTc>
@@ -285,7 +317,7 @@ return
 	!9::CoordWinClick(TG_Start_X, TG_Start_Y+(9-1)*TG_Bar_Height)
 	!0::CoordWinClick(TG_Start_X, TG_Start_Y+(10-1)*TG_Bar_Height)
 }
-; ShareX截图相关
+; ShareX
 <ShareX_PrintScreen>:
 {
     t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
@@ -315,7 +347,8 @@ return
     return
 }
 
-
+;##########程序便捷.工具##########
+; Everything
 #IfWinActive ahk_class EVERYTHING
 ^Enter::
 ControlGetText,Keywords,Edit1,A
@@ -325,9 +358,12 @@ run, https://www.dogedoge.com/results?q=%Keywords%
 return
 #IfWinActive
 
-;--------------------------------------------------
-; #软件补充设置
-; #常用浏览器设置
+#IfWinActive ahk_exe PanDownload.exe
+{
+	!w::run,"%TCPath%" /T /O /S /L="D:\Download"
+}
+
+; 常用浏览器设置
 #If WinActive("ahk_group group_browser")
 {
 	F1::SendInput,^t
@@ -336,9 +372,49 @@ return
     F4::SendInput,^w
     ~LButton & RButton::send ^w
 }
+; 资源浏览器
+#If WinActive("ahk_class CabinetWClass") or WinActive("ahk_class ExploreWClass")
+{
+	!w::openPathTc() ;Explorer到 TC 互相调用【alt+w】
+	NumpadDiv::HideShowfiles() ;显示隐藏文件
+	^!t::Gosub,<BoBO_OpenLocalDirCommander>
+	^!w::Run,%A_ScriptDir%\custom\apps\TaskSwch\ClsFoldr.EXE ;关闭重复窗口
+	^#z::Gosub,ZipDirectory
+	return
+}
+;桌面
+#If WinActive("ahk_class Progman") or WinActive("ahk_class WorkerW")
+{
+	;!w::openPathTc() ;桌面到TC
+	!q::HideOrShowDesktopIcons() ;隐藏、显示桌面图标！
+	;桌面到TC
+	!w:: 
+		if(TCPath="")
+			return
+		selected := Explorer_GetPath()
+		if(selected = ""){
+			selected := """" A_Desktop """"
+			run, %TCPath% /T /O /A /S /L=%selected%
+			sleep 200
+			selected := """" A_DesktopCommon """"
+			run, %TCPath% /T /O /A /S /R=%selected%
+		}
+		else{
+			selected := """" selected """"
+			run, %TCPath% /T /O /S /A /L=%selected%
+		}
+	return
 
-#IfWinActive ahk_class TTOTAL_CMD
-	,:: 
+}
+; Total Commander
+#If WinActive("ahk_class TTOTAL_CMD")
+{
+	!w::openPathExplorer() ;TC 到 Explorer
+	NumpadDiv::TcSendPos(2011) ;显示隐藏文件
+	^!t::Gosub,<BoBO_OpenLocalDirCommander>
+	^Up::Gosub,<TcPostMsg>
+
+		,:: 
 		ControlGetFocus, TC_CurrentControl, A
 		;TInEdit1 地址栏和重命名 Edit1 命令行
 		if (RegExMatch(TC_CurrentControl, "TMyListBox1|TMyListBox2"))
@@ -382,49 +458,25 @@ return
 	F1::
 		ActiveDocumentFile := ComObjActive("Word.Application").ActiveDocument.FullName
 		Run, % "explorer /select, " ActiveDocumentFile
-#IfWinActive
-
-; #资源浏览器
-#If WinActive("ahk_class CabinetWClass") or WinActive("ahk_class ExploreWClass")
-{
-	!w::openPathTc() ;Explorer到 TC 互相调用【alt+w】
-	NumpadDiv::HideShowfiles() ;显示隐藏文件
-	^!t::Gosub,<BoBO_OpenLocalDirCommander>
-	^!w::Run,%A_ScriptDir%\custom\apps\TaskSwch\ClsFoldr.EXE ;关闭重复窗口
-	^#z::Gosub,ZipDirectory
 	return
 }
-
-#If WinActive("ahk_class Progman") or WinActive("ahk_class WorkerW")
-{
-	!w::openPathTc() ;桌面到TC
-	!q::HideOrShowDesktopIcons() ;隐藏、显示桌面图标！
-	return
-}
-
-#If WinActive("ahk_class TTOTAL_CMD")
-{
-	!w::openPathExplorer() ;TC 到 Explorer
-	NumpadDiv::TcSendPos(2011) ;显示隐藏文件
-	^!t::Gosub,<BoBO_OpenLocalDirCommander>
-	^Up::Gosub,<TcPostMsg>
-	; 2011
-	return
-}
+;##########程序便捷.办公##########
+; Word
 #If WinActive("ahk_class OpusApp")
 {
 	!w::Gosub, <BoBO_OpenLocalFliesWord>
 }
+; Excel
 #If WinActive("ahk_class XLMAIN")
 {
 	!w::Gosub, <BoBO_OpenLocalFliesExcel>
 }
+; PowerPoint
 #If WinActive("ahk_class Case_POWERPNT")
 {
 	!w::Gosub, <BoBO_OpenLocalFliesPowerPoint>
 }
-
-;AE快速打开文件所在位置 至于是否启用TC到时候在考虑目前可以一直按alt+w
+;##########程序便捷.专业##########
 #If WinActive("ahk_exe 3dsmax.exe")
 {
 	
@@ -436,72 +488,47 @@ return
 
 	return
 }
-; #If WinActive("ahk_exe mpv.exe")
-; {
-	
-; 	Esc::SendInput, !{F4}
-; 	return
-; }
+
 #If WinActive("ahk_exe blender.exe")
 {
-	; ^LButton::Send,{MButton} 
-	; !w:: msgbox,sadsds
-	; +RButton::Gosub,menuAe
-	return
+	; BlenderCursorRepeat := 10
+	; ; Clear screen in console
+	; ^k::Send {Blind}{LCtrl Down}{LControl Up}
+
+	; ; Delete one char to the right of cursor
+	; ^d::Send {Delete}
+
+	; ; Clear line in console
+	; ^c::Send +{Enter}
+
+	; ; Delete word
+	; ^w::Send {LCtrl Down}{Backspace}{LCtrl Up}
+
+	; ^a::
+	; 	; Move cursor to beginning
+	; 	Loop %BlenderCursorRepeat% {
+	; 		Send {LCtrl Down}{Left}{LCtrl Up}
+	; 	}
+	; Return
+	; ^e::
+	; 	; Move cursor to end
+	; 	Loop %BlenderCursorRepeat% {
+	; 		Send {LCtrl Down}{Right}{LCtrl Up}
+	; 	}
+	; Return
 }
 
-;AE快速打开文件所在位置 至于是否启用TC到时候在考虑目前可以一直按alt+w
 #If WinActive("ahk_exe AfterFX.exe")
 {	
-	!w::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
+	;;快速打开文件所在位置
+	;AE快速打开文件所在位置 至于是否启用TC到时候在考虑目前可以一直按alt+w
+	^+!LButton::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
+	;;快速打开渲染文件所在位置
+	^+LButton::AeOpenLocalFilesRender()
+	;;便捷菜单
 	+RButton::Gosub,menuAe
 	return
 }
-
-#If WinActive("ahk_exe Photoshop.exe")
-{	
-	` & 1:: Gosub, <PS_透明度减>
-	` & 2:: Gosub, <PS_透明度加>
-	return
-}
-
-<TcPostMsg>:
-Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
-Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_OpenNewTab`)"
-Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
-Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_MatchSrc`)"
-Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CloseCurrentTab`)"
-Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
-return
-
-;启动记事本并去标题等
-#n::
-	run, %COMMANDER_PATH%\Tools\Notepad3\x64\Notepad3.exe /f %COMMANDER_PATH%\Tools\Notepad3\x64\Notepad3.ini, , , OutputVarPID
-	sleep 100
-	WinWait ahk_pid %OutputVarPID%
-	if ErrorLevel
-	{
-		toolTip 超时了，再试一下？
-		sleep 2000
-		tooltip
-		return
-	}
-
-return
-;启动记事本并去标题等，并收集剪贴板
-^#b::
-	run, %COMMANDER_PATH%\Tools\Notepad3\x64\Notepad3.exe /b /f %COMMANDER_PATH%\Tools\Notepad3\x64\Notepad3.ini, , , OutputVarPID
-	sleep 100
-	WinWait ahk_pid %OutputVarPID%
-	if ErrorLevel
-	{
-		toolTip 超时了，再试一下？
-		sleep 2000
-		tooltip
-		return
-	}
-return
-
 menuAe:
 	dirMenu0=%A_ScriptDir%\custom\ae_scripts\Effect
 	dirMenu1=%A_ScriptDir%\custom\ae_scripts\otherScriptCommand\
@@ -510,12 +537,25 @@ menuAe:
 	menu_fromfiles("filelist0", "(&S)_特效库", "RunAePreset0", dirMenu0, "*.ffx", "thismenu", 1)
 	menu_fromfiles("filelist1", "(&S)_脚本库", "RunAeScript", dirMenu1, "*.jsx", "thismenu", 1)
 	menu_fromfiles("filelist2", "(&P)_预设", "RunAePreset1", dirMenu2, "*.ffx", "thismenu", 1)
+	menu, thismenu, add, (&F)_文件所在位置, OpenLocalFiles
+	menu, thismenu, add, (&R)_文件所在位置【渲染】, OpenLocalFilesRender
     Menu, thismenu, Show
 return 
 
 WHATSUP:
     msgbox, 特效库目录 `n`n %dirMenu0% `n`n 脚本库目录 `n`n %dirMenu1% `n`n 预设目录 `n`n %dirMenu2%
 RETURN
+OpenLocalFiles:
+{
+	getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
+	return
+}
+
+OpenLocalFilesRender:
+{
+	AeOpenLocalFilesRender()
+	return
+}
 
 RunAeScript:
     curpath := menu_itempath("filelist1", dirMenu1)
@@ -524,7 +564,6 @@ RunAeScript:
     RunWait, %AeExePath% -s -r %curpath%,,Hide
     return
 RETURN
-
 ; AE预设库
 RunAePreset0:
     curpath := menu_itempath("filelist0", dirMenu0)
@@ -590,6 +629,66 @@ if (activeItem instanceof CompItem) {
 	FileDelete, %setPreset% ;避免重复删除文件
     return
 RETURN
+
+AeOpenLocalFilesRender()
+{
+    If ProcessExist("TOTALCMD.exe"){
+        getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFilesRenderTC.jsx")
+		return
+    }else{
+        getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFilesRender.jsx")
+		sleep,1000
+		SendInput,{Enter}
+		return
+    }
+}
+
+
+#If WinActive("ahk_exe Photoshop.exe")
+{	
+	` & 1:: Gosub, <PS_透明度减>
+	` & 2:: Gosub, <PS_透明度加>
+	return
+}
+
+<TcPostMsg>:
+Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
+Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_OpenNewTab`)"
+Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
+Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_MatchSrc`)"
+Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CloseCurrentTab`)"
+Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
+return
+
+;启动记事本并去标题等
+#n::
+	run, %COMMANDER_PATH%\Tools\Notepad3\x64\Notepad3.exe /f %COMMANDER_PATH%\Tools\Notepad3\x64\Notepad3.ini, , , OutputVarPID
+	sleep 100
+	WinWait ahk_pid %OutputVarPID%
+	if ErrorLevel
+	{
+		toolTip 超时了，再试一下？
+		sleep 2000
+		tooltip
+		return
+	}
+
+return
+;启动记事本并去标题等，并收集剪贴板
+^#b::
+	run, %COMMANDER_PATH%\Tools\Notepad3\x64\Notepad3.exe /b /f %COMMANDER_PATH%\Tools\Notepad3\x64\Notepad3.ini, , , OutputVarPID
+	sleep 100
+	WinWait ahk_pid %OutputVarPID%
+	if ErrorLevel
+	{
+		toolTip 超时了，再试一下？
+		sleep 2000
+		tooltip
+		return
+	}
+return
+
+
 
 ; mPandaOCR:
 ;     ; ExePath := ini.BOBOPath_Config.AEPath
@@ -901,3 +1000,5 @@ GetParentDirectoryName(path)
 	sleep 2000
 	tooltip
 return
+
+
