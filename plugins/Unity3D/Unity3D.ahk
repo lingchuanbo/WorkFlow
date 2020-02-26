@@ -103,9 +103,9 @@ return
 }
 
 <Unity3D_Help>:
-FunBoBO_ShowLayout("unityHelp1.png")
+ShowLayoutIMG("unityHelp1.png")
 KeyWait i
-FunBoBO_HideLayout()
+HideLayoutIMG()
 return
 
 ;创建空挂点

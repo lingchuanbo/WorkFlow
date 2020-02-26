@@ -1,8 +1,8 @@
 ﻿Blender:
-
+  vim.setwin("Word","OpusApp","WINWORD.EXE")
     vim.SetAction("<Blender_InsertMode>", "进入VIM模式")
     vim.SetAction("<Blender_NormalMode>", "返回正常模式")
-    vim.SetWin("Blender","ahk_exe","blender.exe")
+    vim.SetWin("Blender","GHOST_WindowClass","blender.exe")
     vim.BeforeActionDo("Blender_CheckMode", "Blender")
     ; #Include %A_ScriptDir%\plugins\Blender\BlenderComment.ahk 
     
@@ -125,3 +125,11 @@ return
     SendInput, {mbutton}
     return
 }
+<testBlenderScript>:
+{
+    Run,"F:/BoBOProgram/Blender/blender.exe" -b -P "F:/BoBOAHK/WorkFlow/custom/blender/test.py"
+    return
+}
+; filename = "F:/BoBOAHK/WorkFlow/custom/blender/test.py"
+; exec(compile(open(filename).read(), filename, 'exec'))
+

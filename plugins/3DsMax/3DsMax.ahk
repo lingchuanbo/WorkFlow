@@ -116,9 +116,9 @@ return
 return
 ;辅助帮助显示
 <3DsMax_Help>:
-; FunBoBO_ShowLayout("ae3DsMax1.png")
+; ShowLayoutIMG("ae3DsMax1.png")
 ; KeyWait i
-; FunBoBO_HideLayout()
+; HideLayoutIMG()
 return
 
 

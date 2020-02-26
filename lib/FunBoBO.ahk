@@ -50,12 +50,14 @@ FunBoBO_RunActivation(ExePath,tClass){
         }
 } 
 }
-;显示函数---------------------------------------
+
 FunBoBO_VimShow(){
     run,%A_ScriptDir%\apps\HuntAniidPeck\hap.exe /hint
     return
 }
-FunBoBO_ShowLayout(img){
+;函数功能:显示图片做为Help帮助
+;;显示
+ShowLayoutIMG(img){
 	;ShowLayout:
 		Gui,ShowLayout:Add,pic,Center,%A_ScriptDir%\ui\%img% 
 		Gui,ShowLayout:+LastFound +AlwaysOnTop -Caption ; +ToolWindow -DPIScale
@@ -64,13 +66,13 @@ FunBoBO_ShowLayout(img){
 		;WinSet, TransColor,f0f0f0 ;去掉灰色边框
 	Return
 }
-;隐藏
-FunBoBO_HideLayout(){
+;;隐藏
+HideLayoutIMG(){
 	;HideLayout:
 	Gui,ShowLayout:Hide
 	return
 }
-;显示图片函数结束---------------------------------------
+
 
 
 ;无视输入法状态发送字符串
@@ -85,7 +87,7 @@ uStr(str)
 }
 isExplorerLike() {
 	; Windows Explorer or Desktop
-	return FunBoBO_Explorer_GetPath()
+	return Explorer_GetPath()
 }
 ActiveFolderPath()
 {
@@ -116,13 +118,13 @@ FunBoBO_CustomFunc_getCurrentDir(ByRef CurWinClass="")
     ;Curhwnd:=QZData("hWnd")
     if CurWinClass in ExploreWClass,CabinetWClass ;如果当前激活窗口为资源管理器
     {
-        DirectionDir:=FunBoBO_Explorer_GetSelected(Curhwnd)
+        DirectionDir:=Explorer_GetSelected(Curhwnd)
         IfInString,DirectionDir,`;		;我的电脑、回收站、控制面板等退出
             return
     }
     if CurWinClass in WorkerW,Progman    ;如果当前激活窗口为桌面
     {
-        DirectionDir:=FunBoBO_Explorer_GetSelected(Curhwnd)
+        DirectionDir:=Explorer_GetSelected(Curhwnd)
     }
     if (CurWinClass="Shell_TrayWnd") ;如果当前激活窗口为任务栏
         DirectionDir:=""
@@ -147,76 +149,6 @@ FunBoBO_CustomFunc_getCurrentDir(ByRef CurWinClass="")
     
     return DirectionDir
 }
-
-FunBoBO_Explorer_GetPath(hwnd="")
-{
-	if !(window := FunBoBO_Explorer_GetWindow(hwnd))
-		return ErrorLevel := "ERROR"
-	if (window="desktop")
-		return A_Desktop
-	path := window.LocationURL
-	path := RegExReplace(path, "ftp://.*@","ftp://")
-	StringReplace, path, path, file:///
-	StringReplace, path, path, /, \, All
-	loop
-		if RegExMatch(path, "i)(?<=%)[\da-f]{1,2}", hex)
-			StringReplace, path, path, `%%hex%, % Chr("0x" . hex), All
-		else break
-	return path
-}
-
-FunBoBO_Explorer_GetWindow(hwnd="")
-{
-	WinGet, Process, ProcessName, % "ahk_id" hwnd := hwnd? hwnd:WinExist("A")
-	WinGetClass class, ahk_id %hwnd%
-
-	if (Process!="explorer.exe")
-		return
-	if (class ~= "(Cabinet|Explore)WClass")
-	{
-		for window in ComObjCreate("Shell.Application").Windows
-			if (window.hwnd==hwnd)
-				return window
-	}
-	else if (class ~= "Progman|WorkerW")
-		return "desktop" ; desktop found
-}
-
-FunBoBO_Explorer_GetSelected(hwnd="")  
-{  
-    return FunBoBO_Explorer_Get(hwnd,true)  
-}  
-
-FunBoBO_Explorer_Get(hwnd="",selection=false)  
-{  
-    if !(window := FunBoBO_Explorer_GetWindow(hwnd))  
-        return ErrorLevel := "ERROR"  
-    if (window="desktop")  
-    {  
-        ControlGet, hwWindow, HWND,, SysListView321, ahk_class Progman  
-        if !hwWindow ; #D mode  
-            ControlGet, hwWindow, HWND,, SysListView321, A  
-        ControlGet, files, List, % ( selection ? "Selected":"") "Col1",,ahk_id %hwWindow%  
-        base := SubStr(A_Desktop,0,1)=="\" ? SubStr(A_Desktop,1,-1) : A_Desktop  
-        Loop, Parse, files, `n, `r  
-        {  
-            path := base "\" A_LoopField  
-            IfExist %path% ; ignore special icons like Computer (at least for now)  
-                ret .= path "`n"  
-        }  
-    }  
-    else  
-    {  
-        if selection  
-            collection := window.document.SelectedItems  
-        else  
-            collection := window.document.Folder.Items  
-        for item in collection  
-            ret .= item.path "`n"  
-    }  
-    return Trim(ret,"`n")  
-}  
-
 ;   AeScriptFunction调用Ae脚本文件_ByBoBO
 ;   使用方式
 ;   getAeScript("路径")
@@ -252,33 +184,17 @@ getAeScriptCommand(AeScriptCommand){
     return
 }
 
-
-; runMax(runPath){
-;     ;tempStr := "filein """ . A_LoopFileFullPath . """"
-;     runPath = %A_ScriptDir%\custom\maxScripts\initialize_COM_server.ms
-;     tempStr := "filein """ . %runPath% . """"
-;     StringReplace, tempStr, tempStr, `\, `\`\, ALL
-;     Control, EditPaste, %tempStr%, MXS_Scintilla2, A
-;     ControlSend, MXS_Scintilla2, {NumpadEnter}, A
-;     return
-; }
-
+; ################3DsMax相关函数######################
 ;;运行3DsMaxScript函数1
 ;;用法 runMaxScriptCommands("脚本名字.ms")
-;;两者区别 目录不一致
 runMaxScriptCommands(MaxScriptPath){
     run, %A_ScriptDir%\custom\maxScripts\MXSPyCOM.exe -f %A_ScriptDir%\custom\maxScripts\commands\%MaxScriptPath%
     return
 }
-
-;;运行3DsMaxScript函数2
-;;用法 runMaxScript("脚本名字.ms")
-;;两者区别 目录不一致
 runMaxScript(MaxScriptPath){
     run, %A_ScriptDir%\custom\maxScripts\MXSPyCOM.exe -f %A_ScriptDir%\custom\maxScripts\%MaxScriptPath%
     return
 }
-
 ;;直接运行3DsMax函数
 ; 用法
 ;     runPath = startObjectCreation box 创建对象
@@ -291,28 +207,14 @@ runMaxScriptTxt(runPath){ ;*[WorkFlow]
     Return
 }
 
-;;测试运行函数
-; get2MaxScript(runPath){
-;     ;tempStr := "filein """ . A_LoopFileFullPath . """"
-;     ;runPath = %A_ScriptDir%\custom\maxScripts\initialize_COM_server.ms
-;     tempStr := "filein """ . %runPath% . """"
-;     StringReplace, tempStr, tempStr, `\, `\`\, ALL
-;     Control, EditPaste, %tempStr%, MXS_Scintilla2, A
-;     ControlSend, MXS_Scintilla2, {NumpadEnter}, A
-;     return
-; }
-
-
-
-
-;;Photoshop运行函数
+; ################Photoshop相关函数######################
 runPsScript(PsPath){
     app:=ComObjCreate("Photoshop.Application")
     app.DoJavaScriptFile(%PsPath%)
     return
 }
 
-; 运行自定义标题
+; 函数功能：运行自定义标题
 FunBoBO_RunActivationTitle(ExePath,tClass,NewTitle){
     IfWinExist, AHK_CLASS %tClass%
     {
@@ -360,45 +262,16 @@ Morse(timeout = 400) {
    }
 }
 
-; setZH(){
-; 		; PostMessage, 0x50, 0, 0x8040804, , A
-; 		if !IME_GET0E1C()
-;         PostMessage, 0x50, 0, 0x8040804, , A
-; 			; SendInput, {LShift}
-; 		return
-; }
-; setEN(){
-;         ; PostMessage, 0x50, 0, 0x4090409, , A ;切换为英文 0x4090409=67699721
-;         if IME_GET0E1C()
-;         PostMessage, 0x50, 0, 0x4090409, , A ;切换为英文 0x4090409=67699721
-;             ; SendInput, {LShift}
-; return
-; }
 
-IME_GET0E1C(WinTitle="A"){			;借鉴了某日本人脚本中的获取输入法状态的内容,减少了不必要的切换,切换更流畅了
-    ;~ ifEqual WinTitle,,  SetEnv,WinTitle,A
-    WinGet,hWnd,ID,%WinTitle%
-    DefaultIMEWnd := DllCall("imm32\ImmGetDefaultIMEWnd", Uint,hWnd, Uint)
 
-    ;Message : WM_IME_CONTROL  wParam:IMC_GETOPENSTATUS
-    DetectSave := A_DetectHiddenWindows
-    DetectHiddenWindows,ON
-    SendMessage 0x283, 0x005,0,,ahk_id %DefaultIMEWnd%
-    DetectHiddenWindows,%DetectSave%
-    Return ErrorLevel
-}
-
-varExist(ByRef v) { ; 检测变量是否存在
-   return &v = &n ? 0 : v = "" ? 2 : 1 
-}
-
-ProcessExist(Name){ ; 检测进程
+; 函数功能：检测进程
+ProcessExist(Name){ ; 
 Process,Exist,%Name%
 return Errorlevel
 }
 
 
-; 单双长按函数
+; 函数功能：单双长按函数
 analyseKeyPress(comboKeyName="",doubleKeySpeed=0.15,longKeyPressTime=0.3){ ;
    ;Param1:Other Key to make combo; similaire to "&"
    ;Param2:Maximum seconds to execute the doubleKey otherWise it will be a singleKey, Put 0 "zero" if you want direct interaction
@@ -648,10 +521,7 @@ SaveFileFindForTc(){
     return
 }
 CustomPlugin_SmartCompress(){
-	;~ global   7zip
-	;~ global   dir
-	;candysel:=QZData("files")
-    ; dir:=getTcFolder()
+
     TCPath := ini.TotalCommander_Config.TCPath
     RegExMatch(TCPath,"(.*\\)",TCPathDir)  ; 提取目录
 
@@ -813,6 +683,7 @@ openPathExplorer(){
 	ControlGetText, varPathInTC, , ahk_id %ErrorLevel%
 	StringReplace, this_title, varPathInTC, >, \
     Run, explorer.exe %this_title%
+	msgbox %this_title%
 }
 
 openPathEveything(){

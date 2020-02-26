@@ -373,9 +373,9 @@ return
 
 ;帮助
 <TC_Help>:
-FunBoBO_ShowLayout("74按键模板Vimd—TC.png")
+ShowLayoutIMG("74按键模板Vimd—TC.png")
 KeyWait,i
-FunBoBO_HideLayout()
+HideLayoutIMG()
 return
 
 <TC_SwitchF4>:

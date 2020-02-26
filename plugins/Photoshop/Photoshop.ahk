@@ -198,9 +198,9 @@ return
 
 ;辅助帮助显示
 <PS_Help>:
-FunBoBO_ShowLayout("psHelp1.png")
+ShowLayoutIMG("psHelp1.png")
 KeyWait i
-FunBoBO_HideLayout()
+HideLayoutIMG()
 return
 
 
