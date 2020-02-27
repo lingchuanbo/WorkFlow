@@ -1,14 +1,15 @@
 ﻿BoBO:
 ; 全局控制
-; `剪贴复制粘贴删除
 
+; ################# `相关 #################
+; `剪贴复制粘贴删除
 ` & 1:: SendInput,^x
 ` & 2:: SendInput,^c
 ` & 3:: SendInput,^v
 ` & 4:: SendInput,{Del}
 +`::SendInput,~
 `::SendInput,``
-
+; ################# CapsLock相关 #################
 ; 大写键控制上下左右
 CapsLock & s::SendInput,{Blind}{Down}
 CapsLock & w::SendInput,{Blind}{Up}
@@ -18,7 +19,7 @@ CapsLock & d::SendInput,{Blind}{Right}
 CapsLock & q::SendInput,{Blind}{PgUp}
 CapsLock & f::SendInput,{Blind}{PgDn}
 
-; #################Tab#################
+; ################# Tab相关 #################
 #If GV_ToggleTabKeys=1
     Tab & s::SendInput,{Blind}{Down}
     Tab & w::SendInput,{Blind}{Up}
@@ -36,9 +37,10 @@ CapsLock & f::SendInput,{Blind}{PgDn}
     Tab & r::SendInput,{Blind}{Del}
     Tab & e::SendInput,{Blind}{Enter}send,send,send,send,
     Tab & Space::SendInput,{Blind}{Backspace}
+	; 任务栏切换
     Tab & RButton::Gosub,<BoBO_TaskSwch>
 
-		;恢复tab自身功能
+	;恢复tab自身功能
 	Tab::
 		GV_KeyClickAction1 := "SendInput,{Tab}"
 		GV_KeyClickAction2 := "SendInput,#{Tab}"
@@ -60,40 +62,139 @@ Sub_KeyClick:
     return
     tappedkey:
         {
-            fun_KeyClickAction(GV_KeyClickAction1)
+            KeyClickAction(GV_KeyClickAction1)
             return
         }
     return
 
     double:
         {
-            fun_KeyClickAction(GV_KeyClickAction2)
+            KeyClickAction(GV_KeyClickAction2)
             return
         }
 return
 }
-; 菜单增强
+
+; 用法：ctrl+a ctrl+a+a
+; 截图/录制/Gif
+
 ~^!a:: Gosub,<ShareX_PrintScreen>
-~^c:: DoublePress()
-;软件启动器							
+
+<ShareX_PrintScreen>:
+{
+    t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
+    settimer, ShareX_tappedkey_PrintScreen, %t%
+    if (t == "off")
+    goto ShareX_double_PrintScreen
+    return
+    ShareX_tappedkey_PrintScreen:
+        {
+			SendInput,^{PrintScreen}
+			return
+        }
+    return
+
+    ShareX_double_PrintScreen:
+        {
+			Menu, ShareX, Add, (&A) 矩形区域截图, mPrintScreen
+			Menu, ShareX, Add, (&D) 矩形截图屏幕, mPrintScreenAll
+			Menu, ShareX, Add, (&T) 捕捉当前活动窗口, mPrintScreenActive
+			Menu, ShareX, Add, (&R) 录制屏幕, mRecordingScreen
+			Menu, ShareX, Add, (&G) 录制GIF, mRecordingScreenGif
+			Menu, ShareX, Add, (&G) 录制GIF>>ScreenToGif, mRecordingScreenGif2
+			; 需要设置ScreenToGif快捷方式为Ctrl+Alt+PrintScreen
+			Menu, ShareX, Show
+            return
+        }
+    return
+}
+
+
+; 用法：选中文字，按两次Ctrl+C翻译或搜索或加解密
+; 热键：Ctrl+C+C
+; 辅助菜单增强
+
+;--------------------------------------------------
+~^c:: MenuPlugins()
+
+MenuPlugins() ; Simulate double press
+{
+   static pressed1 = 0
+   if pressed1 and A_TimeSincePriorHotkey <= 300
+   {
+      pressed1 = 0
+      ;Translate("en","ru") ; from English to Russian
+    ;   keyword=%Clipboard%
+    ;   ToolTip % GoogleTranslate(keyword)
+        Menu, MyMenu, Add, (&G) %_searchGoogle%, mGoogle
+        Menu, MyMenu, Add, (&D) %_searchDogeDoge%, mDogeDoge
+		Menu, MyMenu, Add, (&T) %_googleTranslate%, mGoogleTranslate
+        ; Menu, MyMenu, Add, (&T) %_googleTranslateCn%, mGoogleTranslateCn
+		; Menu, MyMenu, Add, (&T) %_googleTranslateEn%, mGoogleTranslateEn
+		Menu, MyMenu, Add, (&T) 智能处理, mSmartSearch
+        ; Menu, MyMenu, Add  ; 添加分隔线.
+        Menu, MyMenu, Add, (&B) %_Base64En%, mBase64En
+        Menu, MyMenu, Add, (&B) %_Base64De%, mBase64De
+		Menu, MyMenu, Add, (&B) %_QR%, mGenQR
+        ; Menu, Submenu1, Add, Item2, MenuHandler
+        ; Menu, MyMenu, Add, My Submenu, :Submenu1
+        ; Menu, MyMenu, Add  ; 在子菜单下添加分隔线.
+        ; Menu, MyMenu, Add, Item3, MenuHandler  ; 在子菜单下添加另一个菜单项.
+        Menu, MyMenu, Show
+        return
+
+   }
+   else
+      pressed1 = 1
+	return
+}
+
+; 功能：软件启动器	
+; 热键：Win+右键						
 #RButton::Gosub,<BoBO_PopSel>
+<BoBO_PopSel>:
+{
+    run %A_ScriptDir%\custom\apps\Popsel\PopSel.exe /n
+	return
+;    run %A_ScriptDir%\custom\apps\Popsel\PopSel.exe /pc /n ;带图标
+}
 
-;窗口居
+; 
+; 功能：窗口居中
+; 热键：Win+Z	或鼠标点击按 Z 键
 #z::Gosub,<BoBO_CenterWindow>
-;窗口Vim
-~^v::DoublePressV()
-;Ctrl+Alt+点击，定位程序对应的目录 打开当前程序所在位置
-^!LButton::opemLocalDirExe()
+;窗口居中
+~LButton & z:: 
+    WinGet, activePath, ProcessPath, % "ahk_id" winActive("A")
+    tool_pathandname = "%activePath%"
+    KeyWait, LButton
+    Gosub,<BoBO_CenterWindow>
+return
 
-; 打开当前程序所在位置
-opemLocalDirExe()
+<BoBO_CenterWindow>:
+{
+	WinGetActiveTitle, var_title
+	CenterWindow(var_title)
+	return
+}
+
+
+;窗口Vim 目前体验不是很好
+; ~^v::DoublePressV()
+
+
+;功能定位程序对应的目录 打开当前程序所在位置
+;Ctrl+Alt+点击，定位程序对应的目录 打开当前程序所在位置
+^!LButton::Gosub,<opemLocalDirExe>
+
+<opemLocalDirExe>:
 {
 	WinGet, pPath, Processpath, A
 	SplitPath,pPath,pName,pDir,,pNameNoExt
 	Run % "explorer.exe /select," pPath
 	sleep,200
 	send,{esc}
-return
+	return
 }
 ;双击关闭显示器
 <BoBO_CloseScreen>:
@@ -109,32 +210,12 @@ return
 	}
     return
 }
-;集成快捷启动
 <BoBO_HuntAndPeck>:
 {
     run %A_ScriptDir%\custom\apps\HuntAndPeck\hap.exe /hint
 	return
 }
-;集成快捷启动
-<BoBO_PopSel>:
-{
-    run %A_ScriptDir%\custom\apps\Popsel\PopSel.exe /n
-	return
-;    run %A_ScriptDir%\custom\apps\Popsel\PopSel.exe /pc /n
-}
-<BoBO_CenterWindow>:
-{
-	WinGetActiveTitle, var_title
-	CenterWindow(var_title)
-	return
-}
-;窗口居中
-~LButton & z:: 
-    WinGet, activePath, ProcessPath, % "ahk_id" winActive("A")
-    tool_pathandname = "%activePath%"
-    KeyWait, LButton
-    Gosub,<BoBO_CenterWindow>
-return
+
 ;任务栏切换
 <BoBO_TaskSwch>:
 {
@@ -265,7 +346,7 @@ return
 	!=::CoordWinClick(QQ_Start_X, QQ_Start_Y+(12-1)*QQ_Bar_Height)
 	!w::Gosub, <Tx_OpenWithTc>
 }
-;微信
+; 微信
 #IfWinActive ahk_exe WeChat.exe
 {
 	;聚焦搜索框
@@ -300,7 +381,7 @@ return
 	!w::Gosub, <Wx_OpenWithTc>
 	return
 }
-;telegram
+; telegram
 #IfWinActive ahk_exe Telegram.exe
 {
 	!w::Gosub, <Tg_OpenWithTc>
@@ -316,35 +397,6 @@ return
 	!8::CoordWinClick(TG_Start_X, TG_Start_Y+(8-1)*TG_Bar_Height)
 	!9::CoordWinClick(TG_Start_X, TG_Start_Y+(9-1)*TG_Bar_Height)
 	!0::CoordWinClick(TG_Start_X, TG_Start_Y+(10-1)*TG_Bar_Height)
-}
-; ShareX
-<ShareX_PrintScreen>:
-{
-    t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-    settimer, ShareX_tappedkey_PrintScreen, %t%
-    if (t == "off")
-    goto ShareX_double_PrintScreen
-    return
-    ShareX_tappedkey_PrintScreen:
-        {
-			SendInput,^{PrintScreen}
-			return
-        }
-    return
-
-    ShareX_double_PrintScreen:
-        {
-			Menu, ShareX, Add, (&A) 矩形区域截图, mPrintScreen
-			Menu, ShareX, Add, (&D) 矩形截图屏幕, mPrintScreenAll
-			Menu, ShareX, Add, (&T) 捕捉当前活动窗口, mPrintScreenActive
-			Menu, ShareX, Add, (&R) 录制屏幕, mRecordingScreen
-			Menu, ShareX, Add, (&G) 录制GIF, mRecordingScreenGif
-			Menu, ShareX, Add, (&G) 录制GIF>>ScreenToGif, mRecordingScreenGif2
-			; 需要设置ScreenToGif快捷方式为Ctrl+Alt+PrintScreen
-			Menu, ShareX, Show
-            return
-        }
-    return
 }
 
 ;##########程序便捷.工具##########
@@ -521,14 +573,25 @@ return
 #If WinActive("ahk_exe AfterFX.exe")
 {	
 	;;快速打开文件所在位置
-	;AE快速打开文件所在位置 至于是否启用TC到时候在考虑目前可以一直按alt+w
+	;;AE快速打开文件所在位置 至于是否启用TC到时候在考虑目前可以一直按alt+w
 	^+!LButton::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
 	;;快速打开渲染文件所在位置
 	^+LButton::AeOpenLocalFilesRender()
 	;;便捷菜单
 	+RButton::Gosub,menuAe
+	; !q::
+	IfWinActive ahk_class VCSDK_WINDOW_CLASS
+		sleep 100
+		CoordWinClick(56,22)
 	return
 }
+
+; #If WinActive("ahk_class VCSDK_WINDOW_CLASS") and WinActive("ahk_exe AfterFX.exe")
+; {
+; 	;;配合fx console 前提得自定义快捷键为Alt+q
+;     !q::CoordWinClick(56,22)
+; }
+
 menuAe:
 	dirMenu0=%A_ScriptDir%\custom\ae_scripts\Effect
 	dirMenu1=%A_ScriptDir%\custom\ae_scripts\otherScriptCommand\
@@ -718,40 +781,8 @@ mRecordingScreenGif2:
 	sleep 300
 	SendInput,^!{PrintScreen}
 return
-; 用法：选中文字，按两次Ctrl+C翻译或搜索或加解密
-; 热键：Ctrl+C, Ctrl+C 
-; 快捷键位置在TrayMenu.ahk
-;--------------------------------------------------
-DoublePress() ; Simulate double press
-{
-   static pressed1 = 0
-   if pressed1 and A_TimeSincePriorHotkey <= 300
-   {
-      pressed1 = 0
-      ;Translate("en","ru") ; from English to Russian
-    ;   keyword=%Clipboard%
-    ;   ToolTip % GoogleTranslate(keyword)
-        Menu, MyMenu, Add, (&G) %_searchGoogle%, mGoogle
-        Menu, MyMenu, Add, (&D) %_searchDogeDoge%, mDogeDoge
-		Menu, MyMenu, Add, (&T) %_googleTranslate%, mGoogleTranslate
-        ; Menu, MyMenu, Add, (&T) %_googleTranslateCn%, mGoogleTranslateCn
-		; Menu, MyMenu, Add, (&T) %_googleTranslateEn%, mGoogleTranslateEn
-		Menu, MyMenu, Add, (&T) 智能处理, mSmartSearch
-        ; Menu, MyMenu, Add  ; 添加分隔线.
-        Menu, MyMenu, Add, (&B) %_Base64En%, mBase64En
-        Menu, MyMenu, Add, (&B) %_Base64De%, mBase64De
-		Menu, MyMenu, Add, (&B) %_QR%, mGenQR
-        ; Menu, Submenu1, Add, Item2, MenuHandler
-        ; Menu, MyMenu, Add, My Submenu, :Submenu1
-        ; Menu, MyMenu, Add  ; 在子菜单下添加分隔线.
-        ; Menu, MyMenu, Add, Item3, MenuHandler  ; 在子菜单下添加另一个菜单项.
-        Menu, MyMenu, Show
-        return
 
-   }
-   else
-      pressed1 = 1
-}
+
 
 DoublePressV() ; Simulate double press
 {

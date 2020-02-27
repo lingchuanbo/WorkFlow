@@ -83,7 +83,7 @@ return
 return
 <Explorer_GotoAe>:
     clipboard = ; 清空剪贴板重新获取
-    Clipboard:= FunBoBO_CustomFunc_getCurrentDir()
+    Clipboard:= getCurrentDir()
     ;MsgBox,%Clipboard%
     IfWinNotActive ahk_exe AfterFX.exe
     {

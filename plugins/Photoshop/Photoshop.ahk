@@ -114,27 +114,22 @@ PSCheckInput()
 	;~ PixelGetColor, psinputj, 30, 38
     if (psinputt = 0x383838) ;&& (psinputj = 0x989898)) 	;Static88为输入文字时的ClassNN
 		{
-		; setzh()			;中文0x8040804
 		return true
 		}
     if (A_CaretX) 	;Static88为输入文字时的ClassNN
 		{
-		; setzh()			;中文0x8040804
 		return true
 		}
     if (RegExMatch(ctrl, "Edit|Static151|Static88")) ;|| (ConvMode = 1025) || A_CaretX	;Static88为输入文字时的ClassNN
 		{
-		; setzh()			;中文0x8040804
 		return true
 		}
     if (RegExMatch(ctrl, "Static152"))
 		{
-        BoBO_setEnglishLayout(s=0,h=0) ;操作过程自动切换至英文输入法，如果遇到问题可以注释
 		return false
 		}
 	else
 	{
-        BoBO_setEnglishLayout(s=0,h=0) ;操作过程自动切换至英文输入法，如果遇到问题可以注释
 		return false
 	}
 }

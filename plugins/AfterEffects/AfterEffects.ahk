@@ -37,7 +37,8 @@ AfterEffects:
 
     vim.SetAction("<AfterEffects_NormalMode>", "返回正常模式")
     vim.SetAction("<AfterEffects_InsertMode>", "进入VIM模式")
-    vim.SetWin("AfterEffects","ahk_exe","AfterFX.exe")
+    vim.SetWin("AfterEffects","AE_CApplication_15.1")
+
     vim.BeforeActionDo("AE_CheckMode", "AfterEffects")
     #Include %A_ScriptDir%\plugins\AfterEffects\AfterEffectsComment.ahk 
     
@@ -57,10 +58,10 @@ return
 ;   输入状时态屏蔽
 AE_CheckMode(){
     ;屏蔽FxConsole[目前还不知道获取打开方式 所以先在其设置为Alt+Q]
-    #If WinActive("ahk_class VCSDK_WINDOW_CLASS")
-        {
-            return True 
-        }
+    ; #If WinActive("ahk_class VCSDK_WINDOW_CLASS")
+    ;     {
+    ;         return True 
+    ;     }
     ControlGetFocus, ctrl, A
     If RegExMatch(ctrl,"i)Edit")
         {

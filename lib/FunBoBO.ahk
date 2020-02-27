@@ -72,11 +72,6 @@ HideLayoutIMG(){
 	Gui,ShowLayout:Hide
 	return
 }
-
-
-
-;无视输入法状态发送字符串
-;其实还有一种方法，就是把字符串赋值给粘贴板，然后粘贴
 uStr(str)
 {
     charList:=StrSplit(str)
@@ -106,7 +101,7 @@ PathCreateFromURL(URL)
 	return fPath
 }
 ;获取当前目录
-FunBoBO_CustomFunc_getCurrentDir(ByRef CurWinClass="")
+getCurrentDir(ByRef CurWinClass="")
 {
     if CurWinClass=
     {
@@ -262,14 +257,11 @@ Morse(timeout = 400) {
    }
 }
 
-
-
 ; 函数功能：检测进程
 ProcessExist(Name){ ; 
 Process,Exist,%Name%
 return Errorlevel
 }
-
 
 ; 函数功能：单双长按函数
 analyseKeyPress(comboKeyName="",doubleKeySpeed=0.15,longKeyPressTime=0.3){ ;
@@ -344,7 +336,6 @@ description = double tap function to send a hotkey or label
 author      = davebrny
 source      = https://gist.github.com/davebrny/383ab4158e4220f5658223475ad57719
 */
-
 double_tap(single_tap, double_tap, tap_time="T.2") {
     key := LTrim(a_thisHotkey, "~$*")
     key := regExReplace(key, "[\Q^!+#\E]")   ; remove modifiers
@@ -741,258 +732,13 @@ fun_GetFormatTime(f,t="")
 	return %TimeString%
 }
 
-; 谷歌翻译
-GoogleTranslate(str, from := "auto", to :=0)  {
-   static JS := CreateScriptObj(), _ := JS.( GetJScripObject() ) := JS.("delete ActiveXObject; delete GetObject;")
-;  static JS := CreateScriptObj(), _ := JS.( GetJScript() ) := JS.("delete ActiveXObject; delete GetObject;")
-   if(!to)				; If no "to" parameter was passed
-      to := GetISOLanguageCode()	; Assign the system (OS) language to "to"
-   if(from = to)			; If the "from" and "to" parameters are the same
-      Return str			; Abort translation and return the original string
-   json := SendRequest(JS, str, to, from, proxy := "")
-   oJSON := JS.("(" . json . ")")
- 
-   if !IsObject(oJSON[1])  {
-      Loop % oJSON[0].length
-         trans .= oJSON[0][A_Index - 1][0]
-   }
-   else  {
-      MainTransText := oJSON[0][0][0]
-      Loop % oJSON[1].length  {
-         trans .= "`n+"
-         obj := oJSON[1][A_Index-1][1]
-         Loop % obj.length  {
-            txt := obj[A_Index - 1]
-            trans .= (MainTransText = txt ? "" : "`n" txt)
-         }
-      }
-   }
-   if !IsObject(oJSON[1])
-      MainTransText := trans := Trim(trans, ",+`n ")
-   else
-      trans := MainTransText . "`n+`n" . Trim(trans, ",+`n ")
- 
-   from := oJSON[2]
-   trans := Trim(trans, ",+`n ")
-   Return trans
-}
- 
-; Take a 4-digit language code or (if no parameter) the current language code and return the corresponding 2-digit ISO code
-GetISOLanguageCode(lang := 0) {
-   LanguageCodeArray := { 0436: "af" ; Afrikaans
-			, 041c: "sq" ; Albanian
-			, 0401: "ar" ; Arabic_Saudi_Arabia
-			, 0801: "ar" ; Arabic_Iraq
-			, 0c01: "ar" ; Arabic_Egypt
-			, 1001: "ar" ; Arabic_Libya
-			, 1401: "ar" ; Arabic_Algeria
-			, 1801: "ar" ; Arabic_Morocco
-			, 1c01: "ar" ; Arabic_Tunisia
-			, 2001: "ar" ; Arabic_Oman
-			, 2401: "ar" ; Arabic_Yemen
-			, 2801: "ar" ; Arabic_Syria
-			, 2c01: "ar" ; Arabic_Jordan
-			, 3001: "ar" ; Arabic_Lebanon
-			, 3401: "ar" ; Arabic_Kuwait
-			, 3801: "ar" ; Arabic_UAE
-			, 3c01: "ar" ; Arabic_Bahrain
-			, 042c: "az" ; Azeri_Latin
-			, 082c: "az" ; Azeri_Cyrillic
-			, 042d: "eu" ; Basque
-			, 0423: "be" ; Belarusian
-			, 0402: "bg" ; Bulgarian
-			, 0403: "ca" ; Catalan
-			, 0404: "zh-CN" ; Chinese_Taiwan
-			, 0804: "zh-CN" ; Chinese_PRC
-			, 0c04: "zh-CN" ; Chinese_Hong_Kong
-			, 1004: "zh-CN" ; Chinese_Singapore
-			, 1404: "zh-CN" ; Chinese_Macau
-			, 041a: "hr" ; Croatian
-			, 0405: "cs" ; Czech
-			, 0406: "da" ; Danish
-			, 0413: "nl" ; Dutch_Standard
-			, 0813: "nl" ; Dutch_Belgian
-			, 0409: "en" ; English_United_States
-			, 0809: "en" ; English_United_Kingdom
-			, 0c09: "en" ; English_Australian
-			, 1009: "en" ; English_Canadian
-			, 1409: "en" ; English_New_Zealand
-			, 1809: "en" ; English_Irish
-			, 1c09: "en" ; English_South_Africa
-			, 2009: "en" ; English_Jamaica
-			, 2409: "en" ; English_Caribbean
-			, 2809: "en" ; English_Belize
-			, 2c09: "en" ; English_Trinidad
-			, 3009: "en" ; English_Zimbabwe
-			, 3409: "en" ; English_Philippines
-			, 0425: "et" ; Estonian
-			, 040b: "fi" ; Finnish
-			, 040c: "fr" ; French_Standard
-			, 080c: "fr" ; French_Belgian
-			, 0c0c: "fr" ; French_Canadian
-			, 100c: "fr" ; French_Swiss
-			, 140c: "fr" ; French_Luxembourg
-			, 180c: "fr" ; French_Monaco
-			, 0437: "ka" ; Georgian
-			, 0407: "de" ; German_Standard
-			, 0807: "de" ; German_Swiss
-			, 0c07: "de" ; German_Austrian
-			, 1007: "de" ; German_Luxembourg
-			, 1407: "de" ; German_Liechtenstein
-			, 0408: "el" ; Greek
-			, 040d: "iw" ; Hebrew
-			, 0439: "hi" ; Hindi
-			, 040e: "hu" ; Hungarian
-			, 040f: "is" ; Icelandic
-			, 0421: "id" ; Indonesian
-			, 0410: "it" ; Italian_Standard
-			, 0810: "it" ; Italian_Swiss
-			, 0411: "ja" ; Japanese
-			, 0412: "ko" ; Korean
-			, 0426: "lv" ; Latvian
-			, 0427: "lt" ; Lithuanian
-			, 042f: "mk" ; Macedonian
-			, 043e: "ms" ; Malay_Malaysia
-			, 083e: "ms" ; Malay_Brunei_Darussalam
-			, 0414: "no" ; Norwegian_Bokmal
-			, 0814: "no" ; Norwegian_Nynorsk
-			, 0415: "pl" ; Polish
-			, 0416: "pt" ; Portuguese_Brazilian
-			, 0816: "pt" ; Portuguese_Standard
-			, 0418: "ro" ; Romanian
-			, 0419: "ru" ; Russian
-			, 081a: "sr" ; Serbian_Latin
-			, 0c1a: "sr" ; Serbian_Cyrillic
-			, 041b: "sk" ; Slovak
-			, 0424: "sl" ; Slovenian
-			, 040a: "es" ; Spanish_Traditional_Sort
-			, 080a: "es" ; Spanish_Mexican
-			, 0c0a: "es" ; Spanish_Modern_Sort
-			, 100a: "es" ; Spanish_Guatemala
-			, 140a: "es" ; Spanish_Costa_Rica
-			, 180a: "es" ; Spanish_Panama
-			, 1c0a: "es" ; Spanish_Dominican_Republic
-			, 200a: "es" ; Spanish_Venezuela
-			, 240a: "es" ; Spanish_Colombia
-			, 280a: "es" ; Spanish_Peru
-			, 2c0a: "es" ; Spanish_Argentina
-			, 300a: "es" ; Spanish_Ecuador
-			, 340a: "es" ; Spanish_Chile
-			, 380a: "es" ; Spanish_Uruguay
-			, 3c0a: "es" ; Spanish_Paraguay
-			, 400a: "es" ; Spanish_Bolivia
-			, 440a: "es" ; Spanish_El_Salvador
-			, 480a: "es" ; Spanish_Honduras
-			, 4c0a: "es" ; Spanish_Nicaragua
-			, 500a: "es" ; Spanish_Puerto_Rico
-			, 0441: "sw" ; Swahili
-			, 041d: "sv" ; Swedish
-			, 081d: "sv" ; Swedish_Finland
-			, 0449: "ta" ; Tamil
-			, 041e: "th" ; Thai
-			, 041f: "tr" ; Turkish
-			, 0422: "uk" ; Ukrainian
-			, 0420: "ur" ; Urdu
-			, 042a: "vi"} ; Vietnamese
-   If(lang)
-     Return LanguageCodeArray[lang]
-   Else Return LanguageCodeArray[A_Language]
-}
-SendRequest(JS, str, tl, sl, proxy) {
-   ComObjError(false)
-   http := ComObjCreate("WinHttp.WinHttpRequest.5.1")
-   ( proxy && http.SetProxy(2, proxy) )
-   ;~ http.open( "POST", "https://translate.google.com/translate_a/single?client=webapp&sl="
-   http.open( "POST", "https://translate.google.cn/translate_a/single?client=webapp&sl="
-      . sl . "&tl=" . tl . "&hl=" . tl
-      . "&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&otf=0&ssel=0&tsel=0&pc=1&kc=1"
-      . "&tk=" . JS.("tk").(str), 1 )
- 
-   http.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8")
-   http.SetRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0")
-   http.send("q=" . URIEncode(str))
-   http.WaitForResponse(-1)
-   Return http.responsetext
-}
-URIEncode(str, encoding := "UTF-8")  {
-   VarSetCapacity(var, StrPut(str, encoding))
-   StrPut(str, &var, encoding)
- 
-   While code := NumGet(Var, A_Index - 1, "UChar")  {
-      bool := (code > 0x7F || code < 0x30 || code = 0x3D)
-      UrlStr .= bool ? "%" . Format("{:02X}", code) : Chr(code)
-   }
-   Return UrlStr
-}
- 
-; GetJScript()
-; {
-;    script =
-;    (
-;       var TKK = ((function() {
-;         var a = 561666268;
-;         var b = 1526272306;
-;         return 406398 + '.' + (a + b);
-;       })());
- 
-;       function b(a, b) {
-;         for (var d = 0; d < b.length - 2; d += 3) {
-;             var c = b.charAt(d + 2),
-;                 c = "a" <= c ? c.charCodeAt(0) - 87 : Number(c),
-;                 c = "+" == b.charAt(d + 1) ? a >>> c : a << c;
-;             a = "+" == b.charAt(d) ? a + c & 4294967295 : a ^ c
-;         }
-;         return a
-;       }
- 
-;       function tk(a) {
-;           for (var e = TKK.split("."), h = Number(e[0]) || 0, g = [], d = 0, f = 0; f < a.length; f++) {
-;               var c = a.charCodeAt(f);
-;               128 > c ? g[d++] = c : (2048 > c ? g[d++] = c >> 6 | 192 : (55296 == (c & 64512) && f + 1 < a.length && 56320 == (a.charCodeAt(f + 1) & 64512) ?
-;               (c = 65536 + ((c & 1023) << 10) + (a.charCodeAt(++f) & 1023), g[d++] = c >> 18 | 240,
-;               g[d++] = c >> 12 & 63 | 128) : g[d++] = c >> 12 | 224, g[d++] = c >> 6 & 63 | 128), g[d++] = c & 63 | 128)
-;           }
-;           a = h;
-;           for (d = 0; d < g.length; d++) a += g[d], a = b(a, "+-a^+6");
-;           a = b(a, "+-3^+b+-f");
-;           a ^= Number(e[1]) || 0;
-;           0 > a && (a = (a & 2147483647) + 2147483648);
-;           a `%= 1E6;
-;           return a.toString() + "." + (a ^ h)
-;       }
-;    )
-;    Return script
-; }
 
-GetJScripObject()  {   ; Here we create temp file to get a custom COM server using Windows Script Components (WSC) technology.
-   VarSetCapacity(tmpFile, ((MAX_PATH := 260) - 14) << !!A_IsUnicode, 0)
-   DllCall("GetTempFileName", Str, A_Temp, Str, "AHK", UInt, 0, Str, tmpFile)
-   
-   FileAppend,
-   (
-   <component>
-   <public><method name='eval'/></public>
-   <script language='JScript'></script>
-   </component>
-   ), % tmpFile
-   
-   JS := ObjBindMethod( ComObjGet("script:" . tmpFile), "eval" ) ; ComObjGet("script:" . tmpFile) is the way to invoke com-object without registration in the system
-   FileDelete, % tmpFile
-   Return JS
-}
-
-CreateScriptObj() {
-   static doc
-   doc := ComObjCreate("htmlfile")
-   doc.write("<meta http-equiv='X-UA-Compatible' content='IE=9'>")
-   Return ObjBindMethod(doc.parentWindow, "eval")
-}
 ; 狗狗搜索
 DogeDoge(keyword){
     Run,https://www.dogedoge.com/results?q=%keyword%
     return
 }
-; 谷歌搜索
+; 谷歌搜索http://www.google.com/s?wd=%Clipboard% 
 Google(keyword){
     Run,https://www.google.com/search?q=%keyword%
     return
@@ -1022,120 +768,7 @@ HideOrShowDesktopIcons()
 		WinShow, ahk_id %class%
 	return
 }
-; 输入法智能切换
-; 源码来之K神智能切换输入法
-BoBO_IMELA_GET(){ ;激活窗口键盘布局检测方法,减少了不必要的切换,切换更流畅了
-  SetFormat, Integer, H
-  WinGet, WinID,, A
-  ThreadID:=DllCall("GetWindowThreadProcessId", "UInt", WinID, "UInt", 0)
-  InputLocaleID:=DllCall("GetKeyboardLayout", "UInt", ThreadID)
-  ;~ MsgBox, %InputLocaleID%
-  return %InputLocaleID%
-}
-BoBO_IME_GET(WinTitle=""){ ;借鉴了某日本人脚本中的获取输入法状态的内容,减少了不必要的切换,切换更流畅了
-;-----------------------------------------------------------
-; IMEの状態の取得
-;    対象： AHK v1.0.34以降
-;   WinTitle : 対象Window (省略時:アクティブウィンドウ)
-;   戻り値  1:ON 0:OFF
-;-----------------------------------------------------------
-    ifEqual WinTitle,,  SetEnv,WinTitle,A
-    WinGet,hWnd,ID,%WinTitle%
-    DefaultIMEWnd := DllCall("imm32\ImmGetDefaultIMEWnd", Uint,hWnd, Uint)
 
-    ;Message : WM_IME_CONTROL  wParam:IMC_GETOPENSTATUS
-    DetectSave := A_DetectHiddenWindows
-    DetectHiddenWindows,ON
-    SendMessage 0x283, 0x005,0,,ahk_id %DefaultIMEWnd%
-    DetectHiddenWindows,%DetectSave%
-    Return ErrorLevel
-}
-
-BoBO_setChineseLayout(s=0,h=1,force=1){	;中文简体键盘布局切换主方法，默认s=0关闭提示,s=1为打开提示;h=0忽略延迟,h=1打开默认延迟
-	global CN_Code := ini.config.CN_Code
-	global EN_Code := ini.config.EN_Code
-	;智能检测,如果发现已经是中文,则不切换
-	If (BoBO_IMELA_GET()=CN_Code && force=0) {
-		;~ ShowStatus("当前：【中文】")
-		ShowToolTip("【中文】")
-		; AutoCursor()
-		;如果发现虽然是中文的键盘布局,但切换到了内置英文模式,那么也是要改的,改的方法很简单粗暴,切成英文，再切成中文,如果你有快捷键也可以用，但不一定比这个更稳
-		If (BoBO_IME_GET()=0){
-			;~ MsgBox,% h
-			if (h=1){
-				Sleep,30
-			}
-			PostMessage, 0x50,, %EN_Code%,, A
-			if (h=1){
-				Sleep,30
-			}
-			PostMessage, 0x50,, %CN_Code%,, A
-			if (s=1){
-				;~ ShowStatus("切换到【中文】")
-				  ShowToolTip("【中文】")
-				; AutoCursor()
-			}
-			return
-		}
-		return
-	}
-	
-	if (h=1){
-		Sleep,120
-	}
-	
-	PostMessage, 0x50,, %CN_Code%,, A
-	if (h=1){
-		Sleep,35
-	}
-	if (s=1){
-		;~ ShowStatus("切换到【中文】")
-		ShowToolTip("【中文】")
-		; AutoCursor()
-	}
-	return
-}
-
-BoBO_setEnglishLayout(s=0,h=1,force=1){ ;英文美国键盘布局切换主方法，默认s=0关闭提示,s=1为打开提示;h=0忽略延迟,h=1打开默认延迟
-	global CN_Code := ini.config.CN_Code
-	global EN_Code := ini.config.EN_Code
-	;智能检测,如果发现已经是英文,则不切换
-	If (BoBO_IMELA_GET()=EN_Code && force=0){
-		;~ ShowStatus("当前：【英文】")
-		ShowToolTip("【英文】")
-		; AutoCursor()
-	return
-	}
-
-	if (h=1){
-		Sleep,120
-	}
-	
-	PostMessage, 0x50,, %EN_Code%,, A
-	if (h=1){
-		Sleep,35
-	}
-	if (s=1){
-		;~ ShowStatus("切换到【英文】")
-		ShowToolTip("【英文】")
-		; AutoCursor()
-	}
-	return
-}
-
-ShowToolTip(Msg:=""){	;显示切换或当前的输入法状态
-	ToolTip, %Msg%, A_CaretX, A_CaretY - 40
-	SetTimer, Timer_RemoveToolTip, 3000
-	return
-	
-	Timer_RemoveToolTip:  ;移除ToolTip
-		SetTimer, Timer_RemoveToolTip, Off
-		ToolTip
-	return
-}
-; 输入法智能切换-------End--------------------
-
-; 输入法智能切换-------End--------------------
 GEN_QR_CODE(string,file="")
 {
   sFile := strlen(file) ? file : A_Temp "\" A_NowUTC ".png"
@@ -1148,60 +781,12 @@ CenterWindow(WinTitle)
     WinGetPos,,, Width, Height, %WinTitle%
     WinMove, %WinTitle%,, (A_ScreenWidth/2)-(Width/2), (A_ScreenHeight/2)-(Height/2)
 }
-
-
-;DynamicFileMenu.ahk
-;by BGM 动态菜单
-;http://www.autohotkey.com/board/topic/95219-dynamicfilemenuahk/
-
-menu_fromfiles(submenuname, menutitle, whatsub, whatdir, filemask="*", parentmenu="", folders=1){
-        menucount := 0
-        loop, %whatdir%\*, 1, 0
-        {
-            if(file_isfolder(A_LoopFileFullPath)){
-                if(folders){
-                      menucount := menu_fromfiles(A_LoopFileFullPath, a_loopfilename, whatsub, A_LoopFileFullPath, filemask, submenuname, folders)                                   
-                }
-            }else{
-                 loop, %A_LoopFileDir%\%filemask%, 0, 0
-                {
-                    menu, %submenuname%, add, %a_loopfilename%, %whatsub%
-                    menucount++                
-                }                
-            }
-        }
-        if(parentmenu && menucount){
-            menu, %parentmenu%, add, %menutitle%, :%submenuname%
-            return menucount
-        }       
-}
-
-;fetches the correct path from the menu
-menu_itempath(whatmenu, whatdir){
-    if(a_thismenu = whatmenu){
-    endpath = %whatdir%\%a_thismenuitem%
-        return endpath
-    }else{
-        endpath = %a_thismenu%\%a_thismenuitem%
-        return endpath
-    }
-}
-
-;returns true if the item is a folder, false if is a file
-file_isfolder(whatfile){
-    lastchar := substr(whatfile, 0, 1) ;fetch the last character from the string
-    if(lastchar != "\")
-        whatfile := whatfile . "\"
-    if(fileexist(whatfile))
-        return true
-}
-;动态菜单结束
 PostMsg(CommandID)
 {
     PostMessage 1075, %CommandID%, 0, , ahk_class TTOTAL_CMD
 }
 
-fun_KeyClickAction(act){
+KeyClickAction(act){
 	If RegExMatch(act,"i)^(run,)",m) {
 		run,% substr(act,strlen(m1)+1)
 	}
