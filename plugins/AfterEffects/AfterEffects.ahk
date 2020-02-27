@@ -57,13 +57,10 @@ return
 ;   输入状时态屏蔽
 AE_CheckMode(){
     ;屏蔽FxConsole[目前还不知道获取打开方式 所以先在其设置为Alt+Q]
-    IfWinActive ahk_class VCSDK_WINDOW_CLASS
-    {
-        ; BoBO_setEnglishLayout(s=0,h=0) ;自动切换至英文输入法，如果遇到问题可以注释
-        return True 
-    }
-
-
+    #If WinActive("ahk_class VCSDK_WINDOW_CLASS")
+        {
+            return True 
+        }
     ControlGetFocus, ctrl, A
     If RegExMatch(ctrl,"i)Edit")
         {
@@ -84,7 +81,6 @@ AE_CheckMode(){
 		{
             return true
 		}
-
 }
 
 
