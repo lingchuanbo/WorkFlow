@@ -40,7 +40,8 @@ SetCapsLockState AlwaysOff
 SetStoreCapslockMode, off
 ; ;--20191216
 Process Priority,,High           	    ;线程,主,高级别
-SetTitleMatchMode, 2
+; SetTitleMatchMode, 2
+SetTitleMatchMode, 2				;窗口标题模糊匹配-3为必须精确匹配 -2部分匹配 -1开头匹配
 SetWinDelay,0
 ; ;--20191216
 SetWorkingDir %A_ScriptDir%
@@ -79,6 +80,7 @@ GroupAdd, group_browser,ahk_exe chrome.exe
 GroupAdd, group_browser,ahk_exe msedge.exe
 
 ; ----------------------------------
+; #Include %A_ScriptDir%\custom\smartJump.ahk
 #Include %A_ScriptDir%\lib\DynamicFileMenu.ahk
 #Include %A_ScriptDir%\lib\checkUser.ahk
 #Include %A_ScriptDir%\lib\DownloadFile.ahk
@@ -103,6 +105,7 @@ GroupAdd, group_browser,ahk_exe msedge.exe
 #Include %A_ScriptDir%\lib\libcrypt.ahk
 ; 用户自定义配置yy
 #Include %A_ScriptDir%\custom\custom.ahk
+
 ; 动态加载|User|
 QZ_UpdatePlugin()
 

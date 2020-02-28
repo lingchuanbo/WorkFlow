@@ -1,6 +1,5 @@
 ﻿BoBO:
 ; 全局控制
-
 ; ################# `相关 #################
 ; `剪贴复制粘贴删除
 ` & 1:: SendInput,^x
@@ -77,7 +76,6 @@ return
 
 ; 用法：ctrl+a ctrl+a+a
 ; 截图/录制/Gif
-
 ~^!a:: Gosub,<ShareX_PrintScreen>
 
 <ShareX_PrintScreen>:
@@ -461,7 +459,8 @@ return
 ; Total Commander
 #If WinActive("ahk_class TTOTAL_CMD")
 {
-	!w::openPathExplorer() ;TC 到 Explorer
+	; !w::openPathExplorer() ;TC 到 Explorer
+	; !g:: GoSub,Sub_SendTcCurPath2Diag
 	NumpadDiv::TcSendPos(2011) ;显示隐藏文件
 	^!t::Gosub,<BoBO_OpenLocalDirCommander>
 	^Up::Gosub,<TcPostMsg>

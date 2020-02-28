@@ -1,9 +1,27 @@
-﻿; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; ;作者：天甜；QQ：105224583
-; ;一花一世界，一叶一枯荣，心无挂碍,无挂碍故,无有恐怖,远离颠倒梦想,究竟涅盘。
-; ;更新于：2018-3-2-V2.1
-; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; 智能跳转窗口
+﻿;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Mod作者：BoBO
+; 自用只支持 win10
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;作者：天甜；QQ：105224583
+;一花一世界，一叶一枯荣，心无挂碍,无挂碍故,无有恐怖,远离颠倒梦想,究竟涅盘。
+;更新于：2018-3-2-V2.1
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+Process, Priority,,high			;脚本高优先级
+; #NoTrayIcon 						;隐藏托盘图标
+#NoEnv								;不检查空变量是否为环境变量
+#Persistent						;让脚本持久运行(关闭或ExitApp)
+#SingleInstance Force				;跳过对话框并自动替换旧实例
+#WinActivateForce					;强制激活窗口
+#MaxHotkeysPerInterval 200		;时间内按热键最大次数
+SetBatchLines -1					;脚本全速执行
+SetControlDelay 0					;控件修改命令自动延时
+CoordMode Menu Window				;坐标相对活动窗口
+SendMode Input						;更速度和可靠方式发送键盘点击
+SetTitleMatchMode 2				;窗口标题模糊匹配-3为必须精确匹配 -2部分匹配 -1开头匹配
+DetectHiddenWindows On				;显示隐藏窗口
+SetWorkingDir %A_ScriptDir%		;当前脚本所在目录的绝对路径.不包含最后的反斜线（根目录同样如此）;A_ScriptDir指的是D:\zxh\QuickZ\Apps
+
 ;另存为|保存|复制|新建|打开|图形另存为|文件打开|保存副本|上传|选择文件 ahk_class #32770
 GroupAdd, Windows32770, 另存为 ahk_class #32770
 GroupAdd, Windows32770, 保存 ahk_class #32770
@@ -21,9 +39,13 @@ GroupAdd, Windows32770, 导入 ahk_class #32770
 GroupAdd, Windows32770, 置入嵌入对象 ahk_class #32770
 GroupAdd, Windows32770, 浏览 ahk_class #32770
 GroupAdd, Windows32770, Open ahk_class #32770
+GroupAdd, Windows32770, Open Folder ahk_class #32770
+GroupAdd, Windows32770, Open File ahk_class #32770
 GroupAdd, Windows32770, Save As ahk_class #32770
 GroupAdd, Windows32770, Import File ahk_class #32770
-
+GroupAdd, Windows32770, Export As ahk_class #32770
+GroupAdd, Windows32770, Output Movie To: ahk_class #32770
+GroupAdd, Windows32770, Choose Folder ahk_class #32770
 
 global this_title=
 global zParam
@@ -44,10 +66,33 @@ Gui +LastFound +hwndhwndshellwindow
 DllCall( "RegisterShellHookWindow", "UInt",hwndshellwindow )
 OnMessage( DllCall( "RegisterWindowMessage", "Str", "SHELLHOOK" ), "SwitchMessage" )
 return
+;~ MsgMonitor(wParam, lParam, msg)
+;~ {
+    ;~ zParam = %wParam%
+;~ }
+
+;~ ^+!1::zParam := 1		;鼠标光标测试
+;~ ^+!0::zParam := 0
 
 SwitchMessage( wParam,lParam ) 	;{
 {
 	If ( wParam != 1 )		;新开窗口,这是HOOK,监控创建窗口的消息,=6也可以，原来是!=1
+		;wParam值的定义:
+		;~ #define HSHELL_ENDTASK 10
+		;~ #define HSHELL_GETMINRECT 5
+		;~ #define HSHELL_LANGUAGE 8
+		;~ #define HSHELL_REDRAW 6
+		;~ #define HSHELL_TASKMAN 7
+		;~ #define HSHELL_WINDOWACTIVATED 4
+		;~ #define HSHELL_WINDOWCREATED 1
+		;~ #define HSHELL_WINDOWDESTROYED 2
+		;~ wParam: 此参数的值依赖于参数nCode,其依赖关系如下所示:
+		;~ HSHELL_ACCESSIBILITYSTATE: 指示哪一个可以访问特征已被改变了状态,可以是以下值之一:
+		;~ ACCESS_FILTERKYS,ACCESS_MOUSEKEYS,ACCESS_STICKKEYS.
+		;~ HSHELL_GETMINRECT:被最小化或者最大化的窗口句柄.HSHELL_LANGUAGE: 窗口的句柄.
+		;~ HSHELL_REDRAW:被重画的窗口的句柄.HSHELL_WINDOWACTIVATED:被激活的窗口的句柄.
+		;~ HSHELL_WINDOWCREATED:被创建的窗口的句柄.HSHELL_WINDOWDESTROYED:被销毁的窗口的句柄.
+
 	{
 	If WinActive("ahk_class TTOTAL_CMD")
 		{
@@ -76,11 +121,22 @@ SwitchMessage( wParam,lParam ) 	;{
 		}
 	If WinActive("ahk_class CabinetWClass")
 		{
-		WinWaitNotActive ahk_class CabinetWClass
-		ControlGetText, this_title, ToolbarWindow322, ahk_class CabinetWClass
-		this_title := StrReplace(this_title, "地址: ", "")
+		; WinWaitNotActive ahk_class CabinetWClass
+		; 方法一
+		; WinGetTitle, this_title, ahk_class CabinetWClass	;“文件夹选项”，“查看”，“在标题栏显示完整路径”，“确定”,显示完整路径
+		; 方法二
+		;hExplorer := DllCall("FindWindowEx", Int, 0, Int, 0, Str, "CabinetWClass", Int, 0)
+		;hAddressBar := DllCall("FindWindowEx", Int, hExplorer, Int, 0, Str, "ShellTabWindowClass", Int, 0)
+		;ControlGetText, path, , ahk_id %hAddressBar%
+		; 方法三
+		; ControlGetText, this_title, ToolbarWindow322, ahk_class CabinetWClass
+		; this_title := StrReplace(this_title, "地址: ", "")
+		this_title :=  ExplorerInfo()
 		if this_title=桌面
 			this_title=%A_Desktop%
+		;if this_title=库\文档
+			;this_title=%A_MyDocuments%
+		; msgbox % ExplorerInfo()
 		IfWinExist ahk_group Windows32770
 			{
 			WinWaitActive ahk_group Windows32770, , 2
@@ -257,6 +313,16 @@ ExplorerInfo(mode="",hwnd="") { ;Method="当前目录"的时候只返回当前�
 	Sleep, 50
 	ControlSend, Edit1, {Enter}, A
 	return
+;~ ^+s::
+	;~ Send ^+s
+    ;~ WinWaitActive ahk_class #32770
+	;~ ControlFocus, Edit1, A
+	;~ send,{Backspace}
+	;~ sleep 100
+	;~ ControlSetText, Edit1, %this_title%, A
+	;~ Sleep, 50
+	;~ ControlSend, Edit1, {Enter}, A
+	;~ return
 	
 #IfWinActive, ahk_class #32770
 ^g::		;发送最后 TC or 资管 路径到32770
@@ -437,60 +503,11 @@ return
         Send ^{g}
     }
 */
-; #IfWinActive, ahk_group Windows32770
-; 	!w:: GoSub,Sub_SendCurDiagPath2Tc
-; 	!g:: GoSub,Sub_SendTcCurPath2Diag
-; #IfWinActive
+
 	
-; Sub_SendCurDiagPath2Tc:
-; 	WinGetText, CurWinAllText
-; 	; MsgBox, The text is:`n%CurWinAllText%
-; 	Loop, parse, CurWinAllText, `n, `r
-; 	{
-; 		If RegExMatch(A_LoopField, "^地址: "){
-; 			curDiagPath := SubStr(A_LoopField,4)
-; 			break
-; 		}
-; 	}
-; 	WinActivate, ahk_class TTOTAL_CMD
-; 	ControlSetText, Edit1, cd %curDiagPath%, ahk_class TTOTAL_CMD
-; 	sleep 900
-; 	ControlSend, Edit1, {enter}, ahk_class TTOTAL_CMD
-; return
 
-; ;将tc中路径发送到对话框
-; Sub_SendTcCurPath2Diag:
-; 	WinActivate, ahk_class TTOTAL_CMD
-; 	;将剪贴板中内容作为文件名
-; 	B_Clip2Name := false
-; 	B_ChangeDiagSize := true
 
-; 	;先获取TC中当前路径
-; 	clip:=Clipboard
-; 	Clipboard =
-;     ;CM_CopySrcPathToClip 2029
-; 	PostMessage, TC_Msg, CM_CopySrcPathToClip,0,, ahk_class TTOTAL_CMD
-; 	ClipWait, 1
-; 	srcDIR := Clipboard
-; 	Clipboard:=clip
 
-; 	;再发送剪贴板路径到控件
-; 	ControlFocus, Edit1, A
-; 	send,{Backspace}
-; 	sleep 100
-; 	ControlSetText, Edit1, %srcDIR%,A
-; 	send,{enter}
-; 	; msgbox %clip%
-; 	if(B_Clip2Name){
-; 		Sleep 100
-; 		ControlSetText, Edit1, %clip%,A
-; 	}
-; 	;ControlSetText, Edit1, %text%,A
-; 	if(B_ChangeDiagSize){
-; 		;WinGetPos, xTB, yTB,lengthTB,hightTB, ahk_class Shell_TrayWnd
-; 		;改变对话框大小，省事就直接移动到100,100的位置，然后85%屏幕大小，否则就要详细结算任务栏在上下左右的位置
-; 		WinMove, A,,80,80, A_ScreenWidth * 0.85, A_ScreenHeight * 0.85
-; 	}
-; return
-; ^F12::Reload
-; ^F11::ExitApp
+
+^F12::Reload
+^F11::ExitApp

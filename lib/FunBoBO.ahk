@@ -674,7 +674,7 @@ openPathExplorer(){
 	ControlGetText, varPathInTC, , ahk_id %ErrorLevel%
 	StringReplace, this_title, varPathInTC, >, \
     Run, explorer.exe %this_title%
-	msgbox %this_title%
+	; msgbox %this_title%
 }
 
 openPathEveything(){
