@@ -53,6 +53,7 @@ HelpLink=https://www.kancloud.cn/funbobosky/vim_unity
 FontSize:="30"
 SleepTime=1000 ; 消失时间
 
+
 ; 定义颜色
 global color1=004073
 global color2=004073

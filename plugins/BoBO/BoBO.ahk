@@ -723,8 +723,9 @@ Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
 return
 
 ;启动记事本并去标题等
+
 #n::
-	run, %COMMANDER_PATH%\Tools\Notepad3\x64\Notepad3.exe /f %COMMANDER_PATH%\Tools\Notepad3\x64\Notepad3.ini, , , OutputVarPID
+	run, %A_ScriptDir%\tools\TotalCMD\Tools\Notepad\Notepad.exe /f %A_ScriptDir%\tools\TotalCMD\Tools\Notepad\Notepad.ini, , , OutputVarPID
 	sleep 100
 	WinWait ahk_pid %OutputVarPID%
 	if ErrorLevel
@@ -776,7 +777,7 @@ mRecordingScreenGif:
 	SendInput,^+{PrintScreen}
 return
 mRecordingScreenGif2:
-	Run,F:\BoBOProgram\ShareX\ScreenToGif.exe
+	Run,%A_ScriptDir%\tools\ShareX\ScreenToGif.exe
 	sleep 300
 	SendInput,^!{PrintScreen}
 return
