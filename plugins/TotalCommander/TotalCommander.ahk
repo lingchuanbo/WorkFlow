@@ -410,8 +410,6 @@ return
     return
 return
 
-
-
 ;点击文本搜索框
 <TC_TextSearch>:
 CoordWinClick(228,228)
@@ -4685,6 +4683,23 @@ return
  Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_SwithHidSys`)"
 return
 
+<GameDevSetPackAs>:
+ Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_PackAs`)"
+return
+
+<GameDevSetPackH5>:
+ Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_PackH5`)"
+return
+
+<GameDevSetAtlas>:
+ Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_atlas]`)"
+return
+<GameDevSetFxEditorXY>:
+ Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_runFxEditorXY`)"
+return
+<GameDevSetFxEditorSG>:
+ Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_FxEditorSG`)"
+return
 ;调用Everything搜索tc当前窗口路径
 <TC_Everyting>:
 	; SendMessage 1074, 21, 0, , ahk_class TTOTAL_CMD

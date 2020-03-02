@@ -459,8 +459,9 @@ return
 ; Total Commander
 #If WinActive("ahk_class TTOTAL_CMD")
 {
-	; !w::openPathExplorer() ;TC 到 Explorer
+	!w::openPathExplorer() ;TC 到 Explorer
 	; !g:: GoSub,Sub_SendTcCurPath2Diag
+	+RButton::Gosub,menuTc
 	NumpadDiv::TcSendPos(2011) ;显示隐藏文件
 	^!t::Gosub,<BoBO_OpenLocalDirCommander>
 	^Up::Gosub,<TcPostMsg>
@@ -602,7 +603,30 @@ menuAe:
 	menu, thismenu, add, (&F)_文件所在位置, OpenLocalFiles
 	menu, thismenu, add, (&R)_文件所在位置【渲染】, OpenLocalFilesRender
     Menu, thismenu, Show
+return
+
+menuTc:
+	Menu, menuTc, add, 新建文件,中文
+	Menu, menuTc, add, 新建文件_日期,中文
+	
+	Menu, menuTc, add, 转换, :LangSet
+	Menu, LangSet, add, Png转Gif,中文
+	Menu, LangSet, add, DDS转Icon,中文
+	Menu, LangSet, add, 中文转拼音,中文
+
+	Menu, menuTc, add, 游戏开发, :GameDevSet
+	Menu, GameDevSet, add, 打包文件_H5,<GameDevSetPackH5>
+	Menu, GameDevSet, add, 打包文件_As,<GameDevSetPackAs>
+	Menu, GameDevSet, add, Atlas前缀修改,<GameDevSetAtlas>
+	Menu, GameDevSet, add, 编辑器 >> 仙谕,<GameDevSetFxEditorXY>
+	Menu, GameDevSet, add, 编辑器 >> 三国,<GameDevSetFxEditorSG>
+
+	Menu, menuTc, add, 工具, :Toolset
+	Menu, Toolset, add, 压缩,中文
+	Menu, Toolset, add, 删除空目录,中文
+    Menu, menuTc, Show
 return 
+
 
 WHATSUP:
     msgbox, 特效库目录 `n`n %dirMenu0% `n`n 脚本库目录 `n`n %dirMenu1% `n`n 预设目录 `n`n %dirMenu2%
