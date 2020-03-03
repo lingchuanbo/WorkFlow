@@ -574,6 +574,7 @@ return
 {	
 	;;快速打开文件所在位置
 	;;AE快速打开文件所在位置 至于是否启用TC到时候在考虑目前可以一直按alt+w
+	!w::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
 	^+!LButton::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
 	;;快速打开渲染文件所在位置
 	^+LButton::AeOpenLocalFilesRender()
@@ -585,7 +586,9 @@ return
 		CoordWinClick(56,22)
 	return
 }
-
+; 百度API
+; d0T1SxjkdytGXNg9oh7sAFGs
+; nmjDBalzZQpXo6YogI0AWbk7SBnoGvcn
 ; #If WinActive("ahk_class VCSDK_WINDOW_CLASS") and WinActive("ahk_exe AfterFX.exe")
 ; {
 ; 	;;配合fx console 前提得自定义快捷键为Alt+q
@@ -606,24 +609,27 @@ menuAe:
 return
 
 menuTc:
-	Menu, menuTc, add, 新建文件,中文
-	Menu, menuTc, add, 新建文件_日期,中文
-	
-	Menu, menuTc, add, 转换, :LangSet
-	Menu, LangSet, add, Png转Gif,中文
-	Menu, LangSet, add, DDS转Icon,中文
-	Menu, LangSet, add, 中文转拼音,中文
+	Menu, menuTc, add,新建文件,<Tools_MkDir>
+	Menu, menuTc, add,新建文件_日期,<Tools_NewFilesDate>
 
-	Menu, menuTc, add, 游戏开发, :GameDevSet
+	Menu, menuTc, add,转换, :transformSet
+	Menu, transformSet, add, Png转Gif,<em_BoBO_PNGToGIF>
+	Menu, transformSet, add, Png转Ico,<em_BoBO_PNGToICO>
+	Menu, transformSet, add, DDS转PNG,<em_BoBO_DDSToPNG>
+	Menu, transformSet, add, 中文转拼音,<Tools_ChineseConversionPinyin>
+
+	Menu, menuTc, add,游戏开发, :GameDevSet
 	Menu, GameDevSet, add, 打包文件_H5,<GameDevSetPackH5>
 	Menu, GameDevSet, add, 打包文件_As,<GameDevSetPackAs>
 	Menu, GameDevSet, add, Atlas前缀修改,<GameDevSetAtlas>
 	Menu, GameDevSet, add, 编辑器 >> 仙谕,<GameDevSetFxEditorXY>
 	Menu, GameDevSet, add, 编辑器 >> 三国,<GameDevSetFxEditorSG>
 
-	Menu, menuTc, add, 工具, :Toolset
-	Menu, Toolset, add, 压缩,中文
-	Menu, Toolset, add, 删除空目录,中文
+	Menu, menuTc, add,工具, :Toolset
+	Menu, Toolset, add, 整理: 按文件类型,<Tools_Classification>
+	Menu, Toolset, add, 整理: 递归文件到当前目录,<Tools_MoveFilesToDir>
+	Menu, Toolset, add, 整理: 当前文件向上移,<Tools_MoveUpDir>
+	Menu, Toolset, add, 删除: 空目录,<Tools_NullDir>
     Menu, menuTc, Show
 return 
 

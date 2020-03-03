@@ -4683,23 +4683,67 @@ return
  Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_SwithHidSys`)"
 return
 
+; Tc增强菜单
+
 <GameDevSetPackAs>:
- Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_PackAs`)"
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_PackAs`)"
 return
 
 <GameDevSetPackH5>:
- Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_PackH5`)"
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_PackH5`)"
 return
 
 <GameDevSetAtlas>:
- Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_atlas]`)"
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_atlas]`)"
 return
 <GameDevSetFxEditorXY>:
- Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_runFxEditorXY`)"
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_runFxEditorXY`)"
 return
 <GameDevSetFxEditorSG>:
  Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_FxEditorSG`)"
 return
+<em_BoBO_DDSToPNG>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_DDSToPNG`)"
+return
+<em_BoBO_PNGToGIF>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_PNGToGIF`)"
+return
+<Tools_MoveUpDir>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_MoveUpDir`)"
+return
+<em_BoBO_PNGToICO>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "em_BoBO_PNGToICO`)"
+return
+; 删除空文件
+<Tools_NullDir>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_NullDir`)"
+return
+; 按文件类型分类
+<Tools_Classification>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_Classification`)"
+return
+
+; Python:解散当前文件夹,文件移到当前位子
+<Tools_MoveFilesToDir>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_MoveFilesToDir`)"
+return
+
+; Python:中文转拼音
+
+<Tools_ChineseConversionPinyin>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_Rename_ChineseConversionPinyin`)"
+return
+
+; Python:创建文件_日期
+<Tools_NewFilesDate>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_NewFiles`)"
+return
+
+; 创建文件_日期
+<Tools_MkDir>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_MkDir`)"
+return
+
 ;调用Everything搜索tc当前窗口路径
 <TC_Everyting>:
 	; SendMessage 1074, 21, 0, , ahk_class TTOTAL_CMD

@@ -781,10 +781,7 @@ CenterWindow(WinTitle)
     WinGetPos,,, Width, Height, %WinTitle%
     WinMove, %WinTitle%,, (A_ScreenWidth/2)-(Width/2), (A_ScreenHeight/2)-(Height/2)
 }
-PostMsg(CommandID)
-{
-    PostMessage 1075, %CommandID%, 0, , ahk_class TTOTAL_CMD
-}
+
 
 KeyClickAction(act){
 	If RegExMatch(act,"i)^(run,)",m) {
@@ -799,4 +796,9 @@ KeyClickAction(act){
 	else If RegExMatch(act,"i)^(GoSub,)",m) {
 		GoSub,% substr(act,strlen(m1)+1)
 	}
+}
+
+ PostMsg(CommandID)
+{
+    PostMessage 1075, %CommandID%, 0, , ahk_class TTOTAL_CMD
 }
