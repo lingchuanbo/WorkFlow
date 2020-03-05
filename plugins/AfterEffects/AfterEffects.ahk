@@ -737,7 +737,7 @@ Return
     MouseY:=MY-150 
     Gui,Ae: Show,X%MouseX% Y%MouseY% ,NoActivate ; 
     ;保存当前信息
-    KeyWait,F1                              
+    KeyWait,1
     Sleep, 20                                                                                              
     IfWinActive, ahk_class AutoHotkeyGUI
     { 
@@ -760,7 +760,8 @@ return
     return
 
     ae_tappedkey_1:
-        getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
+        ; getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
+        GoSub,<Ae_Double_F1>
     return
 
     ae_double_1:

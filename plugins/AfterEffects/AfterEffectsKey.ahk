@@ -19,7 +19,7 @@
  ;  vim.Map("<>", "<Ae_ui_y>", "AfterEffects")   
 
  ;  vim.Map("<F4>", "<Ae_ReloadFootage>", "AfterEffects")
-    vim.Map("<F1>", "<Ae_Double_F1>", "AfterEffects") 
+    ; vim.Map("1", "<Ae_Double_F1>", "AfterEffects") 
     vim.Map("<F2>", "<Ae_Double_F2>", "AfterEffects")
     vim.Map("<F3>", "<Ae_Double_F3>", "AfterEffects")
     vim.Map("<F4>", "<Ae_Double_F4>", "AfterEffects")
