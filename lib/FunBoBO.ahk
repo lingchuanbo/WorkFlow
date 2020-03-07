@@ -802,3 +802,127 @@ KeyClickAction(act){
 {
     PostMessage 1075, %CommandID%, 0, , ahk_class TTOTAL_CMD
 }
+
+BaiduOCR() {
+	; http://ai.baidu.com/docs#/Begin/top
+	apiKey := "7U2OgTyTuH5NG2ZAxHZfbfQR"
+	secretKey := "yFklkou5XySgF1WkxBeKmePphkOESFhO"
+	; 获取Access Token
+	; http://ai.baidu.com/docs#/Auth/top
+	whr := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+	whr.Open("GET", "https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=" apiKey "&client_secret=" secretKey)
+	whr.Send()
+	ret := Jxon_Load(whr.ResponseText)
+	if !ret.access_token
+		throw ret.error "`n" ret.error_description
+
+	; 通用文字识别
+	whr.Open("POST", "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=" ret.access_token)
+	whr.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+	; img:=%imgPath%
+	b64Data := Base64Enc_FromFile("test.png")
+	body := "image=" UriEncode(b64Data) "&language_type=CHN_ENG"
+	whr.Send(body)
+
+	Txtmp:=GetWinHttpText(whr)
+	OutputVar:=GetWinHttpText(whr)
+
+	; 测试保存数据到 txt 文件
+	; FileDelete, %A_ScriptDir%\text.txt
+	; Sleep, 100
+	; FileAppend , %Txtmp%, %A_ScriptDir%\text.txt, UTF-8
+	; FileRead, OutputVar, %A_ScriptDir%\text.txt
+	
+	RegExMatch(OutputVar,"\[.*\]",getTx)
+	get01 := RegExReplace(getTx,"\[|\]","")
+	get02 := RegExReplace(get01,"words","")
+	get03 := RegExReplace(get02,"""","")
+	get04 := RegExReplace(get03,"{: ","")
+	get05 := RegExReplace(get04,"},","`n")
+	keyword := RegExReplace(get05,"}","")
+	return keyword
+return  
+}
+
+GetWinHttpText(objWinHttp, encoding := "UTF-8") {
+	ado := ComObjCreate("adodb.stream")
+	ado.Type     := 1 ; adTypeBinary = 1
+	ado.Mode     := 3 ; adModeReadWrite = 3
+	ado.Open()
+	ado.Write(objWinHttp.ResponseBody)
+	ado.Position := 0
+	ado.Type     := 2 ; adTypeText = 2
+	ado.Charset  := encoding
+	return ado.ReadText(), ado.Close()
+}
+
+
+;-----------------------截图画框功能---------------------------------------
+ScreenCapture()
+{
+	; !2::
+	Loop
+	{  
+		Gui, +LastFound   ;找到上一次的窗口  
+		Gui, -Caption   ;隐藏标题栏
+		Gui, +Owner    ;设置阻止任务栏按钮的显示
+		Gui, +AlwaysOnTop   ;让GUI界面，开置顶
+		WinSet, Transparent, 1 ;透明度
+		Gui, Show,Maximize
+		KeyWait ,LButton,D   ;等待左键点击
+	GetKeyState,判断按钮,LButton,P  ;判断是否按住鼠标左键
+		MouseGetPos,MX1,MY1   ;获取当前鼠标坐标
+		xpos := MX1
+		ypos := MY1
+		Gui, +Owner    ;设置阻止任务栏按钮的显示
+		Gui, Destroy ;重置GUI窗口，销毁窗口记录
+		Gui, Show  ;显示重置窗口
+	Loop  ;使用不断循环让窗口出现移动效果，松开为停止
+	{
+	Sleep ,1 ;适当加延迟，否则变量来不急赋值，导致画面会闪
+		GetKeyState,判断按钮,LButton,P  ;判断是否按住鼠标左键
+		MouseGetPos,MX2,MY2  ;获取移动后鼠标的坐标
+		xpos:=MX2<MX1 ? MX2:MX1, ypos:=MY2<MY1 ? MY2:MY1   ;表达式计算截取区域四周自由变换。
+		wpos1 :=Abs(MX1-MX2), hpos1 :=Abs(MY1-MY2) ;表达式计算截取区,两表达式之间，可用(,)逗号链接。  
+		Gui, +LastFound   ;找到上一次的窗口  
+		WinSet, Transparent, 150  ;透明度
+		Gui, -Caption   ;隐藏标题栏
+		Gui, +Owner    ;设置阻止任务栏按钮的显示
+		; Gui, Color, 292929 ;设置背景颜色
+		Gui, Color, ffd800
+		Gui, Show, NA x%xpos% y%ypos% h%hpos1% w%wpos1%  
+		WinGetPos, XXX1, YYY1, WWW1,HHH1, A  ; "A" 表示获取活动窗口的位置。截图区域确定后，执行获取位置大小。
+
+	}until (判断按钮 = "U")  ;松开鼠标为停止
+	}until (判断按钮 = "U")  ;松开鼠标为停止
+	Gui, +LastFound   ;找到上一次的窗口  
+	gui,Hide
+	;~ WinClose, A  ;关闭窗口，参数A为，当前活动窗口。
+	;~ return
+	;~ ;---------截图显示功能（注释上和下总两行，截图即时完成。不注释可逐步调试）-----------
+	;~ F6::
+	时间命名 :=A_Now
+	;~ MsgBox ,% 时间命名
+	;~ PicPath := "D:\aaaa.png"
+	; FileCreateDir, D:\picTP\   ;创建图片保存文件夹，如存在不会再次创建
+	; PicPath := "D:\picTP\" 时间命名 ".png"  ;设置保存目录
+	PicPath = %A_ScriptDir%\test.png
+	; msgbox %PicPath%
+	
+	;~ PicPath := "D:\" 时间命名 ".png"  ;设置保存目录,此函数库保存格式为png，质量比jpg好。
+	pToken := Gdip_Startup() ; Start gdi+
+			; pBitmapAlpha := Gdip_CreateBitmapFromFile(PicPath)
+			;~ pBitmapAlpha := Gdip_BitmapFromScreen("0|0|800|800")
+			pBitmapAlpha := Gdip_BitmapFromScreen(xpos "|" ypos "|" wpos1 "|" hpos1)
+			;首要设置鼠标获取屏幕坐标，CoordMode,Mouse, Screen。
+	;Gdip_BitmapFromScreen参数分别是，xpos|ypos为左上角区域，wpos1|hpos1为右下角区域（需表达式运算得出）。
+			ImgWidth := Gdip_GetImageWidth(pBitmapAlpha)  ; 获取宽度，高度，可省略
+			ImgHeight := Gdip_GetImageHeight(pBitmapAlpha)
+			;~ Gdip_SaveBitmapToFile(pBitmapAlpha, PicPath,"255") ;第三个参数控制图片质量
+			Gdip_SaveBitmapToFile(pBitmapAlpha, PicPath) ;第三个参数控制图片质量
+			Gdip_DisposeImage(pBitmapAlpha)
+			
+	; Gdip_Shutdown(pToken) ; close gdi+
+	; Traytip, 截图完毕:, 宽: %ImgWidth% 高: %ImgHeight%`n保存为: %PicPath%
+	; return
+}

@@ -4743,7 +4743,9 @@ return
 <Tools_MkDir>:
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_MkDir`)"
 return
-
+<TC_ShowMainMenu>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_ShowMainMenu`)"
+return
 ;调用Everything搜索tc当前窗口路径
 <TC_Everyting>:
 	; SendMessage 1074, 21, 0, , ahk_class TTOTAL_CMD
@@ -4752,7 +4754,7 @@ return
     ; GoSub,<RunEverything>
     folder:=getTcFolder()
     ;  -p带"""  -search不带""
-	run "%TCDirPath%\Tools\Everything\Everything.exe" -p %folder% 
+	run "%TCDirPath%\Everything.exe" -p %folder% 
 return
 
 ; 双按Backspace当前文件上移动
@@ -4772,10 +4774,6 @@ return
     Gosub, <TC_TCIMG_DirGetUp>
     return
 }
-
-
-
-
 
 
 ; 访问历史记录_Mod BoBO From capsEZ

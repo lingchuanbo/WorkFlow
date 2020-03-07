@@ -46,6 +46,12 @@ SetWinDelay,0
 ; ;--20191216
 SetWorkingDir %A_ScriptDir%
 
+; ;--2020-0305 截屏取词
+If (!pToken:=Gdip_Startup()) {
+	msgbox, 48, gdiplus error!, Gdiplus failed to start. Please ensure you have gdiplus on your system
+	ExitApp
+}
+
 global Version:="3.6.3"
 
 FeedbackLink=https://www.kancloud.cn/funbobosky/vim_unity
@@ -104,6 +110,11 @@ GroupAdd, group_browser,ahk_exe msedge.exe
 #Include %A_ScriptDir%\lib\ImageButton.ahk
 #Include %A_ScriptDir%\plugins\plugins.ahk
 #Include %A_ScriptDir%\lib\libcrypt.ahk
+#Include %A_ScriptDir%\lib\Base64Enc.ahk
+#Include %A_ScriptDir%\lib\UriEncode.ahk
+#Include %A_ScriptDir%\lib\Jxon.ahk
+#Include %A_ScriptDir%\lib\WinHttpRequest.ahk
+; #Include %A_ScriptDir%\lib\Gdip_All.ahk
 ; 用户自定义配置yy
 #Include %A_ScriptDir%\custom\custom.ahk
 

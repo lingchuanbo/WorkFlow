@@ -34,7 +34,7 @@ CapsLock & f::SendInput,{Blind}{PgDn}
     Tab & 5::SendInput,send,#5
 
     Tab & r::SendInput,{Blind}{Del}
-    Tab & e::SendInput,{Blind}{Enter}send,send,send,send,
+    Tab & e::SendInput,{Blind}{Enter}
     Tab & Space::SendInput,{Blind}{Backspace}
 	; 任务栏切换
     Tab & RButton::Gosub,<BoBO_TaskSwch>
@@ -98,6 +98,8 @@ return
 			Menu, ShareX, Add, (&D) 矩形截图屏幕, mPrintScreenAll
 			Menu, ShareX, Add, (&T) 捕捉当前活动窗口, mPrintScreenActive
 			Menu, ShareX, Add, (&R) 录制屏幕, mRecordingScreen
+			Menu, ShareX, Add, (&R) OCR取词, mPrintOCR
+			Menu, ShareX, Add, (&R) OCR翻译, mPrintOCRTranslateCn
 			Menu, ShareX, Add, (&G) 录制GIF, mRecordingScreenGif
 			Menu, ShareX, Add, (&G) 录制GIF>>ScreenToGif, mRecordingScreenGif2
 			; 需要设置ScreenToGif快捷方式为Ctrl+Alt+PrintScreen
@@ -574,6 +576,7 @@ return
 {	
 	;;快速打开文件所在位置
 	;;AE快速打开文件所在位置 至于是否启用TC到时候在考虑目前可以一直按alt+w
+	!`::GoSub,<Ae_Double_F1>
 	!w::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
 	^+!LButton::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
 	;;快速打开渲染文件所在位置
@@ -812,7 +815,29 @@ mRecordingScreenGif2:
 	SendInput,^!{PrintScreen}
 return
 
+mPrintOCR:
+	clipboard := ""  ; 让剪贴板初始为空 不然会导致tipColor报错
+	ScreenCapture()
+	Sleep, 500
+	keyword:=BaiduOCR()	
+	Clipboard := BaiduOCR()
+	; ToolTipFont("s12","Microsoft YaHei") ;tips字体
+    ; ToolTipColor("053445", "40A1EC") ; ;tips颜色
+	ToolTip %keyword%
+    ; ToolTip % GoogleTranslate(keyword)
+return
 
+mPrintOCRTranslateCn:
+	clipboard := ""  ; 让剪贴板初始为空 不然会导致tipColor报错
+	ScreenCapture()
+	Sleep, 500
+	keyword:=BaiduOCR()	
+	; ToolTipFont("s12","Microsoft YaHei")
+    ; ToolTipColor("053445", "40A1EC")
+	; ToolTip %keyword%
+    ToolTip % GoogleTranslate(keyword)
+	Clipboard := GoogleTranslate(keyword)
+return
 
 DoublePressV() ; Simulate double press
 {

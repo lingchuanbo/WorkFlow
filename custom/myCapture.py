@@ -181,7 +181,6 @@ window = tkinter.Tk()
 window.title('Capture')
 # 创建tkinter主窗口
 window.geometry('400x400')  # 指定主窗口位置与大小
-MyCapture()
 window.mainloop()
 
 

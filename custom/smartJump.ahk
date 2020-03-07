@@ -43,6 +43,7 @@ GroupAdd, Windows32770, Open Folder ahk_class #32770
 GroupAdd, Windows32770, Open File ahk_class #32770
 GroupAdd, Windows32770, Save As ahk_class #32770
 GroupAdd, Windows32770, Import File ahk_class #32770
+GroupAdd, Windows32770, Replace Footage File ahk_class #32770
 GroupAdd, Windows32770, Export As ahk_class #32770
 GroupAdd, Windows32770, Output Movie To: ahk_class #32770
 GroupAdd, Windows32770, Choose Folder ahk_class #32770
