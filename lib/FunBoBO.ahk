@@ -926,3 +926,222 @@ ScreenCapture()
 	; Traytip, 截图完毕:, 宽: %ImgWidth% 高: %ImgHeight%`n保存为: %PicPath%
 	; return
 }
+
+GetCursorShape(){   			;获取光标特征码 by nnrxin  
+    VarSetCapacity( PCURSORINFO, 20, 0) ;为鼠标信息 结构 设置出20字节空间
+    NumPut(20, PCURSORINFO, 0, "UInt")  ;*声明出 结构 的大小cbSize = 20字节
+    DllCall("GetCursorInfo", "Ptr", &PCURSORINFO) ;获取 结构-光标信息
+    if ( NumGet( PCURSORINFO, 4, "UInt")="0" ) ;当光标隐藏时，直接输出特征码为0
+        return, 0
+    VarSetCapacity( ICONINFO, 20, 0) ;创建 结构-图标信息
+    DllCall("GetIconInfo", "Ptr", NumGet(PCURSORINFO, 8), "Ptr", &ICONINFO)  ;获取 结构-图标信息
+    VarSetCapacity( lpvMaskBits, 128, 0) ;创造 数组-掩图信息（128字节）
+    DllCall("GetBitmapBits", "Ptr", NumGet( ICONINFO, 12), "UInt", 128, "UInt", &lpvMaskBits)  ;读取 数组-掩图信息
+    loop, 128{ ;掩图码
+        MaskCode += NumGet( lpvMaskBits, A_Index, "UChar")  ;累加拼合
+    }
+    if (NumGet( ICONINFO, 16, "UInt")<>"0"){ ;颜色图不为空时（彩色图标时）
+        VarSetCapacity( lpvColorBits, 4096, 0)  ;创造 数组-色图信息（4096字节）
+        DllCall("GetBitmapBits", "Ptr", NumGet( ICONINFO, 16), "UInt", 4096, "UInt", &lpvColorBits)  ;读取 数组-色图信息
+        loop, 256{ ;色图码
+            ColorCode += NumGet( lpvColorBits, A_Index*16-3, "UChar")  ;累加拼合
+        }  
+    } else
+        ColorCode := "0"
+    DllCall("DeleteObject", "Ptr", NumGet( ICONINFO, 12))  ; *清理掩图
+    DllCall("DeleteObject", "Ptr", NumGet( ICONINFO, 16))  ; *清理色图
+    VarSetCapacity( PCURSORINFO, 0) ;清空 结构-光标信息
+    VarSetCapacity( ICONINFO, 0) ;清空 结构-图标信息
+    VarSetCapacity( lpvMaskBits, 0)  ;清空 数组-掩图
+    VarSetCapacity( lpvColorBits, 0)  ;清空 数组-色图
+    return, % MaskCode//2 . ColorCode  ;输出特征码
+}
+; ----------------------智能跳转--------------------------------
+SwitchMessage( wParam,lParam ) 	;{
+{
+	If ( wParam != 1 )		;新开窗口,这是HOOK,监控创建窗口的消息,=6也可以，原来是!=1
+		;wParam值的定义:
+		;~ #define HSHELL_ENDTASK 10
+		;~ #define HSHELL_GETMINRECT 5
+		;~ #define HSHELL_LANGUAGE 8
+		;~ #define HSHELL_REDRAW 6
+		;~ #define HSHELL_TASKMAN 7
+		;~ #define HSHELL_WINDOWACTIVATED 4
+		;~ #define HSHELL_WINDOWCREATED 1
+		;~ #define HSHELL_WINDOWDESTROYED 2
+		;~ wParam: 此参数的值依赖于参数nCode,其依赖关系如下所示:
+		;~ HSHELL_ACCESSIBILITYSTATE: 指示哪一个可以访问特征已被改变了状态,可以是以下值之一:
+		;~ ACCESS_FILTERKYS,ACCESS_MOUSEKEYS,ACCESS_STICKKEYS.
+		;~ HSHELL_GETMINRECT:被最小化或者最大化的窗口句柄.HSHELL_LANGUAGE: 窗口的句柄.
+		;~ HSHELL_REDRAW:被重画的窗口的句柄.HSHELL_WINDOWACTIVATED:被激活的窗口的句柄.
+		;~ HSHELL_WINDOWCREATED:被创建的窗口的句柄.HSHELL_WINDOWDESTROYED:被销毁的窗口的句柄.
+
+	{
+	If WinActive("ahk_class TTOTAL_CMD")
+		{
+		WinWaitNotActive ahk_class TTOTAL_CMD
+		SendMessage 1074, 21, 0, , ahk_class TTOTAL_CMD
+		ControlGetText, varPathInTC, , ahk_id %ErrorLevel%
+		StringReplace, this_title, varPathInTC, >, \
+		IfWinExist ahk_group Windows32770
+			{
+			WinWaitActive ahk_group Windows32770, , 2
+			if !ErrorLevel
+			;IfWinActive ahk_group Windows32770
+				{
+				ControlClick, Edit1, A
+				Sleep, 100
+				ControlSetText, Edit1, %this_title%, A
+				Sleep, 50
+				ControlSend, Edit1, {Enter}, A
+				}
+			else
+				return
+			}
+		else
+			return
+		return
+		}
+	If WinActive("ahk_class CabinetWClass")
+		{
+		this_title :=  ExplorerInfo()
+		if this_title=桌面
+			this_title=%A_Desktop%
+		;if this_title=库\文档
+			;this_title=%A_MyDocuments%
+		; msgbox % ExplorerInfo()
+		IfWinExist ahk_group Windows32770
+			{
+			WinWaitActive ahk_group Windows32770, , 2
+			if !ErrorLevel
+			;IfWinActive ahk_group Windows32770
+				{
+				ControlClick, Edit1, A
+				Sleep, 100
+				ControlSetText, Edit1, %this_title%, A
+				Sleep, 50
+				ControlSend, Edit1, {Enter}, A
+				}
+			else
+				return
+			}
+		else
+			return
+		return
+		}
+	If WinActive("ahk_class SciTEWindow")
+		{
+		if zParam = 1
+			{
+			OCR_IBEAM			=32513
+			hbeam := DllCall("LoadCursorFromFile","Str","D:\zxh\QuickZ\User\Icons\zzx.cur")
+			DllCall( "SetSystemCursor", Uint,hbeam, Int,OCR_IBEAM )
+			}
+		if zParam = 0
+			{
+			SPI_SETCURSORS := 0x57
+			DllCall("SystemParametersInfo", "UInt", SPI_SETCURSORS, "UInt", 0, "UInt", 0, "UInt", 0)
+			}
+		WinWaitNotActive ahk_class SciTEWindow
+			{
+			SPI_SETCURSORS := 0x57
+			DllCall("SystemParametersInfo", "UInt", SPI_SETCURSORS, "UInt", 0, "UInt", 0, "UInt", 0)
+			}
+		return
+		}
+	}
+}
+ExplorerInfo(mode="",hwnd="") { ;Method="当前目录"的时候只返回当前目录;
+	;mode默认空值时,不论是否选中文件/文件夹皆返回当前路径(目录名);
+	;mode=0时,若选择了文件/文件夹则返回选中的目录名,不无选中时返回空;
+	;mode=1时,若选择了文件/文件夹则返回完成路径+文件名,无选中时返回目录名;
+	;mode=2时,若选择了文件/文件夹则返回完成路径+文件名,无选中时返回空值;
+
+	;@感谢Quant的原始代码
+	Toreturn=
+	filenum1=0
+	filenum2=0
+	WinGet, Process, ProcessName, % "ahk_id " (hwnd := hwnd? hwnd:WinExist("A")) ;这个地方判断是否给定了hwnd值,如果给定的为空,则获取当前窗口的句柄；否则就使用给定的句柄。
+	;得出给定句柄对应的进程名称；
+	WinGetClass class, ahk_id %hwnd% ;根据句柄来获取对应hwnd的窗口的类名；
+	ComObjError(0) ;不显示对象显示的错误。
+	if (Process = "explorer.exe") ;如果进程为explorer则进行判断到底时处于桌面（Progman|WorkerW）还是资源管理器（(Cabinet|Explore)WClass）；
+		if (class ~= "Progman|WorkerW")
+		{
+			ControlGet, files, List, Selected Col1, SysListView321, ahk_class %class% ;获取选中的文件的列表【无法获取到扩展名】
+			if files=
+				Toreturn .= A_Desktop
+			else
+			{
+				filenum1++
+				Loop, Parse, files, `n, `r
+					Toreturn .= A_Desktop "\" A_LoopField "`n"
+			}
+		}
+		else if (class ~= "(Cabinet|Explore)WClass")
+		{
+			for window in ComObjCreate("Shell.Application").Windows ;遍历当前资源管理器中打开的窗口；
+			{
+				if (window.hwnd==hwnd) ;在多个窗口中取定位符合前面hwnd的哪个窗口；
+				{
+					pp:=window.Document.folder.self.path
+					sel := window.Document.SelectedItems
+					for item in sel
+					{
+						filenum2++
+						Toreturn .= item.path "`r`n"
+					}
+					if Toreturn=
+						Toreturn:=pp
+				}
+			}
+		}
+
+	fde:=Trim(Toreturn,"`r`n") ;完整的路径和文件名,包括扩展名;
+	if mode<> ;mode为012时
+	{
+		if (filenum1+filenum2=0)
+		{
+			if (mode=0)||(mode=2)
+			{
+				return
+			}
+			else ;mod=1时的情况;
+				return fde
+		}else
+		{
+			if (mode=1) or (mode=2)
+				if (filenum1<>0)
+				{
+					aa:=选定的文件()
+					return aa ;选定的文件()
+				}
+				else
+					return fde
+		}
+	}
+	if InStr(FileExist(fde), "D") ;这里判断目录
+		return,RegExReplace(Trim(Toreturn,"`r`n") . "\","\\\\","\") ;这里的. "\"是给选定的文件夹加上\
+	else if Toreturn<>
+	{
+		StringMid,Toreturn2, Toreturn,1,InStr(Toreturn,"\",,0)-1 ;如果不是目录则按最后一个反斜杠进行截取,取前面的目录；
+		return RegExReplace(Toreturn2 . "\","\\\\","\")
+	}
+}
+选定的文件(){
+	Clip:=ClipboardAll
+	Clipboard=
+	Send ^c
+	ClipWait,0.5
+	cliptem:=Clipboard
+	if (StrSplit(Cliptem,"`r").MaxIndex()=1)
+	{
+		Clipboard:= % Clip
+		return RegExReplace(cliptem,"`r`n","")
+	}
+	else
+	{
+		Clipboard:= % Clip
+		return cliptem
+	}
+}

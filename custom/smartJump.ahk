@@ -7,46 +7,22 @@
 ;更新于：2018-3-2-V2.1
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-Process, Priority,,high			;脚本高优先级
-; #NoTrayIcon 						;隐藏托盘图标
-#NoEnv								;不检查空变量是否为环境变量
-#Persistent						;让脚本持久运行(关闭或ExitApp)
-#SingleInstance Force				;跳过对话框并自动替换旧实例
-#WinActivateForce					;强制激活窗口
-#MaxHotkeysPerInterval 200		;时间内按热键最大次数
-SetBatchLines -1					;脚本全速执行
-SetControlDelay 0					;控件修改命令自动延时
-CoordMode Menu Window				;坐标相对活动窗口
-SendMode Input						;更速度和可靠方式发送键盘点击
-SetTitleMatchMode 2				;窗口标题模糊匹配-3为必须精确匹配 -2部分匹配 -1开头匹配
-DetectHiddenWindows On				;显示隐藏窗口
-SetWorkingDir %A_ScriptDir%		;当前脚本所在目录的绝对路径.不包含最后的反斜线（根目录同样如此）;A_ScriptDir指的是D:\zxh\QuickZ\Apps
+; Process, Priority,,high			;脚本高优先级
+; ; #NoTrayIcon 						;隐藏托盘图标
+; #NoEnv								;不检查空变量是否为环境变量
+; #Persistent						;让脚本持久运行(关闭或ExitApp)
+; #SingleInstance Force				;跳过对话框并自动替换旧实例
+; #WinActivateForce					;强制激活窗口
+; #MaxHotkeysPerInterval 200		;时间内按热键最大次数
+; SetBatchLines -1					;脚本全速执行
+; SetControlDelay 0					;控件修改命令自动延时
+; CoordMode Menu Window				;坐标相对活动窗口
+; SendMode Input						;更速度和可靠方式发送键盘点击
+; SetTitleMatchMode 2				;窗口标题模糊匹配-3为必须精确匹配 -2部分匹配 -1开头匹配
+; DetectHiddenWindows On				;显示隐藏窗口
+; SetWorkingDir %A_ScriptDir%		;当前脚本所在目录的绝对路径.不包含最后的反斜线（根目录同样如此）;A_ScriptDir指的是D:\zxh\QuickZ\Apps
 
-;另存为|保存|复制|新建|打开|图形另存为|文件打开|保存副本|上传|选择文件 ahk_class #32770
-GroupAdd, Windows32770, 另存为 ahk_class #32770
-GroupAdd, Windows32770, 保存 ahk_class #32770
-GroupAdd, Windows32770, 复制 ahk_class #32770
-GroupAdd, Windows32770, 新建 ahk_class #32770
-GroupAdd, Windows32770, 打开 ahk_class #32770
-GroupAdd, Windows32770, 图形另存为 ahk_class #32770
-GroupAdd, Windows32770, 文件打开 ahk_class #32770
-GroupAdd, Windows32770, 打开文件 ahk_class #32770
-GroupAdd, Windows32770, 保存副本 ahk_class #32770
-GroupAdd, Windows32770, 上传 ahk_class #32770
-GroupAdd, Windows32770, 选择文件 ahk_class #32770
-GroupAdd, Windows32770, 插入图片 ahk_class #32770
-GroupAdd, Windows32770, 导入 ahk_class #32770
-GroupAdd, Windows32770, 置入嵌入对象 ahk_class #32770
-GroupAdd, Windows32770, 浏览 ahk_class #32770
-GroupAdd, Windows32770, Open ahk_class #32770
-GroupAdd, Windows32770, Open Folder ahk_class #32770
-GroupAdd, Windows32770, Open File ahk_class #32770
-GroupAdd, Windows32770, Save As ahk_class #32770
-GroupAdd, Windows32770, Import File ahk_class #32770
-GroupAdd, Windows32770, Replace Footage File ahk_class #32770
-GroupAdd, Windows32770, Export As ahk_class #32770
-GroupAdd, Windows32770, Output Movie To: ahk_class #32770
-GroupAdd, Windows32770, Choose Folder ahk_class #32770
+
 
 global this_title=
 global zParam
@@ -122,16 +98,6 @@ SwitchMessage( wParam,lParam ) 	;{
 		}
 	If WinActive("ahk_class CabinetWClass")
 		{
-		; WinWaitNotActive ahk_class CabinetWClass
-		; 方法一
-		; WinGetTitle, this_title, ahk_class CabinetWClass	;“文件夹选项”，“查看”，“在标题栏显示完整路径”，“确定”,显示完整路径
-		; 方法二
-		;hExplorer := DllCall("FindWindowEx", Int, 0, Int, 0, Str, "CabinetWClass", Int, 0)
-		;hAddressBar := DllCall("FindWindowEx", Int, hExplorer, Int, 0, Str, "ShellTabWindowClass", Int, 0)
-		;ControlGetText, path, , ahk_id %hAddressBar%
-		; 方法三
-		; ControlGetText, this_title, ToolbarWindow322, ahk_class CabinetWClass
-		; this_title := StrReplace(this_title, "地址: ", "")
 		this_title :=  ExplorerInfo()
 		if this_title=桌面
 			this_title=%A_Desktop%
@@ -504,11 +470,5 @@ return
         Send ^{g}
     }
 */
-
-	
-
-
-
-
-^F12::Reload
-^F11::ExitApp
+; ^F12::Reload
+; ^F11::ExitApp

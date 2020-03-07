@@ -612,8 +612,9 @@ menuAe:
 return
 
 menuTc:
-	Menu, menuTc, add,新建文件,<Tools_MkDir>
-	Menu, menuTc, add,新建文件_日期,<Tools_NewFilesDate>
+	Menu, menuTc, add,新建,:createDir
+	Menu, createDir, add,新建文件夹,<Tools_MkDir>
+	Menu, createDir, add,新建文件夹_日期,<Tools_NewFilesDate>
 
 	Menu, menuTc, add,转换, :transformSet
 	Menu, transformSet, add, Png转Gif,<em_BoBO_PNGToGIF>
@@ -747,12 +748,12 @@ AeOpenLocalFilesRender()
 }
 
 <TcPostMsg>:
-Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
-Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_OpenNewTab`)"
-Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
-Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_MatchSrc`)"
-Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CloseCurrentTab`)"
-Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
+	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
+	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_OpenNewTab`)"
+	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
+	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_MatchSrc`)"
+	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CloseCurrentTab`)"
+	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
 return
 
 ;启动记事本并去标题等
@@ -783,17 +784,6 @@ return
 		return
 	}
 return
-
-
-
-; mPandaOCR:
-;     ; ExePath := ini.BOBOPath_Config.AEPath
-;     ; tClass := ini.ahk_class_Config.AEClass
-;     FunBoBO_RunActivation(ExePath:="F:\BoBOProgram\PandaOCR\PandaOCR.exe",tClass:="WTWindow")
-; 		sleep 2000
-; 		Send,{F4}
-; 		return
-; return
 mPrintScreen:
 	SendInput,^{PrintScreen}
 return
@@ -1088,3 +1078,124 @@ GetParentDirectoryName(path)
 return
 
 
+; #智能跳转
+#IfWinActive, ahk_class #32770
+^g::		;发送最后 TC or 资管 路径到32770
+	ControlClick, Edit1, A
+	Sleep, 100
+	ControlSetText, Edit1, %this_title%, A
+	Sleep, 100
+	ControlSend, Edit1, {Enter}, A
+return
+
+^e:: GoSub,Sub_SendCurDiagPath2Exp		;发送对话框路径到_系统资管中
+^t:: GoSub,Sub_SendCurDiagPath2Tc		;发送对话框路径到_TC
+;~ Space & t:: GoSub,Sub_SendCurDiagPath2Tc
+#If
+
+;将Explorer中路径发送到对话框
+Sub_SendExpCurPath2Diag:
+{
+	WinActivate ahk_class CabinetWClass
+	WinGetTitle, Title, ahk_class CabinetWClass	;打开“文件夹选项”，切换到“查看”选项卡，在高级设置列表框中勾选“在标题栏显示完整路径”，单击“确定”按钮使设置生效，现在访问文件夹路径时就会在左上角的标题栏显示完整路径
+	if Title=桌面
+		Title=%A_Desktop%
+	Send !{Tab}
+	ControlFocus, Edit1, A
+	send,{Backspace}
+	sleep 100
+	ControlSetText, Edit1, %Title%,A
+	send,{enter}
+return
+}
+;将tc中路径发送到对话框
+Sub_SendTcCurPath2Diag:
+{
+	clipraw:=Clipboard
+	Clipboard =
+	PostMessage, 1075, 2029,0,, ahk_class TTOTAL_CMD
+	ClipWait, 1
+	srcDIR := Clipboard
+	Clipboard:=clipraw
+
+	;再发送剪贴板路径到控件
+	ControlFocus, Edit1, A
+	send,{Backspace}
+	sleep 100
+	ControlSetText, Edit1, %srcDIR%,A
+	send,{enter}
+return
+}
+;将tc中路径发送到对话框-备份
+Sub_SendTcCurPath2Diag2:
+{
+	;将剪贴板中内容作为文件名
+    B_Clip2Name := false
+	B_ChangeDiagSize := true
+
+	;先获取TC中当前路径
+	clip:=Clipboard
+	Clipboard =
+    ;TC_Msg := 1075,cm_CopySrcPathToClip 2029
+	PostMessage, 1075, 2029,0,, ahk_class TTOTAL_CMD
+	ClipWait, 1
+	srcDIR := Clipboard
+	Clipboard:=clip
+
+	;再发送剪贴板路径到控件
+	ControlFocus, Edit1, A
+	send,{Backspace}
+	sleep 100
+	ControlSetText, Edit1, %srcDIR%,A
+	send,{enter}
+	;msgbox %clip%
+	if(B_Clip2Name){
+		Sleep 100
+		ControlSetText, Edit1, %clip%,A
+	}
+	;ControlSetText, Edit1, %text%,A
+	if(B_ChangeDiagSize){
+		;WinGetPos, xTB, yTB,lengthTB,hightTB, ahk_class Shell_TrayWnd
+		;改变对话框大小，省事就直接移动到100,100的位置，然后85%屏幕大小，否则就要详细结算任务栏在上下左右的位置
+		WinMove, A,,80,80, A_ScreenWidth * 0.85, A_ScreenHeight * 0.85
+	}
+return
+}
+;在TC中打开对话框的路径
+Sub_SendCurDiagPath2Tc:
+{
+	WinGetText, CurWinAllText
+	Loop, parse, CurWinAllText, `n, `r
+	{
+		If RegExMatch(A_LoopField, "^地址: "){
+			curDiagPath := SubStr(A_LoopField,4)
+			break
+		}
+	}
+	{
+	DiagPath := % curDiagPath
+	WinActivate ahk_class TTOTAL_CMD
+	PostMessage 1075, 3001, 0, , AHK_CLASS TTOTAL_CMD
+	ControlSetText, Edit1, cd %DiagPath%, ahk_class TTOTAL_CMD
+	Sleep 400
+	ControlSend, Edit1, {Enter}, ahk_class TTOTAL_CMD
+	}
+return
+}
+;在系统资管中打开对话框的路径
+Sub_SendCurDiagPath2Exp:
+{
+	WinGetText, CurWinAllText
+	Loop, parse, CurWinAllText, `n, `r
+	{
+		If RegExMatch(A_LoopField, "^地址: "){
+			curDiagPath := SubStr(A_LoopField,4)
+			break
+		}
+	}
+	{
+	DiagPath := % curDiagPath
+	run explorer.exe %DiagPath%
+	}
+return
+}

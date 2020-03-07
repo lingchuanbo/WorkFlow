@@ -25,6 +25,7 @@ if not A_IsAdmin
 ; #MaxMem 4	;max memory per var use
 ; #MaxHotkeysPerInterval 100 ;Avoid warning when mouse wheel turned very fast
 ; ;--20191216
+Process, Priority,,high			;脚本高优先级
 CoordMode, Tooltip, Screen
 CoordMode, Mouse, Screen
 Coordmode, Menu, Window
@@ -39,7 +40,6 @@ SetCapsLockState AlwaysOff
 ;Suspend, on
 SetStoreCapslockMode, off
 ; ;--20191216
-Process Priority,,High           	    ;线程,主,高级别
 ; SetTitleMatchMode, 2
 SetTitleMatchMode, 2				;窗口标题模糊匹配-3为必须精确匹配 -2部分匹配 -1开头匹配
 SetWinDelay,0
@@ -52,7 +52,34 @@ If (!pToken:=Gdip_Startup()) {
 	ExitApp
 }
 
-global Version:="3.6.3"
+;另存为|保存|复制|新建|打开|图形另存为|文件打开|保存副本|上传|选择文件 ahk_class #32770
+;写入配置表
+GroupAdd, Windows32770, 另存为 ahk_class #32770
+GroupAdd, Windows32770, 保存 ahk_class #32770
+GroupAdd, Windows32770, 复制 ahk_class #32770
+GroupAdd, Windows32770, 新建 ahk_class #32770
+GroupAdd, Windows32770, 打开 ahk_class #32770
+GroupAdd, Windows32770, 图形另存为 ahk_class #32770
+GroupAdd, Windows32770, 文件打开 ahk_class #32770
+GroupAdd, Windows32770, 打开文件 ahk_class #32770
+GroupAdd, Windows32770, 保存副本 ahk_class #32770
+GroupAdd, Windows32770, 上传 ahk_class #32770
+GroupAdd, Windows32770, 选择文件 ahk_class #32770
+GroupAdd, Windows32770, 插入图片 ahk_class #32770
+GroupAdd, Windows32770, 导入 ahk_class #32770
+GroupAdd, Windows32770, 置入嵌入对象 ahk_class #32770
+GroupAdd, Windows32770, 浏览 ahk_class #32770
+GroupAdd, Windows32770, Open ahk_class #32770
+GroupAdd, Windows32770, Open Folder ahk_class #32770
+GroupAdd, Windows32770, Open File ahk_class #32770
+GroupAdd, Windows32770, Save As ahk_class #32770
+GroupAdd, Windows32770, Import File ahk_class #32770
+GroupAdd, Windows32770, Replace Footage File ahk_class #32770
+GroupAdd, Windows32770, Export As ahk_class #32770
+GroupAdd, Windows32770, Output Movie To: ahk_class #32770
+GroupAdd, Windows32770, Choose Folder ahk_class #32770
+
+global Version:="3.6.4"
 
 FeedbackLink=https://www.kancloud.cn/funbobosky/vim_unity
 HelpLink=https://www.kancloud.cn/funbobosky/vim_unity
@@ -68,18 +95,19 @@ global color4=303030
 ;tab系列组合键，适合左键右鼠，启用后直接按tab会感觉有一点延迟，默认开启，开关为ctrl+win+alt+花号
 global GV_ToggleTabKeys := 1
 ; Tim/QQ位置
-global    Tim_Start_X := 100
-global    Tim_Start_Y := 100
-global    Tim_Bar_Height := 60 
+global Tim_Start_X := 100
+global Tim_Start_Y := 100
+global Tim_Bar_Height := 60 
 ; 微信位置
-global    WX_Start_X := 180
-global    WX_Start_Y := 100
-global    WX_Bar_Height := 62 
+global WX_Start_X := 180
+global WX_Start_Y := 100
+global WX_Bar_Height := 62 
 ; 电报位置
-global    TG_Start_X := 100
-global    TG_Start_Y := 110
-global    TG_Bar_Height := 62 
-
+global TG_Start_X := 100
+global TG_Start_Y := 110
+global TG_Bar_Height := 62 
+global this_title=
+global zParam
 ;常用浏览器设置
 GroupAdd, group_browser,ahk_class Chrome_WidgetWin_0    ;Chrome内核浏览器
 GroupAdd, group_browser,ahk_class Chrome_WidgetWin_1    ;Chrome内核浏览器
@@ -114,9 +142,14 @@ GroupAdd, group_browser,ahk_exe msedge.exe
 #Include %A_ScriptDir%\lib\UriEncode.ahk
 #Include %A_ScriptDir%\lib\Jxon.ahk
 #Include %A_ScriptDir%\lib\WinHttpRequest.ahk
-; #Include %A_ScriptDir%\lib\Gdip_All.ahk
-; 用户自定义配置yy
+;用户自定义配置yy
 #Include %A_ScriptDir%\custom\custom.ahk
+
+;智能跳转
+Gui +LastFound +hwndhwndshellwindow
+DllCall( "RegisterShellHookWindow", "UInt",hwndshellwindow )
+OnMessage( DllCall( "RegisterWindowMessage", "Str", "SHELLHOOK" ), "SwitchMessage" )
+
 
 ; 动态加载|User|
 QZ_UpdatePlugin()
