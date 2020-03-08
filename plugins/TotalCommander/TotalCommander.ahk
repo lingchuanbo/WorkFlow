@@ -334,41 +334,10 @@ return
 return
 ; <TC_ToggleTC> {{{1
 <TC_ToggleTC>:
-    IfWinExist, AHK_CLASS TTOTAL_CMD
-    {
-        WinGet, AC, MinMax, AHK_CLASS TTOTAL_CMD
-        if Ac = -1
-            Winactivate, AHK_ClASS TTOTAL_CMD
-        else
-            Ifwinnotactive, AHK_CLASS TTOTAL_CMD
-                Winactivate, AHK_CLASS TTOTAL_CMD
-            else
-                Winminimize, AHK_CLASS TTOTAL_CMD
-    }
-    else
-    {
-        Run, %TCPath%
-        Loop, 4
-        {
-            IfWinNotActive, AHK_CLASS TTOTAL_CMD
-                WinActivate, AHK_CLASS TTOTAL_CMD
-                
-            else
-                Break
-            Sleep, 500
-
-        }
-        ;设置启动后隐藏TC标题栏
-;        WinSet, Style, ^0xC40000 , ahk_class TTOTAL_CMD
-;        SendPos(540)
-        ;设置最大化左窗口即设置为单窗口（显示左）
-;        Sleep,500
-         ;~ WinMaxLR(true)
-    }
-
-    ;settimer, AUTHTC, on
-    ;emptymem()
-    
+    ExePath := ini.TotalCommander_Config.TCPath
+    tClass := ini.ahk_class_Config.tClass
+    NewTitle = 【a b同时搜a和b】【a|b搜a或b】【a!b搜a排除b】开正则后.单个?(0或1) *(0或多) +(1或多)  \b边界 ^开始 $结尾 \转义
+    FunBoBO_RunActivationTitle(ExePath,tClass,NewTitle) 
 return
 
 ;帮助

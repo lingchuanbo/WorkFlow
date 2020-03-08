@@ -81,43 +81,11 @@ global TG_Bar_Height := 62
 global this_title=
 global zParam
 
-;浏览器
-IniRead,group_browser,config.ini,GroupBrowser_Config
-Loop,parse,group_browser,`n,`r
-{
-	if (A_LoopField="")
-		continue
-	MyVar_Key:=RegExReplace(A_LoopField,"=.*?$")
-	MyVar_Val:=RegExReplace(A_LoopField,"^.*?=") 
-	if (MyVar_Key && MyVar_Val ) 
-    GroupAdd,group_browser,%MyVar_Val%
-}
-
-;智能跳转
-IniRead,GroupDiagJump,config.ini,GroupDiagJump_Config
-Loop,parse,GroupDiagJump,`n,`r
-{
-	if (A_LoopField="")
-		continue
-	MyVar_Key:=RegExReplace(A_LoopField,"=.*?$")
-	MyVar_Val:=RegExReplace(A_LoopField,"^.*?=") 
-	if (MyVar_Key && MyVar_Val ) 
-    GroupAdd,GroupDiagJump,%MyVar_Val%
-}
-Gui +LastFound +hwndhwndshellwindow
-DllCall( "RegisterShellHookWindow", "UInt",hwndshellwindow )
-OnMessage( DllCall( "RegisterWindowMessage", "Str", "SHELLHOOK" ), "SwitchMessage" )
-; ----------------------------------
-
-;颜色
-; 开启背景颜色
+;;颜色
+;;背景颜色
 IniRead,BGColor,config.ini,Color_Config,BGColor
 IniRead,BGTxtColor,config.ini,Color_Config,BGTxtColor
 ; 开启背景文字颜色
-
-
-
-
 #Include %A_ScriptDir%\lib\DynamicFileMenu.ahk
 #Include %A_ScriptDir%\lib\checkUser.ahk
 #Include %A_ScriptDir%\lib\DownloadFile.ahk
@@ -148,6 +116,33 @@ IniRead,BGTxtColor,config.ini,Color_Config,BGTxtColor
 #Include %A_ScriptDir%\custom\custom.ahk
 
 
+;浏览器
+IniRead,group_browser,config.ini,GroupBrowser_Config
+Loop,parse,group_browser,`n,`r
+{
+	if (A_LoopField="")
+		continue
+	MyVar_Key:=RegExReplace(A_LoopField,"=.*?$")
+	MyVar_Val:=RegExReplace(A_LoopField,"^.*?=") 
+	if (MyVar_Key && MyVar_Val ) 
+    GroupAdd,group_browser,%MyVar_Val%
+}
+
+;智能跳转
+IniRead,GroupDiagJump,config.ini,GroupDiagJump_Config
+Loop,parse,GroupDiagJump,`n,`r
+{
+	if (A_LoopField="")
+		continue
+	MyVar_Key:=RegExReplace(A_LoopField,"=.*?$")
+	MyVar_Val:=RegExReplace(A_LoopField,"^.*?=") 
+	if (MyVar_Key && MyVar_Val ) 
+    GroupAdd,GroupDiagJump,%MyVar_Val%
+}
+Gui +LastFound +hwndhwndshellwindow
+DllCall( "RegisterShellHookWindow", "UInt",hwndshellwindow )
+OnMessage( DllCall( "RegisterWindowMessage", "Str", "SHELLHOOK" ), "SwitchMessage" )
+; ----------------------------------
 
 ; 动态加载|User|函数
 ; QZ_UpdatePlugin()
