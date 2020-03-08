@@ -10,5 +10,5 @@ global GithubPlugins:="/plugins"
 
 
 global lpszUrl:=githubUrl
-global WorkflowsDownDir:=lpszUrl . GithubDir
-global WorkflowsPluginsDownDir:=WorkflowsDownDir . GithubPlugins
+global WorkFlowDownDir:=lpszUrl . GithubDir
+global WorkFlowPluginsDownDir:=WorkFlowDownDir . GithubPlugins

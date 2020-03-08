@@ -1048,8 +1048,8 @@ return
 	TrayTip,,检查更新中……,2,1
 
 
-    URLDownloadToFile(WorkflowsPluginsDownDir "/Photoshop/Photoshop.ahk", A_Temp "\temp_Photoshop.ahk")
-    URLDownloadToFile(WorkflowsPluginsDownDir "/Photoshop/PhotoshopComment.ahk", A_Temp "\temp_PhotoshopComment.ahk")
+    URLDownloadToFile(WorkFlowPluginsDownDir "/Photoshop/Photoshop.ahk", A_Temp "\temp_Photoshop.ahk")
+    URLDownloadToFile(WorkFlowPluginsDownDir "/Photoshop/PhotoshopComment.ahk", A_Temp "\temp_PhotoshopComment.ahk")
 	versionReg=iS)^\t*\s*global Photoshop_update_version:="([\d\.]*)"
 
 	Loop, read, %A_Temp%\temp_Photoshop.ahk

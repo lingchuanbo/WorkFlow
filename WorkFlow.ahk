@@ -46,50 +46,22 @@ SetWinDelay,0
 ; ;--20191216
 SetWorkingDir %A_ScriptDir%
 
+global Version:="3.6.5"
+global Update:="2020.3.8"
 ; ;--2020-0305 截屏取词
 If (!pToken:=Gdip_Startup()) {
 	msgbox, 48, gdiplus error!, Gdiplus failed to start. Please ensure you have gdiplus on your system
 	ExitApp
 }
 
-;另存为|保存|复制|新建|打开|图形另存为|文件打开|保存副本|上传|选择文件 ahk_class #32770
-;写入配置表
-GroupAdd, Windows32770, 另存为 ahk_class #32770
-GroupAdd, Windows32770, 保存 ahk_class #32770
-GroupAdd, Windows32770, 复制 ahk_class #32770
-GroupAdd, Windows32770, 新建 ahk_class #32770
-GroupAdd, Windows32770, 打开 ahk_class #32770
-GroupAdd, Windows32770, 图形另存为 ahk_class #32770
-GroupAdd, Windows32770, 文件打开 ahk_class #32770
-GroupAdd, Windows32770, 打开文件 ahk_class #32770
-GroupAdd, Windows32770, 保存副本 ahk_class #32770
-GroupAdd, Windows32770, 上传 ahk_class #32770
-GroupAdd, Windows32770, 选择文件 ahk_class #32770
-GroupAdd, Windows32770, 插入图片 ahk_class #32770
-GroupAdd, Windows32770, 导入 ahk_class #32770
-GroupAdd, Windows32770, 置入嵌入对象 ahk_class #32770
-GroupAdd, Windows32770, 浏览 ahk_class #32770
-GroupAdd, Windows32770, Open ahk_class #32770
-GroupAdd, Windows32770, Open Folder ahk_class #32770
-GroupAdd, Windows32770, Open File ahk_class #32770
-GroupAdd, Windows32770, Save As ahk_class #32770
-GroupAdd, Windows32770, Import File ahk_class #32770
-GroupAdd, Windows32770, Replace Footage File ahk_class #32770
-GroupAdd, Windows32770, Export As ahk_class #32770
-GroupAdd, Windows32770, Output Movie To: ahk_class #32770
-GroupAdd, Windows32770, Choose Folder ahk_class #32770
-
-global Version:="3.6.4"
-
 FeedbackLink=https://www.kancloud.cn/funbobosky/vim_unity
 HelpLink=https://www.kancloud.cn/funbobosky/vim_unity
 FontSize:="30"
-SleepTime=1000 ; 消失时间
+SleepTime=1500 ; 消失时间
 
 
 ; 定义颜色
-global color1=004073
-global color2=004073
+global color2=001621
 global color3=007310
 global color4=303030
 ;tab系列组合键，适合左键右鼠，启用后直接按tab会感觉有一点延迟，默认开启，开关为ctrl+win+alt+花号
@@ -108,14 +80,44 @@ global TG_Start_Y := 110
 global TG_Bar_Height := 62 
 global this_title=
 global zParam
-;常用浏览器设置
-GroupAdd, group_browser,ahk_class Chrome_WidgetWin_0    ;Chrome内核浏览器
-GroupAdd, group_browser,ahk_class Chrome_WidgetWin_1    ;Chrome内核浏览器
-GroupAdd, group_browser,ahk_exe chrome.exe
-GroupAdd, group_browser,ahk_exe msedge.exe
 
+;浏览器
+IniRead,group_browser,config.ini,GroupBrowser_Config
+Loop,parse,group_browser,`n,`r
+{
+	if (A_LoopField="")
+		continue
+	MyVar_Key:=RegExReplace(A_LoopField,"=.*?$")
+	MyVar_Val:=RegExReplace(A_LoopField,"^.*?=") 
+	if (MyVar_Key && MyVar_Val ) 
+    GroupAdd,group_browser,%MyVar_Val%
+}
+
+;智能跳转
+IniRead,GroupDiagJump,config.ini,GroupDiagJump_Config
+Loop,parse,GroupDiagJump,`n,`r
+{
+	if (A_LoopField="")
+		continue
+	MyVar_Key:=RegExReplace(A_LoopField,"=.*?$")
+	MyVar_Val:=RegExReplace(A_LoopField,"^.*?=") 
+	if (MyVar_Key && MyVar_Val ) 
+    GroupAdd,GroupDiagJump,%MyVar_Val%
+}
+Gui +LastFound +hwndhwndshellwindow
+DllCall( "RegisterShellHookWindow", "UInt",hwndshellwindow )
+OnMessage( DllCall( "RegisterWindowMessage", "Str", "SHELLHOOK" ), "SwitchMessage" )
 ; ----------------------------------
-; #Include %A_ScriptDir%\custom\smartJump.ahk
+
+;颜色
+; 开启背景颜色
+IniRead,BGColor,config.ini,Color_Config,BGColor
+IniRead,BGTxtColor,config.ini,Color_Config,BGTxtColor
+; 开启背景文字颜色
+
+
+
+
 #Include %A_ScriptDir%\lib\DynamicFileMenu.ahk
 #Include %A_ScriptDir%\lib\checkUser.ahk
 #Include %A_ScriptDir%\lib\DownloadFile.ahk
@@ -145,17 +147,12 @@ GroupAdd, group_browser,ahk_exe msedge.exe
 ;用户自定义配置yy
 #Include %A_ScriptDir%\custom\custom.ahk
 
-;智能跳转
-Gui +LastFound +hwndhwndshellwindow
-DllCall( "RegisterShellHookWindow", "UInt",hwndshellwindow )
-OnMessage( DllCall( "RegisterWindowMessage", "Str", "SHELLHOOK" ), "SwitchMessage" )
 
 
-; 动态加载|User|
-QZ_UpdatePlugin()
-
-SearchFileForKey(SelectedKeys,SelectedAction, SelectedDesc, true)
-Sleep, 1000
-#Include *i %A_ScriptDir%\User\plugins.ahk
+; 动态加载|User|函数
+; QZ_UpdatePlugin()
+; SearchFileForKey(SelectedKeys,SelectedAction, SelectedDesc, true)
+; Sleep, 1000
+; #Include *i %A_ScriptDir%\User\plugins.ahk
 return
 

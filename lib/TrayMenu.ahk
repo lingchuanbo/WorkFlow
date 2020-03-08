@@ -42,14 +42,14 @@ VimdRun()
 if (FirstParameter!="silent")
 {
     Gui,welcome: +LastFound +AlwaysOnTop -Caption +ToolWindow
-    Gui,welcome: Color, %color1% 
-    Gui,welcome: Font,cwhite s8 wbold q5,Segoe UI
-    Gui,welcome: Add, Text, ,%_Welcome%
-    Gui,welcome: Font,cwhite s50 wbold q5,Segoe UI
+    Gui,welcome: Color, %BGColor%
+    Gui,welcome: Font,c%BGTxtColor% s8 wbold q5,Segoe UI
+    Gui,welcome: Add, Text, ,%_Welcome% 
+    Gui,welcome: Font,c%BGTxtColor% s50 wbold q5,Segoe UI
     Gui,welcome: Add, Text, ,%_AppName%
-    Gui,welcome: Font,cwhite s8 wbold q5,Segoe UI
-    Gui,welcome: Add, Text, ,%_Authors%                                                        
-    Gui,welcome: Font,cwhite s8 wbold q5,Segoe UI
+    Gui,welcome: Font,c%BGTxtColor% s8 wbold q5,Segoe UI
+    Gui,welcome: Add, Text, ,%_Authors%   %Update%   V:%Version%                                                      
+    Gui,welcome: Font,c%BGTxtColor% s8 wbold q5,Segoe UI
     Gui,welcome: Show,AutoSize Center NoActivate
     WinSet, Transparent,200
     sleep %SleepTime%
@@ -201,14 +201,14 @@ Auto_Update:
 	;[下载最新的更新脚本]
 	if(!Check_Github()){
 		lpszUrl:=githubUrl
-		WorkflowsDownDir:=lpszUrl . GithubDir
+		WorkFlowDownDir:=lpszUrl . GithubDir
 		if(!Check_Github()){
 			TrayTip,,网络异常，无法连接网络读取最新版本文件,3,1
 			return
 		}
 	}
-	URLDownloadToFile(WorkflowsDownDir "/WorkFlow.ahk",A_Temp "\temp_WorkFlow.ahk")
-	versionReg=iS)^\t*\s*global Workflows_update_version:="([\d\.]*)"
+	URLDownloadToFile(WorkFlowDownDir "/WorkFlow.ahk",A_Temp "\temp_WorkFlow.ahk")
+	versionReg=iS)^\t*\s*global WorkFlow_update_version:="([\d\.]*)"
 	Loop, read, %A_Temp%\temp_WorkFlow.ahk
 	{
 		if(RegExMatch(A_LoopReadLine,versionReg)){
@@ -221,14 +221,14 @@ Auto_Update:
 		}
 	}
 	if(versionStr){
-		if(Workflows_update_version<versionStr){
-			MsgBox,33,%_AppName%检查更新,检测到%_AppName%有新版本`n`n%Workflows_update_version%`t版本更新后=>`t%versionStr%`n`n是否更新到最新版本？`n覆盖老版本文件，如有修改过config.ini请注意备份！
+		if(WorkFlow_update_version<versionStr){
+			MsgBox,33,%_AppName%检查更新,检测到%_AppName%有新版本`n`n%WorkFlow_update_version%`t版本更新后=>`t%versionStr%`n`n是否更新到最新版本？`n覆盖老版本文件，如有修改过config.ini请注意备份！
 			IfMsgBox Ok
 			{
 				TrayTip,,%_AppName%下载最新版本并替换老版本...,5,1
 				; gosub,Config_Update
                 ; FileCopy, %A_ScriptDir%\config.ini, %A_ScriptDir%\vimd_back.ini ,1
-				URLDownloadToFile(WorkflowsDownDir "/vimd.exe",A_Temp "\temp_vimd.exe")
+				URLDownloadToFile(WorkFlowDownDir "/vimd.exe",A_Temp "\temp_vimd.exe")
 				gosub,vimd_Update
 				shell := ComObjCreate("WScript.Shell")
 				shell.run(A_Temp "\vimd_Update.bat",0)

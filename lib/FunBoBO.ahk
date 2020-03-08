@@ -983,11 +983,11 @@ SwitchMessage( wParam,lParam ) 	;{
 		SendMessage 1074, 21, 0, , ahk_class TTOTAL_CMD
 		ControlGetText, varPathInTC, , ahk_id %ErrorLevel%
 		StringReplace, this_title, varPathInTC, >, \
-		IfWinExist ahk_group Windows32770
+		IfWinExist ahk_group GroupDiagJump
 			{
-			WinWaitActive ahk_group Windows32770, , 2
+			WinWaitActive ahk_group GroupDiagJump, , 2
 			if !ErrorLevel
-			;IfWinActive ahk_group Windows32770
+			;IfWinActive ahk_group GroupDiagJump
 				{
 				ControlClick, Edit1, A
 				Sleep, 100
@@ -1010,11 +1010,11 @@ SwitchMessage( wParam,lParam ) 	;{
 		;if this_title=库\文档
 			;this_title=%A_MyDocuments%
 		; msgbox % ExplorerInfo()
-		IfWinExist ahk_group Windows32770
+		IfWinExist ahk_group GroupDiagJump
 			{
-			WinWaitActive ahk_group Windows32770, , 2
+			WinWaitActive ahk_group GroupDiagJump, , 2
 			if !ErrorLevel
-			;IfWinActive ahk_group Windows32770
+			;IfWinActive ahk_group GroupDiagJump
 				{
 				ControlClick, Edit1, A
 				Sleep, 100

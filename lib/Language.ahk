@@ -6,14 +6,14 @@ IniRead, Language, config.ini, config, Language
 ; if (A_Language = "0804")
 If Language=CN
 {
-    global _AppName:="WorkFlows"
+    global _AppName:="WorkFlow"
     global _Welcome:="欢迎使用"
     global _Author:="BoBO"
     global _Authors="BoBO(lingchuanbo@gmail.com)" 
     global _Exit="退出"
     global _Restart="重启"
     global _Path="路径配置"
-    global _Updating="正在更新 WorkFlows"
+    global _Updating="正在更新 WorkFlow"
     global _Updater="更新主程序"
     global _UpdatPlugins="更新插件"
     global _UpdateCompleted="更新成功"
@@ -23,8 +23,8 @@ If Language=CN
     global _aboutMe="关于我"
     global _BackupRestore="备份还原config.ini"
 
-    global _VIMMode:="进入 WorkFlows"
-    global _ExitVIMMode:="退出 WorkFlows"
+    global _VIMMode:="进入 WorkFlow"
+    global _ExitVIMMode:="退出 WorkFlow"
     
 
     global _StartUp="开机自启"
@@ -36,7 +36,7 @@ If Language=CN
     global _Language = "语言(&L)"
 
     global _PoorNetwork="与 网络 连接不畅！请稍后再试。"
-    global _ConfirmExit="遇到问题？请尝试下列解决方法！`n`n1. 阅读帮助文档`n2. 重启 WorkFlows`n3. 更新 WorkFlows`n4. 反馈您的问题`n`n仍然退出 WorkFlows？"
+    global _ConfirmExit="遇到问题？请尝试下列解决方法！`n`n1. 阅读帮助文档`n2. 重启 WorkFlow`n3. 更新 WorkFlow`n4. 反馈您的问题`n`n仍然退出 WorkFlow？"
     ;Plugins_Photoshop
     global _Photoshop_OpenSave = "打开&关闭"
     global _Photoshop_NewFile ="创建新文件"
@@ -57,7 +57,7 @@ If Language=CN
 Else
 {
 
-    global _AppName:="WorkFlows"
+    global _AppName:="WorkFlow"
     global _Welcome:="Welcome Use..."
     global _Authors="BoBOlingchuanbo@gmail.com"
     
@@ -76,8 +76,8 @@ Else
     global _UpdateCompleted="Update Completed"
 
     global _StartUp="Start VIMD on system startup"
-    global _Config="WorkFlows Configure"
-    global _Help="WorkFlows Help"
+    global _Config="WorkFlow Configure"
+    global _Help="WorkFlow Help"
     global _Feedback="Feedback and Request"
     global _Language = "&Language"
 
@@ -87,6 +87,6 @@ Else
     global _Photoshop_OpenSave ="OpenSave"
     global _Photoshop_NewFile :="NewFile"
 
-    global _VIMMode:="Enter WorkFlows"
-    global _ExitVIMMode:="Exit WorkFlows"
+    global _VIMMode:="Enter WorkFlow"
+    global _ExitVIMMode:="Exit WorkFlow"
 }
