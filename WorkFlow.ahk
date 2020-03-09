@@ -59,7 +59,6 @@ HelpLink=https://www.kancloud.cn/funbobosky/vim_unity
 FontSize:="30"
 SleepTime=1500 ; 消失时间
 
-
 ; 定义颜色
 global color2=001621
 global color3=007310
@@ -81,11 +80,38 @@ global TG_Bar_Height := 62
 global this_title=
 global zParam
 
-;;颜色
-;;背景颜色
+;颜色
+;背景颜色
 IniRead,BGColor,config.ini,Color_Config,BGColor
 IniRead,BGTxtColor,config.ini,Color_Config,BGTxtColor
 ; 开启背景文字颜色
+; ;浏览器
+IniRead,group_browser,config.ini,GroupBrowser_Config
+Loop,parse,group_browser,`n,`r
+{
+	if (A_LoopField="")
+		continue
+	MyVar_Key:=RegExReplace(A_LoopField,"=.*?$")
+	MyVar_Val:=RegExReplace(A_LoopField,"^.*?=") 
+	if (MyVar_Key && MyVar_Val ) 
+    GroupAdd,group_browser,%MyVar_Val%
+}
+
+;智能跳转
+IniRead,GroupDiagJump,config.ini,GroupDiagJump_Config
+Loop,parse,GroupDiagJump,`n,`r
+{
+	if (A_LoopField="")
+		continue
+	MyVar_Key:=RegExReplace(A_LoopField,"=.*?$")
+	MyVar_Val:=RegExReplace(A_LoopField,"^.*?=") 
+	if (MyVar_Key && MyVar_Val ) 
+    GroupAdd,GroupDiagJump,%MyVar_Val%
+}
+Gui +LastFound +hwndhwndshellwindow
+DllCall( "RegisterShellHookWindow", "UInt",hwndshellwindow )
+OnMessage( DllCall( "RegisterWindowMessage", "Str", "SHELLHOOK" ), "SwitchMessage" )
+
 #Include %A_ScriptDir%\lib\DynamicFileMenu.ahk
 #Include %A_ScriptDir%\lib\checkUser.ahk
 #Include %A_ScriptDir%\lib\DownloadFile.ahk
@@ -115,33 +141,6 @@ IniRead,BGTxtColor,config.ini,Color_Config,BGTxtColor
 ;用户自定义配置yy
 #Include %A_ScriptDir%\custom\custom.ahk
 
-
-;浏览器
-IniRead,group_browser,config.ini,GroupBrowser_Config
-Loop,parse,group_browser,`n,`r
-{
-	if (A_LoopField="")
-		continue
-	MyVar_Key:=RegExReplace(A_LoopField,"=.*?$")
-	MyVar_Val:=RegExReplace(A_LoopField,"^.*?=") 
-	if (MyVar_Key && MyVar_Val ) 
-    GroupAdd,group_browser,%MyVar_Val%
-}
-
-;智能跳转
-IniRead,GroupDiagJump,config.ini,GroupDiagJump_Config
-Loop,parse,GroupDiagJump,`n,`r
-{
-	if (A_LoopField="")
-		continue
-	MyVar_Key:=RegExReplace(A_LoopField,"=.*?$")
-	MyVar_Val:=RegExReplace(A_LoopField,"^.*?=") 
-	if (MyVar_Key && MyVar_Val ) 
-    GroupAdd,GroupDiagJump,%MyVar_Val%
-}
-Gui +LastFound +hwndhwndshellwindow
-DllCall( "RegisterShellHookWindow", "UInt",hwndshellwindow )
-OnMessage( DllCall( "RegisterWindowMessage", "Str", "SHELLHOOK" ), "SwitchMessage" )
 ; ----------------------------------
 
 ; 动态加载|User|函数
