@@ -335,8 +335,8 @@ return
 ; <TC_ToggleTC> {{{1
 <TC_ToggleTC>:
     ExePath := ini.TotalCommander_Config.TCPath
-    tClass := ini.ahk_class_Config.tClass
-    NewTitle = 【a b同时搜a和b】【a|b搜a或b】【a!b搜a排除b】开正则后.单个?(0或1) *(0或多) +(1或多)  \b边界 ^开始 $结尾 \转义
+    tClass := ini.ahk_class_Config.TCClass
+    NewTitle =
     FunBoBO_RunActivationTitle(ExePath,tClass,NewTitle) 
 return
 
