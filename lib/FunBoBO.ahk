@@ -1,4 +1,29 @@
-﻿;定义启动1
+﻿; 模式显示函数设置
+SetModUIInsert(){
+	Menu, Tray, Icon, %A_ScriptDir%\workflow_icon.png
+    IniRead,InsertBGColor,config.ini,Color_Config,InsertBGColor
+    Gui, +LastFound +AlwaysOnTop -Caption +ToolWindow
+    Gui, Color, %InsertBGColor%
+    Gui, Font,cwhite s20 10 wbold q5,Segoe UI
+    Gui, Add, Text, , %_VIMMode%
+    Gui, Show,AutoSize Center NoActivate
+    WinSet, Transparent,200
+    sleep 1500
+    Gui, Destroy
+}
+SetModUINormal(){
+	Menu, Tray, Icon, %A_ScriptDir%\workflow_icon_normal.png
+    IniRead,NormalBGColor,config.ini,Color_Config,NormalBGColor
+    Gui, +LastFound +AlwaysOnTop -Caption +ToolWindow
+    Gui, Color, %NormalBGColor%
+    Gui, Font,cwhite s20 10 wbold q5,Segoe UI
+    Gui, Add, Text, , %_ExitVIMMode%
+    Gui, Show,AutoSize Center NoActivate
+    WinSet, Transparent,200
+    sleep 1500
+    Gui, Destroy
+}
+;定义启动1
 FunBoBO_HideOrActivation1(ExePath,tClass) {
 	IfWinNotExist,ahk_class %tClass%
 	Run,"%ExePath%"
