@@ -118,14 +118,16 @@ Gen_Before()
 }
 
 <Gen_InsertMode>:
+    SetModUIInsert()
     vim.SetMode("Insert", vim.CheckWin())
-    Tooltip, Insert模式, , , 19
-    Settimer, cancelTooltip, 1200
+    ; Tooltip, Insert模式, , , 19
+    ; Settimer, cancelTooltip, 1200
 return
 <Gen_NormalMode>:
+    SetModUINormal()
     vim.SetMode("Normal", vim.CheckWin())
-    Tooltip, Normal模式, , , 19
-    Settimer, cancelTooltip, 1200
+    ; Tooltip, Normal模式, , , 19
+    ; Settimer, cancelTooltip, 1200
 return
 <Gen_Toggle>:
     Gen_Toggle()

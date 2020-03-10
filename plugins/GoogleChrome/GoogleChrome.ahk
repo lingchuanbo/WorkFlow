@@ -172,26 +172,12 @@ return
 
 ;   默认模式
 <GoogleChrome_NormalMode>:
+    SetModUINormal()
     vim.SetMode("normal", "GoogleChrome")
-    Gui,Ae_insert: +LastFound +AlwaysOnTop -Caption +ToolWindow
-    Gui,Ae_insert: Color, %color4%
-    Gui,Ae_insert: Font,cwhite s20 %FontSize% wbold q5,Segoe UI
-    Gui,Ae_insert: Add, Text, ,%_ExitVIMMode%
-    Gui,Ae_insert: Show,AutoSize Center NoActivate
-    WinSet, Transparent,200
-    sleep %SleepTime%
-    Gui,Ae_insert: Destroy
 return
 
 ;   进入模式
 <GoogleChrome_InsertMode>:
+    SetModUIInsert()
     vim.SetMode("insert", "GoogleChrome")
-    Gui,Ae_insert: +LastFound +AlwaysOnTop -Caption +ToolWindow
-    Gui,Ae_insert: Color, %color2%
-    Gui,Ae_insert: Font,cwhite s20 %FontSize% wbold q5,Segoe UI
-    Gui,Ae_insert: Add, Text, ,%_VIMMode%
-    Gui,Ae_insert: Show,AutoSize Center NoActivate
-    WinSet, Transparent,200
-    sleep %SleepTime%
-    Gui,Ae_insert: Destroy
 return

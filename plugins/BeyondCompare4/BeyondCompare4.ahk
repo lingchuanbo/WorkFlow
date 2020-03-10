@@ -49,10 +49,12 @@ BeyondCompare4_CheckMode()
 }
 
 <BeyondCompare4_NormalMode>:
+    SetModUINormal()
     vim.mode("normal", "BeyondCompare4")
 return
 
 <BeyondCompare4_InsertMode>:
+    SetModUIInsert()
     vim.mode("insert", "BeyondCompare4")
 return
 

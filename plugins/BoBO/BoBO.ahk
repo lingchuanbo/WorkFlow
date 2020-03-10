@@ -574,9 +574,10 @@ return
 
 #If WinActive("ahk_exe AfterFX.exe")
 {	
-	;;快速打开文件所在位置
+	;;禁用F1
+	F1::return
+	; !`::GoSub,<Ae_Double_F1>
 	;;AE快速打开文件所在位置 至于是否启用TC到时候在考虑目前可以一直按alt+w
-	!`::GoSub,<Ae_Double_F1>
 	!w::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
 	^+!LButton::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
 	;;快速打开渲染文件所在位置

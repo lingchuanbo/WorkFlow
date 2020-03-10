@@ -58,15 +58,17 @@ return
 
 <Phantom_切换到【VIM模式】>:  ;{
 send,{esc}
+SetModUIInsert()
 vim.mode("VIM模式","Foxit_Phantom")
-MsgBox, 0, 提示, 【VIM模式】, 0.3
+; MsgBox, 0, 提示, 【VIM模式】, 0.3
 return
 ;}
 
 <Phantom_切换到【普通模式】>:  ;{
 send,{esc}
+SetModUINormal()
 vim.mode("普通模式","Foxit_Phantom")
-MsgBox, 0, 提示, 【普通模式】, 0.3
+; MsgBox, 0, 提示, 【普通模式】, 0.3
 return
 ;}
 

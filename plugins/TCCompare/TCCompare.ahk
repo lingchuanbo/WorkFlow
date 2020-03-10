@@ -60,10 +60,12 @@ TCCompare_CheckMode()
 */
 
 <TCCompare_NormalMode>:
+    SetModUINormal()
     vim.mode("normal", "TCCompare")
 return
 
 <TCCompare_InsertMode>:
+    SetModUIInsert()
     vim.mode("insert", "TCCompare")
 return
 

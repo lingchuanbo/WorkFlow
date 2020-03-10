@@ -316,20 +316,24 @@ TC_BeforeActionDo()
 <TC_NormalMode>:
     Send, {Esc}
     GoSub, <SwitchToEngIME>
+    SetModUINormal()
     vim.Mode("normal", "TTOTAL_CMD")
     ;emptymem()
 return
 ; <TC_SearchMode> {{{1
 <TC_SearchMode>:
     vim.Mode("search", "TTOTAL_CMD")
-     SendPos(2915)
+    SetModUINormal()
+    SendPos(2915)
 return
 ; <TC_InsertMode> {{{1
 <TC_InsertMode>:
+    SetModUIInsert()
     vim.Mode("insert", "TTOTAL_CMD")
 return
 ; <TC_VisualMode> {{{1
 <TC_VisualMode>:
+    SetModUINormal()
     vim.Mode("visual", "TTOTAL_CMD")
 return
 ; <TC_ToggleTC> {{{1

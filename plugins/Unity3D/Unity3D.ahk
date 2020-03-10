@@ -83,14 +83,14 @@ Unity3D_CheckMode(){
 
 <Unity3D_NormalMode>:
 ;   send,{esc}
+    SetModUINormal()
     vim.SetMode("normal", "Unity3D")
-    MsgBox, 0, 提示, 【返回正常模式】, 0.5
 return
 
 <Unity3D_InsertMode>:
 ;   send,{esc}
+    SetModUIInsert()
     vim.SetMode("insert", "Unity3D")
-    MsgBox, 0, 提示, 【欢迎使用BoBO_VIM模式】, 0.5
 return
 
 ;【全局运行Unity3D】

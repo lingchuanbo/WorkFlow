@@ -123,12 +123,14 @@ EVERYTHING_CheckMode(){
 
 <Normal_Mode_EVERYTHING>:
     Send,{Esc}
+    SetModUINormal()
     vim.Mode("normal","EVERYTHING")
 ;    gosub,<normalmode_LED1>
     ;emptymem()
 return
 ; <insert_TC> {{{1
 <Insert_Mode_EVERYTHING>:
+    SetModUIInsert()
     vim.Mode("insert","EVERYTHING")
 
 ;    gosub,<insertmode_LED1>

@@ -75,10 +75,12 @@ Explorer_ForceInsertMode()
 }
 
 <Explorer_NormalMode>:
+    SetModUINormal()
     vim.mode("normal", "Explorer")
 return
 
 <Explorer_InsertMode>:
+    SetModUIInsert()
     vim.mode("insert", "Explorer")
 return
 <Explorer_GotoAe>:

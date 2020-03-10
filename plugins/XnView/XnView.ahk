@@ -67,15 +67,13 @@ Xnview_CheckMode(){
 ;  Return
 
 <Xnview_NormalMode>:
-;   send,{esc}
+    SetModUINormal()
     vim.SetMode("normal", "Xnview")
-    MsgBox, 0, 提示, 【正常模式】, 0.5
 return
 
 <Xnview_InsertMode>:
-;   send,{esc}
+    SetModUIInsert()
     vim.SetMode("insert", "Xnview")
-    MsgBox, 0, 提示, 【VIM模式】, 0.5
 return
 
 <Xnview_Play>:

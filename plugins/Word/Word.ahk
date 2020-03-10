@@ -174,14 +174,15 @@ Word_BeforeActionDo(){
 
 
 <Word_切换到【VIM模式】>:  ;{
+SetModUINormal()
 vim.mode("VIM模式","Word")
-MsgBox, 0, 提示, 【VIM模式】, 0.3
+
 return
 ;}
 
 <Word_切换到【普通模式】>:  ;{
+SetModUIInsert()
 vim.mode("普通模式","Word")
-MsgBox, 0, 提示, 【普通模式】, 0.3
 return
 ;}
 
