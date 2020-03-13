@@ -535,6 +535,7 @@ return
 {
 	
 	!w::runMaxScript("maxToTotalcmd.ms")
+	!q::Gosub,<3DsMax_Tab>
 	; +RButton::Gosub,menuAe
 	` & 1:: Gosub, <3DsMax_getUp>
     ` & 2:: Gosub, <3DsMax_getDown>
@@ -599,45 +600,54 @@ return
 ;     !q::CoordWinClick(56,22)
 ; }
 
+
+menuTc:
+	Menu, menuTc, add,新建,:createDir
+		Menu, createDir, add,新建文件夹,<Tools_MkDir>
+		Menu, createDir, add,新建文件夹_日期,<Tools_NewFilesDate>
+
+	Menu, menuTc, add,转换, :transformSet
+		Menu, transformSet, add, Png转Gif,<em_BoBO_PNGToGIF>
+		Menu, transformSet, add, Png转Ico,<em_BoBO_PNGToICO>
+		Menu, transformSet, add, DDS转PNG,<em_BoBO_DDSToPNG>
+		Menu, transformSet, add, 中文转拼音,<Tools_ChineseConversionPinyin>
+
+	Menu, menuTc, add,游戏开发, :GameDevSet
+		Menu, GameDevSet, add, 打包文件_H5,<GameDevSetPackH5>
+		Menu, GameDevSet, add, 打包文件_As,<GameDevSetPackAs>
+		Menu, GameDevSet, add, Atlas前缀修改,<GameDevSetAtlas>
+		Menu, GameDevSet, add, 编辑器 >> 仙谕,<GameDevSetFxEditorXY>
+		Menu, GameDevSet, add, 编辑器 >> 三国,<GameDevSetFxEditorSG>
+
+	Menu, menuTc, add,工具, :Toolset
+		Menu, Toolset, add, 整理: 按文件类型,<Tools_Classification>
+		Menu, Toolset, add, 整理: 递归文件到当前目录,<Tools_MoveFilesToDir>
+		Menu, Toolset, add, 整理: 当前文件向上移,<Tools_MoveUpDir>
+		Menu, Toolset, add, 删除: 空目录,<Tools_NullDir>
+		Menu, Toolset, add, 删除: PNG文件,<Tools_DeletePNG>
+    Menu, menuTc, Show
+return 
+
+
+
 menuAe:
 	dirMenu0=%A_ScriptDir%\custom\ae_scripts\Effect
 	dirMenu1=%A_ScriptDir%\custom\ae_scripts\otherScriptCommand\
 	dirMenu2=%A_ScriptDir%\custom\ae_scripts\PresetAnimation
+
     menu, thismenu, add, AE动态脚本菜单, WHATSUP
 	menu_fromfiles("filelist0", "(&S)_特效库", "RunAePreset0", dirMenu0, "*.ffx", "thismenu", 1)
 	menu_fromfiles("filelist1", "(&S)_脚本库", "RunAeScript", dirMenu1, "*.jsx", "thismenu", 1)
 	menu_fromfiles("filelist2", "(&P)_预设", "RunAePreset1", dirMenu2, "*.ffx", "thismenu", 1)
-	menu, thismenu, add, (&F)_文件所在位置, OpenLocalFiles
-	menu, thismenu, add, (&R)_文件所在位置【渲染】, OpenLocalFilesRender
+
+	; menu, thismenu, add, 整理, :AeManage
+	menu, thismenu, add, (&Z).整理项目&清理缓存,<Ae_OrganizeProjectAssetsDiskCache>
+	menu, thismenu, add, (&J).精简项目,<Ae_ReduceProject>
+
+	menu, thismenu, add, (&F).文件所在位置, OpenLocalFiles
+	menu, thismenu, add, (&R).文件所在位置【渲染】, OpenLocalFilesRender
     Menu, thismenu, Show
 return
-
-menuTc:
-	Menu, menuTc, add,新建,:createDir
-	Menu, createDir, add,新建文件夹,<Tools_MkDir>
-	Menu, createDir, add,新建文件夹_日期,<Tools_NewFilesDate>
-
-	Menu, menuTc, add,转换, :transformSet
-	Menu, transformSet, add, Png转Gif,<em_BoBO_PNGToGIF>
-	Menu, transformSet, add, Png转Ico,<em_BoBO_PNGToICO>
-	Menu, transformSet, add, DDS转PNG,<em_BoBO_DDSToPNG>
-	Menu, transformSet, add, 中文转拼音,<Tools_ChineseConversionPinyin>
-
-	Menu, menuTc, add,游戏开发, :GameDevSet
-	Menu, GameDevSet, add, 打包文件_H5,<GameDevSetPackH5>
-	Menu, GameDevSet, add, 打包文件_As,<GameDevSetPackAs>
-	Menu, GameDevSet, add, Atlas前缀修改,<GameDevSetAtlas>
-	Menu, GameDevSet, add, 编辑器 >> 仙谕,<GameDevSetFxEditorXY>
-	Menu, GameDevSet, add, 编辑器 >> 三国,<GameDevSetFxEditorSG>
-
-	Menu, menuTc, add,工具, :Toolset
-	Menu, Toolset, add, 整理: 按文件类型,<Tools_Classification>
-	Menu, Toolset, add, 整理: 递归文件到当前目录,<Tools_MoveFilesToDir>
-	Menu, Toolset, add, 整理: 当前文件向上移,<Tools_MoveUpDir>
-	Menu, Toolset, add, 删除: 空目录,<Tools_NullDir>
-    Menu, menuTc, Show
-return 
-
 
 WHATSUP:
     msgbox, 特效库目录 `n`n %dirMenu0% `n`n 脚本库目录 `n`n %dirMenu1% `n`n 预设目录 `n`n %dirMenu2%
