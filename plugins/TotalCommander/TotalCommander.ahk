@@ -4667,7 +4667,7 @@ return
 return
 
 <GameDevSetAtlas>:
- Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_atlas]`)"
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_atlas`)"
 return
 <GameDevSetFxEditorXY>:
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_runFxEditorXY`)"
@@ -4701,6 +4701,7 @@ return
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_MoveFilesToDir`)"
 return
 
+
 ; Python:中文转拼音
 
 <Tools_ChineseConversionPinyin>:
@@ -4711,7 +4712,9 @@ return
 <Tools_NewFilesDate>:
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_NewFiles`)"
 return
-
+<Tools_DeletePNG>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_fastcopy_deletePNG`)"
+return
 ; 创建文件_日期
 <Tools_MkDir>:
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_MkDir`)"
