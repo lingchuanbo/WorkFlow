@@ -325,7 +325,11 @@ return
     return
 }
  Return
-
+<3DsMax_RenderChanger>:
+{
+    runMaxScriptCommands("render_changer.mse")
+    return
+}
 <3DsMax_Double_A>:
 {
     ; 打开|保存

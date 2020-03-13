@@ -59,6 +59,7 @@
     ;vim.Map("<SP-R>", "<3DsMax_maxRotate90>", "3DsMax")  
     vim.Map("<SP-s>1", "<3DsMax_render8Direction>", "3DsMax")
     vim.Map("<SP-s>2", "<3DsMax_Renderlayers>", "3DsMax")
+    vim.Map("<SP-s>3", "<3DsMax_RenderChanger>", "3DsMax")
 
     vim.Map("<LB-f>", "<3DsMax_unfreeze>", "3DsMax")
     vim.Map("<LB-h>", "<3DsMax_displayFloater>", "3DsMax")
