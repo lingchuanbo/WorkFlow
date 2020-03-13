@@ -34,7 +34,7 @@
 ;SetCapsLockState, AlwaysOff
 ;
 AfterEffects:
-
+    ; GetMode
     vim.SetAction("<AfterEffects_NormalMode>", "返回正常模式")
     vim.SetAction("<AfterEffects_InsertMode>", "进入VIM模式")
     vim.SetWin("AfterEffects","AE_CApplication_15.1")
@@ -109,7 +109,9 @@ return
 <RunAE>:
     ExePath := ini.BOBOPath_Config.AEPath
     tClass := ini.ahk_class_Config.AEClass
-    FunBoBO_RunActivation(ExePath,tClass)
+    NewTitle = 【a b同时搜a和b】【a|b搜a或b】【a!b搜a排除b】开正则后.单个?(0或1) *(0或多) +(1或多)  \b边界 ^开始 $结尾 \转义
+    FunBoBO_RunActivationTitle(ExePath,tClass,NewTitle) 
+    ; FunBoBO_RunActivation(ExePath,tClass)
 Return
 
 ;   单键切换
@@ -141,6 +143,8 @@ return
 ;   默认模式
 <AfterEffects_NormalMode>:
     SetModUINormal()
+    ; getMOD=vim.ExistMode()
+    ; MsgBox %getMOD%
     vim.SetMode("normal", "AfterEffects")
 return
 ;   进入模式
@@ -743,7 +747,6 @@ return
     if (t == "off")
     goto ae_double_1
     return
-
     ae_tappedkey_1:
         ; getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
         GoSub,<Ae_Double_F1>
@@ -751,10 +754,14 @@ return
 
     ae_double_1:
         getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
+        ; sleep 500
+        ; getAeScript("custom\ae_scripts\commands\deleteDiskCache.jsx")
+    return
+return
+<Ae_OrganizeProjectAssetsDiskCache>:
+        getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
         sleep 500
         getAeScript("custom\ae_scripts\commands\deleteDiskCache.jsx")
-    return
-
 return
 
 <Ae_Double_q>:
@@ -1436,6 +1443,24 @@ return
 
 
 
+<Ae_ReduceProject>:
+{
+    MsgBox, 4,Reduce Project, 简化项目文件 继续?
+    IfMsgBox Yes
+        {
+            ToolTip, 正在简化中...请稍后！
+            sleep 100
+            getAeScript("custom\ae_scripts\commands\ReduceProject.jsx")
+            SetTimer, RemoveToolTip, -1000
+            return
+        }
+    else
+        {
+            return 
+        }
+        return
+}
+
 <Ae_UpDater>:
 Gui,Updating: +LastFound +AlwaysOnTop -Caption +ToolWindow
 Gui,Updating: Color, %color2%
@@ -1531,54 +1556,54 @@ return
 ;     } 
 ; }
 ; Return
-F5::
-{
-    ; 1.ReloadFootage | 2.ReduceProject  |  long：CollectFiles
-    DoubleClickTime := DllCall("GetDoubleClickTime") ; in milliseconds
-    KeyWait, F5
-        if (A_TimeSinceThisHotkey > DoubleClickTime) {
-            MsgBox, 4,, 执行打包 continue? (press Yes or No)
-            IfMsgBox Yes
-            {
-                ToolTip, 执行打包...请稍后！
-                sleep 100
-                getAeScript("custom\ae_scripts\commands\CollectFiles.jsx")
-                SetTimer, RemoveToolTip, -1000
-                return
-            }
-        else
-            {
-                return
-            }
-                ; MsgBox You pressed No.           
-    }
-    KeyWait, F5, % "d T"DoubleClickTime/1000
-    If ! Errorlevel
-    {       
-        MsgBox, 4,Reduce Project, 简化项目文件 继续?
-        IfMsgBox Yes
-            {
-                ToolTip, 正在简化中...请稍后！
-                sleep 100
-                getAeScript("custom\ae_scripts\commands\ReduceProject.jsx")
-                SetTimer, RemoveToolTip, -1000
-                return
-            }
-        else
-            {
-                return 
-            }
+; F5::
+; {
+;     ; 1.ReloadFootage | 2.ReduceProject  |  long：CollectFiles
+;     DoubleClickTime := DllCall("GetDoubleClickTime") ; in milliseconds
+;     KeyWait, F5
+;         if (A_TimeSinceThisHotkey > DoubleClickTime) {
+;             MsgBox, 4,, 执行打包 continue? (press Yes or No)
+;             IfMsgBox Yes
+;             {
+;                 ToolTip, 执行打包...请稍后！
+;                 sleep 100
+;                 getAeScript("custom\ae_scripts\commands\CollectFiles.jsx")
+;                 SetTimer, RemoveToolTip, -1000
+;                 return
+;             }
+;         else
+;             {
+;                 return
+;             }
+;                 ; MsgBox You pressed No.           
+;     }
+;     KeyWait, F5, % "d T"DoubleClickTime/1000
+;     If ! Errorlevel
+;     {       
+;         MsgBox, 4,Reduce Project, 简化项目文件 继续?
+;         IfMsgBox Yes
+;             {
+;                 ToolTip, 正在简化中...请稍后！
+;                 sleep 100
+;                 getAeScript("custom\ae_scripts\commands\ReduceProject.jsx")
+;                 SetTimer, RemoveToolTip, -1000
+;                 return
+;             }
+;         else
+;             {
+;                 return 
+;             }
             
-    }
-    else
-    {
-        getAeScript("custom\ae_scripts\commands\ReloadFootage.jsx")
-        ToolTip, 正在刷新素材请稍后！
-        SetTimer, RemoveToolTip, -2000
-        return
-    } 
-}
-Return
+;     }
+;     else
+;     {
+;         getAeScript("custom\ae_scripts\commands\ReloadFootage.jsx")
+;         ToolTip, 正在刷新素材请稍后！
+;         SetTimer, RemoveToolTip, -2000
+;         return
+;     } 
+; }
+; Return
 
 n::
 {
