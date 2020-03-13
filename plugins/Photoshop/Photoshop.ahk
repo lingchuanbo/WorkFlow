@@ -86,6 +86,7 @@ Photoshop:
 
 
     vim.BeforeActionDo("Photoshop_CheckMode", "Photoshop") ; by Array
+    vim.BeforeActionDo("Photoshop_CheckMode2", "Photoshop") ; by Array
 return
 ; 对符合条件的控件使用insert模式，而不是normal模式
 Photoshop_CheckMode()
@@ -109,6 +110,15 @@ Photoshop_CheckMode()
 }
 PSCheckInput()
 {
+    CurMode:=vim.GetCurMode("AfterEffects")
+    IF (CurMode="insert")
+        {
+            SetModUIInsertOnly()
+        }
+     IF (CurMode="insert")
+        {
+            SetModUINormalOnly()
+        }
 	ControlGetFocus, ctrl, A	;if (RegExMatch(ctrl, "Edit|Static88") or WinExist("ahk_class #32768"))
 	PixelGetColor, psinputt, 16, 493
 	;~ PixelGetColor, psinputj, 30, 38
