@@ -96,8 +96,7 @@ Loop,parse,group_browser,`n,`r
 	if (MyVar_Key && MyVar_Val ) 
     GroupAdd,group_browser,%MyVar_Val%
 }
-
-;智能跳转
+; ;窗口跳转
 IniRead,GroupDiagJump,config.ini,GroupDiagJump_Config
 Loop,parse,GroupDiagJump,`n,`r
 {
@@ -108,9 +107,7 @@ Loop,parse,GroupDiagJump,`n,`r
 	if (MyVar_Key && MyVar_Val ) 
     GroupAdd,GroupDiagJump,%MyVar_Val%
 }
-Gui +LastFound +hwndhwndshellwindow
-DllCall( "RegisterShellHookWindow", "UInt",hwndshellwindow )
-OnMessage( DllCall( "RegisterWindowMessage", "Str", "SHELLHOOK" ), "SwitchMessage" )
+
 
 #Include %A_ScriptDir%\lib\DynamicFileMenu.ahk
 #Include %A_ScriptDir%\lib\checkUser.ahk
@@ -142,7 +139,14 @@ OnMessage( DllCall( "RegisterWindowMessage", "Str", "SHELLHOOK" ), "SwitchMessag
 #Include %A_ScriptDir%\custom\custom.ahk
 
 ; ----------------------------------
-
+CurMode:=vim.GetCurMode()
+    ; Msgbox %CurMode%
+IF (CurMode="insert")
+    {
+        SetModUIInsertOnly()
+    }else{
+        SetModUINormalOnly()
+    }
 ; 动态加载|User|函数
 ; QZ_UpdatePlugin()
 ; SearchFileForKey(SelectedKeys,SelectedAction, SelectedDesc, true)
