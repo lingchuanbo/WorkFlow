@@ -18,6 +18,7 @@ CapsLock & d::SendInput,{Blind}{Right}
 CapsLock & q::SendInput,{Blind}{PgUp}
 CapsLock & f::SendInput,{Blind}{PgDn}
 
+
 ; ################# Tab相关 #################
 #If GV_ToggleTabKeys=1
     Tab & s::SendInput,{Blind}{Down}
@@ -414,7 +415,15 @@ return
 {
 	!w::run,"%TCPath%" /T /O /S /L="D:\Download"
 }
-
+; #IfWinActive ahk_class #32770
+#If WinActive("ahk_group GroupDiagJump") and WinActive("ahk_class #32770")
+{
+	!e:: GoSub,Sub_SendCurDiagPath2Exp		;发送对话框路径到_系统资管中
+	!w:: GoSub,Sub_SendCurDiagPath2Tc ;发送对话框路径到_TC
+	; !g:: GoSub,Sub_SendTcCurPath2Diag
+	!LButton:: GoSub,Sub_SendTcCurPath2Diag ;发送TC路径到对话框路径
+	; ^LButton:: GoSub,Sub_SendCurDiagPath2Tc
+}
 ; 常用浏览器设置
 #If WinActive("ahk_group group_browser")
 {
@@ -599,8 +608,6 @@ return
 ; 	;;配合fx console 前提得自定义快捷键为Alt+q
 ;     !q::CoordWinClick(56,22)
 ; }
-
-
 menuTc:
 	Menu, menuTc, add,新建,:createDir
 		Menu, createDir, add,新建文件夹,<Tools_MkDir>
@@ -1090,19 +1097,7 @@ return
 
 
 ; #智能跳转
-#IfWinActive, ahk_class #32770
-^g::		;发送最后 TC or 资管 路径到32770
-	ControlClick, Edit1, A
-	Sleep, 100
-	ControlSetText, Edit1, %this_title%, A
-	Sleep, 100
-	ControlSend, Edit1, {Enter}, A
-return
 
-^e:: GoSub,Sub_SendCurDiagPath2Exp		;发送对话框路径到_系统资管中
-^t:: GoSub,Sub_SendCurDiagPath2Tc		;发送对话框路径到_TC
-;~ Space & t:: GoSub,Sub_SendCurDiagPath2Tc
-#If
 
 ;将Explorer中路径发送到对话框
 Sub_SendExpCurPath2Diag:
