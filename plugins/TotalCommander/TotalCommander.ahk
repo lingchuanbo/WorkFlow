@@ -340,8 +340,10 @@ return
 <TC_ToggleTC>:
     ExePath := ini.TotalCommander_Config.TCPath
     tClass := ini.ahk_class_Config.TCClass
-    NewTitle =
-    FunBoBO_RunActivationTitle(ExePath,tClass,NewTitle) 
+    ; NewTitle =
+    ; FunBoBO_RunActivationTitle(ExePath,tClass,NewTitle)
+    ; FunBoBO_HideOrActivation2(ExePath,tClass)
+    FunBoBO_RunActivation(ExePath,tClass)
 return
 
 ;帮助
