@@ -1,6 +1,6 @@
 ﻿;Author:BoBO
 ;Version:2.1
-;
+
 ;更新内容
 ;2019-09-02 细节优化！
 ;2019-08-28 正式提升2.0版本 优化细节 操作更舒服！
@@ -624,7 +624,8 @@ Return
     return
 
     ae_tappedkey_e:
-    Send, e
+    ; Send, e
+    GoSub,<Ae_RevealLayerSourceInProject>
     return
 
     ae_double_e:
@@ -635,6 +636,20 @@ Return
         }
 }
 Return
+
+<Ae_RevealInFinder>:
+{
+    If ProcessExist("TOTALCMD.exe"){
+        getAeScript("custom\ae_scripts\commands\RevealInFinderTC.jsx")
+    }else{
+        getAeScript("custom\ae_scripts\commands\RevealInFinder.jsx")
+    }
+}
+<Ae_RevealLayerSourceInProject>:
+{
+    getAeScript("custom\ae_scripts\commands\RevealLayerSourceInProject.jsx")
+    return
+}
 
 ; 快速定位Ae文件
 <Ae_Double_FindAeFiles>:

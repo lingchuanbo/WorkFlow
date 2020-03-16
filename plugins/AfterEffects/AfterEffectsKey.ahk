@@ -73,6 +73,8 @@
 
 ;长按鼠标左键类型
     vim.Map("<LB-a>", "<Ae_foolParent>", "AfterEffects")
+    vim.Map("<LB-e>", "<Ae_RevealInFinder>", "AfterEffects")
+    vim.Map("<LB-t>", "<Ae_RevealLayerSourceInProject>", "AfterEffects")
     vim.Map("<LB-d>", "<Ae_differenceToggle>", "AfterEffects")
     vim.Map("<LB-g>", "<Ae_layerGuideLayer>", "AfterEffects")
     vim.Map("<LB-j>", "<Ae_jumpToKey>", "AfterEffects")
