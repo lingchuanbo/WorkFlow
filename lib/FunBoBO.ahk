@@ -1010,100 +1010,100 @@ GetCursorShape(){   			;获取光标特征码 by nnrxin
     return, % MaskCode//2 . ColorCode  ;输出特征码
 }
 ; ----------------------智能跳转--------------------------------
-SwitchMessage( wParam,lParam ) 	;{
-{
-	If ( wParam != 1 )		;新开窗口,这是HOOK,监控创建窗口的消息,=6也可以，原来是!=1
-		;wParam值的定义:
-		;~ #define HSHELL_ENDTASK 10
-		;~ #define HSHELL_GETMINRECT 5
-		;~ #define HSHELL_LANGUAGE 8
-		;~ #define HSHELL_REDRAW 6
-		;~ #define HSHELL_TASKMAN 7
-		;~ #define HSHELL_WINDOWACTIVATED 4
-		;~ #define HSHELL_WINDOWCREATED 1
-		;~ #define HSHELL_WINDOWDESTROYED 2
-		;~ wParam: 此参数的值依赖于参数nCode,其依赖关系如下所示:
-		;~ HSHELL_ACCESSIBILITYSTATE: 指示哪一个可以访问特征已被改变了状态,可以是以下值之一:
-		;~ ACCESS_FILTERKYS,ACCESS_MOUSEKEYS,ACCESS_STICKKEYS.
-		;~ HSHELL_GETMINRECT:被最小化或者最大化的窗口句柄.HSHELL_LANGUAGE: 窗口的句柄.
-		;~ HSHELL_REDRAW:被重画的窗口的句柄.HSHELL_WINDOWACTIVATED:被激活的窗口的句柄.
-		;~ HSHELL_WINDOWCREATED:被创建的窗口的句柄.HSHELL_WINDOWDESTROYED:被销毁的窗口的句柄.
+; SwitchMessage( wParam,lParam ) 	;{
+; {
+; 	If ( wParam != 1 )		;新开窗口,这是HOOK,监控创建窗口的消息,=6也可以，原来是!=1
+; 		;wParam值的定义:
+; 		;~ #define HSHELL_ENDTASK 10
+; 		;~ #define HSHELL_GETMINRECT 5
+; 		;~ #define HSHELL_LANGUAGE 8
+; 		;~ #define HSHELL_REDRAW 6
+; 		;~ #define HSHELL_TASKMAN 7
+; 		;~ #define HSHELL_WINDOWACTIVATED 4
+; 		;~ #define HSHELL_WINDOWCREATED 1
+; 		;~ #define HSHELL_WINDOWDESTROYED 2
+; 		;~ wParam: 此参数的值依赖于参数nCode,其依赖关系如下所示:
+; 		;~ HSHELL_ACCESSIBILITYSTATE: 指示哪一个可以访问特征已被改变了状态,可以是以下值之一:
+; 		;~ ACCESS_FILTERKYS,ACCESS_MOUSEKEYS,ACCESS_STICKKEYS.
+; 		;~ HSHELL_GETMINRECT:被最小化或者最大化的窗口句柄.HSHELL_LANGUAGE: 窗口的句柄.
+; 		;~ HSHELL_REDRAW:被重画的窗口的句柄.HSHELL_WINDOWACTIVATED:被激活的窗口的句柄.
+; 		;~ HSHELL_WINDOWCREATED:被创建的窗口的句柄.HSHELL_WINDOWDESTROYED:被销毁的窗口的句柄.
 
-	{
-	If WinActive("ahk_class TTOTAL_CMD")
-		{
-		WinWaitNotActive ahk_class TTOTAL_CMD
-		SendMessage 1074, 21, 0, , ahk_class TTOTAL_CMD
-		ControlGetText, varPathInTC, , ahk_id %ErrorLevel%
-		StringReplace, this_title, varPathInTC, >, \
-		IfWinExist ahk_group GroupDiagJump
-			{
-			WinWaitActive ahk_group GroupDiagJump, , 2
-			if !ErrorLevel
-			;IfWinActive ahk_group GroupDiagJump
-				{
-				ControlClick, Edit1, A
-				Sleep, 100
-				ControlSetText, Edit1, %this_title%, A
-				Sleep, 50
-				ControlSend, Edit1, {Enter}, A
-				}
-			else
-				return
-			}
-		else
-			return
-		return
-		}
-	If WinActive("ahk_class CabinetWClass")
-		{
-		this_title :=  ExplorerInfo()
-		if this_title=桌面
-			this_title=%A_Desktop%
-		;if this_title=库\文档
-			;this_title=%A_MyDocuments%
-		; msgbox % ExplorerInfo()
-		IfWinExist ahk_group GroupDiagJump
-			{
-			WinWaitActive ahk_group GroupDiagJump, , 2
-			if !ErrorLevel
-			;IfWinActive ahk_group GroupDiagJump
-				{
-				ControlClick, Edit1, A
-				Sleep, 100
-				ControlSetText, Edit1, %this_title%, A
-				Sleep, 50
-				ControlSend, Edit1, {Enter}, A
-				}
-			else
-				return
-			}
-		else
-			return
-		return
-		}
-	If WinActive("ahk_class SciTEWindow")
-		{
-		if zParam = 1
-			{
-			OCR_IBEAM			=32513
-			hbeam := DllCall("LoadCursorFromFile","Str","D:\zxh\QuickZ\User\Icons\zzx.cur")
-			DllCall( "SetSystemCursor", Uint,hbeam, Int,OCR_IBEAM )
-			}
-		if zParam = 0
-			{
-			SPI_SETCURSORS := 0x57
-			DllCall("SystemParametersInfo", "UInt", SPI_SETCURSORS, "UInt", 0, "UInt", 0, "UInt", 0)
-			}
-		WinWaitNotActive ahk_class SciTEWindow
-			{
-			SPI_SETCURSORS := 0x57
-			DllCall("SystemParametersInfo", "UInt", SPI_SETCURSORS, "UInt", 0, "UInt", 0, "UInt", 0)
-			}
-		return
-		}
-	}
-}
+; 	{
+; 	If WinActive("ahk_class TTOTAL_CMD")
+; 		{
+; 		WinWaitNotActive ahk_class TTOTAL_CMD
+; 		SendMessage 1074, 21, 0, , ahk_class TTOTAL_CMD
+; 		ControlGetText, varPathInTC, , ahk_id %ErrorLevel%
+; 		StringReplace, this_title, varPathInTC, >, \
+; 		IfWinExist ahk_group GroupDiagJump
+; 			{
+; 			WinWaitActive ahk_group GroupDiagJump, , 2
+; 			if !ErrorLevel
+; 			;IfWinActive ahk_group GroupDiagJump
+; 				{
+; 				ControlClick, Edit1, A
+; 				Sleep, 100
+; 				ControlSetText, Edit1, %this_title%, A
+; 				Sleep, 50
+; 				ControlSend, Edit1, {Enter}, A
+; 				}
+; 			else
+; 				return
+; 			}
+; 		else
+; 			return
+; 		return
+; 		}
+; 	If WinActive("ahk_class CabinetWClass")
+; 		{
+; 		this_title :=  ExplorerInfo()
+; 		if this_title=桌面
+; 			this_title=%A_Desktop%
+; 		;if this_title=库\文档
+; 			;this_title=%A_MyDocuments%
+; 		; msgbox % ExplorerInfo()
+; 		IfWinExist ahk_group GroupDiagJump
+; 			{
+; 			WinWaitActive ahk_group GroupDiagJump, , 2
+; 			if !ErrorLevel
+; 			;IfWinActive ahk_group GroupDiagJump
+; 				{
+; 				ControlClick, Edit1, A
+; 				Sleep, 100
+; 				ControlSetText, Edit1, %this_title%, A
+; 				Sleep, 50
+; 				ControlSend, Edit1, {Enter}, A
+; 				}
+; 			else
+; 				return
+; 			}
+; 		else
+; 			return
+; 		return
+; 		}
+; 	If WinActive("ahk_class SciTEWindow")
+; 		{
+; 		if zParam = 1
+; 			{
+; 			OCR_IBEAM			=32513
+; 			hbeam := DllCall("LoadCursorFromFile","Str","D:\zxh\QuickZ\User\Icons\zzx.cur")
+; 			DllCall( "SetSystemCursor", Uint,hbeam, Int,OCR_IBEAM )
+; 			}
+; 		if zParam = 0
+; 			{
+; 			SPI_SETCURSORS := 0x57
+; 			DllCall("SystemParametersInfo", "UInt", SPI_SETCURSORS, "UInt", 0, "UInt", 0, "UInt", 0)
+; 			}
+; 		WinWaitNotActive ahk_class SciTEWindow
+; 			{
+; 			SPI_SETCURSORS := 0x57
+; 			DllCall("SystemParametersInfo", "UInt", SPI_SETCURSORS, "UInt", 0, "UInt", 0, "UInt", 0)
+; 			}
+; 		return
+; 		}
+; 	}
+; }
 ExplorerInfo(mode="",hwnd="") { ;Method="当前目录"的时候只返回当前目录;
 	;mode默认空值时,不论是否选中文件/文件夹皆返回当前路径(目录名);
 	;mode=0时,若选择了文件/文件夹则返回选中的目录名,不无选中时返回空;
@@ -1166,7 +1166,7 @@ ExplorerInfo(mode="",hwnd="") { ;Method="当前目录"的时候只返回当前�
 			if (mode=1) or (mode=2)
 				if (filenum1<>0)
 				{
-					aa:=选定的文件()
+					aa:=getFiles()
 					return aa ;选定的文件()
 				}
 				else
@@ -1181,7 +1181,7 @@ ExplorerInfo(mode="",hwnd="") { ;Method="当前目录"的时候只返回当前�
 		return RegExReplace(Toreturn2 . "\","\\\\","\")
 	}
 }
-选定的文件(){
+getFiles(){
 	Clip:=ClipboardAll
 	Clipboard=
 	Send ^c
