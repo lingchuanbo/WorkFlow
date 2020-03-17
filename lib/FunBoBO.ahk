@@ -856,10 +856,10 @@ KeyClickAction(act){
     PostMessage 1075, %CommandID%, 0, , ahk_class TTOTAL_CMD
 }
 
-BaiduOCR() {
+BaiduOCR(){
 	; http://ai.baidu.com/docs#/Begin/top
-	apiKey := "7U2OgTyTuH5NG2ZAxHZfbfQR"
-	secretKey := "yFklkou5XySgF1WkxBeKmePphkOESFhO"
+	; apiKey := "7U2OgTyTuH5NG2ZAxHZfbfQR"
+	; secretKey := "yFklkou5XySgF1WkxBeKmePphkOESFhO"
 	; 获取Access Token
 	; http://ai.baidu.com/docs#/Auth/top
 	whr := ComObjCreate("WinHttp.WinHttpRequest.5.1")

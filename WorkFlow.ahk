@@ -107,8 +107,14 @@ Loop,parse,GroupDiagJump,`n,`r
 	if (MyVar_Key && MyVar_Val ) 
     GroupAdd,GroupDiagJump,%MyVar_Val%
 }
+; ;百度取词接口
+IniRead,OCRapiKey,config.ini,OCR_Config,OCRapiKey
+IniRead,OCRsecretKey,config.ini,OCR_Config,OCRsecretKey
+global apiKey := OCRapiKey
+global secretKey := OCRsecretKey
 
-
+; msgbox %apiKey%
+; msgbox %secretKey%
 #Include %A_ScriptDir%\lib\DynamicFileMenu.ahk
 #Include %A_ScriptDir%\lib\checkUser.ahk
 #Include %A_ScriptDir%\lib\DownloadFile.ahk
@@ -139,14 +145,7 @@ Loop,parse,GroupDiagJump,`n,`r
 #Include %A_ScriptDir%\custom\custom.ahk
 
 ; ----------------------------------
-CurMode:=vim.GetCurMode()
-    ; Msgbox %CurMode%
-IF (CurMode="insert")
-    {
-        SetModUIInsertOnly()
-    }else{
-        SetModUINormalOnly()
-    }
+
 ; 动态加载|User|函数
 ; QZ_UpdatePlugin()
 ; SearchFileForKey(SelectedKeys,SelectedAction, SelectedDesc, true)
