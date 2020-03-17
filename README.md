@@ -4,8 +4,12 @@ ____________________________________________________
 ### **什么是[WorkFLow？](https://github.com/lingchuanbo/WorkFlow_B/releases)**
 
 WorkFLow是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxinhong/VimDesktop)为母版进行二次开发，主要面向图像图像软件进行编写.并集成一些功能性脚本！
+因自用则不定期更新，目前以功能优先！
 
-### 最更新版本为3.6.4
+### 最更新版本为3.6.5
+2020-03-17
+1. 窗口跳转优化，Alt+左键 TC路径发送到窗口 Alt+W 窗口路径发送到TC Alt+e  窗口路径发送到默认资源管理器
+2. 优化AE增强菜单功能
 
 2020-03-07  
 1. TC精简菜单Shift+右键
@@ -40,10 +44,10 @@ WorkFLow是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxinh
 
 **按键帮助** 请看目录下的【帮助.xlsx】
 
-**入门系列**是BoBO出品学习和掌握 **[Adobe AfterEffects](https://www.kancloud.cn/funbobosky/vimd_aftereffect) [| Photoshop | Unity | 3DsMax](https://www.kancloud.cn/funbobosky/vim_unity)** 不可多得的入门指引文档和**标准参照**，针对用户给出了较易理解的帮助文档-------说真我尽力了！
+**入门指南：**是我针对用户给出了较易理解的帮助文档 **[Adobe AfterEffects](https://www.kancloud.cn/funbobosky/vimd_aftereffect) [| Photoshop | Unity | 3DsMax](https://www.kancloud.cn/funbobosky/vim_unity)-------说真我尽力了！
+(最近优化较多，部分功能及优化调整还未写入更新，请谅解择期修正)
 
 **查阅： [Adobe AfterEffects](https://www.kancloud.cn/funbobosky/vimd_aftereffect) [| Photoshop | Unity | 3DsMax](https://www.kancloud.cn/funbobosky/vim_unity)**
-
 
 #### 4.可能会遇到的问题
 1. Win10用户请管理员运行目录下Windows10设置.reg
