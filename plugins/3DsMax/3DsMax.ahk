@@ -678,21 +678,11 @@ Return
 
 <3DsMax_Double_S>:
 {
-    ; t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-    ; settimer, 3DsMax_tappedkey_s, %t%
-    ; if (t == "off")
-    ; goto 3DsMax_double_s
-    ; return
-
-    ; 3DsMax_tappedkey_s:
-    ; Send {s}
-    ; return
-
-    ; 3DsMax_double_s:
-    ; Send, ^{s}
-    ; return
+    GV_KeyClickAction1 := "Gosub,<3DsMax_Tab>"
+	GV_KeyClickAction2 := "Send,x"
+	GoSub,Sub_KeyClick
 }
-Return
+
 
 <3DsMax_Double_F9>:
 {
