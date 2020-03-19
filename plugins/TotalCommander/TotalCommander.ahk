@@ -4687,7 +4687,7 @@ return
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_MoveUpDir`)"
 return
 <em_BoBO_PNGToICO>:
- Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "em_BoBO_PNGToICO`)"
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_PNGToICO`)"
 return
 ; 删除空文件
 <Tools_NullDir>:
