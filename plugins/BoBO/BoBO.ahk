@@ -25,8 +25,10 @@ CapsLock & f::SendInput,{Blind}{PgDn}
     Tab & w::SendInput,{Blind}{Up}
     Tab & a::SendInput,{Blind}{Left}
     Tab & d::SendInput,{Blind}{Right}
-    Tab & q::SendInput,{Blind}{PgUp}
-    Tab & f::SendInput,{Blind}{PgDn}
+
+; Tab & q::SendInput,{Blind}{PgUp}
+; Tab & f::SendInput,{Blind}{PgDn}
+	Tab & q::SendInput,{Blind}{Backspace}
 
     Tab & 1::SendInput,send,#1
     Tab & 2::SendInput,send,#2
@@ -544,7 +546,8 @@ return
 {
 	
 	!w::runMaxScript("maxToTotalcmd.ms")
-	!q::Gosub,<3DsMax_Tab>
+	; !q::Gosub,<3DsMax_Tab>
+	; Tab::Gosub,<3DsMax_Tab>
 	; +RButton::Gosub,menuAe
 	` & 1:: Gosub, <3DsMax_getUp>
     ` & 2:: Gosub, <3DsMax_getDown>
@@ -591,7 +594,7 @@ return
 	!w::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
 	^+!LButton::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
 	;;快速打开渲染文件所在位置
-	^+LButton::AeOpenLocalFilesRender()
+	; ^+LButton::AeOpenLocalFilesRender()
 	;;便捷菜单
 	+RButton::Gosub,menuAe
 	; !q::
@@ -638,21 +641,22 @@ return
 
 
 menuAe:
+	menu, thismenu, add, AE动态脚本菜单(%_Author%), WHATSUP
+	; menu, thismenu, add, (&O).A整理, :AeManage
 	dirMenu0=%A_ScriptDir%\custom\ae_scripts\Effect
 	dirMenu1=%A_ScriptDir%\custom\ae_scripts\otherScriptCommand\
 	dirMenu2=%A_ScriptDir%\custom\ae_scripts\PresetAnimation
 
-    menu, thismenu, add, AE动态脚本菜单, WHATSUP
-	menu_fromfiles("filelist0", "(&S)_特效库", "RunAePreset0", dirMenu0, "*.ffx", "thismenu", 1)
-	menu_fromfiles("filelist1", "(&S)_脚本库", "RunAeScript", dirMenu1, "*.jsx", "thismenu", 1)
-	menu_fromfiles("filelist2", "(&P)_预设", "RunAePreset1", dirMenu2, "*.ffx", "thismenu", 1)
+	menu_fromfiles("filelist0", "特效库", "RunAePreset0", dirMenu0, "*.ffx", "thismenu", 1)
+	menu_fromfiles("filelist1", "脚本库", "RunAeScript", dirMenu1, "*.jsx", "thismenu", 1)
+	menu_fromfiles("filelist2", "预设", "RunAePreset1", dirMenu2, "*.ffx", "thismenu", 1)
 
-	; menu, thismenu, add, 整理, :AeManage
-	menu, thismenu, add, (&Z).整理项目&清理缓存,<Ae_OrganizeProjectAssetsDiskCache>
-	menu, thismenu, add, (&J).精简项目,<Ae_ReduceProject>
+	menu, thismenu, add, .整理项目&清理缓存,<Ae_OrganizeProjectAssetsDiskCache>
+	menu, thismenu, add, .清除时间轴中未使用的素材图层,<Ae_ReduceNoFootage>
+	menu, thismenu, add, .精简项目,<Ae_ReduceProject>
+	menu, thismenu, add, .文件所在位置, OpenLocalFiles
+	menu, thismenu, add, .文件所在位置【渲染】, OpenLocalFilesRender
 
-	menu, thismenu, add, (&F).文件所在位置, OpenLocalFiles
-	menu, thismenu, add, (&R).文件所在位置【渲染】, OpenLocalFilesRender
     Menu, thismenu, Show
 return
 
@@ -711,6 +715,7 @@ if (activeItem instanceof CompItem) {
 	FileDelete, %setPreset% ;避免重复删除文件
     return
 RETURN
+
 RunAePreset1:
     curpath := menu_itempath("filelist2", dirMenu2)
 	setPath:=StrReplace(curpath,"\", "/")

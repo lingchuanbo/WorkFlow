@@ -34,12 +34,13 @@
 ;SetCapsLockState, AlwaysOff
 ;
 AfterEffects:
-    ; GetMode
+    ; GetModea
     vim.SetAction("<AfterEffects_NormalMode>", "返回正常模式")
     vim.SetAction("<AfterEffects_InsertMode>", "进入VIM模式")
-    vim.SetWin("AfterEffects","AE_CApplication_15.1")
-
+    vim.SetWin("AfterEffects","AE_CApplication_15.1") ; 因为我使用FX console
+    ; vim.SetWin("AfterEffects","ahk_exe","AfterFX.exe"); 未使用FX console 激活这个可兼容所有版本
     vim.BeforeActionDo("AE_CheckMode", "AfterEffects")
+
     #Include %A_ScriptDir%\plugins\AfterEffects\AfterEffectsComment.ahk 
     
 ;normal模式
@@ -1456,7 +1457,11 @@ return
     getAeScript("custom\ae_scripts\commands\SplitLayer.jsx")
 return
 
-
+<Ae_ReduceNoFootage>:
+{
+    getAeScript("custom\ae_scripts\commands\BoBO_Reduce.jsx")
+    return
+}
 
 <Ae_ReduceProject>:
 {
