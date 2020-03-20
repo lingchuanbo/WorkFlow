@@ -113,7 +113,7 @@ return
 }
 <testBlenderScript>:
 {
-    Run,"F:/BoBOProgram/Blender/blender.exe" -b -P "F:/BoBOAHK/WorkFlow/custom/blender/test.py"
+    Run,"F:/BoBOProgram/Blender/blender.exe" --python-console "F:/BoBOAHK/WorkFlow/custom/blender/test.py"
     return
 }
 ; filename = "F:/BoBOAHK/WorkFlow/custom/blender/test.py"
