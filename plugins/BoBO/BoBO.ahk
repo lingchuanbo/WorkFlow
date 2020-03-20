@@ -552,7 +552,7 @@ return
 	` & 1:: Gosub, <3DsMax_getUp>
     ` & 2:: Gosub, <3DsMax_getDown>
     ` & 3:: Gosub, <3DsMax_Key>
-
+	Esc::Gosub,<3DsMax_esc>
 	return
 }
 
