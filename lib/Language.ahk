@@ -31,7 +31,7 @@ If Language=CN
     global _Config="配置快捷键"
     global _Help="  帮助文档"
     global _Feedback="  反馈与建议"
-    global _Web="  官网"
+    global _Web="  项目地址"
     global _Update="  更新"
     global _Language = "语言(&L)"
 

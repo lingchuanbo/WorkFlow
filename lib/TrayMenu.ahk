@@ -78,13 +78,13 @@ Startup:
 
 if Startup
 {
-    RegDelete, HKLM\Software\Microsoft\Windows\CurrentVersion\Run, Vimdesktop
+    RegDelete, HKLM\Software\Microsoft\Windows\CurrentVersion\Run, WorkFlow
     StartUp=0
     menu,tray,uncheck,%_StartUp%
 }
 else
 {
-    RegWrite, REG_SZ, HKLM\Software\Microsoft\Windows\CurrentVersion\Run, Vimdesktop, %A_ScriptFullPath%
+    RegWrite, REG_SZ, HKLM\Software\Microsoft\Windows\CurrentVersion\Run, WorkFlow, %A_ScriptFullPath%
     StartUp=1
     menu,tray,check,%_StartUp%
 }
@@ -124,7 +124,7 @@ ExitApp
 return
 
 <VIMD_WorkFlowWeb>:
-Run, https://github.com/BoBOVFX/Vimdesktop_BoBO
+Run, https://github.com/BoBOVFX/WorkFlow_BoBO
 return
 
 <VIMD_Help>:
@@ -135,7 +135,7 @@ return
 ; 先执行访问，后面在执行下面
 FileCopy, %A_ScriptDir%\config.ini, %A_ScriptDir%\config_back_%d%.ini ,1
 ; FileCopy, %A_ScriptDir%\config.ini, %A_ScriptDir%\vimd_备份_还原.ini ,1
-Run, https://github.com/BoBOVFX/Vimdesktop_BoBO
+Run, https://github.com/lingchuanbo/WorkFlow_B
 ; 执行备份文件
 ; d = (%A_YYYY%_%A_MM%_%A_DD%_%A_Hour%%A_Min%%A_Sec%)
 ; ; 执行备份文件
@@ -147,7 +147,7 @@ Run, https://github.com/BoBOVFX/Vimdesktop_BoBO
 ; run, %A_ScriptDir%\updata.exe
 ; Sleep, 2000
 ; ; 查看更新日志
-; Run, https://github.com/BoBOVFX/Vimdesktop
+; Run, https://github.com/lingchuanbo/WorkFlow_B
 ; Sleep, 2000
 ; Exitapp
 ; Gosub,Check_Update
@@ -196,8 +196,8 @@ Check_Update:
 return
 
 Auto_Update:
-	if(FileExist(A_Temp "\Vimdesktop_Update.bat"))
-		FileDelete, %A_Temp%\Vimdesktop_Update.bat
+	if(FileExist(A_Temp "\WorkFlow_Update.bat"))
+		FileDelete, %A_Temp%\WorkFlow_Update.bat
 	;[下载最新的更新脚本]
 	if(!Check_Github()){
 		lpszUrl:=githubUrl
@@ -245,7 +245,6 @@ Auto_Update:
 return
 
 vimd_Update:
-; Run,https://github.com/hui-Zz/RunAny/wiki/RunAny版本更新历史
 TrayTip,,%_AppName%已经更新到最新版本。,5,1
 FileAppend,
 (
