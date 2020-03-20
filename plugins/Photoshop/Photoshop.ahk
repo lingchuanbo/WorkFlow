@@ -78,15 +78,10 @@ Photoshop:
     vim.map("?","<ShowHelp>","Photoshop")
 
     vim.Map("/u", "<PS_AutoUpdate>", "Photoshop")
-    
-
     ; vim.Map("<F1>", "<PS-Test>", "Photoshop")
     vim.Map("<LB-d>", "<PS_向下合并>", "Photoshop")
     vim.Map("<LB-e>", "<PS_多边形选区>", "Photoshop")
-
-
     vim.BeforeActionDo("Photoshop_CheckMode", "Photoshop") ; by Array
-    vim.BeforeActionDo("Photoshop_CheckMode2", "Photoshop") ; by Array
 return
 ; 对符合条件的控件使用insert模式，而不是normal模式
 Photoshop_CheckMode()
@@ -96,9 +91,9 @@ Photoshop_CheckMode()
     ;匹配颜色2019
     if ((psinputt = 0x1f1f1f) or (psinputt = 0x383838) or (psinputt = 0x808080) or (psinputt = 0xbfbfbf)) 	;
 		{
-		    return true
+		    return True
 		}
-    if RegExMatch(ctrl, "i)Edit")  ; or WinExist("ahk_class #32770"))
+    if RegExMatch(ctrl, "i)Edit") or WinExist("ahk_class #32770")
     {
         return True
     }
@@ -106,6 +101,7 @@ Photoshop_CheckMode()
     {
         return False
     }
+
     return
 }
 PSCheckInput()
