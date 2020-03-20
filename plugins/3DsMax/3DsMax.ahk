@@ -703,11 +703,11 @@ Return
 Return
 
 ;发送ESC
-; <3DsMax_esc>:
-; {
-;     Send, {Esc}
-; ;    MsgBox
-; }
+<3DsMax_esc>:
+{
+    Send, {Esc}
+    return
+}
 
 
 ;播放暂停

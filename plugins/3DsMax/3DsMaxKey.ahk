@@ -7,8 +7,6 @@
     vim.Map("i", "<3DsMax_Double_I>", "3DsMax")
     vim.Map("h", "<3DsMax_Double_H>", "3DsMax")
     vim.Map("a", "<3DsMax_Double_A>", "3DsMax")
-
-
     vim.Map("z", "<3DsMax_Double_Z>", "3DsMax")
     vim.Map("y", "<3DsMax_Double_Y>", "3DsMax")
     vim.Map("o", "<3DsMax_Double_O>", "3DsMax")
@@ -16,11 +14,8 @@
     vim.Map("s", "<3DsMax_Double_S>", "3DsMax")
     vim.Map("p", "<3DsMax_Double_P>", "3DsMax")
     vim.Map("f", "<3DsMax_Double_F>", "3DsMax")
-
     ; vim.Map("<Space>", "<3DsMax_ViewRotion>", "3DsMax")
     vim.Map("vb", "<3DsMax_Viewport_FrontBack>", "3DsMax")
-
-
 
     vim.map("?","<ShowHelp>","3DsMax")
 
@@ -89,6 +84,7 @@
     
 
     vim.Map("<Tab>", "<3DsMax_Tab>", "3DsMax")
+    vim.Map("<Esc>", "<3DsMax_esc>", "3DsMax")
     vim.Map("<CapsLock>", "<3DsMax_CapsLock_Tab>", "3DsMax")
 
  
