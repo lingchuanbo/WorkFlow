@@ -14,7 +14,7 @@
     vim.Map("<insert>", "<GoogleChrome_SwithMode>", "GoogleChrome")
     vim.Map("<f5>", "<Google_刷新>", "GoogleChrome")
     vim.Map("<f8>", "<GoogleChrome_无痕>", "GoogleChrome")
-    vim.Map("<Delete>", "<GoogleChrome_清除浏览数据>", "GoogleChrome")
+    ; vim.Map("<Delete>", "<GoogleChrome_清除浏览数据>", "GoogleChrome")
     vim.Map("<f9>", "<GoogleChrome_OpenGoogle>", "GoogleChrome")
     vim.Map("<f9>1", "<GoogleChrome_OpenYoutube>", "GoogleChrome")
     vim.Map("<f9>2", "<GoogleChrome_OpenTranslate>", "GoogleChrome")
@@ -37,12 +37,20 @@ return
 }
 return
 
+<GoogleChrome_删除>:
+{
+	GV_KeyClickAction1 := "SendInput,{Delete}"
+	GV_KeyClickAction2 := "Gosub,<GoogleChrome_清除浏览数据>"
+	GoSub,Sub_KeyClick
+}
+return
+
 <GoogleChrome_清除浏览数据>:
 {
-        MsgBox, 4,BoBO问你, 要不要 清除浏览数据 继续?
+        MsgBox, 4,警告, 是否清除缓存数据 继续?
         IfMsgBox Yes
             {
-                ToolTip, 正在 清除浏览数据...！
+                ToolTip, 正在清除数据...！
                 sleep 100
                     send,^{t}
                     send ^+{Del}
