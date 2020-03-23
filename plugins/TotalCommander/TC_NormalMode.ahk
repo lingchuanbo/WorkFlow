@@ -2,7 +2,7 @@
     vim.map("<Space>", "<Tc_DoubleSpace>", "TTOTAL_CMD")  ;选中取消
     vim.map("<Alt>", "<TC_AltSwitch>", "TTOTAL_CMD")  ;收藏夹/双按访问历史记录
     ; vim.map("<Alt>", "<cm_DirectoryHotlist>", "TTOTAL_CMD")  ;收藏夹
-    vim.map("<BS>", "<TC_Double_Backspace>", "TTOTAL_CMD")  ;上一层
+    ; vim.map("<BS>", "<TC_Double_Backspace>", "TTOTAL_CMD")  ;上一层
     ;vim.map("<CapsLock>", "<cm_DirectoryHotlist>", "TTOTAL_CMD")  ;
     ;vim.map("<LCtrl>", "<TC_GoToParentEx>", "TTOTAL_CMD")  ;上一层
 ;根据原来这些数字键下方键对应的功能与系统原生快捷键设置的
