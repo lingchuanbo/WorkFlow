@@ -763,21 +763,25 @@ return
 ; Double_Q 渲染输出
 ; #if WinActive("ahk_class Qt5QWindowIcon")
 <Ae_Double_1>:
-    t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-    settimer, ae_tappedkey_1, %t%
-    if (t == "off")
-    goto ae_double_1
-    return
-    ae_tappedkey_1:
-        ; getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
+		; GV_KeyClickAction1 := "GoSub,<Ae_Double_F1>"
+		; GV_KeyClickAction2 := getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
+		; GoSub,Sub_KeyClick
+    ; t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
+    ; settimer, ae_tappedkey_1, %t%
+    ; if (t == "off")
+    ; goto ae_double_1
+    ; return
+    ; ae_tappedkey_1:
+    ;     ; getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
         GoSub,<Ae_Double_F1>
-    return
+    ; return
 
-    ae_double_1:
-        getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
-        ; sleep 500
-        ; getAeScript("custom\ae_scripts\commands\deleteDiskCache.jsx")
-    return
+    ; ae_double_1:
+    ;     getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
+    ;     ; sleep 500
+    ;     ; getAeScript("custom\ae_scripts\commands\deleteDiskCache.jsx")
+    ; return
+
 return
 <Ae_OrganizeProjectAssetsDiskCache>:
         getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
