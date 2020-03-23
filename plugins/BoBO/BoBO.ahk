@@ -434,6 +434,7 @@ return
     F3::send,{Blind}^{Tab}
     F4::SendInput,^w
     ~LButton & RButton::send ^w
+	Delete::GoSub,<GoogleChrome_删除>
 }
 ; 资源浏览器
 #If WinActive("ahk_class CabinetWClass") or WinActive("ahk_class ExploreWClass")
