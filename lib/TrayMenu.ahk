@@ -7,13 +7,16 @@ Menu, Tray, tip, %_AppName%`n版本:%Version%
 menu, Tray, add, %_AppName% %Version% ,About
 Menu, Tray, disable, %_AppName% %Version% 
 menu, Tray, add
-menu, Tray, add, %_StartUp%(&S),StartUp
+; menu, Tray, add, %_StartUp%(&S),StartUp
+
+
 ;if StartUp
 
 ;menu, Tray, check, %_StartUp%
 ;menu, Tray, add, %_UpdatPlugins% &U, <UpdatPlugins>
 ;menu, tray, disable, %_Author%
-; Menu, Tray, add, %_HotKeyManagement%(&H), <VimDConfig_KeymapEdit>
+Menu, Tray, add, %_HotKeyManagement%(&H), <VimDConfig_KeymapEdit>
+; Menu, Tray, add, 功能管理, <VimDConfig_function>
 ; Menu, Tray, Add, %_Config%(&C), <VimDConfig_EditConfig>
 ; Menu, Tray, Add, %_Path%(&P), <EditConfig>
 ;Menu, Tray, Add,
@@ -28,10 +31,12 @@ Menu, tray, add, %_Language%(&L), :LangSet
 Menu, aboutMe, add, %_Help%(&H), <VIMD_Help>
 ; Menu, aboutMe, add, %_Update%(&U), <VIMD_Update>
 Menu, aboutMe, add, %_Web%(&W), <VIMD_WorkFlowWeb>
+
 ; Menu, aboutMe, add, (&U) %_Update%, Check_Update
 
 Menu, aboutMe, add, %_BackupRestore%(&B), <VIMD_BackupRestore>
-Menu, aboutMe, add, %_AppName%添加为系统变量(&B), <VIMD_EnvSystem>
+; Menu, aboutMe, add, 系统状态监测(&B), 系统状态监测
+; Menu, aboutMe, add, %_AppName%添加为系统变量(&B), <VIMD_EnvSystem>
 Menu, tray, add, %_aboutMe%(&L), :aboutMe
 Menu, Tray, Add, %_Restart%(&R), <Reload>
 Menu, Tray, Add, %_Exit%(&X), Exit
@@ -70,6 +75,19 @@ Return
 English:
 IniWrite, EN, config.ini, config, Language
 Reload
+Return
+
+
+系统状态监测:
+if 系统状态监测
+{
+    系统状态监测=0
+
+}
+else
+{
+    系统状态监测=1
+}
 Return
 
 ;开机启动

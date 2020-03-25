@@ -141,15 +141,17 @@ global secretKey := OCRsecretKey
 #Include %A_ScriptDir%\lib\UriEncode.ahk
 #Include %A_ScriptDir%\lib\Jxon.ahk
 #Include %A_ScriptDir%\lib\WinHttpRequest.ahk
+#Include %A_ScriptDir%\lib\NvAPI.ahk
 ;用户自定义配置yy
-#Include %A_ScriptDir%\custom\custom.ahk
+; #Include %A_ScriptDir%\custom\custom.ahk
 
 ; ----------------------------------
 
 ; 动态加载|User|函数
-; QZ_UpdatePlugin()
-; SearchFileForKey(SelectedKeys,SelectedAction, SelectedDesc, true)
-; Sleep, 1000
+QZ_UpdatePlugin()监测
+SearchFileForKey(SelectedKeys,SelectedAction, SelectedDesc, true)
+Sleep, 1000
 ; #Include *i %A_ScriptDir%\User\plugins.ahk
+#Include *i %A_ScriptDir%\function\function.ahk
 return
 

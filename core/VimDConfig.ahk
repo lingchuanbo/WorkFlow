@@ -5,7 +5,6 @@
     vim.SetAction("<VimDConfig_EditConfig>", "打开 VimDesktop 配置文件")
 return
 ;}
-
 <VimDConfig_KeymapEdit>: ;{
     ;初始化所有数据
     global vim
