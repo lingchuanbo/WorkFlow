@@ -53,6 +53,7 @@ AfterEffects:
     #Include %A_ScriptDir%\plugins\AfterEffects\AfterEffectsKey.ahk
     ;载入增强按键
     #Include %A_ScriptDir%\plugins\AfterEffects\AfterEffectsPlus.ahk
+    #Include %A_ScriptDir%\plugins\AfterEffects\AfterEfftetcsMenu.ahk
 
 return
 
@@ -138,6 +139,12 @@ Return
             return
         }
 return
+
+<AfterEffects_Alt>:
+		GV_KeyClickAction1 := "SendInput,{Alt}"
+		GV_KeyClickAction2 := "GoSub,menuAeAlt"
+		GoSub,Sub_KeyClick
+return		
 
 <displyTips>:
     ; 测试显示
