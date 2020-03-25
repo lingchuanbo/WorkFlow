@@ -433,6 +433,8 @@ return
     F2::send,{Blind}^+{Tab}
     F3::send,{Blind}^{Tab}
     F4::SendInput,^w
+	; ~wheelup::send,{Blind}^+{Tab}
+	; ~wheeldown::send,{Blind}^{Tab}
     ~LButton & RButton::send ^w
 	Delete::GoSub,<GoogleChrome_删除>
 }
@@ -599,9 +601,9 @@ return
 	;;便捷菜单
 	+RButton::Gosub,menuAe
 	; !q::
-	IfWinActive ahk_class VCSDK_WINDOW_CLASS
-		sleep 100
-		CoordWinClick(56,22)
+	; IfWinActive ahk_class VCSDK_WINDOW_CLASS
+	; 	sleep 100
+	; 	CoordWinClick(56,22)
 	return
 }
 ; 百度API

@@ -68,6 +68,7 @@
     }
     function rd_CompSetter_compSetRecursively(comp, fps, recurse) {
         if (fps !== -1) {
+            layer=app.project.layer
             if (recurse && layer instanceof AVLayer && layer.source !== null && layer.source instanceof CompItem) {
                 rd_CompSetter_compSetRecursively(layer.source, fps)
             }
