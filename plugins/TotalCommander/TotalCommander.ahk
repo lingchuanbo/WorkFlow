@@ -4677,6 +4677,9 @@ return
 <GameDevSetFxEditorSG>:
  Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_FxEditorSG`)"
 return
+<em_BoBO_AeRender>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_AeRender`)"
+ return
 <em_BoBO_DDSToPNG>:
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_DDSToPNG`)"
 return

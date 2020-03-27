@@ -53,6 +53,7 @@ CapsLock & f::SendInput,{Blind}{PgDn}
 	+Tab:: SendInput,+{Tab}
 	^Tab:: SendInput,^{Tab}
 	^+Tab:: SendInput,^+{Tab}
+	Escape::send,{Escape}
 #If 
 
 Sub_KeyClick:
@@ -613,6 +614,9 @@ menuTc:
 		Menu, Toolset, add, 整理: 当前文件向上移,<Tools_MoveUpDir>
 		Menu, Toolset, add, 删除: 空目录,<Tools_NullDir>
 		Menu, Toolset, add, 删除: PNG文件,<Tools_DeletePNG>
+		
+	Menu, menuTc, add,命令行, :CommanderSet
+		Menu,CommanderSet , add, AE: 批渲染,<em_BoBO_AeRender>
     Menu, menuTc, Show
 return 
 
