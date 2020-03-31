@@ -23,15 +23,16 @@ Photoshop:
 
     vim.SetAction("<Photoshop_NormalMode>", "返回正常模式")
     vim.SetAction("<Photoshop_InsertMode>", "进入VIM模式")
-    vim.SetWin("Photoshop","ahk_exe","photoshop.exe")
+    vim.SetWin("Photoshop","ahk_exe","Photoshop.exe")
+    vim.BeforeActionDo("Photoshop_CheckMode", "Photoshop") ; by Array
+        ;载入自定义注释
+    #Include %A_ScriptDir%\plugins\Photoshop\PhotoshopComment.ahk 
 
 ;normal模式
     vim.SetMode("normal", "Photoshop")
-    vim.Comment("<Photoshop_SwithMode>", "【-----模式切换-----】")
+    vim.Comment("<Photoshop_SwithMode>", "Photoshop")
     vim.map("<insert>","<Photoshop_SwithMode>","Photoshop")
 ;insert模式
-    ;载入自定义注释
-    #Include %A_ScriptDir%\plugins\Photoshop\PhotoshopComment.ahk 
     vim.SetMode("insert", "Photoshop")
     vim.Map("<insert>", "<Photoshop_SwithMode>", "Photoshop")
 
@@ -81,7 +82,7 @@ Photoshop:
     ; vim.Map("<F1>", "<PS-Test>", "Photoshop")
     vim.Map("<LB-d>", "<PS_向下合并>", "Photoshop")
     vim.Map("<LB-e>", "<PS_多边形选区>", "Photoshop")
-    vim.BeforeActionDo("Photoshop_CheckMode", "Photoshop") ; by Array
+    
 return
 ; 对符合条件的控件使用insert模式，而不是normal模式
 Photoshop_CheckMode()
