@@ -6,7 +6,7 @@ if (Number(bounds[0]) == 0 && Number(bounds[1]) == 0 && Number(bounds[2]) == 0 &
 
 try{
     if (activeDocument.activeLayer.kind != undefined && activeDocument.activeLayer.isBackgroundLayer == false && emptyLayer == false){
-        setTool("moveTool");
+        setTool("eraserTool");
     }else{
         alert( "请选择图层操作");
     }

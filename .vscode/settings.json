@@ -8,4 +8,137 @@
      "python.pythonPath": "C:\\Program Files\\Autodesk\\3ds Max 2020\\3dsmaxpy.exe",    
      "python.linting.enabled": true,    
      "cSpell.enabled": false
+     "vim.easymotion": true,
+	  "vim.incsearch": true,
+	  "vim.useSystemClipboard": true,
+	  "vim.useCtrlKeys": true,
+	  "vim.hlsearch": true,
+	  "vim.insertModeKeyBindings": [
+		{
+		  "before": ["j", "j"],
+		  "after": ["<Esc>"]
+		}
+	  ],
+	  "vim.normalModeKeyBindingsNonRecursive": [
+		{
+		  "before": ["<leader>", "d"],
+		  "after": ["d", "d"]
+		},
+		{
+		  "before": ["<C-n>"],
+		  "commands": [":nohl"]
+		}
+	  ],
+	  "vim.leader": "<space>",
+	  "vim.handleKeys": {
+		"<C-a>": false,
+		"<C-f>": false
+  		}
+  	"vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "j"],
+            "after": ["<Esc>"]
+        }
+    ]
+        "vim.normalModeKeyBindings": [
+        {
+            "before": ["£"],
+            "after": ["#"]
+        }
+    ]
+        "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [":"],
+            "commands": [
+                "workbench.action.showCommands",
+            ]
+        }
+    ]
+        "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "m"],
+            "commands": [
+                "bookmarks.toggle"
+            ]
+        },
+        {
+            "before": ["<leader>", "b"],
+            "commands": [
+                "bookmarks.list"
+            ]
+        }
+    ]
+        "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["Z", "Z"],
+            "commands": [
+                ":wq"
+            ]
+        }
+    ]
+        "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before":["<C-n>"],
+            "commands": [
+                ":nohl",
+            ]
+        },
+        {
+            "before": ["leader", "w"],
+            "commands": [
+                "workbench.action.files.save",
+            ]
+        }
+    ]
+        "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "p",
+            ],
+            "after": [
+                "p",
+                "g",
+                "v",
+                "y"
+            ]
+        }
+    ]
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        },
+    ]
+     "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>", "v", "i", "m"
+            ],
+            "commands": [
+                {
+                    "command": "git.clone",
+                    "args": [ "https://github.com/VSCodeVim/Vim.git" ]
+                }
+            ]
+        }
+    ]
+        "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["j"],
+            "after": ["g", "j"]
+        }
+    ]
+    
 }

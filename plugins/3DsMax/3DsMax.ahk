@@ -902,15 +902,15 @@ return
     ;         }
 ; ######第二种写法
 
-    Gui, Color, 37474F
-    Gui -Caption
+    ; Gui, Color, 37474F
+    ; Gui -Caption
 
-    Gui, Font, s32,Microsoft YaHei
-	Gui, +AlwaysOnTop +Disabled -SysMenu +Owner 
-	Gui, Add, Text,cffffff,3DsMax初始化配置
-	Gui, Show, xCenter yCenter, 状态, NoActivate,
-	sleep, 1200
-	Gui, Destroy
+    ; Gui, Font, s32,Microsoft YaHei
+	; Gui, +AlwaysOnTop +Disabled -SysMenu +Owner 
+	; Gui, Add, Text,cffffff,3DsMax初始化配置
+	; Gui, Show, xCenter yCenter, 状态, NoActivate,
+	; sleep, 1200
+	; Gui, Destroy
     
     gotoSetEvn=%A_ScriptDir%\custom\maxScripts\Startup\setEvn.ms
     FileDelete, %gotoSetEvn% ;先删除文件
@@ -931,7 +931,7 @@ return
     if FileExist("C:\Program Files\Autodesk\3ds Max 2020\3dsmax.exe")
     {
         FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2020%\scripts\Startup, 1
-        MsgBox, 已经配置完毕！请重启3DsMax
+        MsgBox, 已经配置完毕！请重启程序!
         Return
     }else{
         MsgBox, 检测非默认安装 `n`n`n 请手动复制...`n`n 源目录： `n`n %A_ScriptDir%\custom\maxScripts\Startup `n`n 目标目录： `n`n %Max2020%\scripts\Startup

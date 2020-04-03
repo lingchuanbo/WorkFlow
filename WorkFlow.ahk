@@ -80,6 +80,12 @@ global TG_Bar_Height := 62
 global this_title=
 global zParam
 
+; 程序路径
+IniRead,TCExePath,config.ini,TotalCommander_Config,TCPath
+IniRead,AeExePath,config.ini,BOBOPath_Config,AEPath
+global TCExePath := TCExePath
+global AeExePath := AeExePath
+
 ;颜色
 ;背景颜色
 IniRead,BGColor,config.ini,Color_Config,BGColor

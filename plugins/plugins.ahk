@@ -6,9 +6,6 @@
 #include *i %A_ScriptDir%\plugins\EveryThing\EveryThing.ahk
 #include *i %A_ScriptDir%\plugins\Excel\Excel.ahk
 #include *i %A_ScriptDir%\plugins\Explorer\Explorer.ahk
-#include *i %A_ScriptDir%\plugins\Firefox\Firefox.ahk
-#include *i %A_ScriptDir%\plugins\Foxit_Phantom\Foxit_Phantom.ahk
-#include *i %A_ScriptDir%\plugins\FxEditor\FxEditor.ahk
 #include *i %A_ScriptDir%\plugins\General\General.ahk
 #include *i %A_ScriptDir%\plugins\GoogleChrome\GoogleChrome.ahk
 #include *i %A_ScriptDir%\plugins\Photoshop\Photoshop.ahk
@@ -17,30 +14,22 @@
 #include *i %A_ScriptDir%\plugins\TotalCommander\TotalCommander.ahk
 #include *i %A_ScriptDir%\plugins\Unity3D\Unity3D.ahk
 #include *i %A_ScriptDir%\plugins\Word\Word.ahk
-#include *i %A_ScriptDir%\plugins\XnView\XnView.ahk
 /*
 [ExtensionsTime]
-3DsMax=20191211154215
-AfterEffects=20191213152227
-BeyondCompare4=20190114153454
-Blender=20191206121503
-BoBO=20191219203711
-CapsPlus+=20191017210116
-EveryThing=20191218102736
-Excel=20190114153454
-Explorer=20191217155059
-Firefox=20190325102232
-Foxit_Phantom=20190114153454
-FxEditor=20190116164153
-General=20191219203547
-GoogleChrome=20191216122327
-Photoshop=20191219203533
-Swf2SpriteSheetPack=20190116164912
-TaskSwch=20190114153454
-TCCompare=20190114153454
-TCDialog=20190114153454
-TotalCommander=20191025112330
-Unity3D=20190814182319
-Word=20190114153454
-XnView=20190809095028
+3DsMax=20200319183643
+AfterEffects=20200327172303
+BeyondCompare4=20200310105935
+Blender=20200318093656
+BoBO=20200402153318
+EveryThing=20200310110040
+Excel=20200310110127
+Explorer=20200310110157
+General=20200310111802
+GoogleChrome=20200323101005
+Photoshop=20200402164044
+TCCompare=20200310110534
+TCDialog=20200309103443
+TotalCommander=20200327171747
+Unity3D=20200310110740
+Word=20200310110809
 */

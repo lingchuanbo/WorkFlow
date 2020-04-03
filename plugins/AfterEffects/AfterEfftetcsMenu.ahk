@@ -8,7 +8,7 @@ function_menuAfterEffect:
 {
     F1::return
      ;;AE快速打开文件所在位置 至于是否启用TC到时候在考虑目前可以一直按alt+w
-    !w::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
+     ; !w::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
     ^+!LButton::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
      ;;便捷菜单
     +RButton::Gosub,menuAe
@@ -68,7 +68,7 @@ RunAeScript:
     RunWait, %AeExePath% -s -r %curpath%,,Hide
     return
 RETURN
-; AE预设库
+; AE预设库initialization
 RunAePreset0:
 {
     curpath := menu_itempath("filelist0", dirMenu0)

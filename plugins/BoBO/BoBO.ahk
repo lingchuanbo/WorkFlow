@@ -6,8 +6,55 @@
 ` & 2:: SendInput,^c
 ` & 3:: SendInput,^v
 ` & 4:: SendInput,{Del}
+` & `;:: SendInput,{Blind}{Home}+{End}
+
+` & j:: SendInput,{Blind}+{Down}
+` & k:: SendInput,{Blind}+{Up}
+` & h:: SendInput,{Blind}+{Left}
+` & l:: SendInput,{Blind}+{Right}
+
+` & b:: SendInput,{Blind}^+{Left}
+` & w:: SendInput,{Blind}^+{Right}
+
+` & n:: SendInput,{Blind}+{PgDn}
+` & m:: SendInput,{Blind}+{PgUp}
+
+` & u::
+	GV_KeyClickAction1 := "SendInput,+{End}"
+	GV_KeyClickAction2 := "SendInput,^+{End}"
+	GoSub,Sub_KeyClick
+return
+
+` & i::
+	GV_KeyClickAction1 := "SendInput,+{Home}"
+	GV_KeyClickAction2 := "SendInput,^+{Home}"
+	GoSub,Sub_KeyClick
+return
+
+` & y::
+	GV_KeyClickAction1 := "SendInput,{Blind}{Home}+{End}"
+	GV_KeyClickAction2 := "SendInput,^{Home}"
+	GoSub,Sub_KeyClick
+return
+
+;点不是默认的“确定”或者OK按钮，如果没有就点第一个Button1，适用与那种简单的对话框，比如TC的备注
+` & Enter::
+	try {
+		SetTitleMatchMode RegEx
+		SetTitleMatchMode Slow
+		ControlClick, i).*确定|OK.*, A
+	} catch e {
+		ControlClick, Button1, A
+	}
+return
+
+
 +`::SendInput,~
 `::SendInput,``
+^`::SendInput,^``
+!`::SendInput,!``
++!`::SendInput,+!``
+
 ; ################# CapsLock相关 #################
 ; 大写键控制上下左右
 CapsLock & s::SendInput,{Blind}{Down}
@@ -422,9 +469,10 @@ return
 #If WinActive("ahk_group GroupDiagJump") and WinActive("ahk_class #32770")
 {
 	!e:: GoSub,Sub_SendCurDiagPath2Exp		;发送对话框路径到_系统资管中
-	!w:: GoSub,Sub_SendCurDiagPath2Tc ;发送对话框路径到_TC
+	; !t:: GoSub,Sub_SendCurDiagPath2Tc ;发送对话框路径到_TC
 	; !g:: GoSub,Sub_SendTcCurPath2Diag
 	!LButton:: GoSub,Sub_SendTcCurPath2Diag ;发送TC路径到对话框路径
+	!w:: GoSub,Sub_SendCurDiagPath2Tc ;发送TC路径到对话框路径
 	; ^LButton:: GoSub,Sub_SendCurDiagPath2Tc
 }
 ; 常用浏览器设置
@@ -476,7 +524,7 @@ return
 ; Total Commander
 #If WinActive("ahk_class TTOTAL_CMD")
 {
-	!w::openPathExplorer() ;TC 到 Explorer
+	; !w::openPathExplorer() ;TC 到 Explorer
 	; !g:: GoSub,Sub_SendTcCurPath2Diag
 	+RButton::Gosub,menuTc
 	NumpadDiv::TcSendPos(2011) ;显示隐藏文件
@@ -523,10 +571,88 @@ return
 		  send {Backspace} 
 		}
 	Return
+	;智能对话框跳转
+	!w::
+		Dlg_HWnd := WinExist("ahk_group GroupDiagJump")
+		if Dlg_HWnd 
+		;IfWinExist ahk_group GroupDiagOpenAndSave
+		{
+			WinGetTitle, Dlg_Title, ahk_id %Dlg_HWnd%
+			If RegExMatch(Dlg_Title, "Save|Save As|另存为|保存|图形另存为|保存副本"){
+				;msgbox "这是保存对话框"
+				orgClip:=clipboardAll
+				Clipboard =
+				;PostMessage, TC_Msg, CM_CopyFullNamesToClip,0,, ahk_class TTOTAL_CMD
+				Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`CM_CopyFullNamesToClip`)"
+				; TcSendPos(CM_CopyFullNamesToClip)
+				ClipWait, 1
+				selFiles := Clipboard
+				Clipboard:=orgClip
+				selFilesArray := StrSplit(selFiles, "`n","`r")
+				if selFilesArray.length() > 1 {
+					selFiles:=selFilesArray[1]
+					; eztip("对话框是保存类型，只认第一个文件",1)
+				}
+				StringGetPos OutputVar, selFiles,`\,R1
+				StringMid, filePath, selFiles,1, OutputVar+1
+				StringMid, fileName, selFiles,OutputVar+2,StrLen(selFiles)-OutputVar
 
-	F1::
-		ActiveDocumentFile := ComObjActive("Word.Application").ActiveDocument.FullName
-		Run, % "explorer /select, " ActiveDocumentFile
+				IfWinNotActive, %Dlg_Title% ahk_id %Dlg_HWnd%, , WinActivate, %Dlg_Title% ahk_id %Dlg_HWnd%
+				WinWaitActive, %Dlg_Title% ahk_id %Dlg_HWnd%
+				if !ErrorLevel
+				{
+					ControlGetText, orgFileName,Edit1
+					ControlFocus, Edit1,
+					sleep 200
+					Send,{Backspace}
+					sleep 300
+					setKeyDelay, 10,10
+					ControlSetText, Edit1, %filePath% 
+					sleep 900
+					send,{enter}
+					sleep 500
+					if StrLen(fileName) > 0 {
+						ControlSetText, Edit1, %fileName% 
+					}
+					else{
+						ControlSetText, Edit1, %orgFileName% 
+					}
+				}
+			}
+			else {
+				; msgbox "打开对话框"
+				orgClip:=clipboardAll
+				Clipboard =
+				;PostMessage, TC_Msg, CM_CopyFullNamesToClip,0,, ahk_class TTOTAL_CMD
+				; TcSendPos(CM_CopyFullNamesToClip)
+				Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`CM_CopyFullNamesToClip`)"
+				ClipWait, 1
+				selFiles := Clipboard
+				Clipboard:=orgClip
+				selFilesArray := StrSplit(selFiles, "`n","`r")
+				quote:=(selFilesArray.length() > 1) ? """" : ""
+				selFiles=
+				Loop % selFilesArray.MaxIndex()
+				{
+					this_file := selFilesArray[A_Index]
+					selFiles=%selFiles% %quote%%this_file%%quote%
+				}
+				IfWinNotActive, %Dlg_Title% ahk_id %Dlg_HWnd%, , WinActivate, %Dlg_Title% ahk_id %Dlg_HWnd%
+				WinWaitActive, %Dlg_Title% ahk_id %Dlg_HWnd%
+				if !ErrorLevel
+				{
+					sleep 300
+					setKeyDelay, 10,10
+					ControlSetText, Edit1, %selFiles%
+					send, {Enter}
+				}
+			}
+			; reload
+		}
+		else{
+			; 打开默认资源管理器
+			openPathExplorer()
+		}
 	return
 }
 ;##########程序便捷.办公##########
@@ -550,9 +676,6 @@ return
 {
 	
 	!w::runMaxScript("maxToTotalcmd.ms")
-	; !q::Gosub,<3DsMax_Tab>
-	; Tab::Gosub,<3DsMax_Tab>
-	; +RButton::Gosub,menuAe
 	` & 1:: Gosub, <3DsMax_getUp>
     ` & 2:: Gosub, <3DsMax_getDown>
     ` & 3:: Gosub, <3DsMax_Key>
@@ -588,6 +711,39 @@ return
 	; 	}
 	; Return
 }
+#If WinActive("ahk_exe Photoshop.exe")
+{	
+	` & 1:: Gosub, <PS_透明度减>
+	` & 2:: Gosub, <PS_透明度加>
+	` & 3:: Gosub, <PS_明颜色>
+	` & 4:: Gosub, <PS_暗颜色>
+	` & 5:: Gosub, <PS_加暗加亮>
+	4::send,{Delete}
+	; `::send,{b}
+	` & LButton::Gosub, ps_double_BrushSwith
+	
+	`::
+		GV_KeyClickAction1 := "send,{b}"
+		GV_KeyClickAction2 := "Gosub,<PS_eraserTool>"
+		GoSub,Sub_KeyClick
+	return
+}
+menuPsAlt:
+	menu, menuPsAlt, add,用AE编辑, Ps_UserAeEidtor
+    menu, menuPsAlt, add,在TC显示, Ps_TotalCMD
+    ; menu, menuPsAlt, add,在资源管理器显示, Ps_Export
+    menu, menuPsAlt, Show
+return
+
+Ps_UserAeEidtor:
+    run,python.exe %A_ScriptDir%\custom\ps_script\openAE.py
+return
+Ps_TotalCMD:
+    run,python.exe %A_ScriptDir%\custom\ps_script\openTC.py
+return
+Ps_Export:
+    MsgBox, "有需求在写"
+return
 
 ; 百度API
 menuTc:
@@ -619,18 +775,6 @@ menuTc:
 		Menu,CommanderSet , add, AE: 批渲染,<em_BoBO_AeRender>
     Menu, menuTc, Show
 return 
-
-
-
-
-
-
-#If WinActive("ahk_exe Photoshop.exe")
-{	
-	` & 1:: Gosub, <PS_透明度减>
-	` & 2:: Gosub, <PS_透明度加>
-	return
-}
 
 <TcPostMsg>:
 	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"

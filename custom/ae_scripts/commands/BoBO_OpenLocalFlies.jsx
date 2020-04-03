@@ -13,8 +13,6 @@ function revealFile(filePath) {
 }
 
 if(app.project.file !== null){
-    // var path = app.project.file.fsName;
-    // $.writeln(path);
     var path=app.project['file'];
     revealFile(path);
 }else{

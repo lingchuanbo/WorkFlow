@@ -23,7 +23,7 @@ Photoshop:
 
     vim.SetAction("<Photoshop_NormalMode>", "返回正常模式")
     vim.SetAction("<Photoshop_InsertMode>", "进入VIM模式")
-    vim.SetWin("Photoshop","ahk_exe","Photoshop.exe")
+    vim.SetWin("Photoshop","Photoshop","Photoshop.exe")
     vim.BeforeActionDo("Photoshop_CheckMode", "Photoshop") ; by Array
         ;载入自定义注释
     #Include %A_ScriptDir%\plugins\Photoshop\PhotoshopComment.ahk 
@@ -36,11 +36,13 @@ Photoshop:
     vim.SetMode("insert", "Photoshop")
     vim.Map("<insert>", "<Photoshop_SwithMode>", "Photoshop")
 
-    ; vim.Map("q", "<PS_Duplicate_画笔橡皮擦涂抹>", "Photoshop")
+    vim.Map("<Alt>", "<Photoshop_Alt>", "Photoshop")
+
+    vim.Map("q", "<PS_Duplicate_画笔橡皮擦涂抹>", "Photoshop")
     vim.Map("w", "<PS_OneKeyDefault>", "Photoshop")
     vim.Map("q", "<PS_选区切换>", "Photoshop")
 
-    vim.Map("e", "<PS_橡皮檫合并>", "Photoshop")
+    vim.Map("e", "<PS_选区合并>", "Photoshop")
     ; vim.Map("e", "<PS_OneKeyDefaultSmudgePath>", "Photoshop")
     vim.Map("r", "<PS_Duplicate_旋转>", "Photoshop")
     
@@ -64,9 +66,7 @@ Photoshop:
 
     vim.Map("c", "<PS_颜色面板>", "Photoshop")
 
-    vim.Map("3", "<PS_明颜色>", "Photoshop")
-    vim.Map("4", "<PS_暗颜色>", "Photoshop")
-    vim.Map("5", "<PS_加暗加亮>", "Photoshop")
+
 
     vim.Map("<F2>", "<PS_切换标签>", "Photoshop")
     vim.Map("<F7>", "<PS_创建新文档>", "Photoshop")
@@ -82,9 +82,10 @@ Photoshop:
     ; vim.Map("<F1>", "<PS-Test>", "Photoshop")
     vim.Map("<LB-d>", "<PS_向下合并>", "Photoshop")
     vim.Map("<LB-e>", "<PS_多边形选区>", "Photoshop")
-    
+
 return
 ; 对符合条件的控件使用insert模式，而不是normal模式
+
 Photoshop_CheckMode()
 {
     ControlGetFocus, ctrl, A
@@ -105,43 +106,6 @@ Photoshop_CheckMode()
 
     return
 }
-PSCheckInput()
-{
-    CurMode:=vim.GetCurMode("AfterEffects")
-    IF (CurMode="insert")
-        {
-            SetModUIInsertOnly()
-        }
-     IF (CurMode="insert")
-        {
-            SetModUINormalOnly()
-        }
-	ControlGetFocus, ctrl, A	;if (RegExMatch(ctrl, "Edit|Static88") or WinExist("ahk_class #32768"))
-	PixelGetColor, psinputt, 16, 493
-	;~ PixelGetColor, psinputj, 30, 38
-    if (psinputt = 0x383838) ;&& (psinputj = 0x989898)) 	;Static88为输入文字时的ClassNN
-		{
-		return true
-		}
-    if (A_CaretX) 	;Static88为输入文字时的ClassNN
-		{
-		return true
-		}
-    if (RegExMatch(ctrl, "Edit|Static151|Static88")) ;|| (ConvMode = 1025) || A_CaretX	;Static88为输入文字时的ClassNN
-		{
-		return true
-		}
-    if (RegExMatch(ctrl, "Static152"))
-		{
-		return false
-		}
-	else
-	{
-		return false
-	}
-}
-
-
 ;【全局运行PS】
 <RunPS>:
     ExePath := ini.BOBOPath_Config.PSPath
@@ -154,6 +118,11 @@ PSCheckInput()
 ; msgbox %TxFileRecv%
 return
 
+<Photoshop_Alt>:
+		GV_KeyClickAction1 := "GoSub,menuPsAlt"
+		GV_KeyClickAction2 := "GoSub,menuPsAlt"
+		GoSub,Sub_KeyClick
+return		
 
  <Photoshop_SwithMode>:
 ;   单键切换
@@ -232,7 +201,9 @@ return
     return
     ps_tappedkey_t:
         {
-            send, {t}
+            ; send, {t}
+            ; 不常用文件,所以屏蔽
+            Send,^{t}
             return
         }
     return
@@ -436,7 +407,7 @@ return
     send +{m}
 return
 
-<PS_橡皮檫合并>:
+<PS_选区合并>:
     t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
     settimer, ps_tappedkey_e, %t%
     if (t == "off")
@@ -444,7 +415,7 @@ return
     return
     ps_tappedkey_e:
         {
-            send +{e}
+            send,{l}
             return
         }
     return
@@ -995,7 +966,16 @@ return
     return
 }
 
-
+<PS_eraserTool>:
+{
+    app:=ComObjCreate("Photoshop.Application")
+    alert=
+    (
+       %A_ScriptDir%\custom\ps_script\eraserTool.jsx
+    )
+    app.DoJavaScriptFile(alert)
+    return
+}
 ; ;按左鍵再按d | 向下合并
 
 ; ---长按鼠标左键后操作-----------------------------------------------------------------------

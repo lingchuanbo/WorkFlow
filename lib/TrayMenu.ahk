@@ -28,16 +28,21 @@ Menu, Tray, Add,
 Menu, LangSet, add, 中文(&Z),中文
 Menu, LangSet, add, English(&E),English
 Menu, tray, add, %_Language%(&L), :LangSet
+
+
 Menu, aboutMe, add, %_Help%(&H), <VIMD_Help>
 ; Menu, aboutMe, add, %_Update%(&U), <VIMD_Update>
 Menu, aboutMe, add, %_Web%(&W), <VIMD_WorkFlowWeb>
-
+Menu, tray, add, %_aboutMe%(&L), :aboutMe
 ; Menu, aboutMe, add, (&U) %_Update%, Check_Update
 
-Menu, aboutMe, add, %_BackupRestore%(&B), <VIMD_BackupRestore>
 ; Menu, aboutMe, add, 系统状态监测(&B), 系统状态监测
 ; Menu, aboutMe, add, %_AppName%添加为系统变量(&B), <VIMD_EnvSystem>
-Menu, tray, add, %_aboutMe%(&L), :aboutMe
+
+Menu, OptionSet, add, %_Initialization%, <VIMD_Initialization>
+Menu, OptionSet, add, %_BackupRestore%, <VIMD_BackupRestore>
+Menu, tray, add, %_Option%, :OptionSet
+
 Menu, Tray, Add, %_Restart%(&R), <Reload>
 Menu, Tray, Add, %_Exit%(&X), Exit
 Menu, Tray, Click, 1
@@ -112,7 +117,6 @@ Return
 {
     Gui, Color, 37474F
     Gui -Caption
-
     Gui, Font, s32,Microsoft YaHei
 	  Gui, +AlwaysOnTop +Disabled -SysMenu +Owner 
 	  Gui, Add, Text,cffffff,设置%_AppName%为系统变量
@@ -136,6 +140,21 @@ ExitApp
     return
 }
 
+<VIMD_Initialization>:
+    Gui, Color, 37474F
+    Gui -Caption
+    Gui, Font, s32,Microsoft YaHei
+	  Gui, +AlwaysOnTop +Disabled -SysMenu +Owner 
+	  Gui, Add, Text,cffffff,正在初始化 Photoshop/Aftereffect/3DsMax
+	  Gui, Show, xCenter yCenter, 状态, NoActivate,
+	  sleep, 1200
+	  Gui, Destroy
+    gosub,Ps_Init_TotalCMD
+    gosub,Ps_Init_Ae
+    gosub,AE_Init_OpenLocalFilesRenderTC
+    gosub,AE_Init_RevealInFinderTC
+    gosub,<3DsMax_Ini>
+return
 ; 用户自定义配置
 <EditConfig>:
     run , %A_ScriptDir%\Editor.ahk

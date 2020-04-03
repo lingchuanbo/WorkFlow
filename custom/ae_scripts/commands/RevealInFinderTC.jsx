@@ -1,4 +1,5 @@
-﻿var arif_globals = {
+﻿//初始化文件,可能会被覆盖!
+var arif_globals = {
     scriptName: "Reveal in Finder",
     scriptVersion: "1.0",
     strErrScriptAccess: "This script requires access to write files.\nGo to the \"General\" panel of the application preferences and make sure \"Allow Scripts to Write Files and Access Network\" is checked."
@@ -44,9 +45,8 @@ function Ae_RevealInFinder() {
             system.callSystem(revealAppleScript);
         }
     } else {
-            //system.callSystem("EXPLORER.EXE /select,\"" + myLayer.fsName + "\"");
-            //system.callSystem("TOTALCMD.EXE /O /S /L=");"cmd.exe /c \"time /t\""
-            system.callSystem("F:\\BoBOProgram\\TotalCMD\\TOTALCMD.EXE /O /S /L=" + myLayer.fsName + "\"" );
+
+            system.callSystem("F:\\BoBOAHK\\WorkFlow\\tools\\TotalCMD\\TOTALCMD.EXE /O /S /L=" + myLayer.fsName + "\"" );
     }
 
     function isSecurityPrefSet() {

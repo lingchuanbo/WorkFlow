@@ -21,6 +21,8 @@ If Language=CN
     global _MaxUpdating="正在更新3DsMax..."
     global _HotKeyManagement="热键管理"
     global _aboutMe="关于我"
+    global _Option="设置"
+    global _Initialization="初始化PS/AE/3Dsmax"
     global _BackupRestore="备份还原config.ini"
 
     global _VIMMode:="进入 WorkFlow"
