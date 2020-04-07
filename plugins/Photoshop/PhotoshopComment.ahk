@@ -1,7 +1,7 @@
 ﻿curver = 1.0 ; 声明当前版本
-IfNotExist, config.ini
-IniWrite, CN, config.ini, config, Language
-else
+; IfNotExist, config.ini
+; IniWrite, CN, config.ini, config, Language
+; else
 IniRead, Language, config.ini, config, Language
 ; if (A_Language = "0804")
 If Language=CN

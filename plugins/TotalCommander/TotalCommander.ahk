@@ -8,44 +8,44 @@
     TCPath := ini.TotalCommander_Config.TCPath
     TCDirPath := ini.TotalCommander_Config.TCDirPath
     TCINI := ini.TotalCommander_Config.TCINI
-    if !FileExist(TCPath)
-    {
-        Process, Exist, totalcmd.exe
-        if ErrorLevel
-        {
-            WinGet, TCPath, ProcessPath, ahk_pid %ErrorLevel%
-        }
-        else
-        {
-            Process, Exist, totalcmd64.exe
-            if ErrorLevel
-                WinGet, TCPath, ProcessPath, ahk_pid %ErrorLevel%
-        }
+    ; if !FileExist(TCPath)
+    ; {
+    ;     Process, Exist, totalcmd.exe
+    ;     if ErrorLevel
+    ;     {
+    ;         WinGet, TCPath, ProcessPath, ahk_pid %ErrorLevel%
+    ;     }
+    ;     else
+    ;     {
+    ;         Process, Exist, totalcmd64.exe
+    ;         if ErrorLevel
+    ;             WinGet, TCPath, ProcessPath, ahk_pid %ErrorLevel%
+    ;     }
 
-        if TCPath
-            IniWrite, %TCPath%, %ConfigPath%, TotalCommander_Config, TCPath
-    }
+    ;     if TCPath
+    ;         ; IniWrite, %TCPath%, %ConfigPath%, TotalCommander_Config, TCPath
+    ; }
 
-    if TCPath and Not FileExist(TCPath)
-    {
-        RegRead, TCDir, HKEY_CURRENT_USER, Software\Ghisler\Total Commander, InstallDir
-        if FileExist(TCDir "\totalcmd.exe")
-            l .= TCDir "\totalcmd.exe`n"
-        if FileExist(TCDir "\totalcmd64.exe")
-            l .= TCDir "\totalcmd64.exe`n"
-        GUI, FindTC:Add, Edit, w300 ReadOnly R3, %TCDir%
-        GUI, FindTC:Add, Button, w300 gTotalcomander_select_tc, TOTALCMD.EXE   (&A)
-        GUI, FindTC:Add, Button, w300 gTotalcomander_select_tc64, TOTALCMD64.EXE (&S)
-        GUI, FindTC:Add, Button, w300 gTotalcomander_select_tcdir, TC目录路径不对? (&D)
-        GUI, FindTC:Show, , Total Commander 设置路径
-    }
+    ; if TCPath and Not FileExist(TCPath)
+    ; {
+    ;     RegRead, TCDir, HKEY_CURRENT_USER, Software\Ghisler\Total Commander, InstallDir
+    ;     if FileExist(TCDir "\totalcmd.exe")
+    ;         l .= TCDir "\totalcmd.exe`n"
+    ;     if FileExist(TCDir "\totalcmd64.exe")
+    ;         l .= TCDir "\totalcmd64.exe`n"
+    ;     GUI, FindTC:Add, Edit, w300 ReadOnly R3, %TCDir%
+    ;     GUI, FindTC:Add, Button, w300 gTotalcomander_select_tc, TOTALCMD.EXE   (&A)
+    ;     GUI, FindTC:Add, Button, w300 gTotalcomander_select_tc64, TOTALCMD64.EXE (&S)
+    ;     GUI, FindTC:Add, Button, w300 gTotalcomander_select_tcdir, TC目录路径不对? (&D)
+    ;     GUI, FindTC:Show, , Total Commander 设置路径
+    ; }
 
-    if TCPath and not FileExist(TCINI)
-    {
-        SplitPath, TCPath, , dir
-        TCINI := dir "\wincmd.ini"
-        IniWrite, %TCINI%, %ConfigPath%, TotalCommander_Config, TCINI
-    }
+    ; if TCPath and not FileExist(TCINI)
+    ; {
+    ;     SplitPath, TCPath, , dir
+    ;     TCINI := dir "\wincmd.ini"
+    ;     ; IniWrite, %TCINI%, %ConfigPath%, TotalCommander_Config, TCINI
+    ; }
 
     TCMarkINI := RegExReplace(TCPath, "i)totalcmd6?4?.exe$", "TCMark.ini")
 
@@ -929,7 +929,7 @@ MarkTimer()
             Mark[m] := mPath
             if (SaveMark <> 0)
             {
-                IniWrite, %mPath%, %TCMarkINI%, mark, %m%
+                ; IniWrite, %mPath%, %TCMarkINI%, mark, %m%
             }
         }
         else
@@ -940,8 +940,8 @@ MarkTimer()
             Mark[m] := mPath
             if (SaveMark <> 0)
             {
-                IniWrite, %marks%, %TCMarkINI%, mark, ms
-                IniWrite, %mPath%, %TCMarkINI%, mark, %m%
+                ; IniWrite, %marks%, %TCMarkINI%, mark, ms
+                ; IniWrite, %mPath%, %TCMarkINI%, mark, %m%
             }
         }
     }
@@ -1644,8 +1644,8 @@ Totalcomander_select_tc()
     TCPath := dir "\totalcmd.exe"
     TCINI  := dir "\wincmd.ini"
     GUi, FindTC:Destroy
-    IniWrite, %TCPath%, %ConfigPath%, TotalCommander_Config, TCPath
-    IniWrite, %TCINI%, %ConfigPath%, TotalCommander_Config, TCINI
+    ; IniWrite, %TCPath%, %ConfigPath%, TotalCommander_Config, TCPath
+    ; IniWrite, %TCINI%, %ConfigPath%, TotalCommander_Config, TCINI
 }
 
 Totalcomander_select_tc64:
@@ -1659,8 +1659,8 @@ Totalcomander_select_tc64()
     TCPath := dir "\totalcmd64.exe"
     TCINI  := dir "\wincmd.ini"
     GUi, FindTC:Destroy
-    IniWrite, %TCPath%, %ConfigPath%, TotalCommander_Config, TCPath
-    IniWrite, %TCINI%, %ConfigPath%, TotalCommander_Config, TCINI
+    ; IniWrite, %TCPath%, %ConfigPath%, TotalCommander_Config, TCPath
+    ; IniWrite, %TCINI%, %ConfigPath%, TotalCommander_Config, TCINI
 }
 
 Totalcomander_select_tcdir:
@@ -1753,8 +1753,8 @@ return
     {
         WinGet,TChwnd,Id,ahk_class TTOTAL_CMD
         DllCall("SetMenu", "uint", TChwnd, "uint", 0)
-        IniWrite, NONE.MNU, %TCINI%, Configuration, Mainmenu
-        IniWrite, 1, %TCINI%, Configuration, RestrictInterface
+        ; IniWrite, NONE.MNU, %TCINI%, Configuration, Mainmenu
+        ; IniWrite, 1, %TCINI%, Configuration, RestrictInterface
 
         noneMnuPath := RegExReplace(TCPath, "i)totalcmd6?4?.exe$", "LANGUAGE\NONE.MNU")
 
@@ -1765,8 +1765,8 @@ return
     }
     else
     {
-        IniWrite, WCMD_CHN.MNU, %TCINI%, Configuration, Mainmenu
-        IniWrite, 0, %TCINI%, Configuration, RestrictInterface
+        ; IniWrite, WCMD_CHN.MNU, %TCINI%, Configuration, Mainmenu
+        ; IniWrite, 0, %TCINI%, Configuration, RestrictInterface
 
         WinClose, AHK_CLASS TTOTAL_CMD
         Sleep, 50

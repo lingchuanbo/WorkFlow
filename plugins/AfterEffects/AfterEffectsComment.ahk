@@ -1,7 +1,7 @@
 ﻿curver = 1.0 ; 
-IfNotExist, config.ini
-IniWrite, CN, config.ini, config, Language
-else
+; IfNotExist, config.ini
+; ; IniWrite, CN, config.ini, config, Language
+; else
 IniRead, Language, config.ini, config, Language
 ; 中英文分开 如果只是中文就在IF填写 可以无视else部分
 If Language=CN

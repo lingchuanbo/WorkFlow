@@ -91,7 +91,7 @@ global AeExePath := AeExePath
 IniRead,BGColor,config.ini,Color_Config,BGColor
 IniRead,BGTxtColor,config.ini,Color_Config,BGTxtColor
 ; 开启背景文字颜色
-; ;浏览器
+;浏览器
 IniRead,group_browser,config.ini,GroupBrowser_Config
 Loop,parse,group_browser,`n,`r
 {
