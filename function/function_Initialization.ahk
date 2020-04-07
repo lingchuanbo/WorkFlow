@@ -1,22 +1,22 @@
-;×îºóĞŞ¸ÄÓÚ2020-4-3
+ï»¿;æœ€åä¿®æ”¹äº2020-4-3
 ;BoBO
-;¶¨ÒåÒ»Ğ©Â·¾¶ĞèÒªÅäÖÃ³õÊ¼»¯ÉèÖÃ
+;å®šä¹‰ä¸€äº›è·¯å¾„éœ€è¦é…ç½®åˆå§‹åŒ–è®¾ç½®
 ;=========================================================
 function_Initialization:
 
 Ps_Init_TotalCMD:
 {
     StrTCExePath:=StrReplace(TCExePath,"\","\\")
-    getPath = %A_ScriptDir%\custom\ps_script\TCÏÔÊ¾Î»ÖÃ.jsx
-    FileDelete, %getPath% ;±ÜÃâÖØ¸´É¾³ıÎÄ¼ş
-    FileAppend,  ; ÕâÀïĞèÒª¶ººÅ.
+    getPath = %A_ScriptDir%\custom\ps_script\TCæ˜¾ç¤ºä½ç½®.jsx
+    FileDelete, %getPath% ;é¿å…é‡å¤åˆ é™¤æ–‡ä»¶
+    FileAppend,  ; è¿™é‡Œéœ€è¦é€—å·.
     (
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 20200403
 @author: BoBO
-ÈËÉú¿à¶ÌÎÒÓÃPython,´ËÎÄ¼şÎª×Ô¶¯Éú³É,¿ÉÄÜ»á±»»¹Ô­!
+äººç”Ÿè‹¦çŸ­æˆ‘ç”¨Python,æ­¤æ–‡ä»¶ä¸ºè‡ªåŠ¨ç”Ÿæˆ,å¯èƒ½ä¼šè¢«è¿˜åŸ!
 """
 import os, re
 import sys
@@ -28,8 +28,8 @@ try:
     app = GetActiveObject("Photoshop.Application")
     Path = app.activeDocument.path
 except:
-    ctypes.windll.user32.MessageBoxA(0,u"ÇëÏÈ±£´æÎÄ¼ş !!! .^_ ^".encode('gb2312'),u' BoBO'.encode('gb2312'),0)
-    print("ÎÄ¼şÃ»±£´æ!")
+    ctypes.windll.user32.MessageBoxA(0,u"è¯·å…ˆä¿å­˜æ–‡ä»¶ !!! .^_ ^".encode('gb2312'),u' BoBO'.encode('gb2312'),0)
+    print("æ–‡ä»¶æ²¡ä¿å­˜!")
 else:
     command ="%StrTCExePath% /O /S /L=" + Path
     os.system(command)
@@ -41,15 +41,15 @@ Ps_Init_Ae:
 {
     StrAeExePath:=StrReplace(AeExePath,"\","\\")
     getPath = %A_ScriptDir%\custom\ps_script\openAE.py
-    FileDelete, %getPath% ;±ÜÃâÖØ¸´É¾³ıÎÄ¼ş
-    FileAppend,  ; ÕâÀïĞèÒª¶ººÅ.
+    FileDelete, %getPath% ;é¿å…é‡å¤åˆ é™¤æ–‡ä»¶
+    FileAppend,  ; è¿™é‡Œéœ€è¦é€—å·.
     (
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 20200403
 @author: BoBO
-ÈËÉú¿à¶ÌÎÒÓÃPython,´ËÎÄ¼şÎª×Ô¶¯Éú³É,¿ÉÄÜ»á±»»¹Ô­!
+äººç”Ÿè‹¦çŸ­æˆ‘ç”¨Python,æ­¤æ–‡ä»¶ä¸ºè‡ªåŠ¨ç”Ÿæˆ,å¯èƒ½ä¼šè¢«è¿˜åŸ!
 """
 import os, re
 import sys
@@ -62,8 +62,8 @@ try:
     Path = app.activeDocument.path
     Name = app.activeDocument.name
 except:
-    ctypes.windll.user32.MessageBoxA(0,u"ÇëÏÈ±£´æÎÄ¼ş !!! .^_ ^".encode('gb2312'),u' BoBO'.encode('gb2312'),0)
-    print("ÎÄ¼şÃ»±£´æ!")
+    ctypes.windll.user32.MessageBoxA(0,u"è¯·å…ˆä¿å­˜æ–‡ä»¶ !!! .^_ ^".encode('gb2312'),u' BoBO'.encode('gb2312'),0)
+    print("æ–‡ä»¶æ²¡ä¿å­˜!")
 else:
     command =r'"%StrAeExePath%"'+" "+ Path + Name
     os.system(command)
@@ -74,10 +74,10 @@ AE_Init_OpenLocalFilesRenderTC:
 {
     StrTCExePath:=StrReplace(TCExePath,"\","\\")
     getPath = %A_ScriptDir%\custom\ae_scripts\commands\BoBO_OpenLocalFilesRenderTC.jsx
-    FileDelete, %getPath% ;±ÜÃâÖØ¸´É¾³ıÎÄ¼ş
-    FileAppend,  ; ÕâÀïĞèÒª¶ººÅ.
+    FileDelete, %getPath% ;é¿å…é‡å¤åˆ é™¤æ–‡ä»¶
+    FileAppend,  ; è¿™é‡Œéœ€è¦é€—å·.
     (
-//³õÊ¼»¯ÎÄ¼ş,¿ÉÄÜ»á±»¸²¸Ç!
+//åˆå§‹åŒ–æ–‡ä»¶,å¯èƒ½ä¼šè¢«è¦†ç›–!
 var myProject = app.project;
 var myNumItemsIndex = myProject.renderQueue.numItems;
 if (myNumItemsIndex >= 1) {
@@ -91,7 +91,7 @@ if (myNumItemsIndex >= 1) {
     var Dir=getDir + ':' + getDirPath
     system.callSystem("%StrTCExePath% /O /T /R=" + Dir);
 }else{
-    alert("µ±Ç°ÎŞäÖÈ¾ÎÄ¼ş£¡")
+    alert("å½“å‰æ— æ¸²æŸ“æ–‡ä»¶ï¼")
 }
     ), %getPath%,UTF-8
 }
@@ -100,10 +100,10 @@ AE_Init_RevealInFinderTC:
 {
     StrTCExePath:=StrReplace(TCExePath,"\","\\")
     getPath = %A_ScriptDir%\custom\ae_scripts\commands\RevealInFinderTC.jsx
-    FileDelete, %getPath% ;±ÜÃâÖØ¸´É¾³ıÎÄ¼ş
-    FileAppend,  ; ÕâÀïĞèÒª¶ººÅ.
+    FileDelete, %getPath% ;é¿å…é‡å¤åˆ é™¤æ–‡ä»¶
+    FileAppend,  ; è¿™é‡Œéœ€è¦é€—å·.
     (
-//³õÊ¼»¯ÎÄ¼ş,¿ÉÄÜ»á±»¸²¸Ç!
+//åˆå§‹åŒ–æ–‡ä»¶,å¯èƒ½ä¼šè¢«è¦†ç›–!
 var arif_globals = {
     scriptName: "Reveal in Finder",
     scriptVersion: "1.0",

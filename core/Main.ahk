@@ -29,9 +29,9 @@ VimdRun(){
         vim.Debug(true)
     }
     ; 系统状态监测_BoBO
-    ; if (ini.function_config.SystemMonitor == 1) {
-    ;     Gosub, function_SystemMonitor
-    ; }
+    if (ini.function_config.SystemMonitor == 1) {
+        Gosub, function_SystemMonitor
+    }
     ; 第二个参数为存放描述信息的全局变量名
     act := vim.SetAction("VIMD_CMD", "VIMD_CMD_LIST")
     act.SetFunction("VIMD_CMD")

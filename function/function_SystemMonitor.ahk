@@ -1,17 +1,17 @@
-;=========================================================
-;×îºóĞŞ¸ÄÓÚ2020-03-24
+ï»¿;=========================================================
+;æœ€åä¿®æ”¹äº2020-03-24
 ;rdingding
-;ÌìÏÂËæÎÒÒâ£¬µÀµÂÖ»±¾ĞÄ
+;å¤©ä¸‹éšæˆ‘æ„ï¼Œé“å¾·åªæœ¬å¿ƒ
 ; Mod:BoBO
 ;=========================================================
 
 ; #SingleInstance Force
 ; #NoEnv
-; ;×Ô¶¨ÒåÈÎÎñÀ¸Í¼±êÓÒ¼ü²Ëµ¥¹¦ÄÜ
+; ;è‡ªå®šä¹‰ä»»åŠ¡æ å›¾æ ‡å³é”®èœå•åŠŸèƒ½
 ; Menu, Tray, NoStandard 
 ; Menu, Tray, NoDefault 
-; Menu, tray, add, ÖØÆô, Reload 
-; Menu, tray, add, ÍË³ö, Exit 
+; Menu, tray, add, é‡å¯, Reload 
+; Menu, tray, add, é€€å‡º, Exit 
 function_SystemMonitor:
 
    applicationname := "fox_monitor"
@@ -328,7 +328,7 @@ GETBIANLIANG:
       cpuThreshold := 80
       margin := 2
       transparency := 200
-      memLabel := "ÄÚ´æ: "
+      memLabel := "å†…å­˜: "
       cpuLabel := "CPU: "
 
       gpuFontColor := "Yellow"
