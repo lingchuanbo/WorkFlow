@@ -50,6 +50,8 @@ WorkFLow是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxinh
 
 **按键帮助** 请看目录下的【帮助.xlsx】
 
+[WorkFLow笔记](https://www.notion.so/7df31102696b43dd948dab655bd1e1f7?v=5cdef8f68af74cfabca156cfb739a299),逐步完善中.
+
 **入门指南：**是我针对用户给出了较易理解的帮助文档 **[Adobe AfterEffects](https://www.kancloud.cn/funbobosky/vimd_aftereffect) [| Photoshop | Unity | 3DsMax](https://www.kancloud.cn/funbobosky/vim_unity)-------说真我尽力了！
 (最近优化较多，部分功能及优化调整还未写入更新，请谅解择期修正)
 
