@@ -5,8 +5,14 @@ ____________________________________________________
 
 WorkFLow是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxinhong/VimDesktop)为母版进行二次开发，主要面向图像图像软件进行编写.并集成一些功能性脚本！
 因自用则不定期更新，目前以功能优先！
+个别源码来自Array & kawvin & EZ & liuyukuan!
 
 ### 最更新版本为3.6.5
+2020-04-05
+1. 窗口跳转优化(TC)，如果显示打开窗口则发送到打开窗口,如果未显示打开窗口,则跳转默认资源管理器
+2. Photoshop增强菜单,1.一健发送到AE编辑 2.在TC显示文件所在位置.
+3. TC增强菜单,1.一健发送到AE编辑
+
 2020-03-17
 1. 窗口跳转优化，Alt+左键 TC路径发送到窗口 Alt+W 窗口路径发送到TC Alt+e  窗口路径发送到默认资源管理器
 2. 优化AE增强菜单功能
@@ -68,7 +74,7 @@ WorkFLow是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxinh
 
 #### 6.感谢
 
-致谢**Array & kawvin & EZ & liuyukuan & 天甜** 大大们 提供优质代码！
+致谢**Array & kawvin & EZ & liuyukuan**！
 
 #### 7.请我喝杯饮料？
 ![微信支付](https://i.loli.net/2019/08/28/5F9byl4WXnfhkUs.png)

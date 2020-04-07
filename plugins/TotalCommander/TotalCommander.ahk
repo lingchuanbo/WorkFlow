@@ -4727,6 +4727,13 @@ return
 <TC_ShowMainMenu>:
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_ShowMainMenu`)"
 return
+; TC图片AE编辑
+<menuTcToAe>:
+Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CopyFullNamesToClip`)"
+; msgbox,%clipboard%
+Run,%AeExePath% %clipboard%
+return
+
 ;调用Everything搜索tc当前窗口路径
 <TC_Everyting>:
 	; SendMessage 1074, 21, 0, , ahk_class TTOTAL_CMD

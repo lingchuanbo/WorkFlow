@@ -770,6 +770,9 @@ menuTc:
 		Menu, Toolset, add, 整理: 当前文件向上移,<Tools_MoveUpDir>
 		Menu, Toolset, add, 删除: 空目录,<Tools_NullDir>
 		Menu, Toolset, add, 删除: PNG文件,<Tools_DeletePNG>
+
+	Menu, menuTc, add,图片, :TcIMG
+		Menu, TcIMG, add, 编辑: 在AfterEffect编辑,<menuTcToAe>
 		
 	Menu, menuTc, add,命令行, :CommanderSet
 		Menu,CommanderSet , add, AE: 批渲染,<em_BoBO_AeRender>
@@ -784,6 +787,7 @@ return
 	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CloseCurrentTab`)"
 	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
 return
+
 
 ;启动记事本并去标题等
 
