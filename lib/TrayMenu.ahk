@@ -161,7 +161,7 @@ return
 return
 
 <VIMD_WorkFlowWeb>:
-Run, https://github.com/BoBOVFX/WorkFlow_BoBO
+Run, https://github.com/BoBOVFX/WorkFlow
 return
 
 <VIMD_Help>:
@@ -172,7 +172,7 @@ return
 ; 先执行访问，后面在执行下面
 FileCopy, %A_ScriptDir%\config.ini, %A_ScriptDir%\config_back_%d%.ini ,1
 ; FileCopy, %A_ScriptDir%\config.ini, %A_ScriptDir%\vimd_备份_还原.ini ,1
-Run, https://github.com/lingchuanbo/WorkFlow_B
+Run, https://github.com/lingchuanbo/WorkFlow
 ; 执行备份文件
 ; d = (%A_YYYY%_%A_MM%_%A_DD%_%A_Hour%%A_Min%%A_Sec%)
 ; ; 执行备份文件
@@ -184,7 +184,7 @@ Run, https://github.com/lingchuanbo/WorkFlow_B
 ; run, %A_ScriptDir%\updata.exe
 ; Sleep, 2000
 ; ; 查看更新日志
-; Run, https://github.com/lingchuanbo/WorkFlow_B
+; Run, https://github.com/lingchuanbo/WorkFlow
 ; Sleep, 2000
 ; Exitapp
 ; Gosub,Check_Update

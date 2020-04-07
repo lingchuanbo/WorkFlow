@@ -1,7 +1,7 @@
 
 ### **本软件为小众软件，会用牛逼，不会用垃圾！**
 ____________________________________________________
-### **什么是[WorkFLow？](https://github.com/lingchuanbo/WorkFlow_B/releases)**
+### **什么是[WorkFLow？](https://github.com/lingchuanbo/WorkFlow/releases)**
 
 WorkFLow是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxinhong/VimDesktop)为母版进行二次开发，主要面向图像图像软件进行编写.并集成一些功能性脚本！
 因自用则不定期更新，目前以功能优先！
@@ -38,8 +38,8 @@ WorkFLow是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxinh
 
 #### 1.下载
 ####
-请使用 **[WorkFLow最新版本](https://github.com/lingchuanbo/WorkFlow_B/archive/master.zip)**,否则不能正常工作！
-[下载地址](https://github.com/lingchuanbo/WorkFlow_B/archive/master.zip)
+请使用 **[WorkFLow最新版本](https://github.com/lingchuanbo/WorkFlow/archive/master.zip)**,否则不能正常工作！
+[下载地址](https://github.com/lingchuanbo/WorkFlow/archive/master.zip)
 
 #### 2.运行
 
