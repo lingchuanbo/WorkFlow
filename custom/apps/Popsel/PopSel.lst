@@ -1,7 +1,7 @@
 工作/=submenu
 工作/Unreal=C:\Program Files (x86)\Epic Games\Launcher\Portal\Binaries\Win32\EpicGamesLauncher.exe
 工作/Unity=C:\Program Files\Unity\Editor\Unity.exe
-工作/3Ds Max=F:\Boboahk\Workflow\Custom\Maxscripts\Mxs_bundle\Maxlauncher.bat
+工作/3Ds Max=%WorkFlow%\Custom\Maxscripts\Mxs_bundle\Maxlauncher.bat
 工作/XMind ZEN=%bobodir%\XMind ZEN\XMind ZEN.exe
 工作/krita=%bobodir%\krita-x64-4.2.5\krita.lnk
 工作/IDM=%bobodir%\IDM\IDMan.exe
@@ -66,6 +66,7 @@ Shell Folders/Administrative tools=shell:Common Administrative Tools
 工具/Notepad=%systemroot%\system32\Notepad.exe;;%HOMEDRIVE%%HOMEPATH%
 工具/PanDownload=F:\BoBOAHK\WorkQz\Apps\PanDownload\PanDownload.exe
 工具/关闭资管重复窗口=%WorkFlow%\custom\apps\TaskSwch\ClsFoldr.EXE
+工具/输入法=%WorkFlow%\tools\影子输入法\yz.ahk
 -=
 Session/=submenu
 Session/Shutdown=%systemroot%\system32\shutdown.exe;-s -t 0

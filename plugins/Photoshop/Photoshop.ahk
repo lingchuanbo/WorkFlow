@@ -20,12 +20,11 @@
 Photoshop:
 ;定义注释
     global Photoshop_update_version:="0.8"
-
     vim.SetAction("<Photoshop_NormalMode>", "返回正常模式")
     vim.SetAction("<Photoshop_InsertMode>", "进入VIM模式")
-    vim.SetWin("Photoshop","Photoshop","Photoshop.exe")
+    vim.SetWin("Photoshop","ahk_exe","Photoshop.exe")
     vim.BeforeActionDo("Photoshop_CheckMode", "Photoshop") ; by Array
-        ;载入自定义注释
+    ;载入自定义注释
     #Include %A_ScriptDir%\plugins\Photoshop\PhotoshopComment.ahk 
 
 ;normal模式
@@ -124,7 +123,7 @@ return
 		GoSub,Sub_KeyClick
 return		
 
- <Photoshop_SwithMode>:
+<Photoshop_SwithMode>:
 ;   单键切换
         if PS_Swith_var=2 ;
         PS_Swith_var=0
@@ -155,9 +154,9 @@ return
 
 ;辅助帮助显示
 <PS_Help>:
-ShowLayoutIMG("psHelp1.png")
-KeyWait i
-HideLayoutIMG()
+    ShowLayoutIMG("psHelp1.png")
+    KeyWait i
+    HideLayoutIMG()
 return
 
 

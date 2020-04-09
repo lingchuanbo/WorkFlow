@@ -573,6 +573,7 @@ return
 	Return
 	;智能对话框跳转
 	!w::
+	!LButton::
 		Dlg_HWnd := WinExist("ahk_group GroupDiagJump")
 		if Dlg_HWnd 
 		;IfWinExist ahk_group GroupDiagOpenAndSave
