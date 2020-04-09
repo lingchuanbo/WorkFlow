@@ -64,6 +64,11 @@ AE_CheckMode(){
     {
         return True
     }
+    ;表达式编辑器
+    IfWinActive, ahk_class DroverLord - Window Class
+    {
+        return True
+    }
     ControlGetFocus, ctrl, A
     If RegExMatch(ctrl,"i)Edit")
         {

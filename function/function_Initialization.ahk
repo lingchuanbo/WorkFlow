@@ -70,6 +70,37 @@ else:
     ), %getPath%,UTF-8
 }
 
+
+AE_Init_OpenLocalFliesTC:
+{
+    StrTCExePath:=StrReplace(TCExePath,"\","\\")
+    getPath = %A_ScriptDir%\custom\ae_scripts\commands\BoBO_OpenLocalFliesTC.jsx
+    FileDelete, %getPath% ;避免重复删除文件
+    FileAppend,  ; 这里需要逗号.
+    (
+//初始化文件,可能会被覆盖!
+function revealFile(filePath) {
+	if ( filePath instanceof File ) {
+		filePath = filePath.fsName;
+	}
+	var command = "open -R";
+	if ($.os.indexOf("Win") != -1) {
+		command = "%StrTCExePath% /O /T /R=";
+	}
+	arg = "\"" + filePath + "\"";
+	return system.callSystem(command + " " + arg);
+}
+
+if(app.project.file !== null){
+    var path=app.project['file'];
+    revealFile(path);
+}else{
+    alert("文件未保存，请先保存文件！")
+}
+    ), %getPath%,UTF-8
+}
+
+
 AE_Init_OpenLocalFilesRenderTC:
 {
     StrTCExePath:=StrReplace(TCExePath,"\","\\")

@@ -51,7 +51,15 @@ WHATSUP:
 RETURN
 OpenLocalFiles:
 {
-	getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
+    If ProcessExist("TOTALCMD.exe"){
+
+        getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFliesTC.jsx")
+
+    }else{
+
+	    getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
+
+    }
 	return
 }
 
