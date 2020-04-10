@@ -9,7 +9,7 @@ for (var i=0,len=selectedItems.length; i<len; i++)
 {
 			var item = selectedItems[i];
 			if ( selectedItems[i] instanceof CompItem ){         
-                     var myLayer = "99999.png" ; //素材请用   "素材名" | index 请输出数字
+                     var myLayer = 1 ; //素材请用   "素材名" | index 请输出数字
                      
                      var myEffect=item.layer(myLayer).property("Effects").addProperty("Deep Glow"); //添加特效
                      

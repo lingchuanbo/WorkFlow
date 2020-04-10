@@ -9,9 +9,10 @@ for (var i=0,len=selectedItems.length; i<len; i++)
 {
 			var item = selectedItems[i];
 			if ( selectedItems[i] instanceof CompItem ){         
-
+                alert();
                    //_AddEffect();
                    _ModifyEffect();
+
 
                 }else{             
                     
@@ -28,6 +29,7 @@ function _AddEffect(){ //添加
                      var myEffect=item.layer(2).property("Effects").addProperty("Tint"); //添加特效
 //~                      myEffect.property("Brightness").setValue(1.5); //设置属性
                       myEffect.property("Map White To").setValue(B/255); //颜色转换
+                    //   app.project.activeItem.layer(1).text.sourceText.expression = "timeToCurrentFormat(time)";
 //~                      myEffect.property("Glow Width").setValue(24); 
 //~                      myEffect.property("Width Red").setValue(1);
 //~                      myEffect.property("Width Green").setValue(1);

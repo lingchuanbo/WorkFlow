@@ -170,6 +170,7 @@ return
 
 MenuPlugins() ; Simulate double press
 {
+
    static pressed1 = 0
    if pressed1 and A_TimeSincePriorHotkey <= 300
    {
@@ -179,7 +180,9 @@ MenuPlugins() ; Simulate double press
     ;   ToolTip % GoogleTranslate(keyword)
         Menu, MyMenu, Add, (&G) %_searchGoogle%, mGoogle
         Menu, MyMenu, Add, (&D) %_searchDogeDoge%, mDogeDoge
-		Menu, MyMenu, Add, (&T) %_googleTranslate%, mGoogleTranslate
+		; if (A_Language = "0804")
+		Menu, MyMenu, Add, (&T) %_googleTranslate%, mGoogleTranslate	
+		Menu, MyMenu, Add, (&T) %_deepLTranslate%, mdeepLTranslate
         ; Menu, MyMenu, Add, (&T) %_googleTranslateCn%, mGoogleTranslateCn
 		; Menu, MyMenu, Add, (&T) %_googleTranslateEn%, mGoogleTranslateEn
 		Menu, MyMenu, Add, (&T) 智能处理, mSmartSearch
@@ -998,6 +1001,37 @@ mGoogleTranslate:
 			ToolTipFont("s12","Microsoft YaHei")
 			ToolTipColor("053445", "40A1EC")
 			ToolTip % GoogleTranslate(S_LoopField)
+			return
+		}
+	}
+return
+
+mdeepLTranslate:
+	;选中文本
+	; 判断如果是中文就翻译成英文
+	translator := new DeepLTranslator()
+	txt = %Clipboard%
+
+	Loop, parse, txt, `n, `r
+	{
+		S_LoopField=%A_LoopField%
+		if (RegExMatch(S_LoopField,"[^\x00-\xff]+"))
+		{
+			Clipboard := translator.translate(S_LoopField, "en", "zh")
+			ToolTipFont("s12","Microsoft YaHei")
+			ToolTipColor("053445", "40A1EC")
+			ToolTip % Clipboard
+			return
+		}
+		; ; 判断如果是英文就翻译成中文
+		if (RegExMatch(S_LoopField,"^[A-Za-z]+"))
+		{
+			translator := new DeepLTranslator()
+			txt = %Clipboard%
+			Clipboard := translator.translate(S_LoopField, "zh", "en")
+			ToolTipFont("s12","Microsoft YaHei")
+			ToolTipColor("053445", "40A1EC")
+			ToolTip % Clipboard
 			return
 		}
 	}
