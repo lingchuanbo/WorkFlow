@@ -1009,6 +1009,7 @@ return
 mdeepLTranslate:
 	;选中文本
 	; 判断如果是中文就翻译成英文
+	; 没有API直接调用请求速度有点慢，所以改成直接访问网页端
 	translator := new DeepLTranslator()
 	txt = %Clipboard%
 
@@ -1017,21 +1018,23 @@ mdeepLTranslate:
 		S_LoopField=%A_LoopField%
 		if (RegExMatch(S_LoopField,"[^\x00-\xff]+"))
 		{
-			Clipboard := translator.translate(S_LoopField, "en", "zh")
-			ToolTipFont("s12","Microsoft YaHei")
-			ToolTipColor("053445", "40A1EC")
-			ToolTip % Clipboard
+			; Clipboard := translator.translate(S_LoopField, "en", "zh")
+			; ToolTipFont("s12","Microsoft YaHei")
+			; ToolTipColor("053445", "40A1EC")
+			; ToolTip % Clipboard
+			Run,https://www.deepl.com/translator#zh/en/%S_LoopField%
 			return
 		}
 		; ; 判断如果是英文就翻译成中文
 		if (RegExMatch(S_LoopField,"^[A-Za-z]+"))
 		{
-			translator := new DeepLTranslator()
-			txt = %Clipboard%
-			Clipboard := translator.translate(S_LoopField, "zh", "en")
-			ToolTipFont("s12","Microsoft YaHei")
-			ToolTipColor("053445", "40A1EC")
-			ToolTip % Clipboard
+			; translator := new DeepLTranslator()
+			; txt = %Clipboard%
+			; Clipboard := translator.translate(S_LoopField, "zh", "en")
+			; ToolTipFont("s12","Microsoft YaHei")
+			; ToolTipColor("053445", "40A1EC")
+			; ToolTip % Clipboard
+			Run,https://www.deepl.com/translator#en/zh/%S_LoopField%
 			return
 		}
 	}
