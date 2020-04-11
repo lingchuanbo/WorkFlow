@@ -107,8 +107,8 @@ CALCULATEPOSITIONS:
    savedScreenWidth := A_ScreenWidth
    savedScreenHeight := A_ScreenHeight
    width := clockWidth  + memWidth + cpuWidth + gpuWidth + margin * 4
-   xPos := savedScreenWidth - width - posFromRight
-   yPos := 3
+   xPos := savedScreenWidth - width - posFromRight -50
+   yPos := 5
     memPos := xPos + clockWidth + margin 
     cpuPos := memPos + memWidth + margin
     gpuPos := cpuPos + memWidth + margin
@@ -145,37 +145,37 @@ CREATECLOCKWINDOW:
 
    Gui, 7:+LastFound +AlwaysOnTop +ToolWindow -SysMenu -Caption
    Gui, 7:Add, Progress, y0 x%progressBarPos% w%memProgressWidth% h%infoHeight% c%memBarColor% vMemBar Background%memBGColor%
-    Gui, 7:Show,NoActivate x%memPos% y%yPos%, MemBarGui
-    WinSet, Region, %regionMargin%-0 W%memWidth% H%infoHeight% R5-5, MemBarGui
+   Gui, 7:Show,NoActivate x%memPos% y%yPos%, MemBarGui
+   WinSet, Region, %regionMargin%-0 W%memWidth% H%infoHeight% R5-5, MemBarGui
    GuiControl, 7:, MemBar, 50
 
 
    Gui, 3:+LastFound +AlwaysOnTop +ToolWindow -SysMenu -Caption
-    Gui, 3:Color, %memBGColor%
-    Gui, 3:Font, c%memFontColor% %infoFontStyle%, %infoFont%
-    Gui, 3:Add,Text,vMem y%txtY% x%txtX%, %memText%
-    Gui, 3:Show,NoActivate x%memPos% y%yPos% ,Mem
-    WinSet, Region, %regionMargin%-0 W%memWidth% H%infoHeight% R5-5, Mem
+   Gui, 3:Color, %memBGColor%
+   Gui, 3:Font, c%memFontColor% %infoFontStyle%, %infoFont%
+   Gui, 3:Add,Text,vMem y%txtY% x%txtX%, %memText%
+   Gui, 3:Show,NoActivate x%memPos% y%yPos% ,Mem
+   WinSet, Region, %regionMargin%-0 W%memWidth% H%infoHeight% R5-5, Mem
    WinSet, TransColor, %memBGColor%
 
 
    Gui, 5:+LastFound +AlwaysOnTop +ToolWindow -SysMenu -Caption
    Gui, 5:Add, Progress, y0 x%progressBarPos% w%cpuProgressWidth% h%infoHeight% c%cpuBarColor% vCpuBar Background%cpuBGColor%
-    Gui, 5:Show,NoActivate x%cpuPos% y%yPos%, CpuBarGui
-    WinSet, Region, %regionMargin%-0 W%cpuWidth% H%infoHeight% R5-5, CpuBarGui
+   Gui, 5:Show,NoActivate x%cpuPos% y%yPos%, CpuBarGui
+   WinSet, Region, %regionMargin%-0 W%cpuWidth% H%infoHeight% R5-5, CpuBarGui
 
    Gui, 4:+LastFound +AlwaysOnTop +ToolWindow -SysMenu -Caption
-    Gui, 4:Color, %cpuBGColor%
-    Gui, 4:Font, c%cpuFontColor% %infoFontStyle%, %infoFont%
-    Gui, 4:Add,Text,vCpu y%txtY% x%txtX%, %cpuText%
-    Gui, 4:Show,NoActivate x%cpuPos% y%yPos% ,Cpu
-    WinSet, Region, %regionMargin%-0 W%cpuWidth% H%height% R5-5, Cpu
+   Gui, 4:Color, %cpuBGColor%
+   Gui, 4:Font, c%cpuFontColor% %infoFontStyle%, %infoFont%
+   Gui, 4:Add,Text,vCpu y%txtY% x%txtX%, %cpuText%
+   Gui, 4:Show,NoActivate x%cpuPos% y%yPos% ,Cpu
+   WinSet, Region, %regionMargin%-0 W%cpuWidth% H%height% R5-5, Cpu
    WinSet, TransColor, %cpuBGColor%
 
    Gui, 2:+LastFound +AlwaysOnTop +ToolWindow -SysMenu -Caption
-   Gui, 2:Add, Progress, y0 x%progressBarPos% w%cpuProgressWidth% h%infoHeight% c%cpuBarColor% vCpuBar Background%cpuBGColor%
-   Gui, 2:Show,NoActivate x%cpuPos% y%yPos%, GpuBarGui
-   WinSet, Region, %regionMargin%-0 W%cpuWidth% H%infoHeight% R5-5, GpuBarGui
+   Gui, 2:Add, Progress, y0 x%progressBarPos% w%gpuProgressWidth% h%infoHeight% c%gpuBarColor% vCpuBar Background%gpuBGColor%
+   Gui, 2:Show,NoActivate x%gpuPos% y%yPos%, GpuBarGui
+   WinSet, Region, %regionMargin%-0 W%gpuWidth% H%infoHeight% R5-5, GpuBarGui
 
    Gui, 8:+LastFound +AlwaysOnTop +ToolWindow -SysMenu -Caption
    Gui, 8:Color, %gpuBGColor%
@@ -234,7 +234,7 @@ UPDATECPU:
    GPUload:=NvAPI.GPU_GetDynamicPstatesInfoEx().GPU.percentage
       If (GPUload > gpuThreshold)
    {
-      Gui, 4:Font, c%gpuFontColorAlert%
+      Gui, 8:Font, c%gpuFontColorAlert%
       GuiControl, 2: +Background%gpuBGColorAlert%, GpuBar
       GuiControl, 2: +c%gpuBarColorAlert%, GpuBar
    }
@@ -330,15 +330,15 @@ GETBIANLIANG:
       transparency := 200
       memLabel := "内存: "
       cpuLabel := "CPU: "
+      gpuLabel := "GPU: "
 
       gpuFontColor := "Yellow"
       gpuFontColorAlert := "Aqua"
       gpuBGColor := "Black"
       gpuBGColorAlert := "Maroon"
-      gpuBarColor := "Blue"
+      gpuBarColor := "Yellow"
       gpuBarColorAlert := "Red"
       gpuThreshold := 80
-      gpuLabel := "GPU: "
 
       ; timeFormat := "yy-M-d ddd HH:mm:ss"
       timeFormat := "yy-M-d HH:mm:ss"
