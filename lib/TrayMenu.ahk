@@ -40,6 +40,7 @@ Menu, tray, add, %_aboutMe%(&L), :aboutMe
 ; Menu, aboutMe, add, %_AppName%添加为系统变量(&B), <VIMD_EnvSystem>
 
 Menu, OptionSet, add, %_Initialization%, <VIMD_Initialization>
+Menu, OptionSet, add, 将 %_AppName% 目录添加为系统变量(&B), <VIMD_EnvSystem>
 Menu, OptionSet, add, %_BackupRestore%, <VIMD_BackupRestore>
 Menu, tray, add, %_Option%, :OptionSet
 
