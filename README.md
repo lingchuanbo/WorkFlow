@@ -1,14 +1,26 @@
 
 ### **本软件为小众软件，会用牛逼，不会用垃圾！**
+
+**绿色无污染！解压即可运行！**
+
 ____________________________________________________
 ### **什么是[WorkFLow？](https://github.com/lingchuanbo/WorkFlow/releases)**
 
 WorkFLow是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxinhong/VimDesktop)为母版进行二次开发，主要面向图像图像软件进行编写.并集成一些功能性脚本！
-因自用则不定期更新，目前以功能优先！
+
+不定期更新，目前以功能优先！
+
 个别源码来自Array & kawvin & EZ & liuyukuan!
 
-### 最更新版本为3.6.5
+## **最新版本为3.6.5**
+目前已支持 **AfterEffect|Photoshop|3DsMax|Unity**
+
+2020-04-11
+
+1. 新增AI翻译 DeepL
+
 2020-04-05
+
 1. 窗口跳转优化(TC)，如果显示打开窗口则发送到打开窗口,如果未显示打开窗口,则跳转默认资源管理器
 2. Photoshop增强菜单,1.一健发送到AE编辑 2.在TC显示文件所在位置.
 3. TC增强菜单,1.一健发送到AE编辑
@@ -29,50 +41,52 @@ WorkFLow是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxinh
 2. Ctrl+C+C优化翻译智能判断中文时翻译英文，英文时翻译中文！
 3. 新增智能处理,目前规则支持网站和本地路径
 
-## 如何使用
+## **安装步骤**
+### 1.下载安装
 
-**绿色无污染！直接解压即可！**
-**绿色无污染！何时何地拷贝带走立即使用！**
+#### 请使用 **[WorkFLow最新版本](https://github.com/lingchuanbo/WorkFlow/archive/master.zip)**,否则不能正常工作！
+#### [下载地址](https://github.com/lingchuanbo/WorkFlow/archive/master.zip)
 
-目前已支持**AfterEffect|Photoshop|3DsMax|Unity**！
+### 2.如果未安装Autohotkey&Python,请先安装,已安装请忽略,Python本人为3.8版本
 
-#### 1.下载
-####
-请使用 **[WorkFLow最新版本](https://github.com/lingchuanbo/WorkFlow/archive/master.zip)**,否则不能正常工作！
-[下载地址](https://github.com/lingchuanbo/WorkFlow/archive/master.zip)
+1. [官网下载 Autohotkey](https://www.autohotkey.com/),如果被墙请点[这里下载](https://www.lanzous.com/i6yvg0h),安装选择32位版本.
 
-#### 2.运行
+2. [官网下载 Python](https://www.python.org).
 
-1.>>直接运行WorkFlow.ahk 建议这种方式，如何运行请先[官网下载Autohotkey](https://www.autohotkey.com/)进行安装，如果被墙请点[这里下载](https://www.lanzous.com/i6yvg0h)。
+3. 运行Workflow.ahk主程序
 
+### 3.帮助
 
-#### 3.帮助
+1. [WorkFLow笔记](https://www.notion.so/7df31102696b43dd948dab655bd1e1f7?v=5cdef8f68af74cfabca156cfb739a299),逐步完善中.
 
-**按键帮助** 请看目录下的【帮助.xlsx】
+2. 目录下的【帮助.xlsx】.
 
-[WorkFLow笔记](https://www.notion.so/7df31102696b43dd948dab655bd1e1f7?v=5cdef8f68af74cfabca156cfb739a299),逐步完善中.
+3. 教程 [Adobe AfterEffects](https://www.kancloud.cn/funbobosky/vimd_aftereffect) [| Photoshop | Unity | 3DsMax](https://www.kancloud.cn/funbobosky/vim_unity)
 
-**入门指南：**是我针对用户给出了较易理解的帮助文档 **[Adobe AfterEffects](https://www.kancloud.cn/funbobosky/vimd_aftereffect) [| Photoshop | Unity | 3DsMax](https://www.kancloud.cn/funbobosky/vim_unity)-------说真我尽力了！
-(最近优化较多，部分功能及优化调整还未写入更新，请谅解择期修正)
+部分功能及优化调整未同步更新，请谅解! 择期修正.
 
-**查阅： [Adobe AfterEffects](https://www.kancloud.cn/funbobosky/vimd_aftereffect) [| Photoshop | Unity | 3DsMax](https://www.kancloud.cn/funbobosky/vim_unity)**
+#### 4.下载完请执行
 
-#### 4.可能会遇到的问题
-1. Win10用户请管理员运行目录下Windows10设置.reg
-2. 请点击 右键任务栏WorkFLow-关于我-WorkFLow添加为系统变量
+1. Win10用户请管理员运行目录下Windows10设置.reg(必须)
+2. 请点击 右键任务栏WorkFLow-设置-添加为系统变量(必须)
+3. 请点击 右键任务栏WorkFLow-设置-初始化PS/AE/3DSMAX(必须)
+
 
 ### 注意事项
-1. 安装完[AHK环境](https://www.autohotkey.com/download/ahk-install.exe)后，在运行WorkFlow.ahk！
-2. 源码已放出 ,如需修改，请自行参阅修改！
-3. 遇杀毒等安全软件提示 请 请 请 请放行！
-4. 升级记得备份config.ini
-5. 遇到问题请参照帮助自行解决 , 实在不行有偿解决(慎重很贵的，按分计费看心情！不喜欢请卸载！) 验证码请输入WorkFLow！
-6. 目前在Win10系统运行正常！其它其它未知.
-7. 一些脚本(AEScript&MaxScript)来自网络如有侵权请联系删除！
+1. 源码已放出 ,如需修改，请自行参阅修改！
+2. 遇杀毒等安全软件提示 请 请 请 请放行！
+3. 升级记得备份config.ini(暂时没升级服务器已屏蔽)
+4. 遇到问题请参照帮助自行解决 , 实在不行有偿解决(慎重很贵的，按分计费看心情！不喜欢请卸载！) 验证码请输入WorkFLow！
+5. 目前在Win10系统运行正常！其它其它未知.
+6. 一些脚本(AEScript&MaxScript)来自网络如有侵权请联系删除！
+7. 软件库请在我的分享地址下载.https://lanzous.com/b04g764ud
+密码:66ig
+8. ### 软件放置WorkFlow新建个tools目录,比如WorkFlow\tools\TotalCMD(少折腾就按我说的做,TotalCMD为必备)
+9. 如果有用影子输入法,请最后运行影子输入法,否者会冲突!
 
 #### 5.为何更名为WorkFlow
 
-## 操作方式跟Vim操作无关，适合左手键盘右手鼠标，一切只为打造适合自己的工作流!
+#### 操作方式与Vim操作无关，适合左手键盘右手鼠标，只为打造适合自己的操作方式!
 
 #### 6.感谢
 
