@@ -127,10 +127,21 @@ return
 
 ; 用法：ctrl+a ctrl+a+a
 ; 截图/录制/Gif
-~^!a:: Gosub,<ShareX_PrintScreen>
 
+~^!a:: 
+	IniRead, PrintS,config.ini, config, PrintS, 1
+    if PrintS = 1
+	{
+	Gosub,<ShareX_PrintScreen>
+	}
+	else
+	{
+		return
+	}
+return
 <ShareX_PrintScreen>:
 {
+
     t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
     settimer, ShareX_tappedkey_PrintScreen, %t%
     if (t == "off")
@@ -164,10 +175,18 @@ return
 ; 用法：选中文字，按两次Ctrl+C翻译或搜索或加解密
 ; 热键：Ctrl+C+C
 ; 辅助菜单增强
-
 ;--------------------------------------------------
-~^c:: MenuPlugins()
-
+~^c:: 
+	IniRead, MenuPlugins,config.ini, config, MenuPlugins, 1
+    if MenuPlugins = 1
+	{
+		MenuPlugins()
+	}
+	else
+	{
+		return
+	}
+return
 MenuPlugins() ; Simulate double press
 {
 
@@ -205,7 +224,17 @@ MenuPlugins() ; Simulate double press
 
 ; 功能：软件启动器	
 ; 热键：Win+右键						
-#RButton::Gosub,<BoBO_PopSel>
+#RButton::
+	IniRead, PopSel,config.ini, config, PopSel, 1
+    if PopSel = 1
+	{
+		Gosub,<BoBO_PopSel>
+	}
+	else
+	{
+		return
+	}
+return
 <BoBO_PopSel>:
 {
     run %A_ScriptDir%\custom\apps\Popsel\PopSel.exe /n
@@ -273,8 +302,16 @@ return
 ;任务栏切换
 <BoBO_TaskSwch>:
 {
-    run %A_ScriptDir%\custom\apps\TaskSwch\TaskMuEx.exe /n
-	return
+	IniRead, TaskMuEx,config.ini, config, TaskMuEx, 1
+    if TaskMuEx = 1
+	{
+		run %A_ScriptDir%\custom\apps\TaskSwch\TaskMuEx.exe /n
+	}
+	else
+	{
+		return
+	}
+return
 }
 ;社交软件便捷
 <Tx_OpenWithTc>:
@@ -471,7 +508,7 @@ return
 ; #IfWinActive ahk_class #32770
 #If WinActive("ahk_group GroupDiagJump") and WinActive("ahk_class #32770")
 {
-	!e:: GoSub,Sub_SendCurDiagPath2Exp		;发送对话框路径到_系统资管中
+	!e::GoSub,Sub_SendCurDiagPath2Exp		;发送对话框路径到_系统资管中
 	; !t:: GoSub,Sub_SendCurDiagPath2Tc ;发送对话框路径到_TC
 	; !g:: GoSub,Sub_SendTcCurPath2Diag
 	!LButton:: GoSub,Sub_SendTcCurPath2Diag ;发送TC路径到对话框路径
