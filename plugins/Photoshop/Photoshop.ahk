@@ -58,7 +58,7 @@ Photoshop:
     vim.Map("n", "<PS_Double_N>", "Photoshop")
     vim.Map("x", "<PS_Duplicate_X>", "Photoshop")
     vim.Map("t", "<PS_Double_T>", "Photoshop")
-    
+    vim.Map("z", "<Photoshop_Double_z>", "Photoshop")
 
     vim.Map("c", "<PS_颜色面板>", "Photoshop")
 
@@ -132,6 +132,11 @@ PSCheckInput()
 <Photoshop_Alt>:
 		GV_KeyClickAction1 := "send,{Alt}"
 		GV_KeyClickAction2 := "GoSub,menuPsAlt"
+		GoSub,Sub_KeyClick
+return
+<Photoshop_Double_z>:
+		GV_KeyClickAction1 := "send,{z}"
+		GV_KeyClickAction2 := "send,!^z"
 		GoSub,Sub_KeyClick
 return	
 
