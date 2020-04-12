@@ -500,6 +500,9 @@ return
     F2::send,{Blind}^+{Tab}
     F3::send,{Blind}^{Tab}
     F4::SendInput,^w
+	` & 1:: Browser_Back
+	` & 2:: Browser_Forward
+	` & 3:: SendInput,{F5}
 	; ~wheelup::send,{Blind}^+{Tab}
 	; ~wheeldown::send,{Blind}^{Tab}
     ~LButton & RButton::send ^w
