@@ -103,28 +103,6 @@ CapsLock & f::SendInput,{Blind}{PgDn}
 	Escape::send,{Escape}
 #If 
 
-Sub_KeyClick:
-{
-	t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-    settimer, tappedkey, %t%
-    if (t == "off")
-    goto double
-    return
-    tappedkey:
-        {
-            KeyClickAction(GV_KeyClickAction1)
-            return
-        }
-    return
-
-    double:
-        {
-            KeyClickAction(GV_KeyClickAction2)
-            return
-        }
-return
-}
-
 ; 用法：ctrl+a ctrl+a+a
 ; 截图/录制/Gif
 
@@ -759,7 +737,8 @@ return
 	` & 3:: Gosub, <PS_明颜色>
 	` & 4:: Gosub, <PS_暗颜色>
 	` & 5:: Gosub, <PS_加暗加亮>
-	4::send,{Delete}
+    3::SendInput,{RButton}
+	4::SendInput,{Delete}
 	; `::send,{b}
 	` & LButton::Gosub, ps_double_BrushSwith
 	

@@ -1,8 +1,6 @@
 ﻿;Author:BoBO
-;Version:v0.2
-;Date:20190808
-;
-;8+8=
+;Version:v1.1
+;Date:20200412
 ;########################################
 ;更新内容
 ;2019-08-09 空格+1 笔刷变小  空格+3 笔刷变大  空格+2 橡皮檫
@@ -20,24 +18,23 @@
 Photoshop:
 ;定义注释
     global Photoshop_update_version:="0.8"
+
     vim.SetAction("<Photoshop_NormalMode>", "返回正常模式")
     vim.SetAction("<Photoshop_InsertMode>", "进入VIM模式")
-    vim.SetWin("Photoshop","ahk_exe","Photoshop.exe")
-    vim.BeforeActionDo("Photoshop_CheckMode", "Photoshop") ; by Array
-    ;载入自定义注释
-    #Include %A_ScriptDir%\plugins\Photoshop\PhotoshopComment.ahk 
+    vim.SetWin("Photoshop","ahk_exe","photoshop.exe")
 
 ;normal模式
     vim.SetMode("normal", "Photoshop")
-    vim.Comment("<Photoshop_SwithMode>", "Photoshop")
+    vim.Comment("<Photoshop_SwithMode>", "【-----模式切换-----】")
     vim.map("<insert>","<Photoshop_SwithMode>","Photoshop")
 ;insert模式
+    ;载入自定义注释
+    #Include %A_ScriptDir%\plugins\Photoshop\PhotoshopComment.ahk 
     vim.SetMode("insert", "Photoshop")
     vim.Map("<insert>", "<Photoshop_SwithMode>", "Photoshop")
 
+    ; vim.Map("q", "<PS_Duplicate_画笔橡皮擦涂抹>", "Photoshop")
     vim.Map("<Alt>", "<Photoshop_Alt>", "Photoshop")
-
-    vim.Map("q", "<PS_Duplicate_画笔橡皮擦涂抹>", "Photoshop")
     vim.Map("w", "<PS_OneKeyDefault>", "Photoshop")
     vim.Map("q", "<PS_选区切换>", "Photoshop")
 
@@ -65,8 +62,6 @@ Photoshop:
 
     vim.Map("c", "<PS_颜色面板>", "Photoshop")
 
-
-
     vim.Map("<F2>", "<PS_切换标签>", "Photoshop")
     vim.Map("<F7>", "<PS_创建新文档>", "Photoshop")
 
@@ -78,13 +73,16 @@ Photoshop:
     vim.map("?","<ShowHelp>","Photoshop")
 
     vim.Map("/u", "<PS_AutoUpdate>", "Photoshop")
+    
+
     ; vim.Map("<F1>", "<PS-Test>", "Photoshop")
     vim.Map("<LB-d>", "<PS_向下合并>", "Photoshop")
     vim.Map("<LB-e>", "<PS_多边形选区>", "Photoshop")
 
+
+    vim.BeforeActionDo("Photoshop_CheckMode", "Photoshop") ; by Array
 return
 ; 对符合条件的控件使用insert模式，而不是normal模式
-
 Photoshop_CheckMode()
 {
     ControlGetFocus, ctrl, A
@@ -92,9 +90,9 @@ Photoshop_CheckMode()
     ;匹配颜色2019
     if ((psinputt = 0x1f1f1f) or (psinputt = 0x383838) or (psinputt = 0x808080) or (psinputt = 0xbfbfbf)) 	;
 		{
-		    return True
+		    return true
 		}
-    if RegExMatch(ctrl, "i)Edit") or WinExist("ahk_class #32770")
+    if RegExMatch(ctrl, "i)Edit")  ; or WinExist("ahk_class #32770"))
     {
         return True
     }
@@ -102,9 +100,41 @@ Photoshop_CheckMode()
     {
         return False
     }
-
     return
 }
+PSCheckInput()
+{
+	ControlGetFocus, ctrl, A	;if (RegExMatch(ctrl, "Edit|Static88") or WinExist("ahk_class #32768"))
+	PixelGetColor, psinputt, 16, 493
+	;~ PixelGetColor, psinputj, 30, 38
+    if (psinputt = 0x383838) ;&& (psinputj = 0x989898)) 	;Static88为输入文字时的ClassNN
+		{
+		return true
+		}
+    if (A_CaretX) 	;Static88为输入文字时的ClassNN
+		{
+		return true
+		}
+    if (RegExMatch(ctrl, "Edit|Static151|Static88")) ;|| (ConvMode = 1025) || A_CaretX	;Static88为输入文字时的ClassNN
+		{
+		return true
+		}
+    if (RegExMatch(ctrl, "Static152"))
+		{
+		return false
+		}
+	else
+	{
+		return false
+	}
+}
+
+<Photoshop_Alt>:
+		GV_KeyClickAction1 := "send,{Alt}"
+		GV_KeyClickAction2 := "GoSub,menuPsAlt"
+		GoSub,Sub_KeyClick
+return	
+
 ;【全局运行PS】
 <RunPS>:
     ExePath := ini.BOBOPath_Config.PSPath
@@ -117,13 +147,8 @@ Photoshop_CheckMode()
 ; msgbox %TxFileRecv%
 return
 
-<Photoshop_Alt>:
-		GV_KeyClickAction1 := "GoSub,menuPsAlt"
-		GV_KeyClickAction2 := "GoSub,menuPsAlt"
-		GoSub,Sub_KeyClick
-return		
 
-<Photoshop_SwithMode>:
+ <Photoshop_SwithMode>:
 ;   单键切换
         if PS_Swith_var=2 ;
         PS_Swith_var=0
@@ -154,9 +179,9 @@ return
 
 ;辅助帮助显示
 <PS_Help>:
-    ShowLayoutIMG("psHelp1.png")
-    KeyWait i
-    HideLayoutIMG()
+ShowLayoutIMG("psHelp1.png")
+KeyWait i
+HideLayoutIMG()
 return
 
 
@@ -201,8 +226,6 @@ return
     ps_tappedkey_t:
         {
             ; send, {t}
-            ; 不常用文件,所以屏蔽
-            Send,^{t}
             return
         }
     return
@@ -1020,8 +1043,8 @@ return
 	TrayTip,,检查更新中……,2,1
 
 
-    URLDownloadToFile(WorkFlowPluginsDownDir "/Photoshop/Photoshop.ahk", A_Temp "\temp_Photoshop.ahk")
-    URLDownloadToFile(WorkFlowPluginsDownDir "/Photoshop/PhotoshopComment.ahk", A_Temp "\temp_PhotoshopComment.ahk")
+    URLDownloadToFile(WorkflowPluginsDownDir "/Photoshop/Photoshop.ahk", A_Temp "\temp_Photoshop.ahk")
+    URLDownloadToFile(WorkflowPluginsDownDir "/Photoshop/PhotoshopComment.ahk", A_Temp "\temp_PhotoshopComment.ahk")
 	versionReg=iS)^\t*\s*global Photoshop_update_version:="([\d\.]*)"
 
 	Loop, read, %A_Temp%\temp_Photoshop.ahk

@@ -1198,3 +1198,25 @@ getFiles(){
 		return cliptem
 	}
 }
+
+Sub_KeyClick:
+{
+	t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
+    settimer, tappedkey, %t%
+    if (t == "off")
+    goto double
+    return
+    tappedkey:
+        {
+            KeyClickAction(GV_KeyClickAction1)
+            return
+        }
+    return
+
+    double:
+        {
+            KeyClickAction(GV_KeyClickAction2)
+            return
+        }
+return
+}
