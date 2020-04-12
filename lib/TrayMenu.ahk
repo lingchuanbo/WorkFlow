@@ -15,19 +15,19 @@ menu, Tray, add
 ;menu, Tray, check, %_StartUp%
 ;menu, Tray, add, %_UpdatPlugins% &U, <UpdatPlugins>
 ;menu, tray, disable, %_Author%
-Menu, Tray, add, %_HotKeyManagement%(&H), <VimDConfig_KeymapEdit>
+; Menu, Tray, add, %_HotKeyManagement%(&H), <VimDConfig_KeymapEdit>
 ; Menu, Tray, add, 功能管理, <VimDConfig_function>
 ; Menu, Tray, Add, %_Config%(&C), <VimDConfig_EditConfig>
 ; Menu, Tray, Add, %_Path%(&P), <EditConfig>
 ;Menu, Tray, Add,
 ;Menu, Tray, Add, 编辑Custom &C, <VimDConfig_EditCustom>
-Menu, Tray, Add,
+; Menu, Tray, Add,
 ;Menu, Tray, Add, (&H) %_Help%, <VIMD_Help>
 
 ;menu, Tray, add, (&U) %_Updater% , <Updater>
-Menu, LangSet, add, 中文(&Z),中文
-Menu, LangSet, add, English(&E),English
-Menu, tray, add, %_Language%(&L), :LangSet
+Menu, LangSet, add, 中文,中文
+Menu, LangSet, add, English,English
+Menu, tray, add, %_Language%, :LangSet
 
 
 Menu, aboutMe, add, %_Help%(&H), <VIMD_Help>
