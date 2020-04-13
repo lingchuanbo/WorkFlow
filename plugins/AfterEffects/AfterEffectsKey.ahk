@@ -56,11 +56,11 @@
     vim.Map("e", "<Ae_Double_e>", "AfterEffects")
 
     vim.Map("0", "<Ae_Double_0>", "AfterEffects")
-    vim.Map("1", "<Ae_Double_F1>", "AfterEffects")
-    vim.Map("2", "<Ae_Double_2>", "AfterEffects")
-    vim.Map("3", "<Ae_Double_3>", "AfterEffects")
+    ; vim.Map("1", "<Ae_Double_F1>", "AfterEffects")
+    ; vim.Map("2", "<Ae_Double_2>", "AfterEffects")
+    ; vim.Map("3", "<Ae_Double_3>", "AfterEffects")
     vim.Map("4", "<Ae_Delete>", "AfterEffects")
-    vim.Map("6", "<Ae_doubleTest>", "AfterEffects")
+    ; vim.Map("6", "<Ae_doubleTest>", "AfterEffects")
     vim.Map("8", "<Ae_Double_8>", "AfterEffects")
     vim.Map("-", "<Ae_Double_->", "AfterEffects")
     vim.Map("=", "<Ae_Double_=>", "AfterEffects")
@@ -85,6 +85,9 @@
     
     vim.Map("<LB-[>", "<Ae_LayerInterceptLeft>", "AfterEffects")
     vim.Map("<LB-]>", "<Ae_LayerInterceptRight>", "AfterEffects")
+
+    vim.Map("<LB-1>", "<Ae_LayerInterceptLeft>", "AfterEffects")
+    vim.Map("<LB-2>", "<Ae_LayerInterceptRight>", "AfterEffects")
 
     ; vim.Map("R", "<Ae_Remove>", "AfterEffects")
     vim.Map("vcn", "<AfterEffects_新建合成>", "AfterEffects")

@@ -6,14 +6,55 @@ function_menuAfterEffect:
 
 #If WinActive("ahk_exe AfterFX.exe")
 {
-    F1::return
+    F1::Gosub,Ae_pluginTools
      ;;AE快速打开文件所在位置 至于是否启用TC到时候在考虑目前可以一直按alt+w
      ; !w::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
     ^+!LButton::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
      ;;便捷菜单
     +RButton::Gosub,menuAe
     ; !RButton::Gosub,menuAeAlt
+    1::
+		GV_KeyClickAction1 := "Gosub,<Ae_Double_[>"
+		GV_KeyClickAction2 := "Gosub,<Ae_SplitLayer>"
+		GoSub,Sub_KeyClick
+	return	
+
+    2::
+		GV_KeyClickAction1 := "Gosub,<Ae_Double_]>"
+		GV_KeyClickAction2 := "send,+{F3}"
+		GoSub,Sub_KeyClick
+    return
+    3::send,{RButton}
+
+
 }
+
+
+Ae_pluginTools:
+    GroupAdd,AfterEffects,ahk_exe AfterFX.exe
+    GroupAdd,AfterEffects,ahk_class %tClass% 
+    WinActivate,ahk_group AfterEffects
+    MouseGetPos, MX, MY
+    MouseX:=MX-325
+    MouseY:=MY-150 
+    Gui,Ae: Show,X%MouseX% Y%MouseY% ,NoActivate ; 
+    ;保存当前信息
+    KeyWait,F1
+    Sleep, 20                                                                                              
+    IfWinActive, ahk_class AutoHotkeyGUI
+    { 
+        Click down 
+        Sleep, 20  
+        Click up
+        Sleep, 20                 
+        Gui,Ae: Hide
+        sleep 200
+        Click 1
+    }
+return
+
+
+
 
 menuAeAlt:
 	; menu, menuAlt, add, , WHATSUP11111111111111111
