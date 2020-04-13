@@ -117,6 +117,7 @@ CapsLock & f::SendInput,{Blind}{PgDn}
 		return
 	}
 return
+
 <ShareX_PrintScreen>:
 {
 
@@ -780,12 +781,17 @@ menuTc:
 		Menu, transformSet, add, DDS转PNG,<em_BoBO_DDSToPNG>
 		Menu, transformSet, add, 中文转拼音,<Tools_ChineseConversionPinyin>
 
-	Menu, menuTc, add,游戏开发, :GameDevSet
+	IniRead, myCompany,config.ini, config, myCompany, 1
+    if myCompany = kuaiyou
+	{
+		Menu, menuTc, add,游戏开发, :GameDevSet
 		Menu, GameDevSet, add, 打包文件_H5,<GameDevSetPackH5>
 		Menu, GameDevSet, add, 打包文件_As,<GameDevSetPackAs>
 		Menu, GameDevSet, add, Atlas前缀修改,<GameDevSetAtlas>
 		Menu, GameDevSet, add, 编辑器 >> 仙谕,<GameDevSetFxEditorXY>
 		Menu, GameDevSet, add, 编辑器 >> 三国,<GameDevSetFxEditorSG>
+	}
+
 
 	Menu, menuTc, add,工具, :Toolset
 		Menu, Toolset, add, 整理: 按文件类型,<Tools_Classification>

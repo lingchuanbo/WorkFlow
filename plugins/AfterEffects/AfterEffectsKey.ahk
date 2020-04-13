@@ -47,6 +47,7 @@
     vim.Map("w", "<Ae_Double_w>", "AfterEffects")
     vim.Map("c", "<Ae_Double_c>", "AfterEffects")
     vim.Map("z", "<Ae_Double_z>", "AfterEffects")
+    vim.Map("f", "<Ae_Double_f>", "AfterEffects")
     vim.Map("o", "<Ae_Double_o>", "AfterEffects")
     vim.Map("y", "<Ae_Double_y>", "AfterEffects")
     vim.Map("d", "<Ae_Double_d>", "AfterEffects")

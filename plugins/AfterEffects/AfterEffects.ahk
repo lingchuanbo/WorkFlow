@@ -1397,6 +1397,11 @@ return
 Return
 
 ;调用动画预设文件
+<Ae_Double_f>:
+	GV_KeyClickAction1 := "send,{f}"
+	GV_KeyClickAction2 := "Gosub,<Ae_Preset_Apply>"
+	GoSub,Sub_KeyClick
+return
 <Ae_Preset_Apply>:
 {
     send ^+!{f}
