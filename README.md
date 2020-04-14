@@ -90,11 +90,7 @@ WorkFLow是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxinh
 8. ### 软件放置WorkFlow新建个tools目录,比如WorkFlow\tools\TotalCMD(少折腾就按我说的做,TotalCMD为必备)
 9. 如果有用影子输入法,请最后运行影子输入法,否者会冲突!
 
-#### 5.为何更名为WorkFlow
-
-#### 操作方式与Vim操作无关，适合左手键盘右手鼠标，只为打造适合自己的操作方式!
-
-#### 6.感谢
+#### 5.感谢
 
 致谢**Array & kawvin & EZ & liuyukuan**！
 
