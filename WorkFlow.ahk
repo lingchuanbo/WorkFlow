@@ -92,7 +92,7 @@ IniRead,BGColor,config.ini,Color_Config,BGColor
 IniRead,BGTxtColor,config.ini,Color_Config,BGTxtColor
 ; 开启背景文字颜色
 ;浏览器
-IniRead,group_browser,config.ini,GroupBrowser_Config
+IniRead,group_browser,Group.ini,GroupBrowser_Config
 Loop,parse,group_browser,`n,`r
 {
 	if (A_LoopField="")
@@ -103,7 +103,7 @@ Loop,parse,group_browser,`n,`r
     GroupAdd,group_browser,%MyVar_Val%
 }
 ; ;窗口跳转
-IniRead,GroupDiagJump,config.ini,GroupDiagJump_Config
+IniRead,GroupDiagJump,Group.ini,GroupDiagJump_Config
 Loop,parse,GroupDiagJump,`n,`r
 {
 	if (A_LoopField="")

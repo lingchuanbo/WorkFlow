@@ -52,7 +52,7 @@ CheckPlugin(){
             MsgBox, 发现新插件 %A_LoopFileName%，将自动加载该插件
 
             if (FileExist(A_ScriptDir "\WorkFlow.ahk")){
-                ; Run, %A_ScriptDir%\WorkFlow.ahk "%A_ScriptDir%\plugins\check.ahk"
+                Run, %A_ScriptDir%\plugins\check.ahk
             } else {
                 Run, %A_ScriptDir%\plugins\check.ahk
             }
