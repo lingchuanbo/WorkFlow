@@ -42,6 +42,7 @@ Menu, tray, add, %_aboutMe%(&L), :aboutMe
 Menu, OptionSet, add, %_Initialization%, <VIMD_Initialization>
 Menu, OptionSet, add, 将 %_AppName% 目录添加为系统变量(&B), <VIMD_EnvSystem>
 Menu, OptionSet, add, %_BackupRestore%, <VIMD_BackupRestore>
+
 Menu, tray, add, %_Option%, :OptionSet
 
 Menu, Tray, Add, %_Restart%(&R), <Reload>
@@ -192,33 +193,43 @@ Run, https://github.com/lingchuanbo/WorkFlow
 return
 
 <VIMD_BackupRestore>:
-MsgBox, 4,, 如果您更新过程序 请选择是? (press Yes or No)
-IfMsgBox Yes
-    if FileExist("%A_ScriptDir%\vimd_备份_还原.ini")
-        {
-            ToolTip, 正在执行还原操作！
-            sleep 100
-            SetTimer, RemoveToolTip, -4000
-            FileCopy, %A_ScriptDir%\vimd_备份_还原.ini, %A_ScriptDir%\config.ini ,1
-            sleep 500
-            ToolTip, 重启中...
-            SetTimer, RemoveToolTip, -4000
-            FileRecycle, %A_ScriptDir%\vimd_备份_还原.ini
-            sleep 500
-            Reload
-            Return
-        }
-        else
-        {
-        MsgBox , 4, ,您未更新过程序！5秒后退出..., 5
-        Return
-        }
-    
-else
-    {
-        return
-    }
+; MsgBox, 4,, 如果您更新过程序 请选择是? (press Yes or No)
+; IfMsgBox Yes
+;     if FileExist("%A_ScriptDir%\vimd_备份_还原.ini")
+;         {
+Gui,Backup: Add, Button, xCenter y20 w80 h50 gBackup, 备份
+Gui,Backup: Add, Button, x100 y20 w80 h50 gBackupRestore, 还原
+Gui,Backup: Show, xCenter w180 h100, %_AppName%
 return
+
+GuiClose:
+ExitApp
+
+Backup:
+Gui,Backup: Hide
+ToolTipFont("s12","Microsoft YaHei")
+ToolTipColor("053445", "40A1EC")
+ToolTip, 正在执行备份！
+sleep 100
+SetTimer, RemoveToolTip, -1000
+FileCopy, %A_ScriptDir%\config.ini, %A_ScriptDir%\vimd_备份_还原.ini ,1
+return
+
+BackupRestore:
+Gui,Backup: Hide
+ToolTipFont("s12","Microsoft YaHei")
+ToolTipColor("053445", "40A1EC")
+ToolTip, 正在执行还原操作！
+sleep 100
+SetTimer, RemoveToolTip, -1000
+FileCopy, %A_ScriptDir%\vimd_备份_还原.ini, %A_ScriptDir%\config.ini ,1
+sleep 500
+ToolTip, 重启中...
+SetTimer, RemoveToolTip, -1000
+FileRecycle, %A_ScriptDir%\vimd_备份_还原.ini
+sleep 500
+Reload
+Return
 
 Exit:
 FileRemoveDir,%ProgramFilesDir%,1
