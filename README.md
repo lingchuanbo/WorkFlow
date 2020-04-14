@@ -12,8 +12,14 @@ WorkFLow是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxinh
 
 个别源码来自Array & kawvin & EZ & liuyukuan!
 
-## **最新版本为3.6.5**
-目前已支持 **AfterEffect|Photoshop|3DsMax|Unity**
+## **最新版本为3.6.6**
+
+目前已支持 **AfterEffect|Photoshop|3DsMax|Unity(未测试)**
+
+2020-04-15
+
+1.修复新加插件重复加载错误
+2.独立Group.ini(跳转框组&浏览器组)
 
 2020-04-11
 
