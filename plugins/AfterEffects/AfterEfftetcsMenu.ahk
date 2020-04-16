@@ -9,7 +9,7 @@ function_menuAfterEffect:
     F1::Gosub,Ae_pluginTools
      ;;AE快速打开文件所在位置 至于是否启用TC到时候在考虑目前可以一直按alt+w
      ; !w::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
-    ^+!LButton::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
+    ;  ^+!LButton::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
      ;;便捷菜单
     +RButton::Gosub,menuAe
     ; !RButton::Gosub,menuAeAlt

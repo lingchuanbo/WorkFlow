@@ -4733,6 +4733,9 @@ Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CopyFullNamesToClip`)"
 ; msgbox,%clipboard%
 Run,%AeExePath% %clipboard%
 return
+<em_BoBO_PNGToAlpha>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_PNGToAlpha`)"
+return
 
 ;调用Everything搜索tc当前窗口路径
 <TC_Everyting>:

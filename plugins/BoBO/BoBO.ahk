@@ -494,20 +494,17 @@ return
 	!w:: GoSub,Sub_SendCurDiagPath2Tc ;发送TC路径到对话框路径
 	; ^LButton:: GoSub,Sub_SendCurDiagPath2Tc
 }
-; 常用浏览器设置
+; 浏览器设置 谷歌内核浏览器一般都支持 火狐没测
 #If WinActive("ahk_group group_browser")
 {
-	F1::SendInput,^t
+	F1::Send,^{t}
     F2::send,{Blind}^+{Tab}
     F3::send,{Blind}^{Tab}
     F4::SendInput,^w
-	` & 1:: Browser_Back
-	` & 2:: Browser_Forward
-	` & 3:: SendInput,{F5}
-	; ~wheelup::send,{Blind}^+{Tab}
-	; ~wheeldown::send,{Blind}^{Tab}
     ~LButton & RButton::send ^w
 	Delete::GoSub,<GoogleChrome_删除>
+	!LButton:: Browser_Back
+	!RButton:: Browser_Forward
 }
 ; 资源浏览器
 #If WinActive("ahk_class CabinetWClass") or WinActive("ahk_class ExploreWClass")
@@ -802,6 +799,7 @@ menuTc:
 
 	Menu, menuTc, add,图片, :TcIMG
 		Menu, TcIMG, add, 编辑: 在AfterEffect编辑,<menuTcToAe>
+		Menu, TcIMG, add, 根据原图和对应的alpha图提取,<em_BoBO_PNGToAlpha>
 		
 	Menu, menuTc, add,命令行, :CommanderSet
 		Menu,CommanderSet , add, AE: 批渲染,<em_BoBO_AeRender>

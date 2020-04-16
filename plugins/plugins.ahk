@@ -3,6 +3,7 @@
 #include *i %A_ScriptDir%\plugins\BeyondCompare4\BeyondCompare4.ahk
 #include *i %A_ScriptDir%\plugins\Blender\Blender.ahk
 #include *i %A_ScriptDir%\plugins\BoBO\BoBO.ahk
+#include *i %A_ScriptDir%\plugins\Eagle\Eagle.ahk
 #include *i %A_ScriptDir%\plugins\EveryThing\EveryThing.ahk
 #include *i %A_ScriptDir%\plugins\Excel\Excel.ahk
 #include *i %A_ScriptDir%\plugins\Explorer\Explorer.ahk
@@ -20,7 +21,8 @@
 AfterEffects=20200413180313
 BeyondCompare4=20200310105935
 Blender=20200318093656
-BoBO=20200413182029
+BoBO=20200415134309
+Eagle=20200415134223
 EveryThing=20200310110040
 Excel=20200310110127
 Explorer=20200310110157

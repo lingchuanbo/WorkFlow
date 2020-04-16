@@ -79,6 +79,7 @@ WorkFLow是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxinh
 
 
 ### 注意事项
+0. 一直保持大写按键激活状态，很多键都会失效.所以建议按住shift来打大写.
 1. 源码已放出 ,如需修改，请自行参阅修改！
 2. 遇杀毒等安全软件提示 请 请 请 请放行！
 3. 升级记得备份config.ini(暂时没升级服务器已屏蔽)

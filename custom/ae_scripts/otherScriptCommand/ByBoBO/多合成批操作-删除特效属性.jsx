@@ -9,7 +9,8 @@ var selectedItems = app.project.selection;
 for (var i=0,len=selectedItems.length; i<len; i++)
 {
 			var item = selectedItems[i];
-			var myLayer = "99999.png" ; 
+            // var myLayer = "99999.png" ; 
+            var myLayer = 2 ; //素材请用   "素材名" | index 请输出数字
 			
 			if ( selectedItems[i] instanceof CompItem ){  
 
@@ -29,4 +30,4 @@ function deleteAllEffectsFromLayer(layer) {
                     layer.property("ADBE Effect Parade").property(1).remove();
                 }
             }
-        }
+}
