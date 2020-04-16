@@ -1,5 +1,5 @@
 ﻿; [使用说明]
-; 1. 如果当前目录无config.ini文件，VimDesktop会将此文件复制为config.ini
+; 1. 如果当前目录无config.ini文件，WorkFLow会将此文件复制为config.ini
 ; 2. 根据分号 ; 之后的提示内容进行相应修改
 ;
 ; [自定义配置用法]
@@ -18,44 +18,54 @@
 ; a=<MyLabel1>[=normal]
 
 [config]
-; 是否默认开启快捷键提示，可以被插件的 enable_show_info 覆盖
 default_enable_show_info=1
 ; 配置编辑器，请填写完整路径，如果填写的是 notepad ，将使用 notepad2 的参数
-editor=
-; RunZ 所在目录，请填写完整路径，默认在 ..\RunZ
-runz_dir=
+editor=%A_ScriptDir%\tools\TotalCMD\Tools\Vim\gvim.exe
 ; 打印调试日志
 enable_log=0
 ; 打开调试窗口
 enable_debug=0
+; 设置语言
+language=CN
+; Ctrl+A+A打开截图和截图增强
+PrintS=1
+; Ctrl+C+C增强工具
+MenuPlugins=1
+; 打开菜单式软件启动器
+PopSel=1
+; 打开菜单式任务栏
+TaskMuEx=1
+; 特定公司项目菜单 kuaiyou
+myCompany = kuaiyou
 
+TxFileRecv=C:\Users\Administrator\Documents\Tencent Files\836765757\FileRecv
+WeixinFiles = % "D:\My Documents\WeChat Files\你的微信目录\FileStorage\File\"
+; zipper="C:\Program Files\7-Zip\7z.exe" a "<fullZipName>" <toZip>
+[function_config]
+SystemMonitor=0
 [exclude]
-vim
+vim=
+; F:\BoBOProgram\ShareX\
 
 [global]
-; 激活通用快捷键
-<w-t>=<Gen_Toggle>
-; 切换TC
 <w-e>=<TC_ToggleTC>
-; 重新加载VimDesktop
+; 切换explorer
+<w-c>=run|explorer
+; 重新加载 WorkFLow
 <w-y>=<Reload>
-;<prtsc>=<PrintScreenAndSave>
-;<a-printscreen>=<PrintScreenAndSave>
 
 ; 激活TC作为文件选择框，再次按下该快捷键可执行文件打开操作
-<w-o>=<TC_OpenTCDialog>
-<w-c>=run|explorer
-<w-j>=<RunZ>
+;<w-o>=<TC_OpenTCDialog>
+
+<w-a>=<RunAE>
+; <w-m>=<Run3DsMax>
+; <w-u>=<RunUnity3D>
+; <w-p>=<RunPS>
+
+<w-f>=<RunEverything>
 <w-`>=run|control
-;<w-f>=run|firefox
-;<w-q>=run|c:\mine\app\msys2\usr\bin\mintty -t " " -e /usr/bin/ssh -q -t -p 50248 127.0.0.1 'NOTMUX=1 zsh'
-;<w-w>=run|c:\mine\app\bash\bash_here.exe 1
-;<w-a>=run|c:\mine\app\foobar2000\foobar2000.exe
-;<w-v>=run|C:\ProgramData\Microsoft\Windows\Start Menu\Programs\为知笔记\为知笔记 Wiz.lnk
-;<w-z>=run|c:\mine\app\AutoHotkey\AU3_Spy.exe
-;<w-->=run|d:\book\AutoHotkey_Help_CN_v1.1.23.05.chm
-;<lc-;>=<enter>
-;<w-;>=<enter>
+; 双击关闭屏幕
+; <Home>=<BoBO_CloseScreen>
 
 ; win剩余按键 n ' . / [ ] \ enter
 
@@ -63,106 +73,64 @@ vim
 ; 向左移动一个单词
 ;<la-b>=key|^{left}
 ; 复制
-;<la-c>=key|^{insert}
-;<la-d>=<WindowRestore>
-;<la-e>=<SearchInWeb>
-;<la-f>=<FullScreen>
-; 第一行
-;<la-g>=key|^{home}
-;<la-h>=<left>
-;<la-i>=<home>
-;<la-j>=<down>
-;<la-k>=<up>
-;<la-l>=<right>
-;<la-m>=<WindowMax>
-;<la-n>=<pgdn>
-;<la-o>=<end>
-;<la-p>=<pgup>
-;<la-q>=key|!{f4}
-; 修改文件扩展名之外的部分
-;<la-r>=key|{f2}{f2}
-;<la-s>=key|^{tab}
-; 最后一行
-;<la-t>=key|^{end}
-;<la-u>=<CloseTab>
-; 粘贴
-;<la-v>=key|+{insert}
-; 向右移动一个单词
-;<la-w>=key|^{right}
-;<la-x>=key|^x
-;<la-y>=key|^y
-;<la-z>=key|^z
-;<la-1>=key|{Media_Play_Pause}
-;<la-2>=key|{Media_Next}
-;<la-3>=key|{Volume_Down}
-;<la-4>=key|{Volume_Up}
-;<la-5>=key|{Media_Prev}
-;<la-6>=key|{Volume_Mute}
-;<la-up>=<MouseUp>
-;<la-down>=<MouseDown>
-;<la-left>=<MouseLeft>
-;<la-right>=<MouseRight>
-;<la-backspace>=key|^{backspace}
-;<la-,>=<WindowMin>
-;<la-.>=key|{del}
-;<la-;>=key|{Enter}
-;<la-`>=<ToggleCapsLock>
-;<la-'>=<backspace>
-;<la-[>=key|(
-;<la-]>=key|)
-;<la-/>=key|@
-;<la-\>=key|^{del}
 ;<la-->=<VimDConfig_Keymap>
 
 ; la剩余按键 7-0
 
 ; 启用（1）/禁用（0） 插件，默认禁用
 [plugins]
-General=1
+3DsMax=1
+AfterEffects=1
 TotalCommander=1
-WinMerge=1
+BeyondCompare4=1
+Excel=0
+Explorer=1
+General=1
+Photoshop=1
 TCDialog=1
 TCCompare=1
-BeyondCompare4=1
-Foobar2000=1
-WizNote=0
-VimDConfig=1
-MicrosoftExcel=1
-Explorer=1
+Unity3D=1
+Blender=1
+Word=0
+GoogleChrome=1
+Eagle=1
+[Color_Config]
+BGColor = 001621
+BGTxtColor = ffffff
+NormalBGColor = 001621
+InsertBGColor = 001621
+; BGColor = 004073
+[OCR_Config]
+OCRapiKey = 7U2OgTyTuH5NG2ZAxHZfbfQR
+OCRsecretKey = yFklkou5XySgF1WkxBeKmePphkOESFhO
 
-; 设置窗口名
-;[记事本]
-;set_class=Notepad
-;set_file=Notepad.exe
-;设置超时时间
-;set_time_out=800
-;设置最大重复执行次数
-;set_max_count=1000
-;设置显示提示
-;enable_show_info=1
-;设置热键
-;j=<down>[=normal]
-;k=<up>[=normal]
-;h=<left>[=normal]
-;l=<right>[=normal]
-;<c-j>=run|notepad.exe
-;<c-k>=key|^o
 
-;[Mintty]
-;set_class=mintty
-;set_file=mintty.exe
-;<esc>=<SwitchToEngIMEAndEsc>
+[BOBOPath_Config]
+EverythingPath=%A_ScriptDir%\tools\TotalCMD\Everything.exe
+AEPath=C:\Program Files\Adobe\Adobe After Effects CC 2018\Support Files\AfterFX.exe
+MaxPath=C:\Program Files\Autodesk\3ds Max 2020\3dsmax.exe
+UnityPath=
+PSPath=C:\Program Files\Adobe\Adobe Photoshop 2018\Photoshop.exe
+Blender=%A_ScriptDir%\tools\Blender\blender.exe
+testPath=F:\BoBOAHK\WorkFlow\
+Eagle=%A_ScriptDir%\tools\Eagle\Eagle.exe
 
-;[Explorer]
-;f=<Explorer_GotoTCX>
-;<S-F>=<Explorer_GotoTCInNewTabX>
+[ahk_class_Config]
+AEClass=AE_CApplication_15.1
+Unitylass=
+Photoshop_Class=
+MaxClass=3DSMAX
+GoogleChrome_Class=Chrome_WidgetWin_1
+Everything_Class=EVERYTHING
+QutebrowserClass=Qt5QWindowIcon
+BlenderClass=
+TCClass=TTOTAL_CMD
+EagleClass=Chrome_WidgetWin_1
 
 [TotalCommander_Config]
-;TCPath: TotalCommander可执行文件路径--TC运行时，可被自动识别
-TCPath=C:\mine\app\totalcmd\TOTALCMD.EXE
-
-;TCINI: TotalCommander配置文件路径--TC运行时，可被自动识别
-TCINI=C:\mine\app\totalcmd\wincmd.ini
+TCPath=%A_ScriptDir%\tools\TotalCMD\TOTALCMD.EXE
+TCDirPath=%A_ScriptDir%\tools\TotalCMD
+TCINI=%A_ScriptDir%\tools\TotalCMD\wincmd.ini
 
 ;是否在配置文件中记录Mark
 SaveMark=1
@@ -181,73 +149,34 @@ OpenFileDialogExclude = password , 密码
 
 ; Total Commander快捷键配置
 [TTOTAL_CMD]
-; 热键定义语法
-; f=<cm_SearchFor>[=normal]
-; f： 热键，按下f
-; <cm_SearchFor> 对应的动作
-; [=normal] 在normal模式下生效，可省略，默认为normal
-;
-; <S-F>=<cm_SearchFor>
-; <S-F>：shift + f，大写F
-; <c-f>：ctrl + f
-; <a-f>：alt + f
-; <la-f>：lalt + f
-; <sp-f>：space + f
-; 使用<sp->时避免空格不可用，加下一行
-; <space>=<space>
-;
-; <c-j>=run|notepad.exe
-; 运行命令，[=normal]可选，默认为normal模式
-; <c-k>=key|^o
-; 映射按键，[=normal]可选，默认为normal模式
-; <c-l>=dir|c:\test
-; 用TC打开目录，[=normal]可选，默认为normal模式
-; <c-m>=tccmd|em_test
-; 在TC的命令行运行命令，[=normal]可选，默认为normal模式
-; <c-n>=wshkey|xx
-; 映射按键，使用WScript.Shell的SendKeys()调用，[=normal]可选，默认为normal模式
-; <c-o>=function|TestFunction|arg
-; 映射函数，|arg 可以省略，只支持一个参数
-
-a=<cm_SelectAll>
-b=<cm_UnpackFiles>
-c=<cm_MkDir>
-;d=<TC_ListMark>
-e=<cm_edit>
-h=<TC_GoToParentEx>
-i=<TC_CreateNewFileNewStyle>
-l=<TC_SuperReturn>
-o=<cm_ContextMenu>
-p=<cm_PackFiles>
-u=<cm_CloseCurrentTab>
-<S-A>=<TC_ViewFileUnderCursor>
-<S-B>=<cm_DirBranch>
-<S-C>=<cm_IntCompareFilesByContent>
-<S-F>=<cm_SearchStandAlone>
-<S-H>=<cm_GotoPreviousDir>
-<S-I>=<TC_OpenWithAlternateViewer>
-<S-L>=<cm_GotoNextDir>
-<S-M>=<cm_FileSync>
-<S-N>=<cm_SwitchToNextTab>
-<S-O>=<cm_SrcUserDef>
-<S-P>=<cm_SwitchToPreviousTab>
-<S-Q>=<TC_ToggleMenu>
-<S-T>=<cm_SrcOpenDrives>
-<S-W>=<cm_CompareFilesByContent>
-<S-Z>=<cm_Config>
-<c-b>=<pgup>
-<c-d>=<cm_ClearAll>
-<c-f>=<pgdn>
-<c-g>=<cm_SetAttrib>
-<c-h>=<left>
-<c-j>=<down>
-<c-k>=<up>
-<c-l>=<right>
-<c-m>=<cm_CompareDirs>
-<c-n>=<cm_FtpConnect>
-<c-q>=<TC_SelectCmd>
-<c-s>=<cm_CountDirContent>
-<c-y>=<cm_CopyFileDetailsToClip>
+; <S-A>=<TC_ViewFileUnderCursor>
+; <S-B>=<cm_DirBranch>
+; <S-C>=<cm_IntCompareFilesByContent>
+; <S-F>=<cm_SearchStandAlone>
+; <S-H>=<cm_GotoPreviousDir>
+; <S-I>=<TC_OpenWithAlternateViewer>
+; <S-L>=<cm_GotoNextDir>
+; <S-M>=<cm_FileSync>
+; <S-N>=<cm_SwitchToNextTab>
+; <S-O>=<cm_SrcUserDef>
+; <S-P>=<cm_SwitchToPreviousTab>
+; <S-Q>=<TC_ToggleMenu>
+; <S-T>=<cm_SrcOpenDrives>
+; <S-W>=<cm_CompareFilesByContent>
+; <S-Z>=<cm_Config>
+; <c-b>=<pgup>
+; <c-d>=<cm_ClearAll>
+; <c-f>=<pgdn>
+; <c-g>=<cm_SetAttrib>
+; <c-h>=<left>
+; <c-j>=<down>
+; <c-k>=<up>
+; <c-l>=<right>
+; <c-m>=<cm_CompareDirs>
+; <c-n>=<cm_FtpConnect>
+; <c-q>=<TC_SelectCmd>
+; <c-s>=<cm_CountDirContent>
+; <c-y>=<cm_CopyFileDetailsToClip>
 ; c-t 未用
 ;"=<TC_MarkFile>
 ;_=<TC_UnMarkFile>
@@ -261,3 +190,7 @@ u=<cm_CloseCurrentTab>
 ; 添加文件到压缩包，自动完成
 ;<c-p>=function|ClickContextMenu|w
 ;.=key|.{enter}
+[plugins_DefaultMode]
+Evernote=Normal
+Blender=insert
+
