@@ -17,10 +17,11 @@ function SPCreateFolderAndOutputForSelectedCompsName(){
 			if ( selectedItems[i] instanceof CompItem ){
 				RQItem = app.project.renderQueue.items.add(item);
 				var lastOMItem = RQItem.outputModules[1];								
-				var sequenceFolderPath = new Folder ( newLocation.toString() + "/" + item.name )
+				// var sequenceFolderPath = new Folder ( newLocation.toString() + "/" + item.name )
+				var sequenceFolderPath = new Folder ( newLocation.toString())
 				sequenceFolderPath.create();
 				//var sequencePath = new File ( newLocation.toString() + "/" + sequenceFolderPath.name + "/" + item.name + "_[#####]" );
-				var sequencePath = new File ( newLocation.toString() + "/" + sequenceFolderPath.name + "/" + "#[#####]" );				
+				var sequencePath = new File ( newLocation.toString() + "/"+item.name+"_[#]" );				
 				lastOMItem.file = sequencePath;							
 				// Remove _[#####] for non frame sequence type
 				var outputPath = lastOMItem.file.fsName;
@@ -32,7 +33,8 @@ function SPCreateFolderAndOutputForSelectedCompsName(){
 				var outputExt = outputFile.substring( index + 1, outputFile.length );
 				if (IsMovieFormat( outputExt ))
 				{
-					sequencePath = new File ( newLocation.toString() + "/" + sequenceFolderPath.name + "/" + item.name) ;
+					// sequencePath = new File ( newLocation.toString() + "/" + sequenceFolderPath.name + "/" + item.name) ;
+					sequencePath = new File ( newLocation.toString()) ;
 					lastOMItem.file = sequencePath;
 				}
 			}
