@@ -1,7 +1,7 @@
 ﻿    ;vim.Map("<F8>", "<AfterEffects_我的工具>", "AfterEffects")
     ;vim.Map("<Space>", "<HelloWorld>", "AfterEffects")
     ;vim.Map("<SP-q>", "<HelloWorld>", "AfterEffects")
-    vim.Map("<CapsLock>", "<Ae_Script_QuickMenu>", "AfterEffects")
+    ; vim.Map("<CapsLock>", "<Ae_Script_QuickMenu>", "AfterEffects")
     vim.Map("/", "<Ae_SplitLayer>", "AfterEffects")
     vim.Map("<Alt>", "<AfterEffects_Alt>", "AfterEffects")
     ; vim.Map("/0", "<Ae_Open>", "AfterEffects")
@@ -57,9 +57,11 @@
     vim.Map("e", "<Ae_Double_e>", "AfterEffects")
 
     vim.Map("0", "<Ae_Double_0>", "AfterEffects")
-    ; vim.Map("1", "<Ae_Double_F1>", "AfterEffects")
-    ; vim.Map("2", "<Ae_Double_2>", "AfterEffects")
-    ; vim.Map("3", "<Ae_Double_3>", "AfterEffects")
+
+    vim.Map("1", "<Ae_Double_1>", "AfterEffects")
+    vim.Map("2", "<Ae_Double_2>", "AfterEffects")
+    vim.Map("3", "<Ae_Double_3>", "AfterEffects")
+
     vim.Map("4", "<Ae_Delete>", "AfterEffects")
     ; vim.Map("6", "<Ae_doubleTest>", "AfterEffects")
     vim.Map("8", "<Ae_Double_8>", "AfterEffects")

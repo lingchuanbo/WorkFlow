@@ -13,23 +13,18 @@ function_menuAfterEffect:
      ;;便捷菜单
     +RButton::Gosub,menuAe
     ; !RButton::Gosub,menuAeAlt
-    1::
-		GV_KeyClickAction1 := "Gosub,<Ae_Double_[>"
-		GV_KeyClickAction2 := "Gosub,<Ae_SplitLayer>"
-		GoSub,Sub_KeyClick
-	return	
+    ; 1::
+	; 	GV_KeyClickAction1 := "Gosub,<Ae_Double_[>"
+	; 	GV_KeyClickAction2 := "Gosub,<Ae_SplitLayer>"
+	; 	GoSub,Sub_KeyClick
+	; return	
 
-    2::
-		GV_KeyClickAction1 := "Gosub,<Ae_Double_]>"
-		GV_KeyClickAction2 := "send,+{F3}"
-		GoSub,Sub_KeyClick
-    return
-    3::send,{RButton}
-
-
-
-
-
+    ; 2::
+	; 	GV_KeyClickAction1 := "Gosub,<Ae_Double_]>"
+	; 	GV_KeyClickAction2 := "send,+{F3}"
+	; 	GoSub,Sub_KeyClick
+    ; return
+    ; 3::send,{RButton}
 }
 
 

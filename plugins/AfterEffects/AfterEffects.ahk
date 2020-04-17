@@ -692,49 +692,28 @@ Return
 }
 Return
 
+<ae_double_1>:
+{
+	GV_KeyClickAction1 := "Gosub,<Ae_Double_[>"
+	GV_KeyClickAction2 := "Gosub,<Ae_SplitLayer>"
+	GoSub,Sub_KeyClick
+    Return
+}
+
 <Ae_Double_2>:
 {
-    t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-    settimer, ae_tappedkey_2, %t%
-    if (t == "off")
-    goto ae_double_2
+	GV_KeyClickAction1 := "Gosub,<Ae_Double_]>"
+	GV_KeyClickAction2 := "send,+{F3}"
+	GoSub,Sub_KeyClick
     return
-
-    ae_tappedkey_2:
-        ; If ProcessExist("TOTALCMD.exe"){
-        ;     getAeScript("custom\ae_scripts\commands\RevealInFinderTC.jsx")
-        ; }else{
-        ;     getAeScript("custom\ae_scripts\commands\RevealInFinder.jsx")
-        ; }
-        send,{RButton}
-    return
-
-    ae_double_2:
-    ; send,2
-    return
-
 }
-Return
-
 
 <Ae_Double_3>:
 {
-    t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-    settimer, ae_tappedkey_3, %t%
-    if (t == "off")
-    goto ae_double_3
-    return
-
-    ae_tappedkey_3:
-        GoSub,<Ae_Paste>
-    return
-
-    ae_double_3:
-        GoSub,<Ae_Copy>
-    return
-
+    send,{RButton}
+    Return
 }
-Return
+
 
 
 <Ae_Double_F1>:
@@ -775,27 +754,27 @@ Return
 return
 ; Double_Q 渲染输出
 ; #if WinActive("ahk_class Qt5QWindowIcon")
-<Ae_Double_1>:
-		; GV_KeyClickAction1 := "GoSub,<Ae_Double_F1>"
-		; GV_KeyClickAction2 := getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
-		; GoSub,Sub_KeyClick
-    ; t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-    ; settimer, ae_tappedkey_1, %t%
-    ; if (t == "off")
-    ; goto ae_double_1
-    ; return
-    ; ae_tappedkey_1:
-    ;     ; getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
-        GoSub,<Ae_Double_F1>
-    ; return
+; <Ae_Double_1>:
+; 		; GV_KeyClickAction1 := "GoSub,<Ae_Double_F1>"
+; 		; GV_KeyClickAction2 := getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
+; 		; GoSub,Sub_KeyClick
+;     ; t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
+;     ; settimer, ae_tappedkey_1, %t%
+;     ; if (t == "off")
+;     ; goto ae_double_1
+;     ; return
+;     ; ae_tappedkey_1:
+;     ;     ; getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
+;         GoSub,<Ae_Double_F1>
+;     ; return
 
-    ; ae_double_1:
-    ;     getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
-    ;     ; sleep 500
-    ;     ; getAeScript("custom\ae_scripts\commands\deleteDiskCache.jsx")
-    ; return
+;     ; ae_double_1:
+;     ;     getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
+;     ;     ; sleep 500
+;     ;     ; getAeScript("custom\ae_scripts\commands\deleteDiskCache.jsx")
+;     ; return
 
-return
+; return
 <Ae_OrganizeProjectAssetsDiskCache>:
         getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
         sleep 500
