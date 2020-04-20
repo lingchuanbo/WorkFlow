@@ -79,7 +79,9 @@ menuAe:
 	menu, thismenu, add, .整理项目&清理缓存,<Ae_OrganizeProjectAssetsDiskCache>
 	menu, thismenu, add, .清除时间轴中未使用的素材图层,<Ae_ReduceNoFootage>
 	menu, thismenu, add, .精简项目,<Ae_ReduceProject>
+    menu, thismenu, add, .项目清理,<Ae_ProjectCleaner>
 	menu, thismenu, add, .文件所在位置, OpenLocalFiles
+
 	menu, thismenu, add, .文件所在位置【渲染】, OpenLocalFilesRender
 
    Menu, thismenu, Show
