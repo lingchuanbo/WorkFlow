@@ -3438,7 +3438,7 @@ function Immigration(thisObj) {
                                     }
                                 } else {
                                     try {
-                                        myPal.grp.buttons.buttonsL.statusFR.buttonsFR.frameRate.text = app.preferences.getPrefAsLong("Import Options Preference Section", "Import Options Default Sequence FPS");
+                                      //  myPal.grp.buttons.buttonsL.statusFR.buttonsFR.frameRate.text = app.preferences.getPrefAsLong("Import Options Preference Section", "Import Options Default Sequence FPS");
                                     } catch (e) {
 
                                     }

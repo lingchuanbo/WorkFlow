@@ -31,6 +31,7 @@ function on_textInput_changed() {
         theNumVal = value;
     }
 }
+
 function _Loop2(){
     var actComp = app.project.activeItem;
     var fps = 1 / actComp.frameDuration; //转化时间到帧

@@ -9,7 +9,7 @@ var selectedItems = app.project.selection;
 for (var i=0,len=selectedItems.length; i<len; i++)
 {
 			var item = selectedItems[i];
-			var myLayer = "99999.png" ; 
+			var myLayer = 1 ; 
 			
 			if ( selectedItems[i] instanceof CompItem ){  
 
