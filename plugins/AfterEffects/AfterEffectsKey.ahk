@@ -55,7 +55,6 @@
     vim.Map("h", "<Ae_Double_h>", "AfterEffects")
     vim.Map("k", "<Ae_Double_k>", "AfterEffects")
     vim.Map("e", "<Ae_Double_e>", "AfterEffects")
-
     vim.Map("0", "<Ae_Double_0>", "AfterEffects")
 
     vim.Map("1", "<Ae_Double_1>", "AfterEffects")
