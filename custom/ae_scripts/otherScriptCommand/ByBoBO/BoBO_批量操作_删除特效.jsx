@@ -15,7 +15,9 @@ for (var i=0,len=selectedItems.length; i<len; i++)
 
 					 //素材请用   "素材名.png" | index 请输出数字
                                   
-                     var myEffect=deleteAllEffectsFromLayer(item.layer(myLayer));
+                    //  var myEffect=deleteAllEffectsFromLayer(item.layer(myLayer));
+                     item.layer(myLayer).blendingMode =BlendingMode.ADD; //改变层模式
+                    //  item.layer(myLayer).remove(); //删除
                                         
                 }else{
                     

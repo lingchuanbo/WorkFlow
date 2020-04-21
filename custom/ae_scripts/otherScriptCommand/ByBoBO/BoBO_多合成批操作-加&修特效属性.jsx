@@ -7,17 +7,12 @@ var selectedItems = app.project.selection;
 
 for (var i=0,len=selectedItems.length; i<len; i++)
 {
-			var item = selectedItems[i];
-			if ( selectedItems[i] instanceof CompItem ){         
-                alert();
+     
                    //_AddEffect();
-                   _ModifyEffect();
+                //    _ModifyEffect();item.layer(1)
+        var myLayer = 2 ; //素材请用   "素材名" | index 请输出数字
+        selectedItems[i].layer(2).blendingMode =BlendingMode.ADD;
 
-
-                }else{             
-                    
-                alert ("No");          
-    }
 }
 
 function _AddEffect(){ //添加

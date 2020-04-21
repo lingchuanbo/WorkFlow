@@ -66,16 +66,16 @@ function _Loop2(){
       }
     }
     _splitComp();
-    _addCompose();
+//    _addCompose();
     //切割标记
 function _splitComp() {
     for (var i = 0; i < selLayers.length; i += 1) {
   
       duplicateMarker(selLayers[i]);
     }
-  }
+}
   //切割标记函数
-  function duplicateMarker(ac) {
+function duplicateMarker(ac) {
     var aa = new Array();
     var X = new Array();
     var ae = new Array();
@@ -130,7 +130,7 @@ function _splitComp() {
       (ae[Z + ab]).startTime = -strTimes / fps - compDuration / fps - numTimes / fps; //
     }
   }
-  function _addCompose() {
+function _addCompose() {
   
     if (actComp instanceof CompItem) {
       // 确认选择一个或多个层
@@ -148,7 +148,7 @@ function _splitComp() {
         }
         newCompName += layerName;
   
-  
+        
         var layerIndices = new Array();
         for (var i = 0; i < myLayers.length; i++) {
           layerIndices[layerIndices.length] = myLayers[i].index;
@@ -156,7 +156,7 @@ function _splitComp() {
           if (myLayers[i].inPoint < newInPoint) newInPoint = myLayers[i].inPoint;
           if (myLayers[i].outPoint > newOutPoint) newOutPoint = myLayers[i].outPoint;
         }
-  
+        alert(layerIndices);
         // 创建新合成
   
   
