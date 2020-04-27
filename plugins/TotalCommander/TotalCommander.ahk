@@ -4736,7 +4736,18 @@ return
 <em_BoBO_PNGToAlpha>:
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_PNGToAlpha`)"
 return
-
+<em_BoBO_pngFilesRest>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_pngFilesRest`)"
+return
+<em_BoBO_openFilesDir>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_openFilesDir`)"
+return
+<GameDevDeleteH5>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_DeleteH5`)"
+return
+<em_BoBO_PackH5_hp>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_PackH5_hp`)"
+return
 ;调用Everything搜索tc当前窗口路径
 <TC_Everyting>:
 	; SendMessage 1074, 21, 0, , ahk_class TTOTAL_CMD

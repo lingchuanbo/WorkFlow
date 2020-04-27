@@ -784,13 +784,17 @@ menuTc:
 		Menu, menuTc, add,游戏开发, :GameDevSet
 		Menu, GameDevSet, add, 打包文件_H5,<GameDevSetPackH5>
 		Menu, GameDevSet, add, 打包文件_As,<GameDevSetPackAs>
+		Menu, GameDevSet, add, 打包文件_H5_换皮,<em_BoBO_PackH5_hp>
 		Menu, GameDevSet, add, Atlas前缀修改,<GameDevSetAtlas>
+		Menu, GameDevSet, add, 删除游戏资源,<GameDevDeleteH5>
 		Menu, GameDevSet, add, 编辑器 >> 仙谕,<GameDevSetFxEditorXY>
 		Menu, GameDevSet, add, 编辑器 >> 三国,<GameDevSetFxEditorSG>
 	}
 
 
 	Menu, menuTc, add,工具, :Toolset
+		Menu, Toolset, add, 整理: PNG恢复目录,<em_BoBO_pngFilesRest>
+		Menu, Toolset, add, 整理: PNG展开,<em_BoBO_openFilesDir>
 		Menu, Toolset, add, 整理: 按文件类型,<Tools_Classification>
 		Menu, Toolset, add, 整理: 递归文件到当前目录,<Tools_MoveFilesToDir>
 		Menu, Toolset, add, 整理: 当前文件向上移,<Tools_MoveUpDir>
@@ -1281,3 +1285,4 @@ Sub_SendCurDiagPath2Exp:
 	}
 return
 }
+

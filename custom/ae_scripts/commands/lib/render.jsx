@@ -18,10 +18,10 @@ function SPCreateFolderAndOutputForSelectedCompsName(){
 				RQItem = app.project.renderQueue.items.add(item);
 				var lastOMItem = RQItem.outputModules[1];								
 				// var sequenceFolderPath = new Folder ( newLocation.toString() + "/" + item.name )
-				var sequenceFolderPath = new Folder ( newLocation.toString())
+				var sequenceFolderPath = new Folder ( newLocation.toString() + "/" + item.name)
 				sequenceFolderPath.create();
 				//var sequencePath = new File ( newLocation.toString() + "/" + sequenceFolderPath.name + "/" + item.name + "_[#####]" );
-				var sequencePath = new File ( newLocation.toString() + "/"+item.name+"_[#]" );				
+				var sequencePath = new File ( newLocation.toString()+ "/"+item.name+ "/"+item.name+"_[#####]" );				
 				lastOMItem.file = sequencePath;							
 				// Remove _[#####] for non frame sequence type
 				var outputPath = lastOMItem.file.fsName;
@@ -34,7 +34,7 @@ function SPCreateFolderAndOutputForSelectedCompsName(){
 				if (IsMovieFormat( outputExt ))
 				{
 					// sequencePath = new File ( newLocation.toString() + "/" + sequenceFolderPath.name + "/" + item.name) ;
-					sequencePath = new File ( newLocation.toString()) ;
+					sequencePath = new File ( newLocation.toString()+ "/"+item.name+ "/") ;
 					lastOMItem.file = sequencePath;
 				}
 			}
