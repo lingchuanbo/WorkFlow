@@ -103,6 +103,12 @@ CapsLock & f::SendInput,{Blind}{PgDn}
 	Escape::send,{Escape}
 #If 
 
+; Shift切换任务栏
+
+LShift & WheelDown::AltTab
+LShift & WheelUp::ShiftAltTab
+
+
 ; 用法：ctrl+a ctrl+a+a
 ; 截图/录制/Gif
 
@@ -807,6 +813,7 @@ menuTc:
 		
 	Menu, menuTc, add,命令行, :CommanderSet
 		Menu,CommanderSet , add, AE: 批渲染,<em_BoBO_AeRender>
+		Menu,CommanderSet , add, Test,<TcPostMsgTest>
     Menu, menuTc, Show
 return 
 
@@ -819,6 +826,13 @@ return
 	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
 return
 
+<TcPostMsgTest>:
+
+	Clipboard := ""
+	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CopySrcPathToClip`)"
+	msgbox %Clipboard%
+
+return
 
 ;启动记事本并去标题等
 
