@@ -499,6 +499,14 @@ return
 	!LButton:: GoSub,Sub_SendTcCurPath2Diag ;发送TC路径到对话框路径
 	!w:: GoSub,Sub_SendCurDiagPath2Tc ;发送TC路径到对话框路径
 	; ^LButton:: GoSub,Sub_SendCurDiagPath2Tc
+	~LButton:: 
+		KeyWait,LButton
+		KeyWait,LButton, d T0.1
+		If ! Errorlevel
+		{
+			GoSub,Sub_SendTcCurPath2Diag
+		}
+	return
 }
 ; 浏览器设置 谷歌内核浏览器一般都支持 火狐没测
 #If WinActive("ahk_group group_browser")
@@ -587,6 +595,7 @@ return
 		TcSendPos(3003)
 	return
 
+
 	;双击右键，发送退格，返回上一级目录
 	~RButton::
 		KeyWait,RButton
@@ -597,6 +606,90 @@ return
 		}
 	Return
 	;智能对话框跳转
+	~LButton::
+		KeyWait,LButton
+		KeyWait,LButton, d T0.1
+		If ! Errorlevel
+		{
+		  	Dlg_HWnd := WinExist("ahk_group GroupDiagJump")
+			if Dlg_HWnd 
+			;IfWinExist ahk_group GroupDiagOpenAndSave
+			{
+				WinGetTitle, Dlg_Title, ahk_id %Dlg_HWnd%
+				If RegExMatch(Dlg_Title, "Save|Save As|另存为|保存|图形另存为|保存副本"){
+					;msgbox "这是保存对话框"
+				orgClip:=clipboardAll
+				Clipboard =
+					;PostMessage, TC_Msg, CM_CopyFullNamesToClip,0,, ahk_class TTOTAL_CMD
+				Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`CM_CopyFullNamesToClip`)"
+					; TcSendPos(CM_CopyFullNamesToClip)
+				ClipWait, 1
+				selFiles := Clipboard
+				Clipboard:=orgClip
+				selFilesArray := StrSplit(selFiles, "`n","`r")
+				if selFilesArray.length() > 1 {
+					selFiles:=selFilesArray[1]
+						; eztip("对话框是保存类型，只认第一个文件",1)
+				}
+					StringGetPos OutputVar, selFiles,`\,R1
+					StringMid, filePath, selFiles,1, OutputVar+1
+					StringMid, fileName, selFiles,OutputVar+2,StrLen(selFiles)-OutputVar
+
+					IfWinNotActive, %Dlg_Title% ahk_id %Dlg_HWnd%, , WinActivate, %Dlg_Title% ahk_id %Dlg_HWnd%
+					WinWaitActive, %Dlg_Title% ahk_id %Dlg_HWnd%
+					if !ErrorLevel
+					{
+						ControlGetText, orgFileName,Edit1
+						ControlFocus, Edit1,
+						sleep 200
+						Send,{Backspace}
+						sleep 300
+						setKeyDelay, 10,10
+						ControlSetText, Edit1, %filePath% 
+						sleep 900
+						send,{enter}
+						sleep 500
+						if StrLen(fileName) > 0 {
+							ControlSetText, Edit1, %fileName% 
+						}
+						else{
+							ControlSetText, Edit1, %orgFileName% 
+						}
+					}
+				}
+				else {
+					; msgbox "打开对话框"
+					orgClip:=clipboardAll
+					Clipboard =
+					;PostMessage, TC_Msg, CM_CopyFullNamesToClip,0,, ahk_class TTOTAL_CMD
+					; TcSendPos(CM_CopyFullNamesToClip)
+					Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`CM_CopyFullNamesToClip`)"
+					ClipWait, 1
+					selFiles := Clipboard
+					Clipboard:=orgClip
+					selFilesArray := StrSplit(selFiles, "`n","`r")
+					quote:=(selFilesArray.length() > 1) ? """" : ""
+					selFiles=
+					Loop % selFilesArray.MaxIndex()
+					{
+						this_file := selFilesArray[A_Index]
+						selFiles=%selFiles% %quote%%this_file%%quote%
+					}
+					IfWinNotActive, %Dlg_Title% ahk_id %Dlg_HWnd%, , WinActivate, %Dlg_Title% ahk_id %Dlg_HWnd%
+					WinWaitActive, %Dlg_Title% ahk_id %Dlg_HWnd%
+					if !ErrorLevel
+					{
+						sleep 300
+						setKeyDelay, 10,10
+						ControlSetText, Edit1, %selFiles%
+						send, {Enter}
+					}
+				}
+				; reload
+			}
+		}
+	Return
+	
 	!w::
 	!LButton::
 		Dlg_HWnd := WinExist("ahk_group GroupDiagJump")
