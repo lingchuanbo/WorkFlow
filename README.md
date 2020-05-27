@@ -15,6 +15,9 @@ WorkFLow是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxinh
 ## **最新版本为3.6.6**
 
 目前已支持 **AfterEffect|Photoshop|3DsMax|Unity(未测试)**
+2020-05-20
+
+1.开始剥离 菜单功能性 到QZ
 
 2020-04-15
 

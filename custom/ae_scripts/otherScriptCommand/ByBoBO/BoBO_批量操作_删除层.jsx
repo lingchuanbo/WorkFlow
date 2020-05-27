@@ -9,6 +9,6 @@ var selectedItems = app.project.selection;
 for (var i=0,len=selectedItems.length; i<len; i++)
 {
     var item = selectedItems[i];
-    var myLayer = 1 ; 
+    var myLayer = 3; 
     item.layer(myLayer).remove();
 }

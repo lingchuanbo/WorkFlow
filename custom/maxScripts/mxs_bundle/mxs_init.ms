@@ -3,7 +3,6 @@ This is just a simple initialization script that gets the path to
 the main startup file from the environment, which handles
 the main startup logic, and it simply does a FileIn on this file.
 --------------------------------------------------------------------*/
-
 (
 	local SysEnv = ( dotNetClass "System.Environment" )
 	local startupLib = SysEnv.GetEnvironmentVariable "MXS_STARTUPPATH"

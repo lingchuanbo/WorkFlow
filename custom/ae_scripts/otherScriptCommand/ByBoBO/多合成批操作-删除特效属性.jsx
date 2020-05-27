@@ -10,7 +10,7 @@ for (var i=0,len=selectedItems.length; i<len; i++)
 {
 			var item = selectedItems[i];
             // var myLayer = "99999.png" ; 
-            var myLayer = 2 ; //素材请用   "素材名" | index 请输出数字
+            var myLayer = 6 ; //素材请用   "素材名" | index 请输出数字
 			
 			if ( selectedItems[i] instanceof CompItem ){  
 

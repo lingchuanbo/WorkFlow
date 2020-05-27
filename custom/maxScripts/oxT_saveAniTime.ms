@@ -1,7 +1,7 @@
 --AniTimeSave v ---2012/2/5----------------------------------------
 --用于保存\读取动作时间,方便查看动作,可保存和读取多套动作时间模板
 ----------------------------------------------------------------------
-Include "E:\BoBOAHK\Vimdesktop\custom\maxScripts\lib\setEvn.ms"
+-- Include "F:\BoBOAHK\Vimdesktop\custom\maxScripts\lib\setEvn.ms"
 -- if symbolicPaths.isUserPathName "$maxScripts" == false do symbolicPaths.addUserPath "$maxScripts" "E:\\BoBOAHK\\Vimdesktop\\custom\\maxScripts" 
 -- symbolicPaths.setUserPathValue "$maxScripts" "E:\\BoBOAHK\\Vimdesktop\\custom\\maxScripts"
 

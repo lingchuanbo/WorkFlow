@@ -296,7 +296,7 @@ on ATS_img mouseout do(
 )
 on ATS_img click do(
 	if StartATS do(
-		try(filein (symbolicPaths.expandFileName "$maxScripts\\oxT_saveAniTime.ms"))catch(filein (symbolicPaths.expandFileName "$maxScripts\\oxT_saveAniTime.mse")) --调用saveAniTime.
+		try(filein (symbolicPaths.expandFileName "$maxScripts\\oxT_saveAniTime.ms"))catch(filein (symbolicPaths.expandFileName "$maxScripts\\oxT_saveAniTime.ms")) --调用saveAniTime.
 		--try(filein (getdir "$maxScripts\oxT_saveAniTime.ms"))catch(filein (getdir "#maxScripts"+"\oxT_saveAniTime.mse"))
 		StartATS = false
 	)

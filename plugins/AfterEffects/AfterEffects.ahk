@@ -60,34 +60,41 @@ return
 
 ;   输入状时态屏蔽
 AE_CheckMode(){
+    ; Menu, Tray, Icon, %A_ScriptDir%\workflow_icon_normal.png ;切换到默认模式
     ;屏蔽FxConsole
     IfWinActive, ahk_class VCSDK_WINDOW_CLASS
     {
+        Menu, Tray, Icon, %A_ScriptDir%\workflow_icon_normal.png ;切换到默认模式
         return True
     }
     ;表达式编辑器
     IfWinActive, ahk_class DroverLord - Window Class
     {
+        Menu, Tray, Icon, %A_ScriptDir%\workflow_icon_normal.png ;切换到默认模式
         return True
     }
     ControlGetFocus, ctrl, A
     If RegExMatch(ctrl,"i)Edit")
         {
+            Menu, Tray, Icon, %A_ScriptDir%\workflow_icon_normal.png ;切换到默认模式
             return True 
         }
     If (A_Cursor=="IBeam") ;工字光标
         {
+            Menu, Tray, Icon, %A_ScriptDir%\workflow_icon_normal.png ;切换到默认模式
             return True
         }
     else
         {
             ; setEnglishLayout(s=0,h=0) ;操作过程自动切换至英文输入法，如果遇到问题可以注释
+            Menu, Tray, Icon, %A_ScriptDir%\workflow.ico ;切换到默认模式
             return False
         }
     PixelGetColor, psinputt, 236, 64 ; 
     ; 匹配颜色2018
     if (psinputt = 0x383838) 	;
 		{
+            Menu, Tray, Icon, %A_ScriptDir%\workflow_icon_normal.png ;切换到默认模式
             return true
 		}
 
