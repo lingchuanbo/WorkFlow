@@ -66,6 +66,7 @@ CapsLock & q::SendInput,{Blind}{PgUp}
 CapsLock & f::SendInput,{Blind}{PgDn}
 
 
+
 ; ################# Tab相关 #################
 #If GV_ToggleTabKeys=1
     Tab & s::SendInput,{Blind}{Down}
@@ -107,105 +108,6 @@ CapsLock & f::SendInput,{Blind}{PgDn}
 
 LShift & WheelDown::AltTab
 LShift & WheelUp::ShiftAltTab
-
-
-; 用法：ctrl+a ctrl+a+a
-; 截图/录制/Gif
-
-~^!a:: 
-	IniRead, PrintS,config.ini, config, PrintS, 1
-    if PrintS = 1
-	{
-	Gosub,<ShareX_PrintScreen>
-	}
-	else
-	{
-		return
-	}
-return
-
-<ShareX_PrintScreen>:
-{
-
-    t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-    settimer, ShareX_tappedkey_PrintScreen, %t%
-    if (t == "off")
-    goto ShareX_double_PrintScreen
-    return
-    ShareX_tappedkey_PrintScreen:
-        {
-			SendInput,^{PrintScreen}
-			return
-        }
-    return
-
-    ShareX_double_PrintScreen:
-        {
-			Menu, ShareX, Add, (&A) 矩形区域截图, mPrintScreen
-			Menu, ShareX, Add, (&D) 矩形截图屏幕, mPrintScreenAll
-			Menu, ShareX, Add, (&T) 捕捉当前活动窗口, mPrintScreenActive
-			Menu, ShareX, Add, (&R) 录制屏幕, mRecordingScreen
-			Menu, ShareX, Add, (&R) OCR取词, mPrintOCR
-			Menu, ShareX, Add, (&R) OCR翻译, mPrintOCRTranslateCn
-			Menu, ShareX, Add, (&G) 录制GIF, mRecordingScreenGif
-			Menu, ShareX, Add, (&G) 录制GIF>>ScreenToGif, mRecordingScreenGif2
-			; 需要设置ScreenToGif快捷方式为Ctrl+Alt+PrintScreen
-			Menu, ShareX, Show
-            return
-        }
-    return
-}
-
-
-; 用法：选中文字，按两次Ctrl+C翻译或搜索或加解密
-; 热键：Ctrl+C+C
-; 辅助菜单增强
-;--------------------------------------------------
-~^c:: 
-	IniRead, MenuPlugins,config.ini, config, MenuPlugins, 1
-    if MenuPlugins = 1
-	{
-		MenuPlugins()
-	}
-	else
-	{
-		return
-	}
-return
-MenuPlugins() ; Simulate double press
-{
-
-   static pressed1 = 0
-   if pressed1 and A_TimeSincePriorHotkey <= 300
-   {
-      pressed1 = 0
-      ;Translate("en","ru") ; from English to Russian
-    ;   keyword=%Clipboard%
-    ;   ToolTip % GoogleTranslate(keyword)
-        Menu, MyMenu, Add, (&G) %_searchGoogle%, mGoogle
-        Menu, MyMenu, Add, (&D) %_searchDogeDoge%, mDogeDoge
-		; if (A_Language = "0804")
-		Menu, MyMenu, Add, (&T) %_googleTranslate%, mGoogleTranslate	
-		Menu, MyMenu, Add, (&T) %_deepLTranslate%, mdeepLTranslate
-        ; Menu, MyMenu, Add, (&T) %_googleTranslateCn%, mGoogleTranslateCn
-		; Menu, MyMenu, Add, (&T) %_googleTranslateEn%, mGoogleTranslateEn
-		Menu, MyMenu, Add, (&T) 智能处理, mSmartSearch
-        ; Menu, MyMenu, Add  ; 添加分隔线.
-        Menu, MyMenu, Add, (&B) %_Base64En%, mBase64En
-        Menu, MyMenu, Add, (&B) %_Base64De%, mBase64De
-		Menu, MyMenu, Add, (&B) %_QR%, mGenQR
-        ; Menu, Submenu1, Add, Item2, MenuHandler
-        ; Menu, MyMenu, Add, My Submenu, :Submenu1
-        ; Menu, MyMenu, Add  ; 在子菜单下添加分隔线.
-        ; Menu, MyMenu, Add, Item3, MenuHandler  ; 在子菜单下添加另一个菜单项.
-        Menu, MyMenu, Show
-        return
-
-   }
-   else
-      pressed1 = 1
-	return
-}
 
 ; 功能：软件启动器	
 ; 热键：Win+右键						
@@ -481,15 +383,11 @@ return
 ^Enter::
 ControlGetText,Keywords,Edit1,A
 OutputDebug %Keywords%
-; run, http://www.baidu.com/s?wd=%Keywords% 
-run, https://www.dogedoge.com/results?q=%Keywords%
+run, http://www.baidu.com/s?wd=%Keywords% 
+; run, https://www.dogedoge.com/results?q=%Keywords%
 return
 #IfWinActive
 
-#IfWinActive ahk_exe PanDownload.exe
-{
-	!w::run,"%TCPath%" /T /O /S /L="D:\Download"
-}
 ; #IfWinActive ahk_class #32770
 #If WinActive("ahk_group GroupDiagJump") and WinActive("ahk_class #32770")
 {
@@ -887,50 +785,7 @@ return
 		return
 	}
 return
-mPrintScreen:
-	SendInput,^{PrintScreen}
-return
-mPrintScreenAll:
-	SendInput,{PrintScreen}
-return
-mPrintScreenActive:
-	SendInput,!{PrintScreen}
-return
-mRecordingScreen:
-	SendInput,+{PrintScreen}
-return
-mRecordingScreenGif:
-	SendInput,^+{PrintScreen}
-return
-mRecordingScreenGif2:
-	Run,%A_ScriptDir%\tools\ShareX\ScreenToGif.exe
-	sleep 300
-	SendInput,^!{PrintScreen}
-return
 
-mPrintOCR:
-	clipboard := ""  ; 让剪贴板初始为空 不然会导致tipColor报错
-	ScreenCapture()
-	Sleep, 500
-	keyword:=BaiduOCR()	
-	Clipboard := BaiduOCR()
-	; ToolTipFont("s12","Microsoft YaHei") ;tips字体
-    ; ToolTipColor("053445", "40A1EC") ; ;tips颜色
-	ToolTip %keyword%
-    ; ToolTip % GoogleTranslate(keyword)
-return
-
-mPrintOCRTranslateCn:
-	clipboard := ""  ; 让剪贴板初始为空 不然会导致tipColor报错
-	ScreenCapture()
-	Sleep, 500
-	keyword:=BaiduOCR()	
-	; ToolTipFont("s12","Microsoft YaHei")
-    ; ToolTipColor("053445", "40A1EC")
-	; ToolTip %keyword%
-    ToolTip % GoogleTranslate(keyword)
-	Clipboard := GoogleTranslate(keyword)
-return
 
 DoublePressV() ; Simulate double press
 {
@@ -954,30 +809,6 @@ DoublePressV() ; Simulate double press
     return
      
 }
-
-mGoogleTranslateCn:
-    keyword=%Clipboard%
-	ToolTipFont("s12","Microsoft YaHei")
-    ToolTipColor("053445", "40A1EC")
-    ToolTip % GoogleTranslate(keyword)
-return
-
-mGoogleTranslateEn:
-    keyword=%Clipboard%
-	ToolTipFont("s12","Microsoft YaHei")
-    ToolTipColor("053445", "40A1EC")
-    ToolTip % GoogleTranslate(keyword,from := "auto", to :=0409)
-return
-
-mDogeDoge:
-    keyword=%Clipboard%
-    DogeDoge(keyword)
-return
-
-mGoogle:
-    keyword=%Clipboard%
-    Google(keyword)
-return
 
 mBase64En:
     keyword=%Clipboard%
@@ -1018,59 +849,6 @@ mSaveAs:
   Filecopy,%f%,%nf%,1
 return
 
-mSmartSearch:
-	;智能处理
-	;自动打开网址
-	;自动打路径
-	txt = %Clipboard%
-	Loop, parse, txt, `n, `r
-	{
-		S_LoopField=%A_LoopField%
-		if (RegExMatch(S_LoopField,"iS)^([\w-]+://?|www[.]).*"))
-		{
-			run, S_LoopField
-			return
-		}
-		if (RegExMatch(S_LoopField,"S)^(\\\\|.:\\)"))
-		{
-			If ProcessExist("TOTALCMD.exe")
-			{
-				run,"%TCPath%" /T /O /S /L= "%A_LoopField%"
-				return
-			}else{
-				Run, % "explorer /select, " S_LoopField
-				return
-			}
-			return
-		}
-	}
-return
-
-mGoogleTranslate:
-	;选中文本
-	txt = %Clipboard%
-	; 判断如果是中文就翻译成英文
-	Loop, parse, txt, `n, `r
-	{
-		S_LoopField=%A_LoopField%
-		if (RegExMatch(S_LoopField,"[^\x00-\xff]+"))
-		{
-			; MsgBox, 中文
-			ToolTipFont("s12","Microsoft YaHei")
-			ToolTipColor("053445", "40A1EC")
-			ToolTip % GoogleTranslate(S_LoopField,from := "auto", to :=0409)
-			return
-		}
-		; ; 判断如果是英文就翻译成中文
-		if (RegExMatch(S_LoopField,"^[A-Za-z]+"))
-		{
-			ToolTipFont("s12","Microsoft YaHei")
-			ToolTipColor("053445", "40A1EC")
-			ToolTip % GoogleTranslate(S_LoopField)
-			return
-		}
-	}
-return
 
 mdeepLTranslate:
 	;选中文本
@@ -1215,9 +993,6 @@ GetParentDirectoryName(path)
 return
 
 
-; #智能跳转
-
-
 ;将Explorer中路径发送到对话框
 Sub_SendExpCurPath2Diag:
 {
@@ -1325,7 +1100,6 @@ Sub_SendCurDiagPath2Exp:
 return
 }
 
-
 Sub_SendTcPathCurDiag:
 	Dlg_HWnd := WinExist("ahk_group GroupDiagJump")
 	if Dlg_HWnd 
@@ -1404,3 +1178,7 @@ Sub_SendTcPathCurDiag:
 				; reload
 	}
 return
+
+
+
+

@@ -14,7 +14,7 @@ for (var i=0,len=selectedItems.length; i<len; i++)
 {
 			var item = selectedItems[i];
 			if ( selectedItems[i] instanceof CompItem ){         
-                     var myLayer = 4 ; //素材请用   "素材名" | index 请输出数字
+                     var myLayer = 2 ; //素材请用   "素材名" | index 请输出数字
                     //  var myLayer = "素材名" ; //素材请用   "素材名" | index 请输出数字
                     // var myEffect=item.layer(myLayer).property("Effects").addProperty("Deep Glow"); //添加特效
                     // myEffect.property("Radius").setValue(100); //设置属性
@@ -32,9 +32,11 @@ for (var i=0,len=selectedItems.length; i<len; i++)
 
                     //  myEffect.property("Radius").expression = "comp("GlobalControl").layer("ColorControl").effect("S_Glow")("Color")";
 
-                    selectedItems[i].layer(myLayer).selected = true; // 激活图层 false & true
-                    selectedItems[i].layer(myLayer).applyPreset(myPreset) ; // 添加预设
-                    selectedItems[i].layer(myLayer).selected = false; // 激活图层 false & true
+                    // selectedItems[i].layer(myLayer).selected = true; // 激活图层 false & true
+                    // selectedItems[i].layer(myLayer).applyPreset(myPreset) ; // 添加预设
+                    // selectedItems[i].layer(myLayer).selected = false; // 激活图层 false & true
+
+                    selectedItems[i].layer(myLayer).property("Opacity").setValue(40); //透明动画
 
                 }else{
                     

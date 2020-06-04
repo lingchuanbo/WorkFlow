@@ -113,11 +113,6 @@ Loop,parse,GroupDiagJump,`n,`r
 	if (MyVar_Key && MyVar_Val ) 
     GroupAdd,GroupDiagJump,%MyVar_Val%
 }
-; ;百度取词接口
-IniRead,OCRapiKey,config.ini,OCR_Config,OCRapiKey
-IniRead,OCRsecretKey,config.ini,OCR_Config,OCRsecretKey
-global apiKey := OCRapiKey
-global secretKey := OCRsecretKey
 
 ; msgbox %apiKey%
 ; msgbox %secretKey%
@@ -143,9 +138,8 @@ global secretKey := OCRsecretKey
 #Include %A_ScriptDir%\lib\ImageButton.ahk
 #Include %A_ScriptDir%\plugins\plugins.ahk
 #Include %A_ScriptDir%\lib\libcrypt.ahk
-#Include %A_ScriptDir%\lib\Base64Enc.ahk
+; #Include %A_ScriptDir%\lib\Base64Enc.ahk
 #Include %A_ScriptDir%\lib\UriEncode.ahk
-#Include %A_ScriptDir%\lib\Jxon.ahk
 #Include %A_ScriptDir%\lib\WinHttpRequest.ahk
 #Include %A_ScriptDir%\lib\NvAPI.ahk
 ;用户自定义配置yy
