@@ -55,12 +55,14 @@ return
 
 
 menuAeAlt:
+dirMenu3=%A_ScriptDir%\custom\ae_scripts\Expression
 	; menu, menuAlt, add, , WHATSUP11111111111111111
 	menu, menuAlt, add, (&R) 渲染, :ManageRender
 	menu, ManageRender, add, %_AeRENDER%,RENDER
 	menu, ManageRender, add, %_AeNameRENDER%,NameRENDER
 	menu, ManageRender, add, %_AeNameDirection%,NameDirection
 	menu, ManageRender, add, %_AeName%, Name
+    ;  menu_fromfiles("filelist3", "表达式", "Expression", dirMenu3, "*.txt", "menuAlt", 1)
    Menu, menuAlt, Show
 return
 
@@ -71,10 +73,12 @@ menuAe:
 	dirMenu0=%A_ScriptDir%\custom\ae_scripts\Effect
 	dirMenu1=%A_ScriptDir%\custom\ae_scripts\otherScriptCommand\
 	dirMenu2=%A_ScriptDir%\custom\ae_scripts\PresetAnimation
+    dirMenu3=%A_ScriptDir%\custom\ae_scripts\Expression
 
 	menu_fromfiles("filelist0", "特效库", "RunAePreset0", dirMenu0, "*.ffx", "thismenu", 1)
 	menu_fromfiles("filelist1", "脚本库", "RunAeScript", dirMenu1, "*.jsx", "thismenu", 1)
 	menu_fromfiles("filelist2", "预设", "RunAePreset1", dirMenu2, "*.ffx", "thismenu", 1)
+    menu_fromfiles("filelist3", "表达式", "Expression", dirMenu3, "*.txt", "thismenu", 1)
 
 	menu, thismenu, add, .整理项目&清理缓存,<Ae_OrganizeProjectAssetsDiskCache>
 	menu, thismenu, add, .清除时间轴中未使用的素材图层,<Ae_ReduceNoFootage>
@@ -148,7 +152,7 @@ if (activeItem instanceof CompItem) {
 	global AeExePath := ini.BOBOPath_Config.AEPath
     RunWait, %AeExePath% -s -r %setPreset%,,Hide
 	sleep 50
-	FileDelete, %setPreset% ;避免重复删除文件
+	; FileDelete, %setPreset% ;避免重复删除文件
     return
 }
 
@@ -184,6 +188,57 @@ if (activeItem instanceof CompItem) {
 	sleep 50
 	FileDelete, %setPreset% ;避免重复删除文件
     return
+}
+RETURN
+
+Expression:
+{
+   curpath := menu_itempath("filelist3", dirMenu3)
+    setPath:=StrReplace(curpath,"\", "/")
+   setPreset=%dirMenu3%\setPreset.jsx
+
+    FileDelete, %setPreset% ;避免重复删除文件
+    FileAppend,  ; 这里需要逗号.
+    (
+var	Expression=File("%setPath%")
+Expression.open();
+var myExpression = Expression.read();
+Expression.close();
+
+var sl = _.project.getSelectedLayers();
+if(sl) {
+    for(var i = 0; i < sl.length; i++){
+ 		var mySelectedProperty = sl[i].selectedProperties;
+ 		for(var j = 0; j < mySelectedProperty.length; j++){
+ 			try {
+ 				mySelectedProperty[j].expression = myExpression;
+ 			}catch(err){}
+ 		}
+ 	}
+}
+    ), %dirMenu3%\setPreset.jsx,UTF-8
+
+	sleep 50
+	WinActivate, ahk_exe AfterFX.exe
+	global AeExePath := ini.BOBOPath_Config.AEPath
+    RunWait, %AeExePath% -s -r %setPreset%,,Hide
+	sleep 50
+	FileDelete, %setPreset% ;避免重复删除文件
+    return
+
+
+		; var myExpression = _.file.read(source);
+		; var sl = _.project.getSelectedLayers();
+		; if(sl) {
+		; 	for(var i = 0; i < sl.length; i++){
+		; 		var mySelectedProperty = sl[i].selectedProperties;
+		; 		for(var j = 0; j < mySelectedProperty.length; j++){
+		; 			try {
+		; 				mySelectedProperty[j].expression = myExpression;
+		; 			}catch(err){}
+		; 		}
+		; 	}
+		; }
 }
 RETURN
 
