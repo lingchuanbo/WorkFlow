@@ -152,7 +152,7 @@ if (activeItem instanceof CompItem) {
 	global AeExePath := ini.BOBOPath_Config.AEPath
     RunWait, %AeExePath% -s -r %setPreset%,,Hide
 	sleep 50
-	; FileDelete, %setPreset% ;避免重复删除文件
+	FileDelete, %setPreset% ;避免重复删除文件
     return
 }
 
@@ -196,10 +196,20 @@ Expression:
    curpath := menu_itempath("filelist3", dirMenu3)
     setPath:=StrReplace(curpath,"\", "/")
    setPreset=%dirMenu3%\setPreset.jsx
+   AeLibPath=%A_ScriptDir%\custom\ae_scripts\Lib
 
+   setAeLibPath:=StrReplace(AeLibPath,"\", "/")
+
+   AeInclude_UIParser=#include '%setAeLibPath%/UIParser.jsx'
+   AeInclude_Tree=#include '%setAeLibPath%/Tree.jsx'
+;    MsgBox %AeInclude_UIParser%
     FileDelete, %setPreset% ;避免重复删除文件
     FileAppend,  ; 这里需要逗号.
     (
+;(function(Global) {
+%AeInclude_UIParser%
+%AeInclude_Tree%
+var _ = UIParser(Global);
 var	Expression=File("%setPath%")
 Expression.open();
 var myExpression = Expression.read();
@@ -216,6 +226,7 @@ if(sl) {
  		}
  	}
 }
+})(this);
     ), %dirMenu3%\setPreset.jsx,UTF-8
 
 	sleep 50
@@ -225,20 +236,6 @@ if(sl) {
 	sleep 50
 	FileDelete, %setPreset% ;避免重复删除文件
     return
-
-
-		; var myExpression = _.file.read(source);
-		; var sl = _.project.getSelectedLayers();
-		; if(sl) {
-		; 	for(var i = 0; i < sl.length; i++){
-		; 		var mySelectedProperty = sl[i].selectedProperties;
-		; 		for(var j = 0; j < mySelectedProperty.length; j++){
-		; 			try {
-		; 				mySelectedProperty[j].expression = myExpression;
-		; 			}catch(err){}
-		; 		}
-		; 	}
-		; }
 }
 RETURN
 
