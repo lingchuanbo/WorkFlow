@@ -1,3 +1,8 @@
+-------------------------------------------------------
+注册信息写入到以下文件
+..WorkFlow\custom\ae_scripts\commands\PluginsReg.txt
+-------------------------------------------------------
+
 LockdownScript:
     VRL*Look*AE*888888888888888SUL8
 	BAOMB*Look*AE*888888888888888SUL8
