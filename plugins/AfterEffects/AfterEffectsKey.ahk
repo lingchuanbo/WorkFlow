@@ -41,6 +41,7 @@
     vim.map("]","<Ae_Double_]>","AfterEffects")
     vim.map("?","<ShowHelp>","AfterEffects")
     vim.map(":?","<ShowHelp2>","AfterEffects")
+    vim.map(":1","<PluginsReg>","AfterEffects")
 ;Double类型
     vim.Map("x", "<Ae_Double_x>", "AfterEffects")
     vim.Map("q", "<Ae_Double_q>", "AfterEffects")

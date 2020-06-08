@@ -1140,6 +1140,13 @@ Return
     getAeScript("custom\ae_scripts\ShowHelp2.jsx")
     return
 }
+<PluginsReg>:
+{
+    GoSub, PluginsReg
+    sleep 100
+    getAeScript("custom\ae_scripts\commands\PluginsReg.jsx")
+    return
+}
 <Ae_ReloadFootage>:
 {
     getAeScript("custom\ae_scripts\commands\ReloadFootage.jsx")

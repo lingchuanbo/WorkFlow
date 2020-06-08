@@ -116,6 +116,7 @@ If Language=CN
     vim.Comment("<Ae_Preset_Ani1>","位置")
     vim.Comment("<Ae_Preset_Apply>","预设应用")
     vim.Comment("<HelpAe>","帮助")
+    vim.Comment("<PluginsReg>","帮助")
     vim.Comment("<AeSpace>","播放")
     vim.Comment("<Ae_ProjectCleaner>","项目清理")
     vim.Comment("<Ae_ReloadFootage>","重载素材")

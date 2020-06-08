@@ -73,7 +73,7 @@ menuAe:
 	dirMenu0=%A_ScriptDir%\custom\ae_scripts\Effect
 	dirMenu1=%A_ScriptDir%\custom\ae_scripts\otherScriptCommand\
 	dirMenu2=%A_ScriptDir%\custom\ae_scripts\PresetAnimation
-    dirMenu3=%A_ScriptDir%\custom\ae_scripts\Expression
+    dirMenu3=%A_ScriptDir%\custom\ae_scripts\commands
 
 	menu_fromfiles("filelist0", "特效库", "RunAePreset0", dirMenu0, "*.ffx", "thismenu", 1)
 	menu_fromfiles("filelist1", "脚本库", "RunAeScript", dirMenu1, "*.jsx", "thismenu", 1)
@@ -194,9 +194,9 @@ RETURN
 Expression:
 {
    curpath := menu_itempath("filelist3", dirMenu3)
-    setPath:=StrReplace(curpath,"\", "/")
+  setPath:=StrReplace(curpath,"\", "/")
    setPreset=%dirMenu3%\setPreset.jsx
-   AeLibPath=%A_ScriptDir%\custom\ae_scripts\Lib
+   AeLibPath=%A_ScriptDir%\custom\ae_scripts\commands\lib
 
    setAeLibPath:=StrReplace(AeLibPath,"\", "/")
 
@@ -238,6 +238,67 @@ if(sl) {
     return
 }
 RETURN
+
+PluginsReg:
+{
+   setCommandPath=%A_ScriptDir%\custom\ae_scripts\commands
+   AeLibPath=%A_ScriptDir%\custom\ae_scripts\commands\lib
+   setAeLibPath:=StrReplace(AeLibPath,"\", "/")
+   setCommandPaths:=StrReplace(setCommandPath,"\", "/")
+
+   AeInclude_UIParser=#include '%setAeLibPath%/UIParser.jsx'
+   AeInclude_Tree=#include '%setAeLibPath%/Tree.jsx'
+;    MsgBox %AeInclude_UIParser%
+    FileDelete, %setCommandPath%\PluginsReg.jsx ;避免重复删除文件
+    FileAppend,  ; 这里需要逗号.
+    (
+(function(Global) {
+%AeInclude_UIParser%
+%AeInclude_Tree%
+ var subUIJson = {
+ 	// 帮助
+ 	helpUI: {
+ 		group: {type:'group', orientation:'column', align:'fill', children:{
+ 			picture: {type:'image', align:'top', label:'picture'},
+ 			help_box: {type:'edittext', align:'fill', properties:{multiline:1, readonly:1}},
+ 		}}
+ 	}
+ }
+
+ var fns = {
+ 	createWin: function(title, json, exec, finalexec) {
+ 		var newWin = new Window('palette', title, undefined, {resizeable: true});
+ 		_(newWin).addUI(json);
+ 		_(newWin).layout();
+ 		_(newWin).find('*').layout();
+ 		exec(newWin);
+ 		_.window.resize(newWin);
+ 		if(finalexec) finalexec(newWin);
+ 		if(newWin.size[0] < 300) newWin.size[0] = 300;
+ 		newWin.show();
+ 		return newWin;
+ 	},
+ };
+
+ var helpFile = File("%setCommandPaths%/PluginsReg.txt");
+ if(helpFile.exists) var helpStr = _.file.read(File("%setCommandPaths%/PluginsReg.txt"));
+ else helpStr = 'Null';
+ //alert(helpStr);
+ fns.createWin('常用注册信息 By.BoBO', subUIJson.helpUI, function(e) {
+     try{
+     var win = e;
+     var pic = _(win).find('#picture')[0];
+     var help = _(win).find('#help_box')[0];
+    //setImage(pic, pic.label);
+     help.text = helpStr;
+     }catch(err){alert(err)}
+ });
+})(this);
+    ), %setCommandPath%\PluginsReg.jsx,UTF-8
+}
+
+RETURN
+
 
 AeOpenLocalFilesRender()
 {
