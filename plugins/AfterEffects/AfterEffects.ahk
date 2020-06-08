@@ -64,30 +64,30 @@ AE_CheckMode(){
     ;屏蔽FxConsole
     IfWinActive, ahk_class VCSDK_WINDOW_CLASS
     {
-        Menu, Tray, Icon, %A_ScriptDir%\workflow_icon_normal.png ;切换到默认模式
+        ; Menu, Tray, Icon, %A_ScriptDir%\workflow_icon_normal.png ;切换到默认模式
         return True
     }
     ;表达式编辑器
     IfWinActive, ahk_class DroverLord - Window Class
     {
-        Menu, Tray, Icon, %A_ScriptDir%\workflow_icon_normal.png ;切换到默认模式
+        ; Menu, Tray, Icon, %A_ScriptDir%\workflow_icon_normal.png ;切换到默认模式
         return True
     }
     ControlGetFocus, ctrl, A
     If RegExMatch(ctrl,"i)Edit")
         {
-            Menu, Tray, Icon, %A_ScriptDir%\workflow_icon_normal.png ;切换到默认模式
+            ; Menu, Tray, Icon, %A_ScriptDir%\workflow_icon_normal.png ;切换到默认模式
             return True 
         }
     If (A_Cursor=="IBeam") ;工字光标
         {
-            Menu, Tray, Icon, %A_ScriptDir%\workflow_icon_normal.png ;切换到默认模式
+            ; Menu, Tray, Icon, %A_ScriptDir%\workflow_icon_normal.png ;切换到默认模式
             return True
         }
     else
         {
             ; setEnglishLayout(s=0,h=0) ;操作过程自动切换至英文输入法，如果遇到问题可以注释
-            Menu, Tray, Icon, %A_ScriptDir%\workflow.ico ;切换到默认模式
+            ; Menu, Tray, Icon, %A_ScriptDir%\workflow.ico ;切换到默认模式
             return False
         }
     PixelGetColor, psinputt, 236, 64 ; 
@@ -780,12 +780,26 @@ return
 ;     ;     ; sleep 500
 ;     ;     ; getAeScript("custom\ae_scripts\commands\deleteDiskCache.jsx")
 ;     ; return
-
 ; return
 <Ae_OrganizeProjectAssetsDiskCache>:
         getAeScript("custom\ae_scripts\commands\OrganizeProjectAssets.jsxbin")
         sleep 500
         getAeScript("custom\ae_scripts\commands\deleteDiskCache.jsx")
+        sleep 500
+        Process, Wait, memreduct.exe, 1
+        NewPID := ErrorLevel  ; 由于 ErrorLevel 会经常发生改变, 所以要立即保存这个值.
+        if not NewPID
+        {
+            Run,%A_ScriptDir%\tools\TotalCMD\Tools\MemReduct\memreduct.exe
+            Sleep, 200
+            Send, ^{F1}
+            return
+        }
+        if NewPID
+        {
+            Send, ^{F1}
+            return
+        }
 return
 
 <Ae_Double_q>:
@@ -1686,3 +1700,23 @@ ActiveControlIs(Control) {
     return (FocusedControl=Control)
 }
 
+<Ae_切换语言>:
+{
+    ExePath := ini.BOBOPath_Config.AEPath
+    ini := StrReplace(ExePath, "AfterFX.exe","painter.ini")
+    IniWrite, 1, %ini%, Config, ForceLanguage
+
+    IniRead, OutputVar, %ini%, Config, Language
+
+
+    MsgBox, 4, , 当前AE语言为%OutputVar%是否切换？, 5  ; 5 秒的超时时间.
+    IfMsgBox, No
+        Return  ; 用户点击了 "No" 按钮.
+    IfMsgBox, Timeout
+        Return ; 即在超时时假设点击了 "No".
+    IfMsgBox, Yes
+        ; IniWrite, en_US, %ini%, Config, Language
+        Return
+    Return
+    ExitApp
+}
