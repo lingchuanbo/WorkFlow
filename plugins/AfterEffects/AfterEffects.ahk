@@ -1703,20 +1703,29 @@ ActiveControlIs(Control) {
 <Ae_切换语言>:
 {
     ExePath := ini.BOBOPath_Config.AEPath
-    ini := StrReplace(ExePath, "AfterFX.exe","painter.ini")
-    IniWrite, 1, %ini%, Config, ForceLanguage
-
-    IniRead, OutputVar, %ini%, Config, Language
+    painterIni := StrReplace(ExePath, "AfterFX.exe","painter.ini")
 
 
-    MsgBox, 4, , 当前AE语言为%OutputVar%是否切换？, 5  ; 5 秒的超时时间.
-    IfMsgBox, No
-        Return  ; 用户点击了 "No" 按钮.
-    IfMsgBox, Timeout
-        Return ; 即在超时时假设点击了 "No".
+    IniRead, OutputVar, %painterIni%, Config, Language
+    IniWrite, en_US,%painterIni%, Config, Language
+    IniWrite, 1, %painterIni%, Config, ForceLanguage
+
+    if (OutputVar="en_US")
+    {
+    MsgBox,4,After Effects CC 2018 语言切换 By_BoBO, 当前语言是: 英文 是否切换 中文？
     IfMsgBox, Yes
-        ; IniWrite, en_US, %ini%, Config, Language
-        Return
+        IniWrite, zh_CN, %painterIni%, Config, Language
+        MsgBox 【记得重启AE】
     Return
-    ExitApp
+    }if (OutputVar="zh_CN")
+    {
+        MsgBox,4,After Effects CC 2018 语言切换 By_BoBO, 当前语言是: 中文 是否切换 英文？
+        IfMsgBox, Yes
+        IniWrite, en_US, %painterIni%, Config, Language
+        MsgBox 【记得重启AE】
+        Return
+    }
+
 }
+
+
