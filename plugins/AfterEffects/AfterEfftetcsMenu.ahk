@@ -255,7 +255,8 @@ PluginsReg:
 (function(Global) {
 %AeInclude_UIParser%
 %AeInclude_Tree%
- var subUIJson = {
+var _ = UIParser(Global);
+var subUIJson = {
  	// 帮助
  	helpUI: {
  		group: {type:'group', orientation:'column', align:'fill', children:{
@@ -265,7 +266,7 @@ PluginsReg:
  	}
  }
 
- var fns = {
+var fns = {
  	createWin: function(title, json, exec, finalexec) {
  		var newWin = new Window('palette', title, undefined, {resizeable: true});
  		_(newWin).addUI(json);
@@ -280,11 +281,11 @@ PluginsReg:
  	},
  };
 
- var helpFile = File("%setCommandPaths%/PluginsReg.txt");
- if(helpFile.exists) var helpStr = _.file.read(File("%setCommandPaths%/PluginsReg.txt"));
- else helpStr = 'Null';
- //alert(helpStr);
- fns.createWin('常用注册信息 By.BoBO', subUIJson.helpUI, function(e) {
+var helpFile = File("%setCommandPaths%/PluginsReg.txt");
+if(helpFile.exists) var helpStr = _.file.read(File("%setCommandPaths%/PluginsReg.txt"));
+else helpStr = 'Null';
+//alert(helpStr);
+fns.createWin('常用注册信息 By.BoBO', subUIJson.helpUI, function(e) {
      try{
      var win = e;
      var pic = _(win).find('#picture')[0];
