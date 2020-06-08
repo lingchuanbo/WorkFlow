@@ -46,8 +46,8 @@ SetWinDelay,0
 ; ;--20191216
 SetWorkingDir %A_ScriptDir%
 
-global Version:="3.6.6"
-global Update:="2020.4.15"
+global Version:="3.6.7"
+global Update:="2020.6.8"
 ; ;--2020-0305 截屏取词
 If (!pToken:=Gdip_Startup()) {
 	msgbox, 48, gdiplus error!, Gdiplus failed to start. Please ensure you have gdiplus on your system

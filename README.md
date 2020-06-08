@@ -12,12 +12,15 @@ WorkFLow是我以Array&kawvin大神版的[VimDesktop](https://github.com/linxinh
 
 个别源码来自Array & kawvin & EZ & liuyukuan!
 
-## **最新版本为3.6.6**
+## **最新版本为3.6.7**
 
 目前已支持 **AfterEffect|Photoshop|3DsMax|Unity(未测试)**
-2020-05-20
 
-1.开始剥离 菜单功能性 到QZ
+2020-06-08
+
+1.开始剥离 菜单功能性 到QZ，保留AE、TC、MAX
+2.AE动态菜单新增：调用表达式 
+3.优化智能跳转
 
 2020-04-15
 
