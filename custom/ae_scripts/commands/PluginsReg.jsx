@@ -1,6 +1,7 @@
 ﻿(function(Global) {
 #include 'F:/BoBOAHK/WorkFlow/custom/ae_scripts/commands/lib/UIParser.jsx'
 #include 'F:/BoBOAHK/WorkFlow/custom/ae_scripts/commands/lib/Tree.jsx'
+var _ = UIParser(Global);
  var subUIJson = {
  	// 帮助
  	helpUI: {
@@ -28,7 +29,7 @@
 
  var helpFile = File("F:/BoBOAHK/WorkFlow/custom/ae_scripts/commands/PluginsReg.txt");
  if(helpFile.exists) var helpStr = _.file.read(File("F:/BoBOAHK/WorkFlow/custom/ae_scripts/commands/PluginsReg.txt"));
- else helpStr = 'Super Assistant was used for managing the scripts, expressions, presets, templates and effects what we used frequently, and it will improve the efficiency greatly.\nAuthor: Amuliang\nEmail: 982632988@qq.com\nDate: 2015/12/21';
+ else helpStr = 'Null';
  //alert(helpStr);
  fns.createWin('常用注册信息 By.BoBO', subUIJson.helpUI, function(e) {
      try{
