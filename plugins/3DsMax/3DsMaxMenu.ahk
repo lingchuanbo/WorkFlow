@@ -13,14 +13,14 @@ menuDSMAX:
 
 	menu, menu3DsMax, add, .打开文件目录, OpenLocalFiles_3DsMax
 	menu, menu3DsMax, add, .打开渲染目录, OpenLocalFilesRender_3DsMax
-    menu, menu3DsMax, add, .整理项目&清理缓存,<3DsMax_OrganizeProjectAssetsDiskCache>
+    ; menu, menu3DsMax, add, .整理项目&清理缓存,<3DsMax_OrganizeProjectAssetsDiskCache>
 
     menu, menu3DsMax, Show
 
 return
 
 WHATSUPMAX:
-    msgbox, 特效库目录 `n`n %dirMenu0%
+    msgbox, 3DsMax脚本目录 `n`n %dirMenu0%
 RETURN
 
 
