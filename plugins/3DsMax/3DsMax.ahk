@@ -40,6 +40,7 @@
     vim.Map("<insert>", "<3DsMax_SwithMode>", "3DsMax")
     #include %A_ScriptDir%\plugins\3DsMax\3DsMaxKey.ahk
     ;#include %A_ScriptDir%\plugins\3DsMax\3DsMaxPlus.ahk //看时机在激活
+    #Include %A_ScriptDir%\plugins\3DsMax\3DsMaxMenu.ahk
 return
 
 
@@ -919,9 +920,10 @@ return
     --设置本地环境$maxScripts.
     --读取workflow ini地址
     evnPath="%A_ScriptDir%\custom\maxScripts"
-
+    
     if symbolicPaths.isUserPathName "$maxScripts" == false do symbolicPaths.addUserPath "$maxScripts" evnPath
     symbolicPaths.setUserPathValue "$maxScripts" evnPath
+    
     ), %A_ScriptDir%\custom\maxScripts\Startup\setEvn.ms,UTF-8
 
     sleep 2000

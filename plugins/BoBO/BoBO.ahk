@@ -284,7 +284,7 @@ return
 global BoBO_Test=ini.BOBOPath_Config.testPath
 msgbox %BoBO_Test%
 return
-;##########程序便捷.社交##########大部份参考EZ
+;##########程序便捷.社交##########大部份来自EZ大神
 ; Tim
 #If WinActive("ahk_class TXGuiFoundation") and WinActive("ahk_exe Tim.exe")
 {
@@ -412,6 +412,15 @@ return
 	; 	}else{
 	; 		GoSub,Sub_SendTcCurPath2Diag
 	; 	}
+	return
+}
+
+
+#If WinActive("ahk_exe 3dsmax.exe")
+{
+	` & 1:: Gosub, <3DsMax_getUp>
+    ` & 2:: Gosub, <3DsMax_getDown>
+    ` & 3:: Gosub, <3DsMax_Key>
 	return
 }
 ; 浏览器设置 谷歌内核浏览器一般都支持 火狐没测
@@ -621,17 +630,6 @@ return
 	!w::Gosub, <BoBO_OpenLocalFliesPowerPoint>
 }
 ;##########程序便捷.专业##########
-#If WinActive("ahk_exe 3dsmax.exe")
-{
-	
-	!w::runMaxScript("maxToTotalcmd.ms")
-	` & 1:: Gosub, <3DsMax_getUp>
-    ` & 2:: Gosub, <3DsMax_getDown>
-    ` & 3:: Gosub, <3DsMax_Key>
-	Esc::Gosub,<3DsMax_esc>
-	return
-}
-
 #If WinActive("ahk_exe blender.exe")
 {
 	; BlenderCursorRepeat := 10
@@ -639,7 +637,7 @@ return
 	; ^k::Send {Blind}{LCtrl Down}{LControl Up}
 
 	; ; Delete one char to the right of cursor
-	; ^d::Send {Delete}
+	; ^d::Send {Delete},
 
 	; ; Clear line in console
 	; ^c::Send +{Enter}
@@ -678,6 +676,7 @@ return
 		GoSub,Sub_KeyClick
 	return
 }
+
 menuPsAlt:
 	menu, menuPsAlt, add,用AE编辑, Ps_UserAeEidtor
     menu, menuPsAlt, add,在TC显示, Ps_TotalCMD

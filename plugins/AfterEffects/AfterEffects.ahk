@@ -1705,7 +1705,6 @@ ActiveControlIs(Control) {
     ExePath := ini.BOBOPath_Config.AEPath
     painterIni := StrReplace(ExePath, "AfterFX.exe","painter.ini")
 
-
     IniRead, OutputVar, %painterIni%, Config, Language
     IniWrite, en_US,%painterIni%, Config, Language
     IniWrite, 1, %painterIni%, Config, ForceLanguage
