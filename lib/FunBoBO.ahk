@@ -243,6 +243,10 @@ runMaxScript(MaxScriptPath){
     run, %A_ScriptDir%\custom\maxScripts\MXSPyCOM.exe -f %A_ScriptDir%\custom\maxScripts\%MaxScriptPath%
     return
 }
+runMXSPyCOM(MaxScriptPath){
+	run, %A_ScriptDir%\custom\maxScripts\MXSPyCOM.exe -f %MaxScriptPath%
+    return
+}
 ;;直接运行3DsMax函数
 ; 用法
 ;     runPath = startObjectCreation box 创建对象
