@@ -1,12 +1,4 @@
-﻿format "***** Garbage Collection *****\n"
-GarbageCollect_FN()
-format "***** Collect Missing Files *****\n"
-UTIL_collectMissingFiles_FN()
-format "***** Free Scene Bitmaps *****\n"
-FreeSceneBitmaps_FN()
-
-
-fn GarbageCollect_FN =
+﻿fn GarbageCollect_FN =
 	(
 		for i = 1 to 5 do GC()
 	)
@@ -26,3 +18,11 @@ fn Get_Names name a =
 	(
 		append a name
 	)
+	
+	
+format "***** Garbage Collection *****\n"
+GarbageCollect_FN()
+format "***** Collect Missing Files *****\n"
+UTIL_collectMissingFiles_FN()
+format "***** Free Scene Bitmaps *****\n"
+FreeSceneBitmaps_FN()

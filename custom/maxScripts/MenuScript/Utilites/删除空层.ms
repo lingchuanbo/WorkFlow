@@ -1,4 +1,3 @@
-DeleteEmptyLayers_FN()
 fn DeleteEmptyLayers_FN =
 (
     currLayer = LayerManager.current
@@ -28,3 +27,4 @@ fn DeleteEmptyLayers_FN =
     LayerManager.closeDialog()
     layermanager.editlayerbyname ""
 )
+DeleteEmptyLayers_FN()
