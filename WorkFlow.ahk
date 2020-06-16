@@ -122,7 +122,7 @@ Loop,parse,GroupDiagJump,`n,`r
 #Include %A_ScriptDir%\lib\AutoExecute.ahk
 #Include %A_ScriptDir%\lib\AutoUpdate.ahk
 #Include %A_ScriptDir%\lib\FunBoBO.ahk
-#Include %A_ScriptDir%\lib\Translate.ahk
+;#Include %A_ScriptDir%\lib\Translate.ahk
 #Include %A_ScriptDir%\lib\TipColor.ahk
 #Include %A_ScriptDir%\lib\TrayMenu.ahk
 #Include %A_ScriptDir%\core\Main.ahk
