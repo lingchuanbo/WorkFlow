@@ -8,8 +8,13 @@
 menuDSMAX:
 	menu, menu3DsMax, add, 3DsMax脚本菜单(%_Author%), WHATSUPMAX
 	dirMenu0=%A_ScriptDir%\custom\maxScripts\MenuScript
+	dirMenu1=%A_ScriptDir%\custom\maxScripts\MenuScriptCreate
+	dirMenu2=%A_ScriptDir%\custom\maxScripts\GameDevelop
 
+	menu_fromfiles("maxfilelist1", "创建常用物体", "RunScript3DsMax_Create", dirMenu1, "*.ms|*.mse", "menu3DsMax", 1)
 	menu_fromfiles("maxfilelist0", "脚本库", "RunScript3DsMax_Common", dirMenu0, "*.ms|*.mse", "menu3DsMax", 1)
+	
+	menu_fromfiles("maxfilelist2", "游戏开发工具", "RunScript3DsMax_Develop", dirMenu2, "*.ms|*.mse", "menu3DsMax", 1)
 
 	menu, menu3DsMax, add, .打开文件目录, OpenLocalFiles_3DsMax
 	menu, menu3DsMax, add, .打开渲染目录, OpenLocalFilesRender_3DsMax
@@ -20,7 +25,7 @@ menuDSMAX:
 return
 
 WHATSUPMAX:
-    msgbox, 3DsMax脚本目录 `n`n %dirMenu0%
+    msgbox, 3DsMax脚本库目录 `n`n %dirMenu0%
 RETURN
 
 
@@ -40,9 +45,26 @@ OpenLocalFilesRender_3DsMax:
 	runMaxScriptCommands("openRenderDir.ms")
 	return
 }
+
+
+
 RunScript3DsMax_Common:
 {
     runMXSPyCOM(menu_itempath("maxfilelist0", dirMenu0))
+	return
+}
+RETURN
+
+RunScript3DsMax_Create:
+{
+    runMXSPyCOM(menu_itempath("maxfilelist1", dirMenu1))
+	return
+}
+RETURN
+
+RunScript3DsMax_Develop:
+{
+    runMXSPyCOM(menu_itempath("maxfilelist2", dirMenu2))
 	return
 }
 RETURN
