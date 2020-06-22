@@ -4,6 +4,3 @@
 
     if symbolicPaths.isUserPathName "$maxScripts" == false do symbolicPaths.addUserPath "$maxScripts" evnPath
     symbolicPaths.setUserPathValue "$maxScripts" evnPath
-
-
-
