@@ -929,36 +929,86 @@ return
     sleep 2000
 
     ; run, %A_ScriptDir%\plugins\3DsMax\3DsMaxInfo.bat
+    Max2021:="C:\Program Files\Autodesk\3ds Max 2020"
     Max2020:="C:\Program Files\Autodesk\3ds Max 2020"
+    Max2019:="C:\Program Files\Autodesk\3ds Max 2019"
+    Max2018:="C:\Program Files\Autodesk\3ds Max 2018"
+    Max2017:="C:\Program Files\Autodesk\3ds Max 2017"
+    Max2016:="C:\Program Files\Autodesk\3ds Max 2016"
+    Max2015:="C:\Program Files\Autodesk\3ds Max 2015"
+    Max2014:="C:\Program Files\Autodesk\3ds Max 2014"
+
+    if FileExist("C:\Program Files\Autodesk\3ds Max 2021\3dsmax.exe")
+    {
+        FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2021%\scripts\Startup, 1
+        MsgBox, %Max2021%已经配置完毕！请重启程序!
+        Return
+    }
+
     if FileExist("C:\Program Files\Autodesk\3ds Max 2020\3dsmax.exe")
     {
         FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2020%\scripts\Startup, 1
-        MsgBox, 已经配置完毕！请重启程序!
+        MsgBox, %Max2020%已经配置完毕！请重启程序!
         Return
-    }else{
-        MsgBox, 检测非默认安装 `n`n`n 请手动复制...`n`n 源目录： `n`n %A_ScriptDir%\custom\maxScripts\Startup `n`n 目标目录： `n`n %Max2020%\scripts\Startup
-        return
     }
-    Max2014:="C:\Program Files\Autodesk\3ds Max 2014"
-    if FileExist("C:\Program Files\Autodesk\3ds Max 2014\3dsmax.exe")
+    if FileExist("C:\Program Files\Autodesk\3ds Max 2019\3dsmax.exe")
     {
-        FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2014%\scripts\Startup, 1
-        MsgBox, 已经配置完毕！请重启3DsMax
+        FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2019%\scripts\Startup, 1
+        MsgBox, %Max2019%已经配置完毕！请重启程序!
         Return
-    }else{
-        MsgBox, 检测非默认安装 `n`n`n 请手动复制...`n`n 源目录： `n`n %A_ScriptDir%\custom\maxScripts\Startup `n`n 目标目录： `n`n %Max2014%\scripts\Startup
-        return
     }
-    Max2016:="C:\Program Files\Autodesk\3ds Max 2016"
+    if FileExist("C:\Program Files\Autodesk\3ds Max 2018\3dsmax.exe")
+    {
+        FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2018%\scripts\Startup, 1
+        MsgBox,%Max2018% 已经配置完毕！请重启程序!
+        Return
+    }
+    if FileExist("C:\Program Files\Autodesk\3ds Max 2017\3dsmax.exe")
+    {
+        FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2017%\scripts\Startup, 1
+        MsgBox, %Max2017% 已经配置完毕！请重启3DsMax
+        Return
+    }
     if FileExist("C:\Program Files\Autodesk\3ds Max 2016\3dsmax.exe")
     {
         FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2016%\scripts\Startup, 1
-        MsgBox, 已经配置完毕！请重启3DsMax
+        MsgBox, %Max2016% 已经配置完毕！请重启3DsMax
+        Return
+    }
+    if FileExist("C:\Program Files\Autodesk\3ds Max 2015\3dsmax.exe")
+    {
+        FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2015%\scripts\Startup, 1
+        MsgBox, %Max2015% 已经配置完毕！请重启3DsMax
+        Return
+    }
+    if FileExist("C:\Program Files\Autodesk\3ds Max 2014\3dsmax.exe")
+    {
+        FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2014%\scripts\Startup, 1
+        MsgBox, %Max2014% 已经配置完毕！请重启3DsMax
         Return
     }else{
-        MsgBox, 检测非默认安装 `n`n`n 请手动复制...`n`n 源目录： `n`n %A_ScriptDir%\custom\maxScripts\Startup `n`n 目标目录： `n`n %Max2016%\scripts\Startup
+        MsgBox, 检测非默认安装 `n`n`n 请手动复制...`n`n 请拷贝文件： `n`n %A_ScriptDir%\custom\maxScripts\Startup `n`n 到： `n`n 3DsMax安装目录下 \scripts\Startup
         return
     }
+    ; if FileExist("C:\Program Files\Autodesk\3ds Max 2016\3dsmax.exe")
+    ; {
+    ;     FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2016%\scripts\Startup, 1
+    ;     MsgBox, 已经配置完毕！请重启3DsMax
+    ;     Return
+    ; }else{
+    ;     MsgBox, 检测非默认安装 `n`n`n 请手动复制...`n`n 源目录： `n`n %A_ScriptDir%\custom\maxScripts\Startup `n`n 目标目录： `n`n %Max2016%\scripts\Startup
+    ;     return
+    ; }
+
+    ; if FileExist("C:\Program Files\Autodesk\3ds Max 2014\3dsmax.exe")
+    ; {
+    ;     FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2014%\scripts\Startup, 1
+    ;     MsgBox, 已经配置完毕！请重启3DsMax
+    ;     Return
+    ; }else{
+    ;     MsgBox, 检测非默认安装 `n`n`n 请手动复制...`n`n 源目录： `n`n %A_ScriptDir%\custom\maxScripts\Startup `n`n 目标目录： `n`n %Max2014%\scripts\Startup
+    ;     return
+    ; }
     return
 }
 

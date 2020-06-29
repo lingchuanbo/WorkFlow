@@ -11,7 +11,7 @@ menuDSMAX:
 	dirMenu1=%A_ScriptDir%\custom\maxScripts\MenuScriptCreate
 	dirMenu2=%A_ScriptDir%\custom\maxScripts\GameDevelop
 
-	menu_fromfiles("maxfilelist1", "创建常用物体", "RunScript3DsMax_Create", dirMenu1, "*.ms|*.mse", "menu3DsMax", 1)
+	menu_fromfiles("maxfilelist1", "创建常用物体", "RunScript3DsMax_Create", dirMenu1, "*.ms|*.mse|*.py", "menu3DsMax", 1)
 	menu_fromfiles("maxfilelist0", "脚本库", "RunScript3DsMax_Common", dirMenu0, "*.ms|*.mse", "menu3DsMax", 1)
 	
 	menu_fromfiles("maxfilelist2", "游戏开发工具", "RunScript3DsMax_Develop", dirMenu2, "*.ms|*.mse", "menu3DsMax", 1)
