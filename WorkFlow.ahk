@@ -54,8 +54,8 @@ If (!pToken:=Gdip_Startup()) {
 	ExitApp
 }
 
-FeedbackLink=https://www.kancloud.cn/funbobosky/vim_unity
-HelpLink=https://www.kancloud.cn/funbobosky/vim_unity
+FeedbackLink=https://www.notion.so/7df31102696b43dd948dab655bd1e1f7?v=5cdef8f68af74cfabca156cfb739a299
+HelpLink=https://www.notion.so/7df31102696b43dd948dab655bd1e1f7?v=5cdef8f68af74cfabca156cfb739a299
 FontSize:="30"
 SleepTime=1500 ; 消失时间
 

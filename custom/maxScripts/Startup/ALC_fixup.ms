@@ -43,7 +43,7 @@ fn test_for_ALC_globals =
 		#CleanBetabaseCC64dec, #runMainCleanBeta, #PointNodeCleanBeta, #px_HiddenNodeCleanBeta, #getNetUpdateCleanBeta, 
 		#AutodeskLicSerStuckCleanBeta, #px_SimulatorForModifyCleanBeta, #px_SimulatorForStateCleanBeta, #px_SimulatorSaveCleanBeta)
 	local the_ALC_callback_ids= #(#RenderLicCleanBeta,#PhysXCleanBetaRBKSysInfo,#AutodeskLicCleanBeta)
-	local the_ALC_node_names= #("×þ×ü", "¡¡×ý×û","¡¡¡¡", "¡¡¡¡¡¡","¡¡¡¡¡¡¡¡","¡¡¡¡¡¡¡¡¡¡¡¡","¡¡¡¡¡¡¡¡¡¡¡¡¡¡","Rectangles135","×ú×ú","×þ×ú", "\x3000\xe813\xe811", "\xe814\xe812")
+	local the_ALC_node_names= #("ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","Rectangles135","ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½", "\x3000\xe813\xe811", "\xe814\xe812")
 
 	local found_ALC_global = false
 	for g in the_ALC_globals while (not found_ALC_global) do found_ALC_global = globalVars.isGlobal g

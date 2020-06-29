@@ -167,7 +167,7 @@ Run, https://github.com/lingchuanbo/WorkFlow
 return
 
 <VIMD_Help>:
-Run, https://www.kancloud.cn/funbobosky/vim_unity
+Run, https://www.notion.so/WorkFlow-5473b03e9dad41ecb79bc3c5b5ac2913
 return
 
 <VIMD_Update>:

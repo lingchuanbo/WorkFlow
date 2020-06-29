@@ -1,16 +1,14 @@
-
+﻿//初始化文件,可能会被覆盖!
 function revealFile(filePath) {
 	if ( filePath instanceof File ) {
 		filePath = filePath.fsName;
 	}
-
 	var command = "open -R";
 	if ($.os.indexOf("Win") != -1) {
 		command = "F:\\BoBOAHK\\WorkFlow\\tools\\TotalCMD\\TOTALCMD.EXE /O /T /R=";
 	}
 	arg = "\"" + filePath + "\"";
 	return system.callSystem(command + " " + arg);
-	// system.callSystem("F:\\BoBOAHK\\WorkFlow\\tools\\TotalCMD\\TOTALCMD.EXE /O /T /R=" + Dir);
 }
 
 if(app.project.file !== null){

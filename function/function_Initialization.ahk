@@ -73,7 +73,8 @@ else:
 
 AE_Init_OpenLocalFliesTC:
 {
-    StrTCExePath:=StrReplace(TCExePath,"\","\\")
+    getTCExePath=%A_ScriptDir%\tools\TotalCMD\TOTALCMD.EXE
+    StrTCExePath:=StrReplace(getTCExePath,"\","\\")
     getPath = %A_ScriptDir%\custom\ae_scripts\commands\BoBO_OpenLocalFliesTC.jsx
     FileDelete, %getPath% ;避免重复删除文件
     FileAppend,  ; 这里需要逗号.
@@ -103,7 +104,8 @@ if(app.project.file !== null){
 
 AE_Init_OpenLocalFilesRenderTC:
 {
-    StrTCExePath:=StrReplace(TCExePath,"\","\\")
+    getTCExePath=%A_ScriptDir%\tools\TotalCMD\TOTALCMD.EXE
+    StrTCExePath:=StrReplace(getTCExePath,"\","\\")
     getPath = %A_ScriptDir%\custom\ae_scripts\commands\BoBO_OpenLocalFilesRenderTC.jsx
     FileDelete, %getPath% ;避免重复删除文件
     FileAppend,  ; 这里需要逗号.
@@ -129,7 +131,8 @@ if (myNumItemsIndex >= 1) {
 
 AE_Init_RevealInFinderTC:
 {
-    StrTCExePath:=StrReplace(TCExePath,"\","\\")
+    getTCExePath=%A_ScriptDir%\tools\TotalCMD\TOTALCMD.EXE
+    StrTCExePath:=StrReplace(getTCExePath,"\","\\")
     getPath = %A_ScriptDir%\custom\ae_scripts\commands\RevealInFinderTC.jsx
     FileDelete, %getPath% ;避免重复删除文件
     FileAppend,  ; 这里需要逗号.
