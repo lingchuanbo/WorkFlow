@@ -18,12 +18,15 @@
       for obj in selection do
       (
           getFXLocalPath =obj.GetPath #default
-         
+		  
       )
-      -- messageBox getFXLocalPath
+	  initialGetDirs = getfilenamepath(getFXLocalPath)
+   --   messageBox initialGetDirs
+	  --getfilenamepath(getFXLocalPath)
 
 
-     dir = getSavePath caption:"Select Folder" initialDir:"D:\\maxFxDate\\FumeFX"
+     dir = getSavePath caption:"Select Folder" initialDir:initialGetDirs
+	  
      if dir != undefined do
      (
         allFiles = getFiles (dir + "\\a.fxd")
