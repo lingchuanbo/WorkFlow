@@ -1,6 +1,8 @@
 -- FumeFX缓存路径设置
 -- 支持多选FumeFX
-
+-- mystring = "D:\\xm2\\a_.fxd"
+-- gg=FilterString mystring "\\**" 
+-- print gg[2]
 -- 需要ui需要激活
 -- try(destroyDialog rol_Browse)catch()
 -- rollout rol_Browse "FumeFX缓存路径设置.BoBO"
@@ -9,7 +11,19 @@
  
    -- on btn_browse pressed do
    -- (
-     dir = getSavePath caption:"Select Folder" initialDir:#images
+      fn getFXLocalPath =
+	
+      local getFXLocalPath 
+      
+      for obj in selection do
+      (
+          getFXLocalPath =obj.GetPath #default
+         
+      )
+      -- messageBox getFXLocalPath
+
+
+     dir = getSavePath caption:"Select Folder" initialDir:"D:\\maxFxDate\\FumeFX"
      if dir != undefined do
      (
         allFiles = getFiles (dir + "\\a.fxd")
@@ -44,4 +58,6 @@
 -- )
 
 
+
+ 
  
