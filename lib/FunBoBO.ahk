@@ -197,6 +197,21 @@ getCurrentDir(ByRef CurWinClass="")
     
     return DirectionDir
 }
+
+
+; ;   获取进程路径
+; GetProcessPath(p){
+;  DetectHiddenWindows,On
+;  Process,Exist,%P%
+;  if ErrorLevel>0
+;  {
+;  PID=%ErrorLevel%
+;  WinGet,lujing,ProcessPath,ahk_pid %pid%
+;  return lujing
+;  }
+;  else
+;  return "Sorry,找不到" %P% "!"
+;  }
 ;   AeScriptFunction调用Ae脚本文件_ByBoBO
 ;   使用方式
 ;   getAeScript("路径")
@@ -204,11 +219,9 @@ getCurrentDir(ByRef CurWinClass="")
 getAeScript(AeScriptPath){
 
     WinActivate, ahk_exe AfterFX.exe
-
-    global AeExePath := ini.BOBOPath_Config.AEPath
-
+    ; global AeExePath := ini.BOBOPath_Config.AEPath
+	AeExePath := GetProcessPath("AfterFX.exe")
     RunWait, %AeExePath% -s -r %A_ScriptDir%\%AeScriptPath%,,Hide
-
     WinActivate, ahk_exe AfterFX.exe
 
     return
@@ -223,8 +236,8 @@ getAeScriptCommand(AeScriptCommand){
 
     WinActivate, ahk_exe AfterFX.exe
 
-    global AeExePath := ini.BOBOPath_Config.AEPath
-
+    ; global AeExePath := ini.BOBOPath_Config.AEPath
+	AeExePath := GetProcessPath("AfterFX.exe")
     RunWait, %AeExePath% -s -r %AeScriptCommand%,,Hide
 
     WinActivate, ahk_exe AfterFX.exe

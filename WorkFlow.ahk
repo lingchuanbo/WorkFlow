@@ -146,7 +146,19 @@ Loop,parse,GroupDiagJump,`n,`r
 ; #Include %A_ScriptDir%\custom\custom.ahk
 
 ; ----------------------------------
-
+;   获取进程路径
+GetProcessPath(p){
+ DetectHiddenWindows,On
+ Process,Exist,%P%
+ if ErrorLevel>0
+ {
+ PID=%ErrorLevel%
+ WinGet,lujing,ProcessPath,ahk_pid %pid%
+ return lujing
+ }
+ else
+ return "Sorry,找不到" %P% "!"
+ }
 ; 动态加载|User|函数
 QZ_UpdatePlugin()监测
 SearchFileForKey(SelectedKeys,SelectedAction, SelectedDesc, true)
