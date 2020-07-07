@@ -1093,25 +1093,25 @@ return
 }
 
 ;更新
-<3DsMax_UpDater>:
-; Gui,Updating: +LastFound +AlwaysOnTop -Caption +ToolWindow
-; Gui,Updating: Color, %color2%
-; Gui,Updating: Font,cwhite s%FontSize% wbold q5,Segoe UI
-; Gui,Updating: Add, Text, ,%_MaxUpdating%
-; Gui,Updating: Show,AutoSize Center NoActivate
-; UrlDownloadToFile, %UrlDownloadToFile_Ae1%, %A_ScriptDir%\plugins\3DsMax\latest-3DsMax.ahk ;
+; <3DsMax_UpDater>:
+; ; Gui,Updating: +LastFound +AlwaysOnTop -Caption +ToolWindow
+; ; Gui,Updating: Color, %color2%
+; ; Gui,Updating: Font,cwhite s%FontSize% wbold q5,Segoe UI
+; ; Gui,Updating: Add, Text, ,%_MaxUpdating%
+; ; Gui,Updating: Show,AutoSize Center NoActivate
+; ; UrlDownloadToFile, %UrlDownloadToFile_Ae1%, %A_ScriptDir%\plugins\3DsMax\latest-3DsMax.ahk ;
 
-; if ErrorLevel
-; {
-;     Gosub, MaxExitUpdater
-; }
-; Else
-; {
-;     FileMove,%A_ScriptDir%\plugins\3DsMax\latest-3DsMax.ahk, %A_ScriptDir%\plugins\3DsMax\3DsMax.ahk,1
-;     Gosub, MaxExitUpdater
-; }
-MsgBox 功能已写好，未测试，后面版本更新！！！！
-return
+; ; if ErrorLevel
+; ; {
+; ;     Gosub, MaxExitUpdater
+; ; }
+; ; Else
+; ; {
+; ;     FileMove,%A_ScriptDir%\plugins\3DsMax\latest-3DsMax.ahk, %A_ScriptDir%\plugins\3DsMax\3DsMax.ahk,1
+; ;     Gosub, MaxExitUpdater
+; ; }
+; MsgBox 功能已写好，未测试，没服务器没！！！！
+; return
 
 MaxExitUpdater:
 FileDelete, %A_ScriptDir%\plugins\3DsMax\latest-3DsMax.ahk
