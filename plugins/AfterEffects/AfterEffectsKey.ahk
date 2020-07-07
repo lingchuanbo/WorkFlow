@@ -43,6 +43,7 @@
     vim.map(":?","<ShowHelp2>","AfterEffects")
     vim.map(":1","<PluginsReg>","AfterEffects")
     vim.map(":2","<Ae_切换语言>","AfterEffects")
+    vim.map(":3","<Config写入AE路径>","AfterEffects")
 ;Double类型
     vim.Map("x", "<Ae_Double_x>", "AfterEffects")
     vim.Map("q", "<Ae_Double_q>", "AfterEffects")

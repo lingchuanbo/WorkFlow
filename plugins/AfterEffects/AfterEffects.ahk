@@ -1514,6 +1514,13 @@ return
         }
         return
 }
+<Config写入AE路径>:
+{
+    getAeExePath := GetProcessPath("AfterFX.exe")
+    IniWrite, %getAeExePath%, config.ini, BOBOPath_Config, AEPath 
+    MsgBox "写入成功！"
+    return
+}
 
 <Ae_UpDater>:
 Gui,Updating: +LastFound +AlwaysOnTop -Caption +ToolWindow
