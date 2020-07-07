@@ -1013,6 +1013,42 @@ return
 }
 
 
+;Ini传递数值给SetEvn
+<3DsMax_CopyToStartup>:
+{
+    getExePath := GetProcessPath("3dsmax.exe")
+    gotoSetEvn=%A_ScriptDir%\custom\maxScripts\Startup\setEvn.ms
+    FileDelete, %gotoSetEvn% ;先删除文件
+    FileAppend,  ; 这里需要逗号.
+    (
+    --设置本地环境$maxScripts.
+    --读取workflow ini地址
+    evnPath="%A_ScriptDir%\custom\maxScripts"
+    
+    if symbolicPaths.isUserPathName "$maxScripts" == false do symbolicPaths.addUserPath "$maxScripts" evnPath
+    symbolicPaths.setUserPathValue "$maxScripts" evnPath
+    
+    ), %A_ScriptDir%\custom\maxScripts\Startup\setEvn.ms,UTF-8
+
+    sleep 2000
+
+    getExePath := GetProcessPath("3dsmax.exe")
+
+; 写入配置文件
+    IniWrite, %getExePath%, config.ini, BOBOPath_Config, MaxPath 
+
+    sleep 100
+
+    candysel := RTrim(getExePath, OmitChars := "\")
+    SplitPath, candysel, name, dir, ext, name_no_ext, Drive
+
+    FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%dir%\scripts\Startup, 1
+
+    MsgBox "拷贝完成！请重启 3Ds Max ！"
+
+    return
+}
+
 
 
 ; ViewportDisplay/视窗显示

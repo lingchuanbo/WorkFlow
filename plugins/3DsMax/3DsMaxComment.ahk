@@ -42,7 +42,7 @@ If Language=CN
     vim.Comment("<3DsMax_Import>","导入")
     vim.Comment("<3DsMax_Export>","导出")
     vim.Comment("<3DsMax_UpDater>","3DsMax插件更新")
-    vim.Comment("<3DsMax_Ini>","3DsMax配置初始化")
+    vim.Comment("<3DsMax_CopyToStartup>","3DsMax配置初始化")
     
     vim.Comment("<3DsMax_maxToTotalcmd>","Total Commander")
 

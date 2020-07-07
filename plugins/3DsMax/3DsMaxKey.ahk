@@ -67,6 +67,7 @@
 
     vim.Map("/1", "<3DsMax_Ini>", "3DsMax")
     vim.Map("/2", "<3DsMax_UpDater>", "3DsMax")
+    vim.Map("/3", "<3DsMax_CopyToStartup>", "3DsMax")
 
 
     ; 转换Poly|Mesh|Spline
