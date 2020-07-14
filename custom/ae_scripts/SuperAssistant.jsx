@@ -27,6 +27,11 @@ var _ = UIParser(Global);
 _.app.allowAccessFile();//判断是否允许写入文件
 /**************************创建窗口准备******************************************************************************/
 var rootPath = File.decode(File($.fileName).path) + '/Super Assistant/';
+var rootPathPresetAnimation = File.decode(File($.fileName).path) + '/PresetAnimation/';
+var rootPathScript = File.decode(File($.fileName).path) + '/otherScriptCommand/';
+var rootPathExpression = File.decode(File($.fileName).path) + '/Expression/';
+var rootPathAeFile = File.decode(File($.fileName).path) + '/AeFile/';
+
 var iconPath = rootPath + 'icon/';
 var createGroupIcon = File(iconPath + 'createGroup.png');
 var cache_file_path = rootPath + 'cache_file';
@@ -275,6 +280,8 @@ var fns = {
 			}
 			current.tree.readJson(fns.readJsonFile(effectJsonFile), null, function(e) {
 				e.data.image = File(rootPath + 'effect/' + e.data.name + '.png');
+				// e.data.image = File(rootPathExpression + 'effect/' + e.data.name + '.png');
+				
 			});
 			current.tree.path = effectJsonPath;
 		}else {

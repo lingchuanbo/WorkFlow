@@ -1,3 +1,4 @@
+-- BoBO 2020-7-2
 fn UTIL_trnsfrmLockToggle_FN =
 (
 	if (getTransformLockFlags selection[1])[1] == false then
@@ -11,12 +12,14 @@ fn UTIL_trnsfrmLockToggle_FN =
 		format "***** Transform Unlocked *****\n"
 	)
 )
-if selection.count == 1 then
+
+
+if selection.count == 0 then
 	(
-		UTIL_trnsfrmLockToggle_FN()
+		messagebox "*****Please selection Object  *****"
+		
 	)
 	else 
 	(
-		messagebox "请选择对象操作"
-
+		UTIL_trnsfrmLockToggle_FN()
 	)

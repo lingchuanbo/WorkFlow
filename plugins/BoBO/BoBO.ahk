@@ -666,7 +666,13 @@ return
 	` & 4:: Gosub, <PS_暗颜色>
 	` & 5:: Gosub, <PS_加暗加亮>
     3::SendInput,{RButton}
+	
+
 	4::SendInput,{Delete}
+
+	Space & WheelDown::send [		;缩小画笔
+	Space & WheelUp::send ]			;放大画笔
+
 	; `::send,{b}
 	` & LButton::Gosub, ps_double_BrushSwith
 	

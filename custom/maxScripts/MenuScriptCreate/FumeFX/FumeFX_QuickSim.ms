@@ -48,25 +48,30 @@ rollout QuickSim "FumeFX QuickSim" width:150 height:434
 
 	
 ---button 
-	
-	checkbox chk_dw "" pos:[125,224] width:15 height:15
-	checkbox chk_dwp "" pos:[61,239] width:15 height:15
-	checkbox chk_w "" pos:[125,239] width:15 height:15 enabled:true checked:false
+
+	checkbox chk_d "" pos:[61,224] width:15 height:15 checked:true toolTip:"Deafuel Sim"
+	checkbox chk_dw "" pos:[125,224] width:15 height:15 toolTip:"Deafuel Sim + Wavelet Sim"
+	checkbox chk_dwp "" pos:[61,239] width:15 height:15 toolTip:"Deafuel Sim + Wavelet Sim + Retime"
+	checkbox chk_w "" pos:[125,239] width:15 height:15 enabled:true checked:false toolTip:"Wavelet Sim"
+	checkbox chk_P "" pos:[125,254] width:15 height:15 enabled:true checked:false toolTip:"Retime"
+
+	checkbox chk_r "" pos:[61,269] width:15 height:15 enabled:true checked:false
+	checkbox chk_wp "" pos:[61,254] width:15 height:15 enabled:true checked:false toolTip:"Wavelet Sim + Retime"
+ 
 	label l_dw "D+W" pos:[83,224] width:31 height:15
 	label l_dwp "D+W+P" pos:[10,239] width:46 height:15
-	label l_w "W" pos:[83,239] width:15 height:15 enabled:true
-	label l_d "D" pos:[10,224] width:15 height:15
-	checkbox chk_d "" pos:[61,224] width:15 height:15 checked:true
+	label l_w "W" pos:[83,239] width:15 height:15 enabled:true 
+	label l_d "D" pos:[10,224] width:15 height:15 
+	
 	label lbl8 "W+P" pos:[10,254] width:32 height:15 enabled:true
 	label lbl9 "R" pos:[10,269] width:32 height:15 enabled:true
-	checkbox chk_r "" pos:[61,269] width:15 height:15 enabled:true checked:false
-	checkbox chk_wp "" pos:[61,254] width:15 height:15 enabled:true checked:false
+
 	button b_QuickSim "QuickSim" pos:[10,3] width:101 height:15 toolTip:"QuickSim by-HOOLONG"
 	button b_X "X" pos:[130,3] width:15 height:15
 	button b_ "-" pos:[113,3] width:15 height:15
 	GroupBox grp1 "Sim" pos:[6,211] width:140 height:103
-	label lbl7 "Shutdown" pos:[10,284] width:50 height:15 enabled:true
-	checkbox chk_shutdown "" pos:[61,284] width:15 height:15 enabled:true checked:false
+	-- label lbl7 "Shutdown" pos:[10,284] width:50 height:15 enabled:true
+	-- checkbox chk_shutdown "" pos:[61,284] width:15 height:15 enabled:true checked:false
 		
 	edittext upathname "" pos:[9,366] width:100 height:15
 	button btn1 "..." pos:[118,366] width:20 height:15 toolTip:"Render Path"
@@ -75,7 +80,7 @@ rollout QuickSim "FumeFX QuickSim" width:150 height:434
 	label lbl13 "width:" pos:[12,321] width:33 height:19
 	label lbl14 "height:" pos:[12,343] width:36 height:19
 	label lbl187 "P" pos:[83,254] width:15 height:15 enabled:true
-	checkbox chk_P "" pos:[125,254] width:15 height:15 enabled:true checked:false
+	
 	button btn18 "set Cache" pos:[138,567] width:54 height:14
 	edittext filename "" pos:[131,527] width:111 height:15
 	button btn111 "+" pos:[197,567] width:15 height:14
@@ -97,9 +102,8 @@ rollout QuickSim "FumeFX QuickSim" width:150 height:434
 	button btn_exe "Simulate" pos:[5,391] width:140 height:25 enabled:false
 	label lbl73 "preview" pos:[83,269] width:41 height:15 enabled:true
 	checkbox chk_preview "" pos:[125,269] width:15 height:15 enabled:true checked:false
-	button render "Button" pos:[120,289] width:16 height:16 toolTip:"render dialog"
-	label lbl40 "--hoolongvfx@gmail.com--" pos:[10,417] width:131 height:15
-	button btn14 "Button" pos:[97,289] width:16 height:16 toolTip:"Open FumeFX_Data Path"
+	button render "Dialog" pos:[105,299] width:36 height:16 toolTip:"render dialog"
+	button btn14 "FxDate" pos:[57,299] width:46 height:16 toolTip:"Open FumeFX_Data Path"
  
 
 
@@ -263,12 +267,9 @@ for i = 1 to theList.count do
 					namepath =getFilenamePath theFolder +filenameFromPath theFolder 
 				    ss =getFilenamePath theFolder +filenameFromPath theFolder  + "\\*"
 					a = getFilenameFile ss
-				
-				
-					
 					)
 )	catch()	)
-		) --����ѡ��FumeFX����·��
+		) 
 					 						  
 	
 		
@@ -284,7 +285,7 @@ for i = 1 to theList.count do
 						 						  
 		)
 	                   
-                      )	-- �����Զ����ݻ���������ʼ֡
+                      )	
 		
     fn selectcache = (try(theList[i].SelectedCache = 1)catch(messagebox "Please set Retime")) --ѡ�񻺴�wavelet	
     
@@ -316,30 +317,31 @@ for i = 1 to theList.count do
 	fn palypreview = ( for i = 1 to theList.count do
 		                    (aa =theList[i].startframe
 		                    bb = theList[i].endframe
-			               theList[i].MakePreview aa bb 4  400)
-			              )	--FumeFX make preview	  
+						   theList[i].MakePreview aa bb 4  400)
+						   
+						  )	--FumeFX make preview	  
+						  
 					  
 	fn sim_d = (  for i = 1 to theList.count do(theList[i].RunSimulation 0)
-		          ) --��ʼ��һ�ν���
+		          ) --Default Simulation
 			
-		
 
 	fn sim_w = ( for i = 1 to theList.count do (theList[i].RunSimulation 2)
-		        ) -- ��ʼ�ڶ��ν��� 			
+		        ) -- Wavelet Simulation	
 		
         
 	fn sim_P = ( for i = 1 to theList.count do (theList[i].RunSimulation 3)
-		        ) --��ʼretime		
+		        ) --retime		
 					  				 
 	fn shutdown = (cmd ="shutdown -s -t 60"
-                        DOSCommand cmd ) --�����Զ��ػ�
+                        DOSCommand cmd ) --Shutdown
     
     fn savefile = (if maxFileName != "" then (
         max saveplus
         TheFile = maxFilePath + (trimRight (getFilenameFile maxFileName) "1234567890") + ".max"
         if doesFileExist TheFile do deleteFile TheFile
         copyFile (maxFilePath + maxFileName) TheFile
-    ) else checkForSave())--�����Զ�����+1
+    ) else checkForSave())--Savefile
 
 
 	

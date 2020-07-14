@@ -2,7 +2,7 @@
 #include 'F:/BoBOAHK/WorkFlow/custom/ae_scripts/commands/lib/UIParser.jsx'
 #include 'F:/BoBOAHK/WorkFlow/custom/ae_scripts/commands/lib/Tree.jsx'
 var _ = UIParser(Global);
- var subUIJson = {
+var subUIJson = {
  	// 帮助
  	helpUI: {
  		group: {type:'group', orientation:'column', align:'fill', children:{
@@ -12,7 +12,7 @@ var _ = UIParser(Global);
  	}
  }
 
- var fns = {
+var fns = {
  	createWin: function(title, json, exec, finalexec) {
  		var newWin = new Window('palette', title, undefined, {resizeable: true});
  		_(newWin).addUI(json);
@@ -27,11 +27,11 @@ var _ = UIParser(Global);
  	},
  };
 
- var helpFile = File("F:/BoBOAHK/WorkFlow/custom/ae_scripts/commands/PluginsReg.txt");
- if(helpFile.exists) var helpStr = _.file.read(File("F:/BoBOAHK/WorkFlow/custom/ae_scripts/commands/PluginsReg.txt"));
- else helpStr = 'Null';
- //alert(helpStr);
- fns.createWin('常用注册信息 By.BoBO', subUIJson.helpUI, function(e) {
+var helpFile = File("F:/BoBOAHK/WorkFlow/custom/ae_scripts/commands/PluginsReg.txt");
+if(helpFile.exists) var helpStr = _.file.read(File("F:/BoBOAHK/WorkFlow/custom/ae_scripts/commands/PluginsReg.txt"));
+else helpStr = 'Null';
+//alert(helpStr);
+fns.createWin('常用注册信息 By.BoBO', subUIJson.helpUI, function(e) {
      try{
      var win = e;
      var pic = _(win).find('#picture')[0];
