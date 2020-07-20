@@ -4756,7 +4756,7 @@ return
     ; GoSub,<RunEverything>
     folder:=getTcFolder()
     ;  -p带"""  -search不带""
-	run "%TCDirPath%\Everything.exe" -p %folder% 
+	run "%TCDirPath%\Everything.exe" -p "%folder%"
 return
 
 ; 双按Backspace当前文件上移动
@@ -4938,15 +4938,15 @@ TC_LeftRight()
 
 
 ; ;-------------Tc函数----------------------------------
-; ;作用:同步滚动TC左右面板
-; Tc_WindowScroll(Direction)
-; {
-;     loop,3
-;     {
-;         SendMessage,0x115,%Direction%,0,TMyListBox1
-;         SendMessage,0x115,%Direction%,0,TMyListBox2
-;     }
-; }
+;作用:同步滚动TC左右面板
+Tc_WindowScroll(Direction)
+{
+    loop,3
+    {
+        SendMessage,0x115,%Direction%,0,TMyListBox1
+        SendMessage,0x115,%Direction%,0,TMyListBox2
+    }
+}
 ; ;-----------------------------------------------------
 ; #If GetKeyState(N3.keys,"p") AND WinActive("ahk_exe Totalcmd.exe") ;## 
 ; w::
