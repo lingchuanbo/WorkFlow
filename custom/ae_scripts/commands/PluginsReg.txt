@@ -21,3 +21,6 @@ Newton 3:
     进入插件独立界面后,点击左上角菜单Newton里的Registration,输入下面序列号后,点击Activate注册
     MOBONWT3*MONTER*GROUP*201911132126789SUL9
 
+HandyCam:
+PEHC*Look*AE*855783350200720SUL8
+

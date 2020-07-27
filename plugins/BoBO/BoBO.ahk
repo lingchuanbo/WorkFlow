@@ -527,7 +527,11 @@ return
 		GoSub,Sub_KeyClick
 	return
 
-
+	; F1::
+	; 	GV_KeyClickAction1 := "Send,{F1}"
+	; 	GV_KeyClickAction2 := "Gosub,Sub_SendTcBCompare"
+	; 	GoSub,Sub_KeyClick
+	; return
 		;智能对话框跳转 f
 	; ~n::
 	; 	GV_KeyClickAction1 := "Send,{n}"
@@ -541,8 +545,8 @@ return
 	Tab & LButton::
 		Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_Exchange`)"
 	return
-
-
+		
+	
 	;按住Space 两侧同时滚动
 	Space & WheelDown::Tc_WindowScroll(0)		
 	Space & WheelUp::Tc_WindowScroll(1)		

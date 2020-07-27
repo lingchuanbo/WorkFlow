@@ -21,7 +21,7 @@ function SPCreateFolderAndOutputForSelectedCompsName(){
 				var sequenceFolderPath = new Folder ( newLocation.toString() + "/")
 				sequenceFolderPath.create();
 				//var sequencePath = new File ( newLocation.toString() + "/" + sequenceFolderPath.name + "/" + item.name + "_[#####]" );
-				var sequencePath = new File ( newLocation.toString() + "/"+item.name+"_[#####]" );				
+				var sequencePath = new File ( newLocation.toString() + "/" + "[#####]" );				
 				lastOMItem.file = sequencePath;							
 				// Remove _[#####] for non frame sequence type
 				var outputPath = lastOMItem.file.fsName;

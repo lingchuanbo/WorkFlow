@@ -71,8 +71,8 @@ menuAe:
 	menu, thismenu, add, AE动态脚本菜单(%_Author%), WHATSUP
 	; menu, thismenu, add, (&O).A整理, :AeManage
 	dirMenu0=%A_ScriptDir%\custom\ae_scripts\Effect
-	dirMenu1=%A_ScriptDir%\custom\ae_scripts\otherScriptCommand\
-	dirMenu2=%A_ScriptDir%\custom\ae_scripts\PresetAnimation
+	dirMenu1=%A_ScriptDir%\custom\ae_scripts\otherScript
+	dirMenu2=%A_ScriptDir%\custom\ae_scripts\Preset
     dirMenu3=%A_ScriptDir%\custom\ae_scripts\commands
 
 	menu_fromfiles("filelist0", "特效库", "RunAePreset0", dirMenu0, "*.ffx", "thismenu", 1)
