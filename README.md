@@ -113,3 +113,6 @@ PS
 #### 5.感谢
 
 再次致谢**Array & kawvin & EZ & liuyukuan**！
+
+#### 6.请我喝一杯？
+![pay](https://raw.githubusercontent.com/lingchuanbo/WorkFlow/master/pay.png)
