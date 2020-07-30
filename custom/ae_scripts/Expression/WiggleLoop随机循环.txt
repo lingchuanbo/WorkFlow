@@ -1,0 +1,7 @@
+freq = 3; // 频率
+amp = 100; // 幅度
+loopTime =3; // 循环时间，单位为秒
+t = time % loopTime;
+wiggle1 = wiggle(freq, amp, 1, 0.5, t);
+wiggle2 = wiggle(freq, amp, 1, 0.5, t – loopTime);
+linear(t, 0, loopTime, wiggle1, wiggle2)

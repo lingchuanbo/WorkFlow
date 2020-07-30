@@ -1,0 +1,1 @@
+loopOut(type = “pingPong”, numKeyframes = 0);//后面的数值0用来控制从第几帧开始循环

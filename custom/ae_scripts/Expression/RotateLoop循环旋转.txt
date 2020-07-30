@@ -1,0 +1,3 @@
+cycle=360;  //循环周期
+n=1;  //转速(需为整数)
+cycle*n/thisComp.duration*time

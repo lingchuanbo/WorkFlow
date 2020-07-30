@@ -1,0 +1,29 @@
+function lookAtMe(fromPt, toPt){
+
+    lkAt = lookAt(fromPt, toPt);
+
+    if (toPt[1] > fromPt[1]){
+
+        return 180-lkAt[1];
+
+    } else {
+
+        return lkAt[1];
+
+    }
+
+}
+
+p0= transform.position;
+
+p1=thisComp.layer(“目标层”).transform.position; //设置目标层名
+
+ lookAtMe(p0, p1)+value //改变旋转值可调整角度
+
+（对于三维层，加给orientation [角度] 属性）
+
+p0=transform.position;
+
+p1=thisComp.layer(“目标层”).transform.position; //设置目标层名
+
+lookAt(p0,p1)

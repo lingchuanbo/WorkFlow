@@ -57,11 +57,13 @@ return
 menuAeAlt:
 dirMenu3=%A_ScriptDir%\custom\ae_scripts\Expression
 	; menu, menuAlt, add, , WHATSUP11111111111111111
-	menu, menuAlt, add, (&R) 渲染, :ManageRender
+	menu, menuAlt, add, (&R) 批量渲染, :ManageRender
 	menu, ManageRender, add, %_AeRENDER%,RENDER
 	menu, ManageRender, add, %_AeNameRENDER%,NameRENDER
 	menu, ManageRender, add, %_AeNameDirection%,NameDirection
 	menu, ManageRender, add, %_AeName%, Name
+    menu, menuAlt, add, (&R) 批量导入素材, ImmigrationREG
+    menu, menuAlt, add, (&R) 批量替换素材, BatchReplaceFile
     ;  menu_fromfiles("filelist3", "表达式", "Expression", dirMenu3, "*.txt", "menuAlt", 1)
    Menu, menuAlt, Show
 return
@@ -73,7 +75,7 @@ menuAe:
 	dirMenu0=%A_ScriptDir%\custom\ae_scripts\Effect
 	dirMenu1=%A_ScriptDir%\custom\ae_scripts\otherScript
 	dirMenu2=%A_ScriptDir%\custom\ae_scripts\Preset
-    dirMenu3=%A_ScriptDir%\custom\ae_scripts\commands
+    dirMenu3=%A_ScriptDir%\custom\ae_scripts\Expression
 
 	menu_fromfiles("filelist0", "特效库", "RunAePreset0", dirMenu0, "*.ffx", "thismenu", 1)
 	menu_fromfiles("filelist1", "脚本库", "RunAeScript", dirMenu1, "*.jsx", "thismenu", 1)
