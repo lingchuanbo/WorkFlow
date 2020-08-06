@@ -24,6 +24,12 @@ function_menuAfterEffect:
 	; 	GoSub,Sub_KeyClick
     ; return
     ; 3::send,{RButton}
+
+
+; 截取工作台
+    ` & 1::send,{b}
+    ` & 2::send,{n}
+    ` & 3::send, ^+x
 }
 
 
