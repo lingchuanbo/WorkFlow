@@ -2021,6 +2021,7 @@ return
 
 #include %A_ScriptDir%\Lib\EasyIni.ahk
 #include %A_ScriptDir%\Lib\TCMatch.ahk
+#include %A_ScriptDir%\Lib\GoogleApi.ahk
 #include %A_ScriptDir%\Core\Common.ahk
 #include *i %A_ScriptDir%\Core\Plugins.ahk
 ; 发送到菜单自动生成的命令
