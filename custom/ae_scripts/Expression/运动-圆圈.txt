@@ -1,0 +1,13 @@
+// function declaration pasted here
+function CircularMotion (theRadius, degrees, angleShift){
+  degrees = (degrees === undefined) ? - 90 : -degrees + 90
+  angleShift = (angleShift === undefined) ? 0 : -angleShift;
+  theRadius = (theRadius === undefined) ? 100 : theRadius;
+  xDir = Math.sin(degreesToRadians(degrees + angleShift));
+  yDir = Math.cos(degreesToRadians(degrees + angleShift));
+  return [xDir * theRadius, yDir * theRadius] + value;
+}
+
+circleRadius = 100;
+circleSpeed = time * 700;
+CircularMotion(circleRadius, circleSpeed)

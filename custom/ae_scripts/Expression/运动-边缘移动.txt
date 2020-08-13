@@ -1,0 +1,26 @@
+//Position
+function MoveAlongEdgesOfComp(percent, marginpercent) {
+
+ percent = (percent === undefined) ? 0 : percent % 100;
+
+ marginpercent = (marginpercent === undefined) ? 0 : clamp(marginpercent, 0, 100);
+
+ // convert the original percent value to both horizontal and vertical percent values to drive the motion
+
+ horizontalpercent = (percent >= 25 && percent <= 50) ? 100 : (percent >= 75 && percent <= 100) ? 0 : (percent < 25) ? (percent * 4) : (100 - (4 * (percent % 25)));
+
+ verticalpercent = (percent >= 0 && percent <= 25) ? 0 : (percent >= 50 && percent <= 75) ? 100 : (percent < 50) ? (percent - 25) * 4 : (100 - (4 * (percent % 25)));
+
+ midPoint = [thisComp.width * 0.5, thisComp.height * 0.5]; // use the linear function to drive each dimension
+
+ xLoc = linear(horizontalpercent, 0, 100, 0, thisComp.width);
+
+ yLoc = linear(verticalpercent, 0, 100, 0, thisComp.height);
+
+ finalPoint = [linear(marginpercent, 0, 100, xLoc, midPoint[0]), linear(marginpercent, 0, 100, yLoc, midPoint[1]), 0];
+
+ return finalPoint;
+
+}
+
+MoveAlongEdgesOfComp(time * 20, 50)
