@@ -118,11 +118,11 @@ OpenLocalFilesRender:
 	AeOpenLocalFilesRender()
 	return
 }
-
 RunAeScript:
     curpath := menu_itempath("filelist1", dirMenu1)
 	WinActivate, ahk_exe AfterFX.exe
-    global AeExePath := ini.BOBOPath_Config.AEPath
+    ; global AeExePath := ini.BOBOPath_Config.AEPath
+    AeExePath := GetProcessPath("AfterFX.exe")
     RunWait, %AeExePath% -s -r %curpath%,,Hide
     return
 RETURN
@@ -154,7 +154,7 @@ if (activeItem instanceof CompItem) {
 
 	sleep 50
 	WinActivate, ahk_exe AfterFX.exe
-	global AeExePath := ini.BOBOPath_Config.AEPath
+	global AeExePath := GetProcessPath("AfterFX.exe")
     RunWait, %AeExePath% -s -r %setPreset%,,Hide
 	sleep 50
 	FileDelete, %setPreset% ;避免重复删除文件
@@ -188,7 +188,7 @@ if (activeItem instanceof CompItem) {
 
 	sleep 50
 	WinActivate, ahk_exe AfterFX.exe
-	global AeExePath := ini.BOBOPath_Config.AEPath
+	global AeExePath := GetProcessPath("AfterFX.exe")
     RunWait, %AeExePath% -s -r %setPreset%,,Hide
 	sleep 50
 	FileDelete, %setPreset% ;避免重复删除文件
@@ -236,7 +236,8 @@ if(sl) {
 
 	sleep 50
 	WinActivate, ahk_exe AfterFX.exe
-	global AeExePath := ini.BOBOPath_Config.AEPath
+	; global AeExePath := ini.BOBOPath_Config.AEPath
+    AeExePath := GetProcessPath("AfterFX.exe")
     RunWait, %AeExePath% -s -r %setPreset%,,Hide
 	sleep 50
 	FileDelete, %setPreset% ;避免重复删除文件
