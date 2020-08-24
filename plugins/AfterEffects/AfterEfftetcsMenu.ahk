@@ -122,7 +122,7 @@ RunAeScript:
     curpath := menu_itempath("filelist1", dirMenu1)
 	WinActivate, ahk_exe AfterFX.exe
     ; global AeExePath := ini.BOBOPath_Config.AEPath
-    AeExePath := GetProcessPath("AfterFX.exe")
+    global AeExePath := GetProcessPath("AfterFX.exe")
     RunWait, %AeExePath% -s -r %curpath%,,Hide
     return
 RETURN
