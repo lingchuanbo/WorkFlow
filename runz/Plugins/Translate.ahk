@@ -3,28 +3,54 @@
 
 Translate:
     @("yd", "有道词典在线翻译")
-    @("ggfy", "Google在线翻译")
+    @("fy", "翻译")
     @("tq", "天气")
 
 return
 
-ggfy:
-    ; 谷歌翻译中英文
+fy:
     word := Arg == "" ? clipboard : Arg
+    getWord:=YouDaoApi(word)
     ExplorerPath := word
-	if (RegExMatch(ExplorerPath,"[^\x00-\xff]+"))
-	{
-        DisplayResult(GoogleTranslate(word,from := "auto", to :=0409))
-		return
+    if (g_Conf.Config.Translate=0)
+    {
+        Youdao_yb:= json(getWord, "basic.phonetic") ;音标
+	    Youdao_jbsy:= json(getWord, "basic.explains") ;基本释义
+	    Youdao_wlsy:= json(getWord, "web.value") ;网络释义
 
-	}
-	if (RegExMatch(ExplorerPath,"^[A-Za-z]+"))
-	{
-		DisplayResult(GoogleTranslate(word))
-		return
+        Youdao=音标:%Youdao_yb%`n`n基本释义:%Youdao_jbsy%`n`n%Youdao_wlsy%`n`n`n来源:网易有道翻译
+	    DisplayResult(Youdao)
+    }
+    if (g_Conf.Config.Translate=1)
+    {
+        if (RegExMatch(ExplorerPath,"[^\x00-\xff]+"))
+        {
+            DisplayResult(GoogleTranslate(word,from := "auto", to :=0409)"`n来源:Google翻译")
+            return
 
-	}
-	DisplayResult(GoogleTranslate(word))
+        }
+        if (RegExMatch(ExplorerPath,"^[A-Za-z]+"))
+        {
+            DisplayResult(GoogleTranslate(word)"`n`n`来源:Google翻译")
+            return
+        }
+    }
+    ; 谷歌翻译中英文
+    ; word := Arg == "" ? clipboard : Arg
+    ; ExplorerPath := word
+	; if (RegExMatch(ExplorerPath,"[^\x00-\xff]+"))
+	; {
+    ;     DisplayResult(GoogleTranslate(word,from := "auto", to :=0409))
+	; 	return
+
+	; }
+	; if (RegExMatch(ExplorerPath,"^[A-Za-z]+"))
+	; {
+	; 	DisplayResult(GoogleTranslate(word))
+	; 	return
+
+	; }
+	; DisplayResult(GoogleTranslate(word))
 return
 
 

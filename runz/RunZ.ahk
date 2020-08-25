@@ -161,7 +161,7 @@ if (FileExist(A_ScriptDir "\Conf\Skins\" g_SkinConf.BackgroundPicture))
     Gui, Add, Picture, x0 y0, % A_ScriptDir "\Conf\Skins\" g_SkinConf.BackgroundPicture
 }
 
-border := 10
+border := 0
 if (g_SkinConf.BorderSize >= 0)
 {
     border := g_SkinConf.BorderSize

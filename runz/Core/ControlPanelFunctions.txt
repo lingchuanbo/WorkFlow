@@ -60,3 +60,5 @@ file | perfmon.exe | 性能监视器
 file | winver.exe | 关于 Windows
 file | services.msc | 服务
 file | netplwiz | 用户帐户
+
+file | explorer.exe shell:::{ED7BA470-8E54-465E-825C-99712043E01C}  | 上帝模式
