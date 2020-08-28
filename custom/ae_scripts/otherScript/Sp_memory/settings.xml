@@ -1,0 +1,10 @@
+<settings>
+  <ListItems>
+    <Name>Default</Name>
+  </ListItems>
+  <ParentGroup>
+    <item groupName="Default">
+      <Index>0</Index>
+    </item>
+  </ParentGroup>
+</settings>

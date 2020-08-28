@@ -9,9 +9,9 @@ for (var i = 0, len = selectedItems.length; i < len; i++) {
 
      var item = selectedItems[i];
 
-     var myLayer = 4; 
+     var myLayer = 1; 
 
-     item.layer(myLayer).blendingMode = BlendingMode.ADD; //设置层模式 这是图层模式 比如add
+     item.layer(myLayer).blendingMode = BlendingMode.SCREEN; //设置层模式 这是图层模式 比如add
 
      //item.layer(myLayer).remove();
 }

@@ -404,25 +404,25 @@ return
 
 <Ae_Double_F4>:
 {
-    DoubleClickTime := DllCall("GetDoubleClickTime") ; in milliseconds
-    ; Wait for 'd' to be released
-    KeyWait, F4
-    if (A_TimeSinceThisHotkey > DoubleClickTime) {
-        Send,^+{w}
-        ; Click 1
-        return
-    }
-    KeyWait, F4, % "d T"DoubleClickTime/1000
-    If ! Errorlevel
-        {
-            Send, ^{w}
-            return
-        }
-    else
-        {
+    ; DoubleClickTime := DllCall("GetDoubleClickTime") ; in milliseconds
+    ; ; Wait for 'd' to be released
+    ; KeyWait, F4
+    ; if (A_TimeSinceThisHotkey > DoubleClickTime) {
+    ;     ; Send,^+{w}
+    ;     ; Click 1
+    ;     return
+    ; }
+    ; KeyWait, F4, % "d T"DoubleClickTime/1000
+    ; If ! Errorlevel
+    ;     {
+    ;         Send, ^{w}
+    ;         return
+    ;     }
+    ; else
+    ;     {
             getAeScript("custom\ae_scripts\add_keys.jsx")
             return
-        }
+        ; }
 return
 }
 <Ae_Double_8>:
