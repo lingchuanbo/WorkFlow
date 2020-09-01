@@ -1,0 +1,124 @@
+﻿file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe After Effects CC 2018.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe Application Manager.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Excel.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Immersive Control Panel.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\PowerPoint.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessibility\Speech Recognition.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Calculator.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Math Input Panel.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Paint.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Quick Assist.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Remote Desktop Connection.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Snipping Tool.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Steps Recorder.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Windows Fax and Scan.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Windows Media Player.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Wordpad.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\System Tools\Character Map.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Component Services.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Computer Management.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\dfrgui.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Disk Cleanup.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Event Viewer.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\iSCSI Initiator.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Memory Diagnostics Tool.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\ODBC Data Sources (32-bit).lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\ODBC Data Sources (64-bit).lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Performance Monitor.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Print Management.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\RecoveryDrive.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Registry Editor.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Resource Monitor.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Security Configuration Management.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\services.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\System Configuration.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\System Information.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Task Scheduler.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\Windows Defender Firewall with Advanced Security.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe\Adobe After Effects CS6.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe\Adobe After Effects Render Engine.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe\Adobe ExtendScript Toolkit CC.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Adobe\Adobe Photoshop CS6.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Allegorithmic\Substance Designer\Substance Designer.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Allegorithmic\Substance Designer\Uninstall.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Autodesk\Uninstall Tool.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Autodesk\Autodesk 3ds Max 2017\3ds Max 2017 - Brazilian Portuguese.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Autodesk\Autodesk 3ds Max 2017\3ds Max 2017 - English.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Autodesk\Autodesk 3ds Max 2017\3ds Max 2017 - French.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Autodesk\Autodesk 3ds Max 2017\3ds Max 2017 - German.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Autodesk\Autodesk 3ds Max 2017\3ds Max 2017 - Japanese.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Autodesk\Autodesk 3ds Max 2017\3ds Max 2017 - Korean.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Autodesk\Autodesk 3ds Max 2017\3ds Max 2017 - Simplified Chinese.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Autodesk\Autodesk 3ds Max 2017\3ds Max 2017.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Autodesk\Autodesk 3ds Max 2017\Change Graphics Mode.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Autodesk\Autodesk 3ds Max 2017\License Transfer Utility - 3ds Max 2017.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Autodesk\Autodesk 3ds Max 2017\MaxFind.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Autodesk\Autodesk Desktop App\Autodesk Desktop App.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Autodesk\Autodesk 桌面应用程序\Autodesk 桌面应用程序.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Autodesk Backburner 2017.0\Manager.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Autodesk Backburner 2017.0\Monitor.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Autodesk Backburner 2017.0\Server.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\AutoHotkey\AutoHotkey Help File.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\AutoHotkey\AutoHotkey Setup.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\AutoHotkey\AutoHotkey.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\AutoHotkey\Convert .ahk to .exe.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\AutoHotkey\Website.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\AutoHotkey\Window Spy.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Git\Git Bash.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Git\Git CMD.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Git\Git GUI.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Git\Git Release Notes.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Internet Download Manager\IDM Backup Manager.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Internet Download Manager\Internet Download Manager.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Internet Download Manager\Uninstall.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office 工具\Database Compare.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office 工具\Office 上载中心.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office 工具\Office 语言首选项.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office 工具\Office 遥测仪表板.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office 工具\Office 遥测日志.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office 工具\Spreadsheet Compare.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\NVIDIA Corporation\GeForce Experience.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\NVIDIA Corporation\3D Vision\3D Vision Photo Viewer.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\NVIDIA Corporation\3D Vision\3D Vision preview pack 1.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Red Giant\Red Giant Application Manager.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Red Giant\Red Giant Link.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Red Giant\Uninstall Trapcode Suite.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Sitni Sati\AfterFLICS help.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Sitni Sati\AfterFLICS tools.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Sitni Sati\FumeFX4.0 R2016 64bit\FumeFX Help.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\System Tools\Task Manager.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\ToDesk\ToDesk.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\TortoiseGit\Help.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\TortoiseGit\Notepad2e.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\TortoiseGit\Pageant.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\TortoiseGit\PuTTYgen.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\TortoiseGit\Settings.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\TortoiseGit\TortoiseGit.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\TortoiseGit\TortoiseGitBlame.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\TortoiseGit\TortoiseGitIDiff.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\TortoiseGit\TortoiseGitMerge.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\WinPcap\Uninstall WinPcap 4.1.3.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\天翼云盘\天翼云盘.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\微信\微信.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\火绒安全实验室\Sysdiag\火绒安全软件.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\火绒安全实验室\Sysdiag\火绒日志.lnk
+file | C:\ProgramData\Microsoft\Windows\Start Menu\Programs\腾讯软件\TIM\TIM.lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Cent Browser.lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessibility\Magnify.lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessibility\Narrator.lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessibility\On-Screen Keyboard.lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Internet Explorer.lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Notepad.lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\Administrative Tools.lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\Command Prompt.lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\computer.lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\Control Panel.lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\File Explorer.lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\Run.lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\Visual Studio Code.lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell (x86).lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell ISE (x86).lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell ISE.lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell\Windows PowerShell.lnk
+file | C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\百度网盘\百度网盘.lnk
