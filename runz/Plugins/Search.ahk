@@ -6,8 +6,9 @@ Search:
     @("ssbd", "Baidu搜索")
     @("ssdd", "多吉搜索")
     @("ssmg", "Magi搜索")
-    @("biliblili", "在Bilibili搜索视频")
-    @("youtube", "在YouTuBe站搜索视频")
+    @("biliblili", "在 Bilibili 搜索视频")
+    @("youtube", "在 YouTuBe 站搜索视频")
+    ; @("qimai", "在 七麦 查分析")
     
     ; @("jd", "京东")
 return
@@ -40,4 +41,10 @@ return
 youtube:
     word := UrlEncode(Arg == "" ? clipboard : Arg)
     Run, https://www.youtube.com/results?search_query=%word%
+return
+
+
+qimai:
+    word := UrlEncode(Arg == "" ? clipboard : Arg)
+    Run, https://www.qimai.cn/search/index/country/cn/search/%word%
 return
