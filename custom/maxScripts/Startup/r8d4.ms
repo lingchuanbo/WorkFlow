@@ -1,45 +1,44 @@
 --本地化初始设置
-Include "$scripts\\Startup\setEvn.ms"
 
 if rs_Rollout != undefined do destroyDialog rs_Rollout
 if R8DSet_rollout != undefined do destroyDialog R8DSet_rollout
 startT = timeStamp()
-if not doesFileExist ("$maxScripts\plugcfg\R8Dinfo.txt") do createFile ("$maxScripts\plugcfg\R8Dinfo.txt")
+if not doesFileExist ("$plugcfg\R8Dinfo.ini") do createFile ("$plugcfg\R8Dinfo.ini")
 global RVers="7.6.2" ,OldFFram,OldBFram
 global StartATS=true,StarTime,AllT=0,OneDo=true
-if (getinisetting "$maxScripts\plugcfg\custom_prefs.ini" "saveTimeInterface" "uiXY") == "" do setinisetting "$scripts\plugcfg\custom_prefs.ini" "saveTimeInterface" "uiXY" "[160,100]"
-if (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "DOUBLESIDE") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "DOUBLESIDE" "false"
-if (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SKSETING") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SKSETING" "false"
-if (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "HIDEBONE") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "HIDEBONE" "true"
-if (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "RSS_SET") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "RSS_SET" "true"
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SSMASKCHK") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SSMASKCHK" "false"
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SSMASKCHKCS") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SSMASKCHKCS" "false"
-if (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "LIGHTROT") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "LIGHTROT" "true"
-if (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SFRS") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SFRS" "false"
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "HIDEUNSSOBJ") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "HIDEUNSSOBJ" "false"
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "FFF_CDN") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "FFF_CDN" "false"
-if (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CFOLDER") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CFOLDER" "true"
-if (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SCENE_CDN") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SCENE_CDN" "true"
-if (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "ANIM_CDN") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "ANIM_CDN" "true"
-if (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SEL_CDN") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SEL_CDN" "true"
-if (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "DIR_CDN") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "DIR_CDN" "true"
-if (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "OFset" "SAVEMSG") == "" do setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "OFset" "SAVEMSG" "true"
-if (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8" "VFBPOS") == "" do setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8" "VFBPOS" "6"
+if (getinisetting "$plugcfg\custom_prefs.ini" "saveTimeInterface" "uiXY") == "" do setinisetting "$scripts\plugcfg\custom_prefs.ini" "saveTimeInterface" "uiXY" "[160,100]"
+if (getINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "DOUBLESIDE") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "DOUBLESIDE" "false"
+if (getINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SKSETING") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SKSETING" "false"
+if (getINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "HIDEBONE") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "HIDEBONE" "true"
+if (getINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "RSS_SET") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "RSS_SET" "true"
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SSMASKCHK") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SSMASKCHK" "false"
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SSMASKCHKCS") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SSMASKCHKCS" "false"
+if (getINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "LIGHTROT") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "LIGHTROT" "true"
+if (getINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SFRS") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SFRS" "false"
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "HIDEUNSSOBJ") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "HIDEUNSSOBJ" "false"
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "FFF_CDN") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "FFF_CDN" "false"
+if (getINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CFOLDER") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CFOLDER" "true"
+if (getINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SCENE_CDN") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SCENE_CDN" "true"
+if (getINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "ANIM_CDN") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "ANIM_CDN" "true"
+if (getINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SEL_CDN") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SEL_CDN" "true"
+if (getINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "DIR_CDN") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "DIR_CDN" "true"
+if (getINISetting "$plugcfg\R8D_prefs.ini" "OFset" "SAVEMSG") == "" do setINISetting "$plugcfg\R8D_prefs.ini" "OFset" "SAVEMSG" "true"
+if (getINISetting "$plugcfg\R8D_prefs.ini" "R8" "VFBPOS") == "" do setINISetting "$plugcfg\R8D_prefs.ini" "R8" "VFBPOS" "6"
 
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_S_") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_S_" "0"  
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_ES") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_ES" "45" 
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_E_") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_E_" "90" 
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_EN") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_EN" "135"
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_N_") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_N_" "180"
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WN") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WN" "225"
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_W_") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_W_" "270"
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WS") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WS" "315"
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_O") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_O" "180"
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_Cut")=="" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_Cut" "180"
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "SORT_SC1")=="" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "SORT_SC1" "1"
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "SORT_AN2") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "SORT_AN2" "2"
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "SORT_SS3") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "SORT_SS3" "3"
-if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "SORT_DI4") == "" do setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "SORT_DI4" "4"
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_S_") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_S_" "0"  
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_ES") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_ES" "45" 
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_E_") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_E_" "90" 
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_EN") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_EN" "135"
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_N_") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_N_" "180"
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WN") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WN" "225"
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_W_") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_W_" "270"
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WS") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WS" "315"
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_O") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_O" "180"
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_Cut")=="" do setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_Cut" "180"
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "SORT_SC1")=="" do setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "SORT_SC1" "1"
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "SORT_AN2") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "SORT_AN2" "2"
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "SORT_SS3") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "SORT_SS3" "3"
+if (getinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "SORT_DI4") == "" do setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "SORT_DI4" "4"
 fn CurRenNum = (
 	CR = filterstring (renderers.production as string) ":"
 	RS = finditem ::r8dfn.RNL CR[2]
@@ -104,7 +103,7 @@ rollout kkkkRollout "R8D -KEY" width: 358 height: 150
 	hyperLink likNetSina "欢迎进入我的博客" address:"http://blog.sina.com.cn/qinlaowoniu" align:#center offset:[0, 10] color:(color 0 100 205) hoverColor:(color 255 128 57)
 	on code_btn pressed do(
 		rollout code_rol "获得最新帮助" width:258 height:258(
-			imgtag code "" pos:[0,0] bitmap:(openBitMap "$scripts\oxTOOLSfiles\Icons\qrcode.jpg") transparent:(color 0 255 0) tooltip:"关闭"
+			imgtag code "" pos:[0,0] bitmap:(openBitMap "$maxScripts\oxTOOLSfiles\Icons\qrcode.jpg") transparent:(color 0 255 0) tooltip:"关闭"
 			on code click do destroyDialog code_rol
 		)
 		po=GetDialogPos kkkkRollout
@@ -121,14 +120,14 @@ rollout kkkkRollout "R8D -KEY" width: 358 height: 150
 				::r8dui.r8ui.title = ("R8D v"+::r8dStart.VVV)
 				::r8dui.r8ui.chose_btn.enabled = true
 				::r8dui.r8ui.getSS_chk.enabled = true
-			::r8dui.r8ui.E_btn.enabled = true
-			::r8dui.r8ui.EN_btn.enabled = true
-			::r8dui.r8ui.N_btn.enabled = true
-			::r8dui.r8ui.WN_btn.enabled = true
-			::r8dui.r8ui.W_btn.enabled = true
-			::r8dui.r8ui.WS_btn.enabled = true
-			::r8dui.r8ui.O_btn.enabled = true
-			::r8dui.r8ui.All_chkbtn.enabled = true
+				::r8dui.r8ui.E_btn.enabled = true
+				::r8dui.r8ui.EN_btn.enabled = true
+				::r8dui.r8ui.N_btn.enabled = true
+				::r8dui.r8ui.WN_btn.enabled = true
+				::r8dui.r8ui.W_btn.enabled = true
+				::r8dui.r8ui.WS_btn.enabled = true
+				::r8dui.r8ui.O_btn.enabled = true
+				::r8dui.r8ui.All_chkbtn.enabled = true
 				if ::r8dfn.RS_rol != undefined do ::r8dfn.RS_rol.helpFN_btn.enabled = true
 				if ::r8dui.r8ui.getani_chk.checked == false do ::r8dui.r8ui.rSingle_btn.enabled = true
 			
@@ -180,38 +179,38 @@ rollout rs_Rollout "Render Setting" width:214 height:406
 		::r8dfn.MAXPreset_fn()
 	)
 	on getPreset_btn rightclick do(
-		psE = getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "Set" "PSPath"
+		psE = getINISetting "$plugcfg\R8D_prefs.ini" "Set" "PSPath"
 		PSP = getSavePath caption:"指定渲染预设路径" initialDir:psE
 		if PSP != undefined do(
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "Set" "PSPath" PSP
+			setINISetting "$plugcfg\R8D_prefs.ini" "Set" "PSPath" PSP
 		)
 	)
 	on refreRS_btn pressed do refreshRS()
 	on helpFN_btn changed state do (
 		if state then(
 			addSubRollout rs_SubRollout ::r8dfn.H_rol rolledUp: false
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "RS" "HHH" "true"
+			setINISetting "$plugcfg\R8D_prefs.ini" "RS" "HHH" "true"
 		)else(
 			removeSubRollout rs_SubRollout ::r8dfn.H_rol
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "RS" "HHH" "false"
+			setINISetting "$plugcfg\R8D_prefs.ini" "RS" "HHH" "false"
 		)
 	)
 	on rs_Rollout open do(
-if doesFileExist "$scripts\oxTOOLSfiles\Icons\CopyPasteAni_icon.bmp" do (
-	local IPC = openbitmap "$scripts\oxTOOLSfiles\Icons\CopyPasteAni_icon.bmp"
+if doesFileExist "$maxScripts\oxTOOLSfiles\Icons\CopyPasteAni_icon.bmp" do (
+	local IPC = openbitmap "$maxScripts\oxTOOLSfiles\Icons\CopyPasteAni_icon.bmp"
 	helpFN_btn.images = #(IPC,IPC,32,23,23,23,23)
 	createLightS.images = #(IPC,IPC,32,1,1,1,1)
 )
 		-- keey = ::r8dfn.getkkkk()
 		-- if keey != (::r8dfn.CreateKEY ::r8dStart.IOOIIIOIO "kkk") do(
 			-- helpFN_btn.enabled = false
-			-- setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "RS" "HHH" "false"
+			-- setINISetting "$plugcfg\R8D_prefs.ini" "RS" "HHH" "false"
 		-- )
-		helpFN_btn.checked = ::r8dfn.ConvertToBool (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "RS" "HHH")
+		helpFN_btn.checked = ::r8dfn.ConvertToBool (getINISetting "$plugcfg\R8D_prefs.ini" "RS" "HHH")
 		refreshRS()
-		createLightS.checked = ::r8dfn.ConvertToBool( getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "RS" "LLL" )
+		createLightS.checked = ::r8dfn.ConvertToBool( getINISetting "$plugcfg\R8D_prefs.ini" "RS" "LLL" )
 		if createLightS.checked do addSubRollout rs_SubRollout ::r8dfn.RS_CL rolledUp: false
-		useColorSet_chk.checked = ::r8dfn.ConvertToBool( getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "RS" "RSUSECOMMON" )
+		useColorSet_chk.checked = ::r8dfn.ConvertToBool( getINISetting "$plugcfg\R8D_prefs.ini" "RS" "RSUSECOMMON" )
 		usePS = ::r8dui.r8ui.rps_txt.text
 		if  doesFileExist(usePS) do(
 			uPStmp = filterstring usePS "\\"
@@ -219,16 +218,16 @@ if doesFileExist "$scripts\oxTOOLSfiles\Icons\CopyPasteAni_icon.bmp" do (
 		)
 		if (not doesFileExist(usePS)) then(
 			useColorSet_chk.checked = false
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "RS" "RSUSECOMMON" "false"
+			setINISetting "$plugcfg\R8D_prefs.ini" "RS" "RSUSECOMMON" "false"
 		)
 	)
 	on useColorSet_chk changed state do(
 		if doesFileExist(::r8dui.r8ui.rps_txt.text) then
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "RS" "RSUSECOMMON" (state as string)
+			setINISetting "$plugcfg\R8D_prefs.ini" "RS" "RSUSECOMMON" (state as string)
 		else(
 			messagebox "请指定一个渲染预设.rps文件" title:"R8D"
 			useColorSet_chk.checked = false
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "RS" "RSUSECOMMON" "false"
+			setINISetting "$plugcfg\R8D_prefs.ini" "RS" "RSUSECOMMON" "false"
 		)
 		if doesFileExist(::r8dui.r8ui.rps_txt.text) do ::r8dui.r8ui.useColorSet_chk.checked = state
 	)
@@ -256,10 +255,10 @@ if doesFileExist "$scripts\oxTOOLSfiles\Icons\CopyPasteAni_icon.bmp" do (
 	on createLightS changed state do(
 		if state then(
 			addSubRollout rs_SubRollout ::r8dfn.RS_CL rolledUp: false
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "RS" "LLL" "true" 
+			setINISetting "$plugcfg\R8D_prefs.ini" "RS" "LLL" "true" 
 		)else(
 			removeSubRollout rs_SubRollout ::r8dfn.RS_CL
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "RS" "LLL" "false" 
+			setINISetting "$plugcfg\R8D_prefs.ini" "RS" "LLL" "false" 
 		)
 	)
 )
@@ -267,14 +266,14 @@ rollout PSList_rol "选择预设" width:192 height:270
 (
 	listBox PS_lbx "" pos:[6,8] width:180 height:18
 	checkbox PSsub_chk "查子目录" offset:[0,-3] across:1
-	on PSList_rol close do setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "Set" "PSListUIpos" ((getDialogPos PSList_rol)as string)
+	on PSList_rol close do setINISetting "$plugcfg\R8D_prefs.ini" "Set" "PSListUIpos" ((getDialogPos PSList_rol)as string)
 	on PSList_rol open do(
-		PSsub_chk.checked = ::r8dfn.ConvertToBool( getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "Set" "PSSubPathCHK")
+		PSsub_chk.checked = ::r8dfn.ConvertToBool( getINISetting "$plugcfg\R8D_prefs.ini" "Set" "PSSubPathCHK")
 		::r8dfn.getRpsNum()
-		PS_lbx.selection = (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "Set" "PSlistSel")as integer
+		PS_lbx.selection = (getINISetting "$plugcfg\R8D_prefs.ini" "Set" "PSlistSel")as integer
 	)
 	on PS_lbx doubleclicked item do(
-		psE = getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "Set" "PSPath"
+		psE = getINISetting "$plugcfg\R8D_prefs.ini" "Set" "PSPath"
 		if PSsub_chk.checked then(
 			::r8dfn.RmFilesPS = #()	--Info: RmFiles里包含文件夹(***)和文件(c:\text\text.max)	在 ::r8dfn.findSubDir_FN 函数执行完成后被赋值
 			::r8dfn.findSubDirPS_FN psE
@@ -287,7 +286,7 @@ rollout PSList_rol "选择预设" width:192 height:270
 		)
 		if files.count > 0 do(
 			::r8dfn.RS_rol.useColorSet_chk.text = PS_lbx.selected
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "Set" "PSfileUse" files[PS_lbx.selection]
+			setINISetting "$plugcfg\R8D_prefs.ini" "Set" "PSfileUse" files[PS_lbx.selection]
 			::r8dui.r8ui.rps_txt.text = files[PS_lbx.selection]
 			::r8dui.r8ui.useColorSet_chk.tooltip = ("批量渲染时自动运用渲染预设\n"+::r8dui.r8ui.rps_txt.text)
 			::r8dui.r8ui.rps_tv.text = ("[ "+(getFilenamefile ::r8dui.r8ui.rps_txt.text)+".rps ]")
@@ -295,11 +294,11 @@ rollout PSList_rol "选择预设" width:192 height:270
 		)
 	)
 	on PS_lbx selected item do(
-		setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "Set" "PSlistSel" (item as string)
+		setINISetting "$plugcfg\R8D_prefs.ini" "Set" "PSlistSel" (item as string)
 	)
 	on PSsub_chk changed state do(
 		::r8dfn.getRpsNum()
-		setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "Set" "PSSubPathCHK" (state as string)
+		setINISetting "$plugcfg\R8D_prefs.ini" "Set" "PSSubPathCHK" (state as string)
 	)
 )
 rollout RS_CLight_Rollout "Lightting"
@@ -438,17 +437,17 @@ rollout HelpFN_rollout "辅助功能" width:214 height:183
 	checkbox CSh_chk "接收阴影"
 	button doGetSS_btn ">批量应用<" align:#right tooltip:"批量复制指定场景的分块到选中的场景" across:1
 	)
-	on useScrt changed state do setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "USESCRIPTCHK" (state as string)
+	on useScrt changed state do setINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "USESCRIPTCHK" (state as string)
 	on useScrt rightclick do(
-		pp = getOpenFileName caption:"选择脚本文件" filename:(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "USESCRIPT") types:"MS(*.ms)|*.ms|MSE(*.mse)|*.mse|All(*.*)|*.*|"
+		pp = getOpenFileName caption:"选择脚本文件" filename:(getINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "USESCRIPT") types:"MS(*.ms)|*.ms|MSE(*.mse)|*.mse|All(*.*)|*.*|"
 		if pp != undefined do(
 			f=filterstring pp "\\"
 			useScrt.text=f[f.count]
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "USESCRIPT" pp
+			setINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "USESCRIPT" pp
 		)
 		
 	)
-	on CSh_chk changed state do (setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CSHCHK" (state as string))
+	on CSh_chk changed state do (setINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CSHCHK" (state as string))
 	on getSS_btn rightclick do(
 		if ::r8dui.r8ui.getani_chk.checked then(
 			messagebox "请取消 当前渲染 选项，以读取max文件。" title:"R8D"
@@ -474,7 +473,7 @@ rollout HelpFN_rollout "辅助功能" width:214 height:183
 				SELs=(::r8dui.r8ui.lbx1.selection as array).count
 				if SELs == 1 then(
 					ssMax_edt.text=files[(::r8dui.r8ui.lbx1.selection as array)[1]]
-					setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "SSMAX" ssMax_edt.text
+					setINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "SSMAX" ssMax_edt.text
 				)else(messagebox "只能选择一个max文件!" title:"R8D")
 				)
 			)
@@ -483,31 +482,31 @@ rollout HelpFN_rollout "辅助功能" width:214 height:183
 		)
 	)
 	on HelpFN_rollout open do(
-		if getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "USESCRIPT" != "" do(
-			f=filterstring (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "USESCRIPT") "\\"
+		if getINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "USESCRIPT" != "" do(
+			f=filterstring (getINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "USESCRIPT") "\\"
 			useScrt.text=f[f.count]
 		)
-		useScrt.checked = ::r8dfn.ConvertToBool(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "USESCRIPTCHK")
-		edt1.text = getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "RSMAX"
-		ssMax_edt.text = getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "SSMAX"
-		DR_edt.text = getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "DRMAX"
-		DRRep_chk.checked = ::r8dfn.ConvertToBool(getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "DRREPCHK")
-		lig_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "LIGHTCHK" )
-		cam_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CAMERACHK" )
-		tcam_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "TCAMERACHK" )
-		cusname_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CUSTNACHK" )
-		useCurS_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "USECURSCHK" )
-		outputRep_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "REPLACEFILE" )
-		RepDirSS_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "REPFILESS" )
-		megMask_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "MEGMASK" )
-		useCurSss_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "USECURSSCHK" )
-		useMaskmat_chk.checked = ::r8dfn.ConvertToBool(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "USEMASKMAT")
-		CSh_chk.checked = ::r8dfn.ConvertToBool(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CSHCHK")
+		useScrt.checked = ::r8dfn.ConvertToBool(getINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "USESCRIPTCHK")
+		edt1.text = getINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "RSMAX"
+		ssMax_edt.text = getINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "SSMAX"
+		DR_edt.text = getINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "DRMAX"
+		DRRep_chk.checked = ::r8dfn.ConvertToBool(getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "DRREPCHK")
+		lig_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "LIGHTCHK" )
+		cam_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CAMERACHK" )
+		tcam_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "TCAMERACHK" )
+		cusname_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CUSTNACHK" )
+		useCurS_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "USECURSCHK" )
+		outputRep_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "REPLACEFILE" )
+		RepDirSS_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "REPFILESS" )
+		megMask_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "MEGMASK" )
+		useCurSss_chk.checked = ::r8dfn.ConvertToBool( getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "USECURSSCHK" )
+		useMaskmat_chk.checked = ::r8dfn.ConvertToBool(getINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "USEMASKMAT")
+		CSh_chk.checked = ::r8dfn.ConvertToBool(getINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CSHCHK")
 		if useMaskmat_chk.checked == false do(
 			getMaskObjN_btn.enabled = false
 			maskName_edt.enabled = false
 		)
-		cusName=getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CUSTNAEDT"
+		cusName=getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CUSTNAEDT"
 		if cusName != "" then
 			cusname_edt.text = cusName
 		else
@@ -527,7 +526,7 @@ rollout HelpFN_rollout "辅助功能" width:214 height:183
 	)
 	on SetMask rightclick do ::r8dfn.ResetSSmask()
 	on useMaskmat_chk changed state do(
-		setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "USEMASKMAT" (state as string)
+		setINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "USEMASKMAT" (state as string)
 		getMaskObjN_btn.enabled = state
 		maskName_edt.enabled = state
 	)
@@ -535,7 +534,7 @@ rollout HelpFN_rollout "辅助功能" width:214 height:183
 		pp = getOpenFileName caption:"选择一个带分块场景" filename:ssMax_edt.text types:"MAX(*.max)|*.max|"
 		if pp != undefined do(
 			ssMax_edt.text=pp
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "SSMAX" pp
+			setINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "SSMAX" pp
 		)
 	)
 	on getMaskObjN_btn pressed do(
@@ -546,11 +545,11 @@ rollout HelpFN_rollout "辅助功能" width:214 height:183
 				if OName!="" then OName = (OName+","+o.name) else OName = o.name
 			)
 			maskName_edt.text = OName
-			setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "MASKSNAME" OName
+			setinisetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "MASKSNAME" OName
 		)else(
 			messagebox "该场景没有遮罩物体！" title:"R8D" beep:false
 			maskName_edt.text = ""
-			setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "MASKSNAME" ""
+			setinisetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "MASKSNAME" ""
 		)
 	)
 	on replace_btn pressed do(
@@ -580,8 +579,8 @@ rollout HelpFN_rollout "辅助功能" width:214 height:183
 			if files.count > 0 then(
 			SELs=(::r8dui.r8ui.lbx1.selection as array).count
 			if SELs > 0 then(
-				::r8dfn.UIx = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
-				::r8dfn.UIy = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
+				::r8dfn.UIx = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
+				::r8dfn.UIy = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
 				if ::r8dfn.UIx < 390 then
 					createdialog ::r8dfn.RR_rol pos:[::r8dfn.UIx+510,::r8dfn.UIy] style: #(#style_sysmenu,#style_toolwindow)
 				else
@@ -677,7 +676,7 @@ rollout HelpFN_rollout "辅助功能" width:214 height:183
 		if (ismaxfile DR_edt.text) then(
 			if (mergeMAXFile DR_edt.text #alwaysReparent #deleteOldDups #useMergedMtlDups quiet:true) then(
 					if useScrt.checked do(
-						try(filein (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "USESCRIPT")
+						try(filein (getINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "USESCRIPT")
 				rCount += 1
 				insertitem (" -- "+useScrt.text+" 脚本执行成功") rItem rCount
 				::r8dfn.RR_rol.Ring_lbx.items = rItem
@@ -729,7 +728,7 @@ rollout HelpFN_rollout "辅助功能" width:214 height:183
 		pp = getOpenFileName caption:"选择带像机或灯光的场景" filename:DR_edt.text types:"MAX(*.max)|*.max|"
 		if pp != undefined do(
 			DR_edt.text=pp
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "DRMAX" pp
+			setINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "DRMAX" pp
 		)
 	)
 	on getDR_btn rightclick do(
@@ -757,7 +756,7 @@ rollout HelpFN_rollout "辅助功能" width:214 height:183
 				SELs=(::r8dui.r8ui.lbx1.selection as array).count
 				if SELs == 1 then(
 					DR_edt.text=files[(::r8dui.r8ui.lbx1.selection as array)[1]]
-					setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "DRMAX" DR_edt.text
+					setINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "DRMAX" DR_edt.text
 				)else(messagebox "只能选择一个max文件!" title:"R8D")
 				)
 			)
@@ -767,14 +766,14 @@ rollout HelpFN_rollout "辅助功能" width:214 height:183
 	)
 	on DR_edt entered text do(
 		if isMaxFile text then(
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "DRMAX" text
+			setINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "DRMAX" text
 		)else(messagebox "请输入正确的文件名和路径！" title:"Help辅助功能")
 	)
 	on getM_btn pressed do(	
 		pp = getOpenFileName caption:"选择渲染设置场景" filename:edt1.text types:"MAX(*.max)|*.max|"
 		if pp != undefined do(
 			edt1.text=pp
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "RSMAX" pp
+			setINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "RSMAX" pp
 		)
 	)
 	on getM_btn rightclick do(
@@ -802,7 +801,7 @@ rollout HelpFN_rollout "辅助功能" width:214 height:183
 				SELs=(::r8dui.r8ui.lbx1.selection as array).count
 				if SELs == 1 then(
 					edt1.text=files[(::r8dui.r8ui.lbx1.selection as array)[1]]
-					setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "RSMAX" edt1.text
+					setINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "RSMAX" edt1.text
 				)else(messagebox "只能选择一个max文件!" title:"R8D")
 				)
 			)
@@ -811,68 +810,68 @@ rollout HelpFN_rollout "辅助功能" width:214 height:183
 		)
 	)
 	on DRRep_chk changed state do
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "DRREPCHK" (state as string)
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "DRREPCHK" (state as string)
 	on lig_chk changed state do
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "LIGHTCHK" (state as string)
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "LIGHTCHK" (state as string)
 	on cam_chk changed state do(
 	if state then(
 		tcam_chk.checked = true
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CAMERACHK" "true"
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "TCAMERACHK" "true"
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CAMERACHK" "true"
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "TCAMERACHK" "true"
 	)else
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CAMERACHK" "false"
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CAMERACHK" "false"
 	)
 	on tcam_chk changed state do(
 	if state then
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "TCAMERACHK" "true"
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "TCAMERACHK" "true"
 	else
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "TCAMERACHK" "false"
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "TCAMERACHK" "false"
 	)
 	on useCurS_chk changed state do(
 	if state then
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "USECURSCHK" "true"
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "USECURSCHK" "true"
 	else
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "USECURSCHK" "false"
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "USECURSCHK" "false"
 	)
 	on outputRep_chk changed state do(
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "REPLACEFILE" (state as string)
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "REPLACEFILE" (state as string)
 	)
 	on RepDirSS_chk changed state do(
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "REPFILESS" (state as string)
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "REPFILESS" (state as string)
 	)
 	on megMask_chk changed state do(
 		if state then
 			if (querybox "确定要导入带_mask后缀的物体吗？注意暂不支持带蒙皮的遮罩物体！" title:"Help辅助功能") then(
-				setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "MEGMASK" "true"
+				setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "MEGMASK" "true"
 			)else(
 				megMask_chk.checked = false
 			)
 		else
-			setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "MEGMASK" "false"
+			setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "MEGMASK" "false"
 	)
 	on useCurSss_chk changed state do(
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "USECURSSCHK" (state as string)
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "USECURSSCHK" (state as string)
 	)
 	on cusname_chk changed state do(
 	if state then(
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CUSTNACHK" "true"
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CUSTNACHK" "true"
 		cusname_edt.enabled = true
 	)else(
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CUSTNACHK" "false"
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CUSTNACHK" "false"
 		cusname_edt.enabled = false
 	)
 	)
 	on cusname_edt changed text do(
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CUSTNAEDT" text
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CUSTNAEDT" text
 	)
 	on ssMax_edt entered text do(
 		if isMaxFile text then(
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "SSMAX" text
+			setINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "SSMAX" text
 		)else(messagebox "请输入正确的文件名和路径！" title:"Help辅助功能")
 	)
 	on edt1 entered text do(
 		if isMaxFile text then(
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "HelpFunction" "RSMAX" text
+			setINISetting "$plugcfg\R8D_prefs.ini" "HelpFunction" "RSMAX" text
 		)else(messagebox "请输入正确的文件名和路径！" title:"Help辅助功能")
 	)
 	on clearLight_btn pressed do(
@@ -898,8 +897,8 @@ rollout HelpFN_rollout "辅助功能" width:214 height:183
 			if files.count > 0 then(
 			SELs=(::r8dui.r8ui.lbx1.selection as array).count
 			if SELs > 0 then(
-				::r8dfn.UIx = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
-				::r8dfn.UIy = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
+				::r8dfn.UIx = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
+				::r8dfn.UIy = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
 				if ::r8dfn.UIx < 390 then
 					createdialog ::r8dfn.RR_rol pos:[::r8dfn.UIx+510,::r8dfn.UIy] style: #(#style_sysmenu,#style_toolwindow)
 				else
@@ -1032,8 +1031,8 @@ rollout HelpFN_rollout "辅助功能" width:214 height:183
 		if files.count > 0 then(
 		SELs=(::r8dui.r8ui.lbx1.selection as array).count
 		if SELs > 0 then(
-			::r8dfn.UIx = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
-			::r8dfn.UIy = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
+			::r8dfn.UIx = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
+			::r8dfn.UIy = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
 			if ::r8dfn.UIx < 390 then
 				createdialog ::r8dfn.RR_rol pos:[::r8dfn.UIx+510,::r8dfn.UIy] style: #(#style_sysmenu,#style_toolwindow)
 			else
@@ -1278,8 +1277,8 @@ rollout HelpFN_rollout "辅助功能" width:214 height:183
 		if files.count > 0 then(
 		SELs=(::r8dui.r8ui.lbx1.selection as array).count
 		if SELs > 0 then(
-			::r8dfn.UIx = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
-			::r8dfn.UIy = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
+			::r8dfn.UIx = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
+			::r8dfn.UIy = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
 			if ::r8dfn.UIx < 390 then
 				createdialog ::r8dfn.RR_rol pos:[::r8dfn.UIx+510,::r8dfn.UIy] style: #(#style_sysmenu,#style_toolwindow)
 			else
@@ -1431,7 +1430,7 @@ rollout default_RS_Rollout "Default_Renderer Parameters"
 	dropDownList def_filt_ddl "" pos:[50,10] width:127 height:22 items:#("Area","Blackman","Blend","Catmull-Rom","Cook Variable","Cubic","Mitchell-Netravali","Plate Match/MAX R2","Quadratic","Sharp Quadratic","Soften","Video")
 	imgTag cc2_img offset:[-11,0] width:189 height:3 bitmap:(bitmap 195 8 color: (color 200 40 32)) across:1
 	fn refreshParameDF = (
-	if ::r8dfn.ConvertToBool( getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8" "HIDERS" ) do(
+	if ::r8dfn.ConvertToBool( getinisetting "$plugcfg\R8D_prefs.ini" "R8" "HIDERS" ) do(
 		a = scanlineRender.antiAliasFilter as string
 		b = filterstring a ":"
 		def_filt_ddl.selection = finditem def_filt_ddl.items b[1]
@@ -1483,10 +1482,10 @@ rcMenu rpsMenu_mu (
 		)
 	)
 	on setPSPath_mi picked do (
-		psE = getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "Set" "PSPath"
+		psE = getINISetting "$plugcfg\R8D_prefs.ini" "Set" "PSPath"
 		PSP = getSavePath caption:"指定渲染预设路径" initialDir:psE
 		if PSP != undefined do(
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "Set" "PSPath" PSP
+			setINISetting "$plugcfg\R8D_prefs.ini" "Set" "PSPath" PSP
 		)
 	)
 	on useRps_mi picked do (
@@ -1520,7 +1519,7 @@ rcMenu r8dMenu_mu (
 	menuitem oxCloseUI_mi "X 关闭"
 	on qrcode_mi picked do(
 		rollout code_rol "获得最新帮助" width:258 height:258(
-			imgtag code "" pos:[0,0] bitmap:(openBitMap "$scripts\oxTOOLSfiles\Icons\qrcode.jpg") transparent:(color 0 255 0) tooltip:"关闭"
+			imgtag code "" pos:[0,0] bitmap:(openBitMap "$maxScripts\oxTOOLSfiles\Icons\qrcode.jpg") transparent:(color 0 255 0) tooltip:"关闭"
 			on code click do destroyDialog code_rol
 		)
 		createdialog code_rol style:#()
@@ -1561,13 +1560,13 @@ rcMenu r8dMenu_mu (
 	on verMsg_mi picked do AboutDM()
 	local rH = false
 	-- on AUpdata_mi picked do(
-		-- setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "USEAUTOUP" ((not AUpdata_mi.checked) as string)
+		-- setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "USEAUTOUP" ((not AUpdata_mi.checked) as string)
 	-- )
 	on oxSetting_mi picked do (
 		createdialog ::r8dfn.r8dsetting style:#(#style_toolwindow)
 	)
 	on rHelp_mi picked do (
-		setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "MenuSet" "rHelpCHK" ((not rHelp_mi.checked) as string)
+		setINISetting "$plugcfg\R8D_prefs.ini" "MenuSet" "rHelpCHK" ((not rHelp_mi.checked) as string)
 		if rHelp_mi.checked == false then(
 		if ::r8dui.r8ui.bitCount.checked then(
 			::r8dui.r8ui.height = 450
@@ -1599,8 +1598,8 @@ rcMenu r8dMenu_mu (
 		try DestroyDialog ::r8dui.r8ui catch()
 	)
 	on r8dMenu_mu open do(
-		-- AUpdata_mi.checked = ::r8dfn.ConvertToBool (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "USEAUTOUP")
-		rHelp_mi.checked = ::r8dfn.ConvertToBool (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "MenuSet" "rHelpCHK")
+		-- AUpdata_mi.checked = ::r8dfn.ConvertToBool (getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "USEAUTOUP")
+		rHelp_mi.checked = ::r8dfn.ConvertToBool (getINISetting "$plugcfg\R8D_prefs.ini" "MenuSet" "rHelpCHK")
 	)
 )
 	
@@ -1697,24 +1696,24 @@ group "自定方向度数设置"(
 			if ::r8dui.r8ui.WS_btn.checked do( ::r8dui.r8ui.Deg_WS_spn.value=Degree_WS_spn.value= dry*add;add+=1  )
 			::r8dui.r8ui.Deg_O_spn.value=Degree_O_spn.value= der_spn.value
 			
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_S_" (Degree_S_spn.value  as string)
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_ES" (Degree_ES_spn.value as string)
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_E_" (Degree_E_spn.value  as string)
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_EN" (Degree_EN_spn.value as string)
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_N_" (Degree_N_spn.value  as string)
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WN" (Degree_WN_spn.value as string)
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_W_" (Degree_W_spn.value  as string)
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WS" (Degree_WS_spn.value as string)
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_O" (Degree_O_spn.value as string)
-		::r8dui.r8ui.S_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_S_")+"°")
-		::r8dui.r8ui.ES_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_ES")+"°")
-		::r8dui.r8ui.E_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_E_")+"°")
-		::r8dui.r8ui.EN_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_EN")+"°")
-		::r8dui.r8ui.N_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_N_")+"°")
-		::r8dui.r8ui.WN_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WN")+"°")
-		::r8dui.r8ui.W_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_W_")+"°")
-		::r8dui.r8ui.WS_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WS")+"°")
-		::r8dui.r8ui.O_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_O")+"°")
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_S_" (Degree_S_spn.value  as string)
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_ES" (Degree_ES_spn.value as string)
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_E_" (Degree_E_spn.value  as string)
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_EN" (Degree_EN_spn.value as string)
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_N_" (Degree_N_spn.value  as string)
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WN" (Degree_WN_spn.value as string)
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_W_" (Degree_W_spn.value  as string)
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WS" (Degree_WS_spn.value as string)
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_O" (Degree_O_spn.value as string)
+		::r8dui.r8ui.S_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_S_")+"°")
+		::r8dui.r8ui.ES_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_ES")+"°")
+		::r8dui.r8ui.E_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_E_")+"°")
+		::r8dui.r8ui.EN_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_EN")+"°")
+		::r8dui.r8ui.N_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_N_")+"°")
+		::r8dui.r8ui.WN_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WN")+"°")
+		::r8dui.r8ui.W_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_W_")+"°")
+		::r8dui.r8ui.WS_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WS")+"°")
+		::r8dui.r8ui.O_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_O")+"°")
 		)
 	)
 	on resetDeg pressed do(
@@ -1726,76 +1725,76 @@ group "自定方向度数设置"(
 		::r8dui.r8ui.Deg_WN_spn.value=Degree_WN_spn.value=225
 		::r8dui.r8ui.Deg_W_spn.value =Degree_W_spn.value=	270
 		::r8dui.r8ui.Deg_WS_spn.value=Degree_WS_spn.value=315
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_S_" "0"
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_ES" "45"
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_E_" "90"
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_EN" "135"
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_N_" "180"
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WN" "225"
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_W_" "270"
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WS" "315"
-		::r8dui.r8ui.S_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_S_")+"°")
-		::r8dui.r8ui.ES_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_ES")+"°")
-		::r8dui.r8ui.E_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_E_")+"°")
-		::r8dui.r8ui.EN_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_EN")+"°")
-		::r8dui.r8ui.N_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_N_")+"°")
-		::r8dui.r8ui.WN_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WN")+"°")
-		::r8dui.r8ui.W_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_W_")+"°")
-		::r8dui.r8ui.WS_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WS")+"°")
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_S_" "0"
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_ES" "45"
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_E_" "90"
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_EN" "135"
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_N_" "180"
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WN" "225"
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_W_" "270"
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WS" "315"
+		::r8dui.r8ui.S_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_S_")+"°")
+		::r8dui.r8ui.ES_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_ES")+"°")
+		::r8dui.r8ui.E_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_E_")+"°")
+		::r8dui.r8ui.EN_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_EN")+"°")
+		::r8dui.r8ui.N_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_N_")+"°")
+		::r8dui.r8ui.WN_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WN")+"°")
+		::r8dui.r8ui.W_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_W_")+"°")
+		::r8dui.r8ui.WS_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WS")+"°")
 	)
 	fn Refresh_Fol sta = (
 		if sta then(
 			FFF_chk.enabled = true
 			if FFF_chk.checked do(
 			::r8dui.r8ui.fff.checked = true
-			setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "FFF_CDN" "true"
+			setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "FFF_CDN" "true"
 			)
 			SceneF_chk.enabled = true
 			if SceneF_chk.checked do(
 			::r8dui.r8ui.scF.checked = true
-			setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SCENE_CDN" "true"
+			setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SCENE_CDN" "true"
 			)
 			AnimF_chk.enabled = true
 			if AnimF_chk.checked do(
 			::r8dui.r8ui.anF.checked = true
-			setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "ANIM_CDN" "true"
+			setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "ANIM_CDN" "true"
 			)
 			SelSetF_chk.enabled = true
 			if SelSetF_chk.checked do(
 			::r8dui.r8ui.sF.checked = true
-			setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SEL_CDN" "true"
+			setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SEL_CDN" "true"
 			)
 			DirecF_chk.enabled = true
 			if DirecF_chk.checked do(
 			::r8dui.r8ui.diF.checked = true
-			setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "DIR_CDN" "true"
+			setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "DIR_CDN" "true"
 			)
 		)else(
 			FFF_chk.enabled = false
-			setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "FFF_CDN" "false"
+			setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "FFF_CDN" "false"
 			::r8dui.r8ui.fff.checked = false
 			SceneF_chk.enabled = false
-			setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SCENE_CDN" "false"
+			setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SCENE_CDN" "false"
 			::r8dui.r8ui.scF.checked = false
 			AnimF_chk.enabled = false
-			setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "ANIM_CDN" "false"
+			setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "ANIM_CDN" "false"
 			::r8dui.r8ui.anF.checked = false
 			SelSetF_chk.enabled = false
-			setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SEL_CDN" "false"
+			setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SEL_CDN" "false"
 			::r8dui.r8ui.sF.checked = false
 			DirecF_chk.enabled = false
-			setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "DIR_CDN" "false"
+			setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "DIR_CDN" "false"
 			::r8dui.r8ui.diF.checked = false
 		)
 	)
 	fn ReCFolder = (
 		if FFF_chk.checked==false and SceneF_chk.checked==false and AnimF_chk.checked==false and SelSetF_chk.checked==false and DirecF_chk.checked==false then(
 			CFolder_chk.checked = false
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CFOLDER" "false"
+			setINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CFOLDER" "false"
 			::r8dui.r8ui.ccF.checked = false
 		)else(
 			CFolder_chk.checked = true
-			setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CFOLDER" "true"
+			setINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CFOLDER" "true"
 			::r8dui.r8ui.ccF.checked = true
 		)
 	)
@@ -1862,14 +1861,14 @@ group "自定方向度数设置"(
 		Degree_W_spn.value=	::r8dui.r8ui.Deg_W_spn.value 
 		Degree_WS_spn.value= ::r8dui.r8ui.Deg_WS_spn.value
 		Degree_O_spn.value= ::r8dui.r8ui.Deg_O_spn.value
-		der_spn.value =(getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_Cut")as float
+		der_spn.value =(getinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_Cut")as float
 		if delEF_chk.checked do sit.visible = seachN.visible = true
 		if delFF_chk.checked do sit.visible = seachN.visible = true
-		if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SEACHT") != "" do
-		seachN.text = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SEACHT"
-		if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CROTNODE")=="" then ::r8dui.r8ui.useDummyName.text=cRotNode_txt.text = "输入虚拟体名称"
+		if (getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SEACHT") != "" do
+		seachN.text = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SEACHT"
+		if (getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CROTNODE")=="" then ::r8dui.r8ui.useDummyName.text=cRotNode_txt.text = "输入虚拟体名称"
 		else
-		::r8dui.r8ui.useDummyName.text=cRotNode_txt.text = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CROTNODE"
+		::r8dui.r8ui.useDummyName.text=cRotNode_txt.text = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CROTNODE"
 		IPC = openbitmap "$maxScripts\oxTOOLSfiles\Icons\CopyPasteAni_icon.bmp"
 	if ::r8dui.r8ui.useDummyName.text != "输入虚拟体名称" then (
 		useDummyRot_btn.images = #(IPC,IPC,32,19,19,19,19)
@@ -1884,18 +1883,18 @@ group "自定方向度数设置"(
 	else
 	SelK_chk.enabled = true
 		if ::r8dfn.DriBtnChk() > 1 do( AutoDir_btn.enabled = true ; der_spn.enabled = true)
-		if (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "R8DSETPOS") != "" do(
-			setpos = execute (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "R8DSETPOS")
+		if (getINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "R8DSETPOS") != "" do(
+			setpos = execute (getINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "R8DSETPOS")
 if setpos.x > sysinfo.desktopSize.x or setpos.y > sysinfo.desktopSize.y or setpos.x < -100 or setpos.y < 0 do(
 	setpos = [100,100]
-	setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "R8DSETPOS" "[100,100]"
+	setINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "R8DSETPOS" "[100,100]"
 )
 			setDialogPos R8DSet_rollout setpos
 		)
 		R8DSETOpen()
 	)
 	on R8DSet_rollout moved pos do
-		setINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "R8DSETPOS" (pos as string)
+		setINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "R8DSETPOS" (pos as string)
 	on Close_btn pressed do(
 		if CheckingCDN() > 0 then
 			(messagebox "您设置的文件夹顺序编号有重复！请检查。" title:"R8D")
@@ -1904,65 +1903,65 @@ if setpos.x > sysinfo.desktopSize.x or setpos.y > sysinfo.desktopSize.y or setpo
 	)
 	on USEDN_btn pressed do(
 		::r8dui.r8ui.S_CDN.text = S_CDN.text = ::r8dui.r8ui.S.text
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "S_CDNsave" S_CDN.text
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "S_CDNsave" S_CDN.text
 		::r8dui.r8ui.ES_CDN.text = ES_CDN.text = ::r8dui.r8ui.ES.text
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "ES_CDNsave" ES_CDN.text
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "ES_CDNsave" ES_CDN.text
 		::r8dui.r8ui.E_CDN.text = E_CDN.text = ::r8dui.r8ui.E.text
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "E_CDNsave" E_CDN.text
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "E_CDNsave" E_CDN.text
 		::r8dui.r8ui.EN_CDN.text = EN_CDN.text = ::r8dui.r8ui.EN.text
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "EN_CDNsave" EN_CDN.text
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "EN_CDNsave" EN_CDN.text
 		::r8dui.r8ui.N_CDN.text = N_CDN.text = ::r8dui.r8ui.N.text
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "N_CDNsave" N_CDN.text
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "N_CDNsave" N_CDN.text
 		::r8dui.r8ui.WN_CDN.text = WN_CDN.text = ::r8dui.r8ui.WN.text
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "WN_CDNsave" WN_CDN.text
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "WN_CDNsave" WN_CDN.text
 		::r8dui.r8ui.W_CDN.text = W_CDN.text = ::r8dui.r8ui.W.text
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "W_CDNsave" W_CDN.text
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "W_CDNsave" W_CDN.text
 		::r8dui.r8ui.WS_CDN.text = WS_CDN.text = ::r8dui.r8ui.WS.text
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "WS_CDNsave" WS_CDN.text
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "WS_CDNsave" WS_CDN.text
 		::r8dui.r8ui.O_CDN.text = O_CDN.text = ::r8dui.r8ui.O.text
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "O_CDNsave" O_CDN.text
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "O_CDNsave" O_CDN.text
 	)
 	on USEDN_btn rightclick do(
 		O_CDN.text = WS_CDN.text = W_CDN.text = WN_CDN.text = N_CDN.text = EN_CDN.text = E_CDN.text = ES_CDN.text = S_CDN.text = ""
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "S_CDNsave"	""  ; ::r8dui.r8ui.S_CDN .text = ""
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "ES_CDNsave"	""  ; ::r8dui.r8ui.ES_CDN.text = ""
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "E_CDNsave" 	""  ; ::r8dui.r8ui.E_CDN .text = ""
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "EN_CDNsave"	""  ; ::r8dui.r8ui.EN_CDN.text = ""
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "N_CDNsave" 	""  ; ::r8dui.r8ui.N_CDN .text = ""
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "WN_CDNsave"	""  ; ::r8dui.r8ui.WN_CDN.text = ""
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "W_CDNsave" 	""  ; ::r8dui.r8ui.W_CDN .text = ""
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "WS_CDNsave"	""  ; ::r8dui.r8ui.WS_CDN.text = ""
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "O_CDNsave"	""  ; ::r8dui.r8ui.O_CDN.text = ""
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "S_CDNsave"	""  ; ::r8dui.r8ui.S_CDN .text = ""
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "ES_CDNsave"	""  ; ::r8dui.r8ui.ES_CDN.text = ""
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "E_CDNsave" 	""  ; ::r8dui.r8ui.E_CDN .text = ""
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "EN_CDNsave"	""  ; ::r8dui.r8ui.EN_CDN.text = ""
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "N_CDNsave" 	""  ; ::r8dui.r8ui.N_CDN .text = ""
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "WN_CDNsave"	""  ; ::r8dui.r8ui.WN_CDN.text = ""
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "W_CDNsave" 	""  ; ::r8dui.r8ui.W_CDN .text = ""
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "WS_CDNsave"	""  ; ::r8dui.r8ui.WS_CDN.text = ""
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "O_CDNsave"	""  ; ::r8dui.r8ui.O_CDN.text = ""
 	)
-	on S_CDN  entered text do( setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "S_CDNsave"	text ; 	::r8dui.r8ui.S_CDN .text = text )
-	on ES_CDN entered text do( setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "ES_CDNsave" text ;	::r8dui.r8ui.ES_CDN.text = text )
-	on E_CDN  entered text do( setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "E_CDNsave" 	text ; ::r8dui.r8ui.E_CDN .text = text )
-	on EN_CDN entered text do( setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "EN_CDNsave"	text ; ::r8dui.r8ui.EN_CDN.text = text )
-	on N_CDN  entered text do( setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "N_CDNsave" 	text ; ::r8dui.r8ui.N_CDN .text = text )
-	on WN_CDN entered text do( setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "WN_CDNsave"	text ; ::r8dui.r8ui.WN_CDN.text = text )
-	on W_CDN  entered text do( setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "W_CDNsave" 	text ; ::r8dui.r8ui.W_CDN .text = text )
-	on WS_CDN entered text do( setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "WS_CDNsave"	text ; ::r8dui.r8ui.WS_CDN.text = text )
-	on O_CDN entered text do( setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "O_CDNsave"	text ; ::r8dui.r8ui.O_CDN.text = text )
-	on Degree_S_spn  changed val do(setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_S_" (val as string) ; ::r8dui.r8ui.Deg_S_spn.value  = val ; ::r8dui.r8ui.S_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_S_")+"°"))
-	on Degree_ES_spn changed val do(setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_ES" (val as string) ; ::r8dui.r8ui.Deg_ES_spn.value = val ; ::r8dui.r8ui.ES_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_ES")+"°"))
-	on Degree_E_spn  changed val do(setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_E_" (val as string) ; ::r8dui.r8ui.Deg_E_spn.value  = val ; ::r8dui.r8ui.E_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_E_")+"°"))
-	on Degree_EN_spn changed val do(setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_EN" (val as string) ; ::r8dui.r8ui.Deg_EN_spn.value = val ; ::r8dui.r8ui.EN_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_EN")+"°"))
-	on Degree_N_spn  changed val do(setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_N_" (val as string) ; ::r8dui.r8ui.Deg_N_spn.value  = val ; ::r8dui.r8ui.N_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_N_")+"°"))
-	on Degree_WN_spn changed val do(setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WN" (val as string) ; ::r8dui.r8ui.Deg_WN_spn.value = val ; ::r8dui.r8ui.WN_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WN")+"°"))
-	on Degree_W_spn  changed val do(setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_W_" (val as string) ; ::r8dui.r8ui.Deg_W_spn.value  = val ; ::r8dui.r8ui.W_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_W_")+"°"))
-	on Degree_WS_spn changed val do(setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WS" (val as string) ; ::r8dui.r8ui.Deg_WS_spn.value = val ; ::r8dui.r8ui.WS_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WS")+"°"))
-	on Degree_O_spn changed val do(setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_O" (val as string) ; ::r8dui.r8ui.Deg_O_spn.value = val ; ::r8dui.r8ui.O_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_O")+"°"))
-	on der_spn changed val do (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "Deg_Cut" (val as string)	)
+	on S_CDN  entered text do( setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "S_CDNsave"	text ; 	::r8dui.r8ui.S_CDN .text = text )
+	on ES_CDN entered text do( setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "ES_CDNsave" text ;	::r8dui.r8ui.ES_CDN.text = text )
+	on E_CDN  entered text do( setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "E_CDNsave" 	text ; ::r8dui.r8ui.E_CDN .text = text )
+	on EN_CDN entered text do( setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "EN_CDNsave"	text ; ::r8dui.r8ui.EN_CDN.text = text )
+	on N_CDN  entered text do( setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "N_CDNsave" 	text ; ::r8dui.r8ui.N_CDN .text = text )
+	on WN_CDN entered text do( setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "WN_CDNsave"	text ; ::r8dui.r8ui.WN_CDN.text = text )
+	on W_CDN  entered text do( setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "W_CDNsave" 	text ; ::r8dui.r8ui.W_CDN .text = text )
+	on WS_CDN entered text do( setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "WS_CDNsave"	text ; ::r8dui.r8ui.WS_CDN.text = text )
+	on O_CDN entered text do( setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "O_CDNsave"	text ; ::r8dui.r8ui.O_CDN.text = text )
+	on Degree_S_spn  changed val do(setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_S_" (val as string) ; ::r8dui.r8ui.Deg_S_spn.value  = val ; ::r8dui.r8ui.S_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_S_")+"°"))
+	on Degree_ES_spn changed val do(setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_ES" (val as string) ; ::r8dui.r8ui.Deg_ES_spn.value = val ; ::r8dui.r8ui.ES_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_ES")+"°"))
+	on Degree_E_spn  changed val do(setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_E_" (val as string) ; ::r8dui.r8ui.Deg_E_spn.value  = val ; ::r8dui.r8ui.E_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_E_")+"°"))
+	on Degree_EN_spn changed val do(setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_EN" (val as string) ; ::r8dui.r8ui.Deg_EN_spn.value = val ; ::r8dui.r8ui.EN_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_EN")+"°"))
+	on Degree_N_spn  changed val do(setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_N_" (val as string) ; ::r8dui.r8ui.Deg_N_spn.value  = val ; ::r8dui.r8ui.N_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_N_")+"°"))
+	on Degree_WN_spn changed val do(setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WN" (val as string) ; ::r8dui.r8ui.Deg_WN_spn.value = val ; ::r8dui.r8ui.WN_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WN")+"°"))
+	on Degree_W_spn  changed val do(setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_W_" (val as string) ; ::r8dui.r8ui.Deg_W_spn.value  = val ; ::r8dui.r8ui.W_btn.tooltip = ("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_W_")+"°"))
+	on Degree_WS_spn changed val do(setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WS" (val as string) ; ::r8dui.r8ui.Deg_WS_spn.value = val ; ::r8dui.r8ui.WS_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_WS")+"°"))
+	on Degree_O_spn changed val do(setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_O" (val as string) ; ::r8dui.r8ui.Deg_O_spn.value = val ; ::r8dui.r8ui.O_btn.tooltip =("RMB:查看该方向视窗 \\ Ctrl+RMB:预览渲染 : "+(getINISetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_O")+"°"))
+	on der_spn changed val do (setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "Deg_Cut" (val as string)	)
 	on doubleSide_chk changed state do(
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "DOUBLESIDE" (state as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "DOUBLESIDE" (state as string))==false do ::r8dfn.msgSetErr()
 		::r8dui.r8ui.aSeting.checked = state
 	)
 	on SelK_chk changed state do(
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SKSETING" (state as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SKSETING" (state as string))==false do ::r8dfn.msgSetErr()
 		::r8dui.r8ui.skSeting.checked = state
 	)
 	on singleFrame_chk changed state do(
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SINGLEFRAME" (state as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SINGLEFRAME" (state as string))==false do ::r8dfn.msgSetErr()
 		::r8dui.r8ui.jSeting.checked = state
 		if state then(
 		::r8dui.r8ui.frameGap_chk.checked = true
@@ -1972,15 +1971,15 @@ if setpos.x > sysinfo.desktopSize.x or setpos.y > sysinfo.desktopSize.y or setpo
 		)
 	)
 	on hideBone_chk changed state do(
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "HIDEBONE" (state as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "HIDEBONE" (state as string))==false do ::r8dfn.msgSetErr()
 		::r8dui.r8ui.bSeting.checked = state
 	)
 	on lightRot_chk changed state do(
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "LIGHTROT" (state as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "LIGHTROT" (state as string))==false do ::r8dfn.msgSetErr()
 		::r8dui.r8ui.cSeting.checked = state
 	)
 	on rSS_chk changed state do(
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "RSS_SET" (state as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "RSS_SET" (state as string))==false do ::r8dfn.msgSetErr()
 		SSmask_chk.enabled = state
 		HideUnSS_chk.enabled = state
 		::r8dui.r8ui.eSeting.checked = state
@@ -1995,21 +1994,21 @@ if setpos.x > sysinfo.desktopSize.x or setpos.y > sysinfo.desktopSize.y or setpo
 		)
 	)
 	on SSmask_chk changed state do(
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SSMASKCHK" (state as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SSMASKCHK" (state as string))==false do ::r8dfn.msgSetErr()
 		SSmaskCS_chk.enabled = state
 		::r8dui.r8ui.fSeting.checked = state
 		::r8dui.r8ui.gSeting.enabled = state
 	)
 	on SSmaskCS_chk changed state do(
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SSMASKCHKCS" (state as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SSMASKCHKCS" (state as string))==false do ::r8dfn.msgSetErr()
 		::r8dui.r8ui.gSeting.checked = state
 	)
 	on HideUnSS_chk changed state do(
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "HIDEUNSSOBJ" (state as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "HIDEUNSSOBJ" (state as string))==false do ::r8dfn.msgSetErr()
 		::r8dui.r8ui.hSeting.checked = state
 	)
 	on delEF_chk changed state do(
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "DELENDF" (state as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "DELENDF" (state as string))==false do ::r8dfn.msgSetErr()
 		if delFF_chk.checked then(
 		sit.visible = seachN.visible = true
 		::r8dui.r8ui.iSeting.checked = state
@@ -2017,7 +2016,7 @@ if setpos.x > sysinfo.desktopSize.x or setpos.y > sysinfo.desktopSize.y or setpo
 		sit.visible = seachN.visible = ::r8dui.r8ui.iSeting.checked = state
 	)
 	on delFF_chk changed state do(
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "DELFISTF" (state as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "DELFISTF" (state as string))==false do ::r8dfn.msgSetErr()
 		if delEF_chk.checked then(
 		sit.visible = seachN.visible = true
 		::r8dui.r8ui.kSeting.checked = state
@@ -2025,11 +2024,11 @@ if setpos.x > sysinfo.desktopSize.x or setpos.y > sysinfo.desktopSize.y or setpo
 		sit.visible = seachN.visible = ::r8dui.r8ui.kSeting.checked = state
 	)
 	on seachN entered text do(
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SEACHT" text
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SEACHT" text
 	)
 	on cRotNode_txt entered text do(
-		setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CROTNODE" text
-	IPC = openbitmap "$scripts\oxTOOLSfiles\Icons\CopyPasteAni_icon.bmp"
+		setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CROTNODE" text
+	IPC = openbitmap "$maxScripts\oxTOOLSfiles\Icons\CopyPasteAni_icon.bmp"
 	if text != "" then (
 	if getnodebyname text != undefined then(
 		::r8dui.r8ui.useDummyRot_btn.images = useDummyRot_btn.images = #(IPC,IPC,32,19,19,19,19)
@@ -2047,45 +2046,45 @@ if setpos.x > sysinfo.desktopSize.x or setpos.y > sysinfo.desktopSize.y or setpo
 		oldV = ::r8dui.r8ui.scSpn.value
 		if Anim_spn.value == val do(Anim_spn.value = oldV
 		::r8dui.r8ui.anSpn.value = oldV
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "ANIM_SPN"  (oldV as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "ANIM_SPN"  (oldV as string))==false do ::r8dfn.msgSetErr()
 		)
 		if SS_spn.value == val do(SS_spn.value = oldV
 		::r8dui.r8ui.sSpn.value = oldV
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "SS_SPN"   (oldV as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "SS_SPN"   (oldV as string))==false do ::r8dfn.msgSetErr()
 		)
 		::r8dui.r8ui.scSpn.value = val
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "SCENE_SPN" (val as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "SCENE_SPN" (val as string))==false do ::r8dfn.msgSetErr()
 	)
 	on Anim_spn changed val do(
 		oldV = ::r8dui.r8ui.anSpn.value
 		if Scene_spn.value == val do(Scene_spn.value = oldV
 		::r8dui.r8ui.scSpn.value = oldV
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "SCENE_SPN" (oldV as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "SCENE_SPN" (oldV as string))==false do ::r8dfn.msgSetErr()
 		)
 		if SS_spn.value == val do(SS_spn.value = oldV
 		::r8dui.r8ui.sSpn.value = oldV
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "SS_SPN"   (oldV as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "SS_SPN"   (oldV as string))==false do ::r8dfn.msgSetErr()
 		)
 		::r8dui.r8ui.anSpn.value = val
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "ANIM_SPN"  (val as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "ANIM_SPN"  (val as string))==false do ::r8dfn.msgSetErr()
 	)
 	on SS_spn changed val do(
 		oldV = ::r8dui.r8ui.sSpn.value
 		if Scene_spn.value == val do(Scene_spn.value = oldV
 		::r8dui.r8ui.scSpn.value = oldV
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "SCENE_SPN" (oldV as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "SCENE_SPN" (oldV as string))==false do ::r8dfn.msgSetErr()
 		)
 		if Anim_spn.value == val do(Anim_spn.value = oldV
 		::r8dui.r8ui.anSpn.value = oldV
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "ANIM_SPN"  (oldV as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "ANIM_SPN"  (oldV as string))==false do ::r8dfn.msgSetErr()
 		)
 		::r8dui.r8ui.sSpn.value = val
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8DSET" "SS_SPN"   (val as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8DSET" "SS_SPN"   (val as string))==false do ::r8dfn.msgSetErr()
 	)
 	----------------
 	on CFolder_chk changed state do(
 		::r8dui.r8ui.ccF.checked = state
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "CFOLDER" (state as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "CFOLDER" (state as string))==false do ::r8dfn.msgSetErr()
 		Refresh_Fol state
 		if ::r8dui.r8ui.bitCount.checked do
 		if state then(
@@ -2097,31 +2096,31 @@ if setpos.x > sysinfo.desktopSize.x or setpos.y > sysinfo.desktopSize.y or setpo
 		)
 		if SceneF_chk.checked==false and AnimF_chk.checked==false and SelSetF_chk.checked==false and DirecF_chk.checked==false then(
 			SceneF_chk.checked=true
-			SetINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SCENE_CDN" "true"
+			SetINISetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SCENE_CDN" "true"
 			::r8dui.r8ui.scF.checked = true
 		)
 	)
 	on FFF_chk changed state do(
 		::r8dui.r8ui.fff.checked = state
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "FFF_CDN" (state as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "FFF_CDN" (state as string))==false do ::r8dfn.msgSetErr()
 		ReCFolder()
 	)
 	on SceneF_chk changed state do(
 		::r8dui.r8ui.scF.checked = state
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SCENE_CDN" (state as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SCENE_CDN" (state as string))==false do ::r8dfn.msgSetErr()
 		if state then(
 		)else(
 		if ::r8dui.r8ui.bitCount.checked do ::r8dui.r8ui.useSce_chk.checked = true
 		if (querybox "如果你选择多个文件批渲染，每个文件创建的方向文件夹将相同，所以<场景文件夹>要一起激活，是否保留激活？" title:"R8D设置") do(
 			::r8dui.r8ui.scF.checked = SceneF_chk.checked = true
-			setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SCENE_CDN" "true"
+			setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SCENE_CDN" "true"
 		)
 		)
 		ReCFolder()
 	)
 	on AnimF_chk changed state do(
 		::r8dui.r8ui.anF.checked = state
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "ANIM_CDN" (state as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "ANIM_CDN" (state as string))==false do ::r8dfn.msgSetErr()
 		if ::r8dui.r8ui.bitCount.checked do
 		if state then(
 		)else(
@@ -2131,7 +2130,7 @@ if setpos.x > sysinfo.desktopSize.x or setpos.y > sysinfo.desktopSize.y or setpo
 	)
 	on SelSetF_chk changed state do(
 		::r8dui.r8ui.sF.checked = state
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SEL_CDN" (state as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SEL_CDN" (state as string))==false do ::r8dfn.msgSetErr()
 		if ::r8dui.r8ui.bitCount.checked do
 		if state then(
 		)else(
@@ -2141,14 +2140,14 @@ if setpos.x > sysinfo.desktopSize.x or setpos.y > sysinfo.desktopSize.y or setpo
 	)
 	on DirecF_chk changed state do(
 		::r8dui.r8ui.diF.checked = state
-		if (setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "DIR_CDN" (state as string))==false do ::r8dfn.msgSetErr()
+		if (setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "DIR_CDN" (state as string))==false do ::r8dfn.msgSetErr()
 		if ::r8dui.r8ui.bitCount.checked do
 			if state then(
 			)else(
 					::r8dui.r8ui.useDir_chk.checked = true
 				if SceneF_chk.checked == false do if (querybox "如果你选择多个文件批渲染，每个文件创建的方向文件夹将相同，所以<场景文件夹>要一起激活，是否现在激活？" title:"R8D设置") do(
 					SceneF_chk.checked = true
-					setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SCENE_CDN" "true"
+					setinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SCENE_CDN" "true"
 				)
 			)
 		ReCFolder()
@@ -2413,7 +2412,7 @@ struct r8dfn (
 			fileProperties.addProperty #custom "glFOVSave" (::r8dui.r8ui.glFOV_spn.value)
 			fileProperties.addProperty #custom "Orthographic" (::r8dui.r8ui.ortho_chk.checked)
 		)else(
-			setinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8" "DEGREE_X" (::r8dui.r8ui.glDegree_spn.value as string)
+			setinisetting "$plugcfg\R8D_prefs.ini" "R8" "DEGREE_X" (::r8dui.r8ui.glDegree_spn.value as string)
 		)
 		$AllCamera.pos = [0,0,::r8dui.r8ui.glHeight_spn.value]
 		$AllCamera.scale = [::r8dui.r8ui.glScale_spn.value,::r8dui.r8ui.glScale_spn.value,::r8dui.r8ui.glScale_spn.value]
@@ -2424,7 +2423,7 @@ struct r8dfn (
 			if (fileProperties.findProperty #custom "glDegreeSave") > 0 then(
 				::r8dfn.DEGREE = fileProperties.getPropertyValue #custom (fileProperties.findProperty #custom "glDegreeSave")
 			)else(
-				::r8dfn.DEGREE = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8" "DEGREE_X"
+				::r8dfn.DEGREE = getinisetting "$plugcfg\R8D_prefs.ini" "R8" "DEGREE_X"
 			)
 			if ::r8dfn.DEGREE != "" then(
 				::r8dfn.DEGREE as float
@@ -2432,7 +2431,7 @@ struct r8dfn (
 				::r8dfn.DEGREE = 35
 			)
 		)else(
-			::r8dfn.DEGREE = (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8" "DEGREE_X")as float
+			::r8dfn.DEGREE = (getinisetting "$plugcfg\R8D_prefs.ini" "R8" "DEGREE_X")as float
 		)
 		if $AllCamera != undefined and $S != undefined then( try(::r8dui.r8ui.ortho_chk.checked = $S.orthoProjection)catch()
 			if (fileProperties.findProperty #custom "glHeightSave") > 0 then(
@@ -2451,19 +2450,19 @@ struct r8dfn (
 				try(::r8dfn.GLFOV = (for o in objects where superclassof o == camera collect o)[1].fov)catch(::r8dfn.GLFOV = 15)
 			)
 		)else(
-			::r8dfn.GLOBHEIGHT = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "RenderSet" "GLHEIGHT"
+			::r8dfn.GLOBHEIGHT = getinisetting "$plugcfg\R8D_prefs.ini" "RenderSet" "GLHEIGHT"
 			if ::r8dfn.GLOBHEIGHT != "" then(
 				::r8dfn.GLOBHEIGHT as float
 			)else(
 				::r8dfn.GLOBHEIGHT = 1
 			)
-			::r8dfn.GLOBSCALE = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "RenderSet" "GLSCALE"
+			::r8dfn.GLOBSCALE = getinisetting "$plugcfg\R8D_prefs.ini" "RenderSet" "GLSCALE"
 			if ::r8dfn.GLOBSCALE != "" then(
 				::r8dfn.GLOBSCALE as float
 			)else(
 				::r8dfn.GLOBSCALE = 1
 			)
-			::r8dfn.GLFOV = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "RenderSet" "GLFOV"
+			::r8dfn.GLFOV = getinisetting "$plugcfg\R8D_prefs.ini" "RenderSet" "GLFOV"
 			if ::r8dfn.GLFOV != "" then(
 				::r8dfn.GLFOV as float
 			)else(
@@ -2616,8 +2615,8 @@ struct r8dfn (
 			::r8dui.r8ui.lbx1.items = itemsArr
 	),
 	fn getMaxNum = (
-		::r8dfn.UIx = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
-		::r8dfn.UIy = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
+		::r8dfn.UIx = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
+		::r8dfn.UIy = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
 		createdialog ::r8dui.r8ui.loading_rol pos:[::r8dfn.UIx+286,::r8dfn.UIy+120] style: #()
 		maxFiles_QF = #()
 		try(
@@ -2822,7 +2821,7 @@ struct r8dfn (
 	),
 	fn getRpsNum = (
 		rpsForLbx = #()
-		psE = getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "Set" "PSPath"
+		psE = getINISetting "$plugcfg\R8D_prefs.ini" "Set" "PSPath"
 		if (::r8dfn.isDirectoryExist psE) do(
 			::r8dfn.rpsFiles = #()
 			::r8dfn.rpsForLbx = #()
@@ -3009,8 +3008,8 @@ struct r8dfn (
 				)
 				if files.count > 0 then(
 				if (::r8dui.r8ui.lbx1.selection as array).count > 0 then(
-				local UIx = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
-				local UIy = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
+				local UIx = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
+				local UIy = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
 				if UIx < 390 then
 					createdialog ::r8dfn.RR_rol pos:[UIx+510,UIy] style: #(#style_sysmenu,#style_toolwindow)
 				else
@@ -3028,7 +3027,7 @@ struct r8dfn (
 					::r8dfn.RR_rol.load_pro2.color = (color 215 19 18)
 					::r8dfn.RR_rol.fC_lbl.text = (::r8dui.r8ui.lbx1.selection as array).count as string
 					for i in ::r8dui.r8ui.lbx1.selection do(
-					global SRView = ::r8dfn.ConvertToBool (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8" "SHOWRV")
+					global SRView = ::r8dfn.ConvertToBool (getINISetting "$plugcfg\R8D_prefs.ini" "R8" "SHOWRV")
 					if ::r8dfn.STOPRM == false do( --Files loop Stop
 						if (loadMaxFile files[i] useFileUnits:true quiet:true) then (
 						if (::r8dfn.TimeAdjust StarTime) do SetTimes = true
@@ -3131,7 +3130,7 @@ Targetcamera name:::r8dui.r8ui.getCusCam.text fov:::r8dui.CustemCamFOV orthoProj
 							::r8dfn.RR_rol.Ring_lbx.items = rItem
 							::r8dfn.RR_rol.Ring_lbx.selection = rCount
 						)
-	rdoSet = (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "SRset" "SAVEPATH") as integer
+	rdoSet = (getINISetting "$plugcfg\R8D_prefs.ini" "SRset" "SAVEPATH") as integer
 	if rdoSet == 0 then
 		savePsr = maxfilepath
 	else (if rdoSet == 1 then savePsr = maxfilepath else savePsr = (::r8dui.r8ui.outDir_edt.text+"\\"))
@@ -3176,7 +3175,7 @@ Targetcamera name:::r8dui.r8ui.getCusCam.text fov:::r8dui.CustemCamFOV orthoProj
 					if ::r8dfn.RDirMsgCount > 0 then(
 						::r8dfn.RR_rol.lbl1.text = ("批量渲染操作完毕，有"+(::r8dfn.RDirMsgCount as string)+"个文档没有渲染成功！")
 					)else(
-	rdoSet = (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "SRset" "SAVEPATH") as integer
+	rdoSet = (getINISetting "$plugcfg\R8D_prefs.ini" "SRset" "SAVEPATH") as integer
 	if rdoSet > 1 then ::r8dfn.RR_rol.lbl1.text = "渲染完毕，预览图存在输出路径下后缀名：_preview" else ::r8dfn.RR_rol.lbl1.text = "渲染完毕，预览图存在max文件相同目录下后缀名：_preview"
 						::r8dfn.RR_rol.load_pro2.color = (color 15 199 158)
 					)
@@ -3236,10 +3235,10 @@ Targetcamera name:::r8dui.r8ui.getCusCam.text fov:::r8dui.CustemCamFOV orthoProj
 		dummyObj = getnodebyname ::r8dui.r8ui.useDummyName.text
 				StarTime = timeStamp()
 				local SetTimes = false
-				vfbp=(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8" "VFBPOS")as integer
+				vfbp=(getINISetting "$plugcfg\R8D_prefs.ini" "R8" "VFBPOS")as integer
 				try(rendSaveFile = false)catch()
-					if ::r8dui.r8ui.iSeting.checked then(if ::r8dfn.SearchNa_fn (getfilenamefile maxfilename) (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SEACHT") then DF=0 else DF=1)else DF=0
-					if ::r8dui.r8ui.kSeting.checked then(if ::r8dfn.SearchNa_fn (getfilenamefile maxfilename) (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SEACHT") then DFF=0 else DFF=1)else DFF=0
+					if ::r8dui.r8ui.iSeting.checked then(if ::r8dfn.SearchNa_fn (getfilenamefile maxfilename) (getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SEACHT") then DF=0 else DF=1)else DF=0
+					if ::r8dui.r8ui.kSeting.checked then(if ::r8dfn.SearchNa_fn (getfilenamefile maxfilename) (getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SEACHT") then DFF=0 else DFF=1)else DFF=0
 					if $R8D_Dummy == undefined do dummy name:"R8D_Dummy" ishidden:true
 					--指定前方像机
 					if $AllCamera != undefined and $S != undefined then(
@@ -3294,7 +3293,7 @@ Targetcamera name:::r8dui.r8ui.getCusCam.text fov:::r8dui.CustemCamFOV orthoProj
 					Sep = ::r8dui.r8ui.cut_edt.text
 				maxName = getfilenamefile maxFileName
 				FF = filterstring maxfilepath "\\"
-				global SRView = ::r8dfn.ConvertToBool (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8" "SHOWRV")
+				global SRView = ::r8dfn.ConvertToBool (getINISetting "$plugcfg\R8D_prefs.ini" "R8" "SHOWRV")
 		global BITRENDER = bitmap renderWidth renderHeight gamma:displayGamma	--show render view
 		if ::r8dui.r8ui.jSeting.checked do (
 			OldFFram = animationRange.start
@@ -3302,8 +3301,8 @@ Targetcamera name:::r8dui.r8ui.getCusCam.text fov:::r8dui.CustemCamFOV orthoProj
 			animationRange = interval animationRange.start (animationRange.start + 1)
 		)
 				if ::r8dui.r8ui.lbx1.items[1] != "！当前场景没有创建动作帧范围记录..." then( --有动作渲染
-			::r8dfn.UIx = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
-			::r8dfn.UIy = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
+			::r8dfn.UIx = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
+			::r8dfn.UIy = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
 			if ::r8dfn.UIx < 390 then
 				createdialog ::r8dfn.RR_rol pos:[::r8dfn.UIx+510,::r8dfn.UIy] style:#(#style_sysmenu,#style_toolwindow)
 			else
@@ -4556,8 +4555,8 @@ if (::r8dui.r8ui.ssList_lbx.selection as array).count > 0 then(
 )
 					startF = animationRange.start
 					endF = animationRange.end
-			::r8dfn.UIx = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
-			::r8dfn.UIy = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
+			::r8dfn.UIx = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
+			::r8dfn.UIy = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
 			if ::r8dfn.UIx < 390 then
 				createdialog ::r8dfn.RR_rol pos:[::r8dfn.UIx+510,::r8dfn.UIy] style: #(#style_sysmenu,#style_toolwindow)
 			else
@@ -5860,12 +5859,12 @@ if keyboard.altPressed == false and ::r8dfn.STOPRM == false then(try( render cam
 			local SetTimes = false
 			AllT = 0 ; OneDo = true
 			registerRedrawViewsCallback ::r8dfn.TimeAdd
-				vfbp=(getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8" "VFBPOS")as integer
+				vfbp=(getINISetting "$plugcfg\R8D_prefs.ini" "R8" "VFBPOS")as integer
 				try(rendSaveFile = false)catch()
 				Sep = ::r8dui.r8ui.cut_edt.text
 				if ::r8dui.r8ui.outDir_edt.text != "" or ::r8dui.r8ui.curDir_cbn.checked then(
-			::r8dfn.UIx = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
-			::r8dfn.UIy = getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
+			::r8dfn.UIx = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiX" as integer
+			::r8dfn.UIy = getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "uiY" as integer
 			if ::r8dfn.UIx < 390 then
 				createdialog ::r8dfn.RR_rol pos:[::r8dfn.UIx+510,::r8dfn.UIy] style: #(#style_sysmenu,#style_toolwindow)
 			else
@@ -5885,10 +5884,10 @@ if keyboard.altPressed == false and ::r8dfn.STOPRM == false then(try( render cam
 					if (loadMaxFile files[i] useFileUnits:true quiet:true) then (
 		dummyObj = getnodebyname ::r8dui.r8ui.useDummyName.text
 			if ::r8dui.r8ui.jSeting.checked do animationRange = interval animationRange.start (animationRange.start + 1)
-				if ::r8dui.r8ui.iSeting.checked then(if ::r8dfn.SearchNa_fn (getfilenamefile files[i]) (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SEACHT") then DF=0 else DF=1)else DF=0
-				if ::r8dui.r8ui.kSeting.checked then(if ::r8dfn.SearchNa_fn (getfilenamefile files[i]) (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "SEACHT") then DFF=0 else DFF=1)else DFF=0
+				if ::r8dui.r8ui.iSeting.checked then(if ::r8dfn.SearchNa_fn (getfilenamefile files[i]) (getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SEACHT") then DF=0 else DF=1)else DF=0
+				if ::r8dui.r8ui.kSeting.checked then(if ::r8dfn.SearchNa_fn (getfilenamefile files[i]) (getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "SEACHT") then DFF=0 else DFF=1)else DFF=0
 					if $R8D_Dummy == undefined do dummy name:"R8D_Dummy" ishidden:true
-				global SRView = ::r8dfn.ConvertToBool (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8" "SHOWRV")
+				global SRView = ::r8dfn.ConvertToBool (getINISetting "$plugcfg\R8D_prefs.ini" "R8" "SHOWRV")
 			global BITRENDER = bitmap renderWidth renderHeight gamma:displayGamma --show render view
 		if fileProperties.findProperty #contents "Headers" > 0 do(
 			a = fileproperties.getPropertyValue #contents (fileProperties.findProperty #contents "Headers")
@@ -7993,7 +7992,7 @@ if ::r8dui.r8ui.getSS_chk.checked then(
 	ChoseKeys=#()
 	aSK=""
 	if ::r8dui.r8ui.rself_chk.checked then(
-	aSK=getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8" "CUSTSK"
+	aSK=getinisetting "$plugcfg\R8D_prefs.ini" "R8" "CUSTSK"
 	)else(
 	for i in 1 to rendPickupFrames.count do aSK=aSK+(rendPickupFrames[i] as string)
 	)
@@ -9265,7 +9264,7 @@ HAVECCC = false)
 		ChoseKeys=#()
 	aSK=""
 	if ::r8dui.r8ui.rself_chk.checked then(
-	aSK=getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8" "CUSTSK"
+	aSK=getinisetting "$plugcfg\R8D_prefs.ini" "R8" "CUSTSK"
 	)else(
 	for i in 1 to rendPickupFrames.count do aSK=aSK+(rendPickupFrames[i] as string)
 	)
@@ -10455,7 +10454,7 @@ HAVECCC = false)
 	ChoseKeys=#()
 	aSK=""
 	if ::r8dui.r8ui.rself_chk.checked then(
-	aSK=getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8" "CUSTSK"
+	aSK=getinisetting "$plugcfg\R8D_prefs.ini" "R8" "CUSTSK"
 	)else(
 	for i in 1 to rendPickupFrames.count do aSK=aSK+(rendPickupFrames[i] as string)
 	)
@@ -11648,10 +11647,10 @@ HAVECCC = false)
 	
 	fn MAXPreset_fn shift:keyboard.shiftpressed =(
 		if not shift do(
-			if (getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "Set" "PSListUIpos") == "" then
+			if (getINISetting "$plugcfg\R8D_prefs.ini" "Set" "PSListUIpos") == "" then
 				dialogPos = [100,100]
 			else
-				dialogPos = execute ( getINISetting "$maxScripts\plugcfg\R8D_prefs.ini" "Set" "PSListUIpos" )
+				dialogPos = execute ( getINISetting "$plugcfg\R8D_prefs.ini" "Set" "PSListUIpos" )
 			createDialog PSList_rol pos:dialogPos style:#(#style_SysMenu, #style_ToolWindow)
 			
 		)
@@ -11665,6 +11664,6 @@ HAVECCC = false)
 	)
 )
 ::r8dfn = r8dfn()
--- if (getinisetting "$maxScripts\plugcfg\R8D_prefs.ini" "R8Interface" "USEAUTOUP")=="true" do ::r8dfn.AutoUpdate()
+-- if (getinisetting "$plugcfg\R8D_prefs.ini" "R8Interface" "USEAUTOUP")=="true" do ::r8dfn.AutoUpdate()
 endT = timeStamp()
 format "\nR8DScript Processing: %s" ((endT - startT)/1000)
