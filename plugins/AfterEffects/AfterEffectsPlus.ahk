@@ -17,7 +17,7 @@ SetWinDelay, 100
 CoordMode,Mouse,Screen
 SetControlDelay -1
 ;SetBatchLines -1  ;脚本全速执行
-SetKeyDelay, -1    ;控件修改命令自动延时,-1无延时，0最小延时
+SetKeyDelay, -1    ;控件修改命令自动延时,-OMatic
 ; SetWorkingDir %A_ScriptDir%
 ; CreatTrayMenu()
 ;;GUI

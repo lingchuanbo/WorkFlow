@@ -1516,7 +1516,7 @@ return
 }
 <Config写入AE路径>:
 {
-    getAeExePath := GetProcessPath("AfterFX.exe")
+    getAeExePath := GetProcessPath()
     IniWrite, %getAeExePath%, config.ini, BOBOPath_Config, AEPath 
     MsgBox "写入成功！"
     return

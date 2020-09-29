@@ -295,7 +295,7 @@ return
 return
 
 <3DsMax_Key>:
-    send, {k}
+    send, {F4}
 return
 
 <3DsMax_getUp>:
@@ -326,6 +326,7 @@ return
     return
 }
  Return
+ 
 <3DsMax_RenderChanger>:
 {
     runMaxScriptCommands("render_changer.mse")
@@ -1016,7 +1017,7 @@ return
 ;Ini传递数值给SetEvn
 <3DsMax_CopyToStartup>:
 {
-    getExePath := GetProcessPath("3dsmax.exe")
+    getExePath := GetProcessPathAll("3dsmax.exe")
     gotoSetEvn=%A_ScriptDir%\custom\maxScripts\Startup\setEvn.ms
     FileDelete, %gotoSetEvn% ;先删除文件
     FileAppend,  ; 这里需要逗号.
@@ -1032,7 +1033,7 @@ return
 
     sleep 2000
 
-    getExePath := GetProcessPath("3dsmax.exe")
+    getExePath := GetProcessPathAll("3dsmax.exe")
 
 ; 写入配置文件
     IniWrite, %getExePath%, config.ini, BOBOPath_Config, MaxPath 

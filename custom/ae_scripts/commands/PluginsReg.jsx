@@ -1,6 +1,6 @@
 ﻿(function(Global) {
-#include 'F:/BoBOAHK/WorkFlow/custom/ae_scripts/commands/lib/UIParser.jsx'
-#include 'F:/BoBOAHK/WorkFlow/custom/ae_scripts/commands/lib/Tree.jsx'
+#include 'D:/BoBO/WorkFlow/custom/ae_scripts/commands/lib/UIParser.jsx'
+#include 'D:/BoBO/WorkFlow/custom/ae_scripts/commands/lib/Tree.jsx'
 var _ = UIParser(Global);
 var subUIJson = {
  	// 帮助
@@ -27,8 +27,8 @@ var fns = {
  	},
  };
 
-var helpFile = File("F:/BoBOAHK/WorkFlow/custom/ae_scripts/commands/PluginsReg.txt");
-if(helpFile.exists) var helpStr = _.file.read(File("F:/BoBOAHK/WorkFlow/custom/ae_scripts/commands/PluginsReg.txt"));
+var helpFile = File("D:/BoBO/WorkFlow/custom/ae_scripts/commands/PluginsReg.txt");
+if(helpFile.exists) var helpStr = _.file.read(File("D:/BoBO/WorkFlow/custom/ae_scripts/commands/PluginsReg.txt"));
 else helpStr = 'Null';
 //alert(helpStr);
 fns.createWin('常用注册信息 By.BoBO', subUIJson.helpUI, function(e) {

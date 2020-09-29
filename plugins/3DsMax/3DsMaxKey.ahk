@@ -32,7 +32,7 @@
 
     ; vim.Map("<F2>", "<3DsMax_getUp>", "3DsMax")
     ; vim.Map("<F3>", "<3DsMax_getDown>", "3DsMax")
-    ; vim.Map("<F4>", "<3DsMax_Key>", "3DsMax")
+    vim.Map("<F4>", "<3DsMax_Key>", "3DsMax")
 
     vim.Map("<F5>", "<3DsMax_Play>", "3DsMax")
     vim.map("<F7>","<3DsMax_maxToTotalcmd>","3DsMax")

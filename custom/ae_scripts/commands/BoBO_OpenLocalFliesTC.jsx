@@ -5,7 +5,7 @@ function revealFile(filePath) {
 	}
 	var command = "open -R";
 	if ($.os.indexOf("Win") != -1) {
-		command = "F:\\BoBOAHK\\WorkFlow\\tools\\TotalCMD\\TOTALCMD.EXE /O /T /R=";
+		command = "D:\\BoBO\\WorkFlow\\tools\\TotalCMD\\TOTALCMD.EXE /O /T /R=";
 	}
 	arg = "\"" + filePath + "\"";
 	return system.callSystem(command + " " + arg);

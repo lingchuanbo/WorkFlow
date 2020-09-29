@@ -109,6 +109,30 @@ CapsLock & f::SendInput,{Blind}{PgDn}
 LShift & WheelDown::AltTab
 LShift & WheelUp::ShiftAltTab
 
+
+
+; 功能：窗口置顶
+
+#MButton::
+WinSet, AlwaysOnTop, toggle,A
+WinGetTitle, getTitle, A
+Winget, getTop,ExStyle,A
+if (getTop & 0x8)
+{
+	toolTip,"已置顶"
+    SetTimer, RemoveToolTip, -500
+	return
+}
+
+else
+{
+	toolTip,"取消置顶"
+	SetTimer, RemoveToolTip, -500
+	return
+}
+
+return
+
 ; 功能：软件启动器	
 ; 热键：Win+右键						
 #RButton::
@@ -128,6 +152,11 @@ return
 	return
 ;    run %A_ScriptDir%\custom\apps\Popsel\PopSel.exe /pc /n ;带图标
 }
+
+; 打开记事本
+#n::run %A_ScriptDir%\tools\TotalCMD\Tools\notepad\Notepad.exe /c
+#h::run,cmd
+^#h::run,*RunAs cmd
 
 ; 
 ; 功能：窗口居中
@@ -286,7 +315,7 @@ msgbox %BoBO_Test%
 return
 ;##########程序便捷.社交##########大部份来自EZ大神
 ; Tim
-#If WinActive("ahk_class TXGuiFoundation") and WinActive("ahk_exe Tim.exe")
+; #If WinActive("ahk_class TXGuiFoundation") and WinActive("ahk_exe Tim.exe")
 {
     ;快速到QQ接收的文件目录，请在config.ini对应修改qq号
 	F4::Gosub, <BoBO_F4Close>

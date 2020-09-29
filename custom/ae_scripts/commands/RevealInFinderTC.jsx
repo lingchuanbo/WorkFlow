@@ -46,7 +46,7 @@ function Ae_RevealInFinder() {
         }
     } else {
 
-            system.callSystem("F:\\BoBOAHK\\WorkFlow\\tools\\TotalCMD\\TOTALCMD.EXE /O /S /L=" + myLayer.fsName + "\"" );
+            system.callSystem("D:\\BoBO\\WorkFlow\\tools\\TotalCMD\\TOTALCMD.EXE /O /S /L=" + myLayer.fsName + "\"" );
     }
 
     function isSecurityPrefSet() {

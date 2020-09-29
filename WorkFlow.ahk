@@ -147,17 +147,39 @@ Loop,parse,GroupDiagJump,`n,`r
 
 ; ----------------------------------
 ;   获取进程路径
-GetProcessPath(p){
- DetectHiddenWindows,On
- Process,Exist,%P%
- if ErrorLevel>0
- {
- PID=%ErrorLevel%
- WinGet,lujing,ProcessPath,ahk_pid %pid%
- return lujing
+GetProcessPath(){
+;  DetectHiddenWindows,On
+;  Process,Exist,%P%
+;  if ErrorLevel>0
+;  {
+;  PID=%ErrorLevel%
+;  WinGet,lujing,ProcessPath,ahk_pid %pid%
+;  return lujing
+;  }
+;  else
+;  return "Sorry,找不到" %P% "!"
+    WinGet, pPath, Processpath, A
+    SplitPath,pPath,pName,pDir,,pNameNoExt
+    if(pName="AfterFX.exe")
+    {
+        ; MsgBox %pPath%
+        Return pPath
+    }else{
+        MsgBox "AE未运行，请先运行!"
+    }
+    return
  }
- else
- return "Sorry,找不到" %P% "!"
+ GetProcessPathAll(p){
+	DetectHiddenWindows,On
+	Process,Exist,%P%
+	if ErrorLevel>0
+	{
+	PID=%ErrorLevel%
+	WinGet,lujing,ProcessPath,ahk_pid %pid%
+	return lujing
+	}
+	else
+	return "Sorry,找不到" %P% "!"
  }
 ; 动态加载|User|函数
 QZ_UpdatePlugin()监测

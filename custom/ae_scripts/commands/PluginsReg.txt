@@ -2,6 +2,10 @@
 注册信息写入到以下文件
 ..WorkFlow\custom\ae_scripts\commands\PluginsReg.txt
 -------------------------------------------------------
+AutoFill:
+
+PEAF*Look*AE*855783350200616SUL9
+
 
 LockdownScript:
     VRL*Look*AE*888888888888888SUL8

@@ -9,7 +9,7 @@ for (var i = 0, len = selectedItems.length; i < len; i++) {
 
      var item = selectedItems[i];
 
-     var myLayer = 1; 
+     var myLayer = 2; 
 
      item.layer(myLayer).blendingMode = BlendingMode.SCREEN; //设置层模式 这是图层模式 比如add
 

@@ -81,7 +81,7 @@ menuAe:
     dirMenu3=%A_ScriptDir%\custom\ae_scripts\Expression
 
 	menu_fromfiles("filelist0", "特效库", "RunAePreset0", dirMenu0, "*.ffx", "thismenu", 1)
-	menu_fromfiles("filelist1", "脚本库", "RunAeScript", dirMenu1, "*.jsx", "thismenu", 1)
+	menu_fromfiles("filelist1", "脚本库", "RunAeScript", dirMenu1, "*.jsx|*.jsxbin", "thismenu", 1)
 	menu_fromfiles("filelist2", "预设", "RunAePreset1", dirMenu2, "*.ffx", "thismenu", 1)
     menu_fromfiles("filelist3", "表达式", "Expression", dirMenu3, "*.txt", "thismenu", 1)
 
@@ -122,7 +122,7 @@ RunAeScript:
     curpath := menu_itempath("filelist1", dirMenu1)
 	WinActivate, ahk_exe AfterFX.exe
     ; global AeExePath := ini.BOBOPath_Config.AEPath
-    global AeExePath := GetProcessPath("AfterFX.exe")
+    global AeExePath := GetProcessPath()
     RunWait, %AeExePath% -s -r %curpath%,,Hide
     return
 RETURN
@@ -154,7 +154,7 @@ if (activeItem instanceof CompItem) {
 
 	sleep 50
 	WinActivate, ahk_exe AfterFX.exe
-	global AeExePath := GetProcessPath("AfterFX.exe")
+	global AeExePath := GetProcessPath()
     RunWait, %AeExePath% -s -r %setPreset%,,Hide
 	sleep 50
 	FileDelete, %setPreset% ;避免重复删除文件
@@ -188,7 +188,7 @@ if (activeItem instanceof CompItem) {
 
 	sleep 50
 	WinActivate, ahk_exe AfterFX.exe
-	global AeExePath := GetProcessPath("AfterFX.exe")
+	global AeExePath := GetProcessPath()
     RunWait, %AeExePath% -s -r %setPreset%,,Hide
 	sleep 50
 	FileDelete, %setPreset% ;避免重复删除文件
@@ -237,7 +237,7 @@ if(sl) {
 	sleep 50
 	WinActivate, ahk_exe AfterFX.exe
 	; global AeExePath := ini.BOBOPath_Config.AEPath
-    AeExePath := GetProcessPath("AfterFX.exe")
+    AeExePath := GetProcessPath()
     RunWait, %AeExePath% -s -r %setPreset%,,Hide
 	sleep 50
 	FileDelete, %setPreset% ;避免重复删除文件
