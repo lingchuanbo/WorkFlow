@@ -104,6 +104,9 @@ CapsLock & f::SendInput,{Blind}{PgDn}
 	Escape::send,{Escape}
 #If 
 
+
+
+
 ; Shift切换任务栏
 
 LShift & WheelDown::AltTab
@@ -315,27 +318,70 @@ msgbox %BoBO_Test%
 return
 ;##########程序便捷.社交##########大部份来自EZ大神
 ; Tim
-; #If WinActive("ahk_class TXGuiFoundation") and WinActive("ahk_exe Tim.exe")
+#q::
+	Process, Wait, TIM.exe, 1
+	NewPID := ErrorLevel  ; 由于 ErrorLevel 会经常发生改变, 所以要立即保存这个值.
+	if not NewPID
+	{
+		; 如果没有Tim或没运行保持原有
+		send,#{q}
+		return
+	}
+	if NewPID
+	{
+		if TIM_Swith_var=2 ;
+        TIM_Swith_var=0
+        TIM_Swith_var+=1
+        TIM_var=0
+        if (TIM_Swith_var=1 )
+        {    
+            TrayIcon_Button("TIM.exe", "L")
+            return
+        }
+        if (TIM_Swith_var=2)
+        {
+            send,{Esc}
+            return
+        }
+		return
+		}
+return
+
+#If WinActive("ahk_class TXGuiFoundation") and WinActive("ahk_exe TIM.exe")
 {
+	; #z::
+; TrayIcon_Button("WeChat.exe", "L")
+; return
+
+	
+; Loop,% o.MaxIndex()
+; {
+;  WinShow % "QQ ahk_class TXGuiFoundation ahk_pid " o[A_Index].pid
+;  WinActivate % "QQ ahk_class TXGuiFoundation ahk_pid " o[A_Index].pid
+; }
+
     ;快速到QQ接收的文件目录，请在config.ini对应修改qq号
+	^f::CoordWinClick(92,48)
+	; ^!f::CoordWinClick(1182,51)
 	F4::Gosub, <BoBO_F4Close>
     !w::Gosub, <Tx_OpenWithTc>
 	; !`::CoordWinClick(Tim_Start_X, Tim_Start_Y+(1-1)*Tim_Bar_Height)
 
-	!1::CoordWinClick(Tim_Start_X, Tim_Start_Y+(1-1)*Tim_Bar_Height)
-	!2::CoordWinClick(Tim_Start_X, Tim_Start_Y+(2-1)*Tim_Bar_Height)
-	!3::CoordWinClick(Tim_Start_X, Tim_Start_Y+(3-1)*Tim_Bar_Height)
-	!4::CoordWinClick(Tim_Start_X, Tim_Start_Y+(4-1)*Tim_Bar_Height)
-	!5::CoordWinClick(Tim_Start_X, Tim_Start_Y+(5-1)*Tim_Bar_Height)
-	!6::CoordWinClick(Tim_Start_X, Tim_Start_Y+(6-1)*Tim_Bar_Height)
-	!7::CoordWinClick(Tim_Start_X, Tim_Start_Y+(7-1)*Tim_Bar_Height)
-	!8::CoordWinClick(Tim_Start_X, Tim_Start_Y+(8-1)*Tim_Bar_Height)
-	!9::CoordWinClick(Tim_Start_X, Tim_Start_Y+(9-1)*Tim_Bar_Height)
-	!0::CoordWinClick(Tim_Start_X, Tim_Start_Y+(10-1)*Tim_Bar_Height)
+	; !1::CoordWinClick(Tim_Start_X, Tim_Start_Y+(1-1)*Tim_Bar_Height)
+	!1::CoordWinClick(Tim_Start_X, Tim_Start_Y+(2-1)*Tim_Bar_Height)
+	!2::CoordWinClick(Tim_Start_X, Tim_Start_Y+(3-1)*Tim_Bar_Height)
+	!3::CoordWinClick(Tim_Start_X, Tim_Start_Y+(4-1)*Tim_Bar_Height)
+	!4::CoordWinClick(Tim_Start_X, Tim_Start_Y+(5-1)*Tim_Bar_Height)
+	!5::CoordWinClick(Tim_Start_X, Tim_Start_Y+(6-1)*Tim_Bar_Height)
+	!6::CoordWinClick(Tim_Start_X, Tim_Start_Y+(7-1)*Tim_Bar_Height)
+	!7::CoordWinClick(Tim_Start_X, Tim_Start_Y+(8-1)*Tim_Bar_Height)
+	!8::CoordWinClick(Tim_Start_X, Tim_Start_Y+(9-1)*Tim_Bar_Height)
+	!9::CoordWinClick(Tim_Start_X, Tim_Start_Y+(10-1)*Tim_Bar_Height)
 	!-::CoordWinClick(Tim_Start_X, Tim_Start_Y+(11-1)*Tim_Bar_Height)
 	!=::CoordWinClick(Tim_Start_X, Tim_Start_Y+(12-1)*Tim_Bar_Height)
 	; ^r::Gosub, <BoBO_Test>
 }
+
 ; QQ
 #If WinActive("ahk_class TXGuiFoundation") and WinActive("ahk_exe qq.exe")
 {
@@ -353,6 +399,9 @@ return
 	!=::CoordWinClick(QQ_Start_X, QQ_Start_Y+(12-1)*QQ_Bar_Height)
 	!w::Gosub, <Tx_OpenWithTc>
 }
+
+
+
 ; 微信
 #IfWinActive ahk_exe WeChat.exe
 {

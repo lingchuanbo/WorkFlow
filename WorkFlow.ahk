@@ -142,6 +142,7 @@ Loop,parse,GroupDiagJump,`n,`r
 #Include %A_ScriptDir%\lib\UriEncode.ahk
 #Include %A_ScriptDir%\lib\WinHttpRequest.ahk
 #Include %A_ScriptDir%\lib\NvAPI.ahk
+#Include %A_ScriptDir%\lib\TrayIcon.ahk
 ;用户自定义配置yy
 ; #Include %A_ScriptDir%\custom\custom.ahk
 

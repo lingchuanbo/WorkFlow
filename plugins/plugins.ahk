@@ -14,24 +14,26 @@
 #include *i %A_ScriptDir%\plugins\TCDialog\TCDialog.ahk
 #include *i %A_ScriptDir%\plugins\TotalCommander\TotalCommander.ahk
 #include *i %A_ScriptDir%\plugins\Unity3D\Unity3D.ahk
+#include *i %A_ScriptDir%\plugins\Unreal\Unreal.ahk
 #include *i %A_ScriptDir%\plugins\Word\Word.ahk
 /*
 [ExtensionsTime]
-3DsMax=20200403155330
-AfterEffects=20200413180313
-BeyondCompare4=20200310105935
-Blender=20200318093656
-BoBO=20200415134309
-Eagle=20200415134223
-EveryThing=20200310110040
-Excel=20200310110127
-Explorer=20200310110157
-General=20200310111802
-GoogleChrome=20200323101005
-Photoshop=20200413100029
-TCCompare=20200310110534
-TCDialog=20200309103443
-TotalCommander=20200407142126
-Unity3D=20200310110740
-Word=20200310110809
+3DsMax=20200917145237
+AfterEffects=20200917145457
+BeyondCompare4=20200901105222
+Blender=20200901105222
+BoBO=20200929143010
+Eagle=20200901105222
+EveryThing=20200901105222
+Excel=20200901105222
+Explorer=20200901105222
+General=20200901105222
+GoogleChrome=20200901105222
+Photoshop=20200901105222
+TCCompare=20200901105222
+TCDialog=20200901105222
+TotalCommander=20200901105222
+Unity3D=20200901105222
+Unreal=20200929143805
+Word=20200901105222
 */

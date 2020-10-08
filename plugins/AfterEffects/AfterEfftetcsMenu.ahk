@@ -12,6 +12,7 @@ function_menuAfterEffect:
     ;  ^+!LButton::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")
      ;;便捷菜单
     +RButton::Gosub,menuAe
+    !RButton::Gosub,menuAeAltExpressions
     ; 1::
 	; 	GV_KeyClickAction1 := "Gosub,<Ae_Double_[>"
 	; 	GV_KeyClickAction2 := "Gosub,<Ae_SplitLayer>"
@@ -24,7 +25,6 @@ function_menuAfterEffect:
 	; 	GoSub,Sub_KeyClick
     ; return
     ; 3::send,{RButton}
-
 
 ; 截取工作台
     ` & 1::send,{b}
@@ -60,19 +60,36 @@ return
 
 
 menuAeAlt:
-dirMenu3=%A_ScriptDir%\custom\ae_scripts\Expression
-	menu, menuAlt, add, (&R) 批量渲染, :ManageRender
-	menu, ManageRender, add, %_AeRENDER%,RENDER
-	menu, ManageRender, add, %_AeNameRENDER%,NameRENDER
-	menu, ManageRender, add, %_AeNameDirection%,NameDirection
-	menu, ManageRender, add, %_AeName%, Name
-    menu, menuAlt, add, (&R) 批量导入素材, ImmigrationREG
-    menu, menuAlt, add, (&R) 批量替换素材, BatchReplaceFile
-   Menu, menuAlt, Show
+    Menu, menuAlt, add, (&R) 批量导入素材, ImmigrationREG
+    Menu, menuAlt, add, (&R) 批量替换素材, BatchReplaceFile
+    Menu, menuAlt, add, (&R) 批量渲染, :ManageRender
+        Menu, ManageRender, add, %_AeRENDER%,RENDER
+        Menu, ManageRender, add, %_AeNameRENDER%,NameRENDER
+        Menu, ManageRender, add, %_AeNameDirection%,NameDirection
+        Menu, ManageRender, add, %_AeName%, Name
+    Menu, menuAlt, Show
+return
+
+menuAeAltExpressions:
+	; menu, menuAltExpressions, add, AE动态脚本菜单(%_Author%), WHATSUP
+    dirMenu3=%A_ScriptDir%\custom\ae_scripts\Expression
+    menu_fromfiles("filelist3", "表达式", "Expression", dirMenu3, "*.txt", "menuAltExpressions", 1)
+
+    Menu, menuAltExpressions, add, (&R) 表达式库, iExpressions
+    Menu, menuAltExpressions, add, (&R) 表达式修复, ExpressionUniversalizer
+    Menu, menuAltExpressions, Show
+return
+
+iExpressions:
+getAeScript("custom\ae_scripts\Expression\iExpressions3.jsxbin")
+return
+ExpressionUniversalizer:
+getAeScript("custom\ae_scripts\Expression\ExpressionUniversalizer.jsxbin")
 return
 
 
 menuAe:
+    ; Click 1
 	menu, thismenu, add, AE动态脚本菜单(%_Author%), WHATSUP
 	; menu, thismenu, add, (&O).A整理, :AeManage
 	dirMenu0=%A_ScriptDir%\custom\ae_scripts\Effect
