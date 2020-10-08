@@ -1,0 +1,2 @@
+x=random(0,200);
+[x,value[1],value[2]]
