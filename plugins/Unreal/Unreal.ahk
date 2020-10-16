@@ -62,6 +62,27 @@
     vim.Map("vt", "<Unreal_Materials_TextureSample>", "Unreal")
     vim.Map("vu", "<Unreal_Materials_TextureCoordinate>", "Unreal")
     vim.Map("<Alt>", "<Unreal_Materials_Tab>", "Unreal")
+    vim.Map("z", "<Unreal_FindObject>", "Unreal")
+    vim.Map("c", "<Unreal_吸附>", "Unreal")
+
+
+
+    vim.Map("<F4>", "<Unreal_视图>", "Unreal")
+    vim.Map("<LB-F4>", "<Unreal_视图_默认>", "Unreal")
+    vim.Map("h", "<Unreal_物件_显示>", "Unreal")
+    vim.Map("d", "<Unreal_快速复制选中>", "Unreal")
+    vim.Map("w", "<Unreal_视窗_切换显示>", "Unreal")
+
+    
+
+    vim.Map("p", "<Unreal_视图_透视>", "Unreal")
+    vim.Map("t", "<Unreal_视图_顶视图>", "Unreal")
+    ; vim.Map("p", "<Unreal_视图_底视图>", "AfterEffects")
+    vim.Map("l", "<Unreal_视图_左视图>", "Unreal")
+    ; vim.Map("p", "<Unreal_视图_右视图>", "AfterEffects")
+    vim.Map("f", "<Unreal_视图_前视图>", "Unreal")
+    vim.Map("b", "<Unreal_视图_后视图>", "Unreal")
+
 
 
 
@@ -252,3 +273,116 @@ Unreal_Materials(Text){
     SetTimer,RemoveToolTip,Off
     return 
 }
+
+
+<Unreal_吸附>:
+    Send, !{Mbutton Down}
+    sleep 50
+    Send,{Mbutton up}
+Return
+
+<Unreal_视图>:
+{
+    ;多次切换影响效率，故决定只做一个事件
+    if Unreal_var=4 ; 总共几次 
+    Unreal_var=0
+    Unreal_var+=1
+
+    if (Unreal_var=1)
+    {
+        send, !2
+        return
+    }
+    if (Unreal_var=2)
+    {
+        send, !3
+        return
+    }
+    if (Unreal_var=3)
+    {
+        send, !4
+        return
+    }
+    if (Unreal_var=4)
+    {
+        send, !5
+        return
+    }
+    if (Unreal_var=5)
+    {
+        send, !6
+        return
+    }
+    return
+    if (Unreal_var=6)
+    {
+        send, !7
+        return
+    }
+    if (Unreal_var=7)
+    {
+        send, !8
+        return
+    }
+    if (Unreal_var=8)
+    {
+        send, !0
+        return
+    }
+    return
+}
+<Unreal_视图_默认>:
+    send, !4
+    return
+return
+
+<Unreal_FindObject>:
+	GV_KeyClickAction1 := "Send, {f}"
+	GV_KeyClickAction2 := "Send, 6"
+	GoSub,Sub_KeyClick
+Return
+
+
+<Unreal_视图_透视>:
+    GV_KeyClickAction1 := "send, !{g}"
+	GV_KeyClickAction2 := "Send,^{p}"
+	GoSub,Sub_KeyClick
+return
+
+<Unreal_视图_顶视图>:
+    send, !{j}
+return
+<Unreal_视图_底视图>:
+    send, !+{j}
+return
+<Unreal_视图_左视图>:
+    send, !{k}
+return
+<Unreal_视图_右视图>:
+    send, !+{k}
+return
+<Unreal_视图_前视图>:
+    send, !{h}
+return
+<Unreal_视图_后视图>:
+    send, !+{h}
+return
+
+<Unreal_物件_显示>:
+    GV_KeyClickAction1 := "send, {h}"
+	GV_KeyClickAction2 := "Send,^{h}"
+	GoSub,Sub_KeyClick
+return
+
+<Unreal_视窗_切换显示>:
+; 需要设置视窗快捷键为Alt+w
+    GV_KeyClickAction1 := "send,{w}"
+	GV_KeyClickAction2 := "Send,!{w}"
+	GoSub,Sub_KeyClick
+return
+
+<Unreal_快速复制选中>:
+    GV_KeyClickAction1 := "send,{d}"
+	GV_KeyClickAction2 := "Send,^{w}"
+	GoSub,Sub_KeyClick    
+return
