@@ -5,34 +5,47 @@ function BRender_CreateFolderAndOutputForSelectedComps_Name() {
     SPCreateFolderAndOutputForSelectedCompsName();
     
 }
-#include "./lib/render.jsx" //载入渲染函数
-//~ function BRender_CreateFolderAndOutputForSelectedComps_AttackDirection() {
-//~     //判断是否选中合成组 
-//~     var proj = app.project;
-//~     var curComp = app.project.activeItem;
-//~       if (!curComp || !(curComp instanceof CompItem)) {
-//~    // if (curComp instanceof CompItem) {
-//~         
-//~         alert('请选择合成组操作');
-//~         
-//~         return;
-//~     } else {
-//~         alert('xuanhao');
-//~        // SPCreateFolderAndOutputForSelectedCompsAttackDirection();
-//~     }
-//~ }
-//~ //判断是否合成组 素材类型
-//~ function doSelectionComps() {
-//~     for (var i = 0; i < app.project.selection.length; i++) {
-//~         var activeItem = app.project.selection[i]; // = app.project.activeItem;
-//~         if ((activeItem == null) || !(activeItem instanceof CompItem)) {
-//~             alert('请选择合成组操作');
-//~             return;
-//~         } else {
-//~             //var activeComp = activeItem;      
-//~             alert('选中了');
-//~             SPCreateFolderAndOutputForSelectedCompsAttackDirection();
-//~         }
-//~     }
-//~ }
-//~     //  #include "./lib/render.jsx" //载入渲染函数
+function SPCreateFolderAndOutputForSelectedCompsName(){
+	var scriptName = "创建渲染目录";		
+	// Check a project is open
+	if (!app.project)
+	{
+		alert ("A project must be open to use this script.", scriptName);
+		return;
+	}
+	var newLocation = Folder.selectDialog("Select a render output folder...");
+	if (newLocation != null) {
+		app.beginUndoGroup(scriptName);
+		var selectedItems = app.project.selection;
+		for (var i=0,len=selectedItems.length; i<len; i++)
+		{
+			var item = selectedItems[i];
+			if ( selectedItems[i] instanceof CompItem ){
+				RQItem = app.project.renderQueue.items.add(item);
+				var lastOMItem = RQItem.outputModules[1];								
+				 var sequenceFolderPath = new Folder ( newLocation.toString() + "/" + item.name )
+				//var sequenceFolderPath = new Folder ( newLocation.toString() + "/")
+				sequenceFolderPath.create();
+				var sequencePath = new File ( newLocation.toString() + "/" + sequenceFolderPath.name + "/" + "[#####]" );
+				// var sequencePath = new File ( newLocation.toString() + "/" + item.name + "/" + "[#####]" );				
+				lastOMItem.file = sequencePath;							
+				// Remove _[#####] for non frame sequence type
+				var outputPath = lastOMItem.file.fsName;
+				// get the output file's prefix and extension
+				var index = outputPath.lastIndexOf( "\\" );
+				var outputFile = outputPath.substring( index + 1, outputPath.length );
+				index = outputFile.lastIndexOf( "." );
+				var outputPrefix = outputFile.substring( 0, index );
+				var outputExt = outputFile.substring( index + 1, outputFile.length );
+				// if (IsMovieFormat( outputExt ))
+				// {
+				// 	sequencePath = new File ( newLocation.toString() + "/" + sequenceFolderPath.name + "/" + item.name) ;
+				// 	// sequencePath = new File ( newLocation.toString()+ "/"+ item.name +"/" + "[#####]" ) ;
+				// 	lastOMItem.file = sequencePath;
+				// }
+			}
+		}
+
+		app.endUndoGroup();	
+	}
+}

@@ -5,34 +5,42 @@ function BRender_CreateFolderAndOutputForSelectedComps_NameDirection() {
     SPCreateFolderAndOutputForSelectedCompsNameDirection();
     
 }
-#include "./lib/render.jsx" //载入渲染函数
-//~ function BRender_CreateFolderAndOutputForSelectedComps_AttackDirection() {
-//~     //判断是否选中合成组 
-//~     var proj = app.project;
-//~     var curComp = app.project.activeItem;
-//~       if (!curComp || !(curComp instanceof CompItem)) {
-//~    // if (curComp instanceof CompItem) {
-//~         
-//~         alert('请选择合成组操作');
-//~         
-//~         return;
-//~     } else {
-//~         alert('xuanhao');
-//~        // SPCreateFolderAndOutputForSelectedCompsAttackDirection();
-//~     }
-//~ }
-//~ //判断是否合成组 素材类型
-//~ function doSelectionComps() {
-//~     for (var i = 0; i < app.project.selection.length; i++) {
-//~         var activeItem = app.project.selection[i]; // = app.project.activeItem;
-//~         if ((activeItem == null) || !(activeItem instanceof CompItem)) {
-//~             alert('请选择合成组操作');
-//~             return;
-//~         } else {
-//~             //var activeComp = activeItem;      
-//~             alert('选中了');
-//~             SPCreateFolderAndOutputForSelectedCompsAttackDirection();
-//~         }
-//~     }
-//~ }
-//~     //  #include "./lib/render.jsx" //载入渲染函数
+//Name/Direction
+function SPCreateFolderAndOutputForSelectedCompsNameDirection() {
+	var scriptName = "创建渲染目录";
+	// Check a project is open
+	if (!app.project) {
+		alert("A project must be open to use this script.", scriptName);
+		return;
+	}
+	var newLocation = Folder.selectDialog("请选择输出目录...");
+	if (newLocation != null) {
+		app.beginUndoGroup(scriptName);
+		var selectedItems = app.project.selection;
+
+		for (var i = 0, len = selectedItems.length; i < len; i++) {
+			var item = selectedItems[i];
+			if (selectedItems[i] instanceof CompItem) {
+				RQItem = app.project.renderQueue.items.add(item);
+				var lastOMItem = RQItem.outputModules[1];
+				// var dirStr = item.name.match(/[\u4E00-\u9FA5]/g).toString().replace(',', '');
+				var dirStr = item.name.toString().split('#')[2]; //截取方向
+				//var itemName = item.name.substr(item.name.lastIndexOf(dirStr) + dirStr.length + 1);
+				//Name
+				var Name= item.name.substring(0, item.name.indexOf('#'));//获取第一个字段
+				//var AniName = item.name.match(/#(\S*)#/)[1]; //获取中间字符
+
+				var sequenceFolderPath = new Folder(newLocation.toString() + "/" + Name + "/" + dirStr);
+				sequenceFolderPath.create();
+
+				//var sequencePath = new File ( newLocation.toString() + "/" + sequenceFolderPath.name + "/" + item.name + "_[#####]" );
+				var sequencePath = new File(newLocation.toString() + "/" + Name + "/"  + "/" + dirStr + "/" +"[#####]");
+				//var sequencePath = new File ( newLocation.toString() + "/" + dirStr + "/" + itemName + "/" + item.name + "_[#####]" );
+
+				lastOMItem.file = sequencePath;
+			}
+		}
+
+		app.endUndoGroup();
+	}
+}

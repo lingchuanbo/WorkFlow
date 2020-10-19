@@ -221,7 +221,7 @@ getAeScript(AeScriptPath){
     ; WinActivate, ahk_exe AfterFX.exe
     ; global AeExePath := ini.BOBOPath_Config.AEPath
 	AeExePath := GetProcessPath()
-    Run, %AeExePath% -s -r %A_ScriptDir%\%AeScriptPath%,,Hide
+    Run, %AeExePath% -r %A_ScriptDir%\%AeScriptPath%,,Hide
     return
 }
 
@@ -235,7 +235,7 @@ getAeScriptCommand(AeScriptCommand){
     ; WinActivate, ahk_exe AfterFX.exe
     ; global AeExePath := ini.BOBOPath_Config.AEPath
 	AeExePath := GetProcessPath()
-    Run, %AeExePath% -s -r %AeScriptCommand%,,Hide
+    Run, %AeExePath% -r %AeScriptCommand%,,Hide
     return
 }
 

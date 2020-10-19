@@ -159,7 +159,7 @@ GetProcessPath(){
 ;  }
 ;  else
 ;  return "Sorry,找不到" %P% "!"
-    WinGet, pPath, Processpath, A
+    WinGet, pPath, ProcessPath, A
     SplitPath,pPath,pName,pDir,,pNameNoExt
     if(pName="AfterFX.exe")
     {
