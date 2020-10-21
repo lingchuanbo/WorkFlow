@@ -1,0 +1,5 @@
+// 在当前层级添加个Slider Control来控制
+s = Math.round(effect("Slider Control")("Slider")); // 开始帧数
+f = timeToFrames(time);
+d = timeToFrames(source.duration);
+framesToTime((s+f)%d);
