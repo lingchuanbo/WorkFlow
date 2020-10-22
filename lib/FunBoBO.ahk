@@ -677,6 +677,7 @@ ToolTip
 return
 
 
+
 mouserMove(){
 	SetTimer, mouserMoveTest, 500
 	return
@@ -983,3 +984,4 @@ Sub_KeyClick:
         }
 return
 }
+

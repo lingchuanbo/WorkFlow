@@ -60,6 +60,7 @@
 
     ;双按
     vim.map("c", "<TC_double_ClearDupTab>", "TTOTAL_CMD") ;清理重复标签 
+    vim.map("f", "<TC_double_Everything>", "TTOTAL_CMD") ;清理重复标签 
     
 ;KJ上下选中，HL左右选中
     vim.map("<SP-h>", "<left>", "TTOTAL_CMD")

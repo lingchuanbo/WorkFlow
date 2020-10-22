@@ -113,6 +113,12 @@ LShift & WheelDown::AltTab
 LShift & WheelUp::ShiftAltTab
 
 
+; Tc点击空白完成重命名操作
+#If reTcNameEdit()
+    Lbutton::Send {enter}
+    return
+#if
+
 
 ; 功能：窗口置顶
 
