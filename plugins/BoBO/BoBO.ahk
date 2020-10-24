@@ -518,6 +518,13 @@ return
 	Delete::GoSub,<GoogleChrome_删除>
 	!LButton:: Browser_Back
 	!RButton:: Browser_Forward
+
+	F6::
+		GV_KeyClickAction1 := "SendInput,^l"
+		GV_KeyClickAction2 := "SendInput,^k"
+		GoSub,Sub_KeyClick
+	return
+
 }
 ; 资源浏览器
 #If WinActive("ahk_class CabinetWClass") or WinActive("ahk_class ExploreWClass")
