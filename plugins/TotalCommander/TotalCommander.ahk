@@ -4549,20 +4549,9 @@ return
 }
 <TC_double_F2>:
 {   
-    t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-    settimer, tc_tappedkey_F2, %t%
-
-    if (t == "off")
-    goto tc_double_F2
-    return
-
-    tc_tappedkey_F2:
-    Send,{f2}
-    return
-
-    tc_double_F2:
-    Send,{Alt}
-    return
+    GV_KeyClickAction1 := "Gosub,<TC_F2_ReName>"
+	GV_KeyClickAction2 := "Send,{Alt}"
+	GoSub,Sub_KeyClick
 return
 }
 <TC_double_Compare>:
@@ -4960,3 +4949,26 @@ Tc_WindowScroll(Direction)
 
 
 ; #If ;## 语境约束结束
+; 双F调用Everything
+<TC_double_Everything>:
+	GV_KeyClickAction1 := "send,{f}"
+	GV_KeyClickAction2 := "Gosub,<TC_Everyting>"
+	GoSub,Sub_KeyClick
+return
+
+<TC_F2_ReName>:
+    ; cm_RenameOnly:=1002
+    ; cm_RenameSingleFile:=1007
+    ; PostMessage 1024+51, %cm_RenameOnly%, 0, , ahk_class TTOTAL_CMD 
+    Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_RenameOnly`)"
+    ; send {left 4}
+    return
+    ;~ 实现tc重命名后，空白处点下鼠标就OK，不用回车
+reTcNameEdit()
+{
+    if WinActive("ahk_class TTOTAL_CMD")
+    {
+    	ControlGetFocus,out,A
+    	return (out="TInEdit1") and (A_Cursor="Arrow")
+    }
+}

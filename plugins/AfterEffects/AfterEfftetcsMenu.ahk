@@ -6,6 +6,7 @@ function_menuAfterEffect:
 
 #If WinActive("ahk_exe AfterFX.exe")
 {
+    ; ~LButton & RButton::send,^w
     F1::Gosub,Ae_pluginTools
      ;;AE快速打开文件所在位置 至于是否启用TC到时候在考虑目前可以一直按alt+w
      ; !w::getAeScript("custom\ae_scripts\commands\BoBO_OpenLocalFlies.jsx")

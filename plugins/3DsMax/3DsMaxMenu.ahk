@@ -2,6 +2,7 @@
 {
 	Esc::Gosub,<3DsMax_esc>
 	+RButton::Gosub,menuDSMAX
+	; ~LButton & RButton::send ^w
 	return
 }
 
