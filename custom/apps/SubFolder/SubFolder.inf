@@ -1,0 +1,67 @@
+; SubFolder Install Inf by H.Hirayama
+[version]
+signature="$CHICAGO$"
+
+[DefaultInstall]
+;CopyFiles = INF.FILE,WIN.FILES
+CopyFiles = INF.FILE
+AddReg = UNINST.REG,PROG.REG
+Uninstall = FILESREMOVE
+
+[DefaultInstall.ntx86]
+;CopyFiles = INF.FILE,WIN.FILES
+CopyFiles = INF.FILE
+AddReg = UNINST.REG.NT,PROG.REG
+Uninstall = FILESREMOVENT
+
+[FILESREMOVE]
+;DelFiles = INF.FILE,WIN.FILES
+DelFiles = INF.FILE
+DelReg = UNINST.REG,PROG.REG
+
+[FILESREMOVENT]
+;DelFiles = INF.FILE,WIN.FILES
+DelFiles = INF.FILE
+DelReg = UNINST.REG.NT,PROG.REG
+
+[UNINST.REG]
+HKLM,%UIREG%\%ApliTitle%,,,
+HKLM,%UIREG%\%ApliTitle%,DisplayName,,"%RemoveTitle%"
+HKLM,%UIREG%\%ApliTitle%,UninstallString,,"RunDll setupx.dll,InstallHinfSection FILESREMOVE 4 %17%\SubFolder.inf"
+
+[UNINST.REG.NT]
+HKLM,%UIREG%\%ApliTitle%,,,
+HKLM,%UIREG%\%ApliTitle%,DisplayName,,"%RemoveTitle%"
+HKLM,%UIREG%\%ApliTitle%,UninstallString,,"%11%\rundll32.exe syssetup.dll,SetupInfObjectInstallAction FILESREMOVENT 132 %17%\SubFolder.inf"
+
+
+[SourceDisksNames]
+55="%ApliTitle%","",1
+
+[DestinationDirs]
+;WIN.FILES=10
+INF.FILE=17
+
+[SourceDisksFiles]
+SubFolder.INF=55
+SubFolder.EXE=55
+SubFoldJO.EXE=55
+SubFolder.chm=55
+
+[INF.FILE]
+SubFolder.INF
+
+[WIN.FILES]
+;SubFolder.EXE
+;SubFoldJO.EXE
+;SubFolder.chm
+
+[PROG.REG]
+HKCR,"Folder\shell\SubFolder"
+HKCR,"Folder\shell\SubFolder",,,"Sub Folder (&B)"
+HKCR,"Folder\shell\SubFolder\command",,,"%01%\SubFolder.EXE %1"
+
+[Strings]
+UIREG="Software\Microsoft\Windows\CurrentVersion\Uninstall"
+ApliTitle = "Sub Folder"
+RemoveTitle = "Sub Folder (Remove)"
