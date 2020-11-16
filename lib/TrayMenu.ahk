@@ -45,6 +45,7 @@ Menu, OptionSet, add, %_BackupRestore%, <VIMD_BackupRestore>
 
 Menu, tray, add, %_Option%, :OptionSet
 
+Menu, Tray, Add, %_Pause%(&P), <Pause>
 Menu, Tray, Add, %_Restart%(&R), <Reload>
 Menu, Tray, Add, %_Exit%(&X), Exit
 Menu, Tray, Click, 1
@@ -83,6 +84,10 @@ English:
 IniWrite, EN, config.ini, config, Language
 Reload
 Return
+
+<Pause>:
+	Pause
+return
 
 
 系统状态监测:

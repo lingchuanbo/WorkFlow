@@ -886,7 +886,7 @@ Return
         }
     else
         {
-            Send,x
+            Send,{Delete}
             return
         }
 return

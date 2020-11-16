@@ -11,6 +11,7 @@ If Language=CN
     global _Author:="BoBO"
     global _Authors="BoBO(lingchuanbo@gmail.com)" 
     global _Exit="退出"
+    global _Pause="暂停"
     global _Restart="重启"
     global _Path="路径配置"
     global _Updating="正在更新 WorkFlow"

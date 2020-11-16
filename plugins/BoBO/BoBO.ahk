@@ -105,7 +105,10 @@ CapsLock & f::SendInput,{Blind}{PgDn}
 #If 
 
 
-
+#u::
+    GroupAdd, Explore, ahk_class CabinetWClass
+    GroupClose, Explore, A
+    return
 
 ; Shift切换任务栏
 
@@ -143,7 +146,8 @@ else
 return
 
 ; 功能：软件启动器	
-; 热键：Win+右键						
+; 热键：Win+右键	
+				
 #RButton::
 	IniRead, PopSel,config.ini, config, PopSel, 1
     if PopSel = 1
@@ -213,7 +217,7 @@ return
 	}
     if (keyPress=2){
             Sleep 1000
-	        SendMessage, 0x112, 0xF170, 2,, Program Manager
+	        SendMessage, 0x112, 0xF170, 2,, Program Manager	
             return
 	}
     return
@@ -221,16 +225,34 @@ return
 <BoBO_HuntAndPeck>:
 {
     run %A_ScriptDir%\custom\apps\HuntAndPeck\hap.exe /hint
-	return
+	return	
 }
-
+Tab & LButton::Gosub,<BoBO_SubFolder>
+<BoBO_SubFolder>:
+{
+	; IniRead, TaskMuEx,config.ini, config, TaskMuEx, 1 [/20,200] [/.TXT.DLL] [*.TXT]/+E/VF [/20,200] 
+    ; if TaskMuEx = 1
+	; {
+		; run %A_ScriptDir%\custom\apps\TaskSwch\TaskMuEx.exe /n
+		run %A_ScriptDir%\custom\apps\SubFolder\SubFolder.EXE フォルダー名 /-(AD) /-N /-R /-S /-H /-L /-M /-Y /-R /+E [/.TXT.DLL] [*.TXT]
+		return 
+	; }
+	; else
+	; {
+	; 	return
+	; }
+return
+}
 ;任务栏切换
+!Tab::Gosub,<BoBO_TaskSwch>
 <BoBO_TaskSwch>:
 {
 	IniRead, TaskMuEx,config.ini, config, TaskMuEx, 1
     if TaskMuEx = 1
 	{
-		run %A_ScriptDir%\custom\apps\TaskSwch\TaskMuEx.exe /n
+		; run %A_ScriptDir%\custom\apps\TaskSwch\TaskMuEx.exe /n
+		run %A_ScriptDir%\custom\apps\TaskSwch\TaskSwch.exe /t
+		return
 	}
 	else
 	{
@@ -618,11 +640,19 @@ return
 		GoSub,Sub_KeyClick
 	return
 
-	; F1::
-	; 	GV_KeyClickAction1 := "Send,{F1}"
-	; 	GV_KeyClickAction2 := "Gosub,Sub_SendTcBCompare"
-	; 	GoSub,Sub_KeyClick
-	; return
+	n::
+		GV_KeyClickAction1 := "Send,{n}"
+		GV_KeyClickAction2 := "Send,^{t}"
+		GoSub,Sub_KeyClick
+	return
+	x::
+		GV_KeyClickAction1 := "Send,{x}"
+		GV_KeyClickAction2 := "Send,^{w}"
+		GoSub,Sub_KeyClick
+	return
+	~LButton & x::
+		Send,^+{w}
+	return
 		;智能对话框跳转 f
 	; ~n::
 	; 	GV_KeyClickAction1 := "Send,{n}"
@@ -637,7 +667,12 @@ return
 		Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_Exchange`)"
 	return
 		
-	
+	~Ctrl & LButton::
+		send,^{Tab}
+	return
+	; ~Shift & LButton::
+	; 	send,^+{Tab}
+	; return
 	;按住Space 两侧同时滚动
 	Space & WheelDown::Tc_WindowScroll(0)		
 	Space & WheelUp::Tc_WindowScroll(1)		
