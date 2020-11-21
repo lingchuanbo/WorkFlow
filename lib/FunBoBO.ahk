@@ -320,7 +320,19 @@ Morse(timeout = 400) {
          Return Pattern
    }
 }
+; RunTcCmd(){
+; 	name="tem('%cmdName%')"
+; 	msgbox, %name%
+;     ; Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem("%cmdName%")"
+;     return
+; }
 
+EmptyMem(PID="AHK Rocks"){
+    pid:=(pid="AHK Rocks") ? DllCall("GetCurrentProcessId") : pid
+    h:=DllCall("OpenProcess", "UInt", 0x001F0FFF, "Int", 0, "Int", pid)
+    DllCall("SetProcessWorkingSetSize", "UInt", h, "Int", -1, "Int", -1)
+    DllCall("CloseHandle", "Int", h)
+}
 ; 函数功能：检测进程
 ProcessExist(Name){ ; 
 Process,Exist,%Name%
@@ -861,6 +873,21 @@ KeyClickAction(act){
 	else If RegExMatch(act,"i)^(GoSub,)",m) {
 		GoSub,% substr(act,strlen(m1)+1)
 	}
+	else If RegExMatch(act,"i)^(OpenWebURL,)",m) {
+		Clipboard = % substr(act,strlen(m1)+1) ; <-- place url here.
+		; MsgBox,%Clipboard%
+		sleep,50
+		SendInput,^l
+		sleep,50
+		send, ^v
+		sleep,50
+		send, {Enter}
+		ToolTip,"烹羊宰牛且为乐 会须一饮三百杯" ;提示文本
+		sleep,500
+		tooltip,
+		Clipboard=  ;清理
+		return
+		}
 }
 
  PostMsg(CommandID)
@@ -983,5 +1010,20 @@ Sub_KeyClick:
             return
         }
 return
+}
+; 当前浏览器打开网址
+CurrentBrowserOpenURL(url)
+{
+    Clipboard=%url% ; <-- place url here.
+    SendInput,^l
+    sleep,50
+    send, ^v
+	sleep,50
+    send, {Enter}
+	tooltip,正在打开%clipboard% ;提示文本
+	sleep,500
+	tooltip,
+    Clipboard=  ;清理
+    return
 }
 

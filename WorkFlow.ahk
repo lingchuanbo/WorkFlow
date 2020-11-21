@@ -114,6 +114,14 @@ Loop,parse,GroupDiagJump,`n,`r
     GroupAdd,GroupDiagJump,%MyVar_Val%
 }
 
+; 测试
+Array:=Object()
+Array.push("稳扎稳打，步步为营。")
+Array.push("功夫在平时，成功源于积累。")
+Array.push("对生活充满热情，对未来充满信心。")
+max:=Array.MaxIndex()
+Random, index, 1 , max
+element:=Array[index]
 ; msgbox %apiKey%
 ; msgbox %secretKey%
 #Include %A_ScriptDir%\lib\DynamicFileMenu.ahk
@@ -144,7 +152,7 @@ Loop,parse,GroupDiagJump,`n,`r
 #Include %A_ScriptDir%\lib\NvAPI.ahk
 #Include %A_ScriptDir%\lib\TrayIcon.ahk
 ;用户自定义配置yy
-; #Include %A_ScriptDir%\custom\custom.ahk
+#Include %A_ScriptDir%\custom\custom.ahk
 
 ; ----------------------------------
 ;   获取进程路径
@@ -189,4 +197,6 @@ Sleep, 1000
 ; #Include *i %A_ScriptDir%\User\plugins.ahk
 #Include *i %A_ScriptDir%\function\function.ahk
 return
+
+
 

@@ -346,6 +346,8 @@ return
     FunBoBO_RunActivation(ExePath,tClass)
 return
 
+
+
 ;帮助
 <TC_Help>:
 ShowLayoutIMG("74按键模板Vimd—TC.png")
@@ -4765,8 +4767,10 @@ return
     Gosub, <TC_TCIMG_DirGetUp>
     return
 }
-
-
+; 拷贝路径
+<TcCopyFilePath>:
+ Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CopyFullNamesToClip`)"
+return
 ; 访问历史记录_Mod BoBO From capsEZ
 
 <TC_azHistory_Mod>:
@@ -4924,6 +4928,22 @@ TC_LeftRight()
     return
 }
 
+<TcPostMsg>:
+	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
+	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_OpenNewTab`)"
+	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
+	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_MatchSrc`)"
+	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CloseCurrentTab`)"
+	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
+return
+
+<TcPostMsgTest>:
+
+	Clipboard := ""
+	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CopySrcPathToClip`)"
+	msgbox %Clipboard%
+
+return
 
 
 ; ;-------------Tc函数----------------------------------

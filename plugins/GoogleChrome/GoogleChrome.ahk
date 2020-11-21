@@ -12,14 +12,14 @@
 ;insert模式
     vim.SetMode("insert", "GoogleChrome")
     vim.Map("<insert>", "<GoogleChrome_SwithMode>", "GoogleChrome")
-    vim.Map("<f5>", "<Google_刷新>", "GoogleChrome")
-    vim.Map("<f8>", "<GoogleChrome_无痕>", "GoogleChrome")
-    ; vim.Map("<Delete>", "<GoogleChrome_清除浏览数据>", "GoogleChrome")
-    vim.Map("<f9>", "<GoogleChrome_OpenGoogle>", "GoogleChrome")
-    vim.Map("<f9>1", "<GoogleChrome_OpenYoutube>", "GoogleChrome")
-    vim.Map("<f9>2", "<GoogleChrome_OpenTranslate>", "GoogleChrome")
-    vim.Map("<f9>3", "<GoogleChrome_OpenDogeDoge>", "GoogleChrome")
-    vim.Map("<f9>4", "<GoogleChrome_下载>", "GoogleChrome")
+    ; vim.Map("<f5>", "<Google_刷新>", "GoogleChrome")
+    ; vim.Map("<f8>", "<GoogleChrome_无痕>", "GoogleChrome")
+    ; ; vim.Map("<Delete>", "<GoogleChrome_清除浏览数据>", "GoogleChrome")
+    ; vim.Map("<f9>", "<GoogleChrome_OpenGoogle>", "GoogleChrome")
+    ; vim.Map("<f9>1", "<GoogleChrome_OpenYoutube>", "GoogleChrome")
+    ; vim.Map("<f9>2", "<GoogleChrome_OpenTranslate>", "GoogleChrome")
+    ; vim.Map("<f9>3", "<GoogleChrome_OpenDogeDoge>", "GoogleChrome")
+    ; vim.Map("<f9>4", "<GoogleChrome_下载>", "GoogleChrome")
     vim.map("?","<ShowHelp>","GoogleChrome")
 return
 
@@ -84,19 +84,13 @@ return
 ; 快速打开Google
 <GoogleChrome_OpenGoogle>:
 {
-    Clipboard=https://www.google.com ; <-- place url here.
-    SendInput,^t
-    send, ^v
-    send, {Enter}
+    CurrentBrowserOpenURL("google.com")
     return
 }
 ; 快速打开Google
 <GoogleChrome_OpenYoutube>:
 {
-    Clipboard=https://www.youtube.com ; <-- place url here.
-    SendInput,^t
-    send, ^v
-    send, {Enter}
+    CurrentBrowserOpenURL("youtube.com")
     return
 }
 <GoogleChrome_OpenTranslate>:

@@ -12,6 +12,8 @@
 ;insert模式
     vim.SetMode("insert", "Eagle")
     vim.Map("<insert>", "<Eagle_SwithMode>", "Eagle")
+    vim.Map("j", "<Eagle_上>", "Eagle")
+    vim.Map("k", "<Eagle_下>", "Eagle")
     ;载入按键
 return
 
@@ -60,6 +62,13 @@ return
 <Eagle_InsertMode>:
     SetModUIInsert()
     vim.SetMode("insert", "Eagle")
+return
+
+<Eagle_下>:
+send,{WheelDown}
+return
+<Eagle_上>:
+send,{WheelUp}
 return
 
 

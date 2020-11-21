@@ -331,6 +331,7 @@ start "" "%A_ScriptDir%\%A_ScriptName%"
 exit
 ),%A_Temp%\vimd_Update.bat
 return
-~LButton:: 
-ToolTip
-return
+
+; ~LButton:: 
+; 	ToolTip
+; return
