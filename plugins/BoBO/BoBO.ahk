@@ -7,6 +7,9 @@
 	; 命令行
 		#h::run,cmd
 		^#h::run,*RunAs cmd
+	;按住Win加滚轮来调整音量大小
+		LWin & WheelUp::Send,{Volume_Up}
+		LWin & WheelDown::Send,{Volume_Down}
 	;功能：关闭(Alt + x)
 		!x::send, ^w
 	;功能：最小化窗口
@@ -100,8 +103,8 @@
 		return
 
 	;功能：Shift切换任务栏(原始)
-		LShift & WheelDown::AltTab
-		LShift & WheelUp::ShiftAltTab
+		; LShift & WheelDown::AltTab
+		; LShift & WheelUp::ShiftAltTab
 	;功能：打开程序所在位置
 		;Ctrl+Alt+点击，定位程序对应的目录 打开当前程序所在位置
 		^!LButton::Gosub,<opemLocalDirExe>
@@ -134,9 +137,39 @@
 			; {
 			; 	return
 			; }
-		return
 		}
+		return
+		
+	;LShift+鼠标滚轮调整窗口透明度（设置30-255的透明度，低于30基本上就看不见了，如需要可自行修改）
+		~LShift & WheelUp::
+		; 透明度调整，增加。
+			WinGet, Transparent, Transparent,A
+			If (Transparent="")
+				Transparent=255
+				;Transparent_New:=Transparent+10
+			Transparent_New:=Transparent+20    ;◆透明度增加速度。
+			If (Transparent_New > 254)
+				Transparent_New =255
+			WinSet,Transparent,%Transparent_New%,A
 
+			tooltip 原透明度: %Transparent_New% `n新透明度: %Transparent%
+			;查看当前透明度（操作之后的）。
+			SetTimer, RemoveToolTip_transparent_Lwin, 1500
+		return
+
+		~LShift & WheelDown::
+			;透明度调整，减少。
+			WinGet, Transparent, Transparent,A
+			If (Transparent="")
+				Transparent=255
+			Transparent_New:=Transparent-10  ;◆透明度减少速度。
+			;msgbox,Transparent_New=%Transparent_New%
+			If (Transparent_New < 30)    ;◆最小透明度限制。
+				Transparent_New = 30
+			WinSet,Transparent,%Transparent_New%,A
+			tooltip 原透明度: %Transparent_New% `n新透明度: %Transparent%
+			SetTimer, RemoveToolTip_transparent_Lwin, 1500
+		return
 
 
 ; ################# ` 相关 #################
@@ -239,6 +272,15 @@
 		^Tab:: SendInput,^{Tab}
 		^+Tab:: SendInput,^+{Tab}
 		Escape::send,{Escape}
+
+
+; ##########系统.任务栏##########
+	; ;在任务栏上滚轮调整音量 {{{2
+	#If MouseIsOver("ahk_class Shell_TrayWnd")
+	{
+		WheelUp::Send {Volume_Up}
+		WheelDown::Send {Volume_Down}
+	}
 ; ##########程序便捷.社交##########大部份来自EZ大神
 	; Tim
 	#q::

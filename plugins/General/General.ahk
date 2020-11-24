@@ -1065,27 +1065,11 @@ ClickContextMenu(key)
     Send, %key%
 }
 
-
-
-;****************************************************
-
-
-
-; ;在任务栏上滚轮调整音量 {{{2
-#If MouseIsOver("ahk_class Shell_TrayWnd")
-WheelUp::Send {Volume_Up}
-WheelDown::Send {Volume_Down}
-
-; LWin & WheelUp::Gosub,<BoBO_TaskSwch>
-; LWin & WheelDown::Gosub,<BoBO_TaskSwch>
-#If
 MouseIsOver(WinTitle) {
     MouseGetPos,,, Win
     return WinExist(WinTitle . " ahk_id " . Win)
 }
-;按住Win加滚轮来调整音量大小
-LWin & WheelUp::Send,{Volume_Up}
-LWin & WheelDown::Send,{Volume_Down}
+
 ; ;********************************************************
 
 ;************窗口设置****************************
@@ -1209,41 +1193,10 @@ ClosestMonitorTo(X, Y)
 ;置顶
 ; #t::Winset, Alwaysontop, toggle, A
 
-LButton & WheelUp::ShiftAltTab
-LButton & WheelDown::AltTab
+; LButton & WheelUp::ShiftAltTab
+; LButton & WheelDown::AltTab
 
-;************** caps+鼠标滚轮调整窗口透明度^    ************** {{{1
-;caps+鼠标滚轮调整窗口透明度（设置30-255的透明度，低于30基本上就看不见了，如需要可自行修改）
-;~LShift & WheelUp::
-CapsLock & WheelUp::
-; 透明度调整，增加。
-	WinGet, Transparent, Transparent,A
-	If (Transparent="")
-		Transparent=255
-		;Transparent_New:=Transparent+10
-	Transparent_New:=Transparent+20    ;◆透明度增加速度。
-	If (Transparent_New > 254)
-		Transparent_New =255
-	WinSet,Transparent,%Transparent_New%,A
 
-	tooltip 原透明度: %Transparent_New% `n新透明度: %Transparent%
-	;查看当前透明度（操作之后的）。
-	SetTimer, RemoveToolTip_transparent_Lwin, 1500
-return
-
-CapsLock & WheelDown::
-	;透明度调整，减少。
-	WinGet, Transparent, Transparent,A
-	If (Transparent="")
-		Transparent=255
-	Transparent_New:=Transparent-10  ;◆透明度减少速度。
-	;msgbox,Transparent_New=%Transparent_New%
-	If (Transparent_New < 30)    ;◆最小透明度限制。
-		Transparent_New = 30
-	WinSet,Transparent,%Transparent_New%,A
-	tooltip 原透明度: %Transparent_New% `n新透明度: %Transparent%
-	SetTimer, RemoveToolTip_transparent_Lwin, 1500
-return
 
 ;设置CapsLock 加侧边键 直接恢复透明度到255。没有侧边键的就算了，毕竟滚轮滚一下也快得很
 ;CapsLock & XButton1::
