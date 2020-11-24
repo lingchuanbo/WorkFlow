@@ -59,7 +59,7 @@ SubFolder.INF
 [PROG.REG]
 HKCR,"Folder\shell\SubFolder"
 HKCR,"Folder\shell\SubFolder",,,"Sub Folder (&B)"
-HKCR,"Folder\shell\SubFolder\command",,,"%01%\SubFolder.EXE %1"
+HKCR,"Folder\shell\SubFolder\command",,,"%01%\SubFolder.EXE %1 /-R"
 
 [Strings]
 UIREG="Software\Microsoft\Windows\CurrentVersion\Uninstall"
