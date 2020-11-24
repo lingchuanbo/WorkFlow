@@ -1,0 +1,5 @@
+This is a Windows 64 bit program (x64)
+
+For 32 bit version see https://www.horstmuc.de
+
+*

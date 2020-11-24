@@ -171,7 +171,10 @@
 			SetTimer, RemoveToolTip_transparent_Lwin, 1500
 		return
 
-
+	
+	
+	; 功能：任务栏
+		#q::Gosub,showTim
 ; ################# ` 相关 #################
 	; `剪贴复制粘贴删除
 	` & 1:: SendInput,^x
@@ -272,7 +275,7 @@
 		^Tab:: SendInput,^{Tab}
 		^+Tab:: SendInput,^+{Tab}
 		Escape::send,{Escape}
-
+	#If
 
 ; ##########系统.任务栏##########
 	; ;在任务栏上滚轮调整音量 {{{2
@@ -281,9 +284,11 @@
 		WheelUp::Send {Volume_Up}
 		WheelDown::Send {Volume_Down}
 	}
+	#If
 ; ##########程序便捷.社交##########大部份来自EZ大神
 	; Tim
-	#q::
+	showTim:
+	{
 		Process, Wait, TIM.exe, 1
 		NewPID := ErrorLevel  ; 由于 ErrorLevel 会经常发生改变, 所以要立即保存这个值.
 		if not NewPID
@@ -311,6 +316,7 @@
 			return
 			}
 	return
+	}
 	; TIM
 		#If WinActive("ahk_class TXGuiFoundation") and WinActive("ahk_exe TIM.exe")
 		{
