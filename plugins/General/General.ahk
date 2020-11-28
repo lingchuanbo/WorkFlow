@@ -1070,99 +1070,6 @@ MouseIsOver(WinTitle) {
     return WinExist(WinTitle . " ahk_id " . Win)
 }
 
-; ;********************************************************
-
-;************窗口设置****************************
-; !Enter:: GoSub,Sub_MaxAllRestore
-^!#up:: GoSub,Sub_MaxAllWindows
-CapsLock & Enter:: GoSub,Sub_MaxRestore
-CapsLock & Space:: WinMinimize A
-
-#Enter:: GoSub,Sub_MaxAllRestore
-Pause:: GoSub,Sub_MaxAllRestore
-
-
-Capslock & MButton::GoSub,Sub_MaxRestore
-LWin & LButton::GoSub,Sub_MaxRestore
-
-Sub_MaxRestore:
-	WinGet, Status_minmax ,MinMax,A
-	If (Status_minmax=1){
-		WinRestore A
-	}
-    ; If (Status_minmax=2){
-	; 	GoSub,Sub_MaxRestore
-	; }
-	else{
-		WinMaximize A
-	}
-return
-
-Sub_MaxAllRestore:
-    ifWinExist, ahk_id %FullscreenWindow%
-    {
-        if PMenu                    ; Restore the menu.
-            DllCall("SetMenu", "UInt", FullscreenWindow, "UInt", PMenu)
-        WinSet, Style, +0xC40000    ; Restore WS_CAPTION|WS_SIZEBOX.
-        WinMove,,, PX, PY, PW, PH   ; Restore position and size.
-        FullscreenWindow =
-        return
-    }
-
-    WinGet, Style, Style, A
-    if (Style & 0xC40000) != 0xC40000 ; WS_CAPTION|WS_SIZEBOX
-        return
-
-    FullscreenWindow := WinExist("A")
-    
-    WinGetPos, PX, PY, PW, PH
-    
-    ; Remove WS_CAPTION|WS_SIZEBOX.
-    WinSet, Style, -0xC40000
-    
-    PMenu := DllCall("GetMenu", "UInt", FullscreenWindow)
-    ; Remove the window's menu.
-    if PMenu
-        DllCall("SetMenu", "UInt", FullscreenWindow, "UInt", 0)
-    
-    ; Get the area of whichever monitor the window is on.
-    SysGet, m, Monitor, % ClosestMonitorTo(PX + PW//2, PY + PH//2)
-    
-    ; Size the window to fill the entire screen.
-    WinMove,,, mLeft, mTop, mRight-mLeft, mBottom-mTop
-return
-
-Sub_MaxAllWindows:
-	WinGet, Window_List, List ; Gather a list of running programs
-	Loop, %Window_List%
-	{
-		wid := Window_List%A_Index%
-		WinGetTitle, wid_Title, ahk_id %wid%
-		WinGet, Style, Style, ahk_id %wid%
-		;(WS_CAPTION 0xC00000| WS_SYSMENU 0x80000| WS_MAXIMIZEBOX 0x10000) | WS_SIZEBOX 0x40000
-		If (!(Style & 0xC90000) or !(Style & 0x40000) or (Style & WS_DISABLED) or !(wid_Title)) ; skip unimportant windows ; ! wid_Title or
-			Continue
-		;MsgBox, % (Style & 0x40000)
-		WinGet, es, ExStyle, ahk_id %wid%
-		Parent := Decimal_to_Hex( DllCall( "GetParent", "uint", wid ) )
-		WinGet, Style_parent, Style, ahk_id %Parent%
-		Owner := Decimal_to_Hex( DllCall( "GetWindow", "uint", wid , "uint", "4" ) ) ; GW_OWNER = 4
-		WinGet, Style_Owner, Style, ahk_id %Owner%
-
-		If (((es & WS_EX_TOOLWINDOW)  and !(Parent)) ; filters out program manager, etc
-			or ( !(es & WS_EX_APPWINDOW)
-			and (((Parent) and ((Style_parent & WS_DISABLED) =0)) ; These 2 lines filter out windows that have a parent or owner window that is NOT disabled -
-				or ((Owner) and ((Style_Owner & WS_DISABLED) =0))))) ; NOTE - some windows result in blank value so must test for zero instead of using NOT operator!
-			continue
-		WinGet, Status_minmax ,MinMax,ahk_id %wid%
-		If (Status_minmax!=1) {
-			WinMaximize,ahk_id %wid%
-		}
-		;MsgBox, 4, , Visiting All Windows`n%a_index% of %Window_List%`n`n%wid_Title%`nContinue?
-		;IfMsgBox, NO, break
-	}
-return
-
 Decimal_to_Hex(var)
 {
 	SetFormat, integer, hex
@@ -1190,14 +1097,6 @@ ClosestMonitorTo(X, Y)
 }
 
 
-;置顶
-; #t::Winset, Alwaysontop, toggle, A
-
-; LButton & WheelUp::ShiftAltTab
-; LButton & WheelDown::AltTab
-
-
-
 ;设置CapsLock 加侧边键 直接恢复透明度到255。没有侧边键的就算了，毕竟滚轮滚一下也快得很
 ;CapsLock & XButton1::
 	;WinGet, Transparent, Transparent,A
@@ -1211,70 +1110,8 @@ RemoveToolTip_transparent_Lwin:
 	SetTimer, RemoveToolTip_transparent_Lwin, Off
 return
 
-;************caps+鼠标滚轮调整窗口透明度$***********
 
 
-;************** 按住Caps拖动鼠标^    ************** {{{1
-;按住caps加左键拖动窗口
-Capslock & LButton::
-Escape & LButton::
-	CoordMode, Mouse  ; Switch to screen/absolute coordinates.
-	MouseGetPos, EWD_MouseStartX, EWD_MouseStartY, EWD_MouseWin
-	WinGetPos, EWD_OriginalPosX, EWD_OriginalPosY,,, ahk_id %EWD_MouseWin%
-	WinGet, EWD_WinState, MinMax, ahk_id %EWD_MouseWin% 
-	if EWD_WinState = 0  ; Only if the window isn't maximized 
-		SetTimer, EWD_WatchMouse, 10 ; Track the mouse as the user drags it.
-return
-
-EWD_WatchMouse:
-	GetKeyState, EWD_LButtonState, LButton, P
-	if EWD_LButtonState = U  ; Button has been released, so drag is complete.
-	{
-		SetTimer, EWD_WatchMouse, off
-		return
-	}
-	;GetKeyState, EWD_EscapeState, Escape, P
-	;if EWD_EscapeState = D  ; Escape has been pressed, so drag is cancelled.
-	;{
-	;	SetTimer, EWD_WatchMouse, off
-	;	WinMove, ahk_id %EWD_MouseWin%,, %EWD_OriginalPosX%, %EWD_OriginalPosY%
-	;	return
-	;}
-	; Otherwise, reposition the window to match the change in mouse coordinates
-	; caused by the user having dragged the mouse:
-	CoordMode, Mouse
-	MouseGetPos, EWD_MouseX, EWD_MouseY
-	WinGetPos, EWD_WinX, EWD_WinY,,, ahk_id %EWD_MouseWin%
-	SetWinDelay, -1   ; Makes the below move faster/smoother.
-	WinMove, ahk_id %EWD_MouseWin%,, EWD_WinX + EWD_MouseX - EWD_MouseStartX, EWD_WinY + EWD_MouseY - EWD_MouseStartY
-	EWD_MouseStartX := EWD_MouseX  ; Update for the next timer-call to this subroutine.
-	EWD_MouseStartY := EWD_MouseY
-return
-
-;按住caps加右键放大和缩小窗口
-; Capslock & RButton::
-Escape & RButton::
-	CoordMode, Mouse, Screen ; Switch to screen/absolute coordinates.
-	MouseGetPos, EWD_MouseStartX, EWD_MouseStartY, EWD_MouseWin
-	WinGetPos, EWD_OriginalPosX, EWD_OriginalPosY, EWD_WinWidth, EWD_WinHeight, ahk_id %EWD_MouseWin%
-	EWD_StartPosX := EWD_WinWidth - EWD_MouseStartX
-	EWD_StartPosY := EWD_WinHeight - EWD_MouseStartY
-	
-	WinGet, EWD_WinState, MinMax, ahk_id %EWD_MouseWin% 
-	if EWD_WinState = 0  ; Only if the window isn't maximized 
-		SetTimer, EWD_ResizeWindow, 10 ; Track the mouse as the user drags it.
-Return
-EWD_ResizeWindow:
-	If Not GetKeyState("RButton", "P"){
-		SetTimer, EWD_ResizeWindow, off
-		Return
-	}
-	CoordMode, Mouse, Screen ; Switch to screen/absolute coordinates.
-	MouseGetPos, EWD_MouseX, EWD_MouseY
-	SetWinDelay, -1   ; Makes the below move faster/smoother.
-	WinMove, ahk_id %EWD_MouseWin%,, EWD_OriginalPosX, EWD_OriginalPosY, EWD_StartPosX + EWD_MouseX, EWD_StartPosY + EWD_MouseY
-Return
-;************** 按住Caps拖动窗口$    **************
 
 
 

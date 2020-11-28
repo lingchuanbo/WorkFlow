@@ -1496,7 +1496,11 @@ return
     getAeScript("custom\ae_scripts\commands\BoBO_Reduce.jsx")
     return
 }
-
+<Ae_QuickMenu>:
+{
+    getAeScript("custom\ae_scripts\QuickMenu.jsxbin")
+    return
+}
 <Ae_ReduceProject>:
 {
     MsgBox, 4,Reduce Project, 简化项目文件 继续?

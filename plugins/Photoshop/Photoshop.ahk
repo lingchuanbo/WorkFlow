@@ -80,6 +80,7 @@ Photoshop:
     vim.Map("<LB-e>", "<PS_多边形选区>", "Photoshop")
 
     vim.Map("<SP-d>", "<PS_Delete>", "AfterEffects")
+    vim.Map("<Space>", "<PS_Space>", "Photoshop")
 
     vim.BeforeActionDo("Photoshop_CheckMode", "Photoshop") ; by Array
 return
@@ -89,11 +90,15 @@ Photoshop_CheckMode()
     ControlGetFocus, ctrl, A
     PixelGetColor, psinputt, 13, 473 ; By 天甜
     ;匹配颜色2019
-    if ((psinputt = 0x1f1f1f) or (psinputt = 0x383838) or (psinputt = 0x808080) or (psinputt = 0xbfbfbf)) 	;
+    if ((psinputt = 0x1f1f1f) or (psinputt = 0x383838) or (psinputt = 0x808080) or (psinputt = 0xbfbfbf) or WinExist("ahk_class #32770")) 	;
 		{
 		    return true
 		}
-    if RegExMatch(ctrl, "i)Edit")  ; or WinExist("ahk_class #32770"))
+    if RegExMatch(ctrl, "i)Edit")
+    {
+        return True
+    }
+    if RegExMatch(ctrl, "i)Edit1")
     {
         return True
     }
@@ -153,7 +158,9 @@ return
 ; global TxFileRecv = ini.config.TxFileRecv
 ; msgbox %TxFileRecv%
 return
-
+; <PS_Space>:
+; send,{Space}
+; return
 
  <Photoshop_SwithMode>:
 ;   单键切换

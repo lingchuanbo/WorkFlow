@@ -5,11 +5,11 @@
 
 ; ################# 辅助增强 #################
 	; 命令行
-		#h::run,cmd
-		^#h::run,*RunAs cmd
-	;按住Win加滚轮来调整音量大小
-		LWin & WheelUp::Send,{Volume_Up}
-		LWin & WheelDown::Send,{Volume_Down}
+		 #h::run,cmd
+		 ^#h::run,*RunAs cmd
+ 	;按住Win加滚轮来调整音量大小
+ 		LWin & WheelUp::Send,{Volume_Up}
+ 		LWin & WheelDown::Send,{Volume_Down}
 	;功能：关闭(Alt + x)
 		!x::send, ^w
 	;功能：最小化窗口
@@ -54,12 +54,7 @@
 			Gosub,<BoBO_CenterWindow>
 		return
 
-		<BoBO_CenterWindow>:
-		{
-			WinGetActiveTitle, var_title
-			CenterWindow(var_title)
-			return
-		}
+
 	;功能：窗口置顶
 		#MButton::
 		WinSet, AlwaysOnTop, toggle,A
@@ -81,21 +76,7 @@
 		return
 	;功能：任务栏切换
 		!Tab::Gosub,<BoBO_TaskSwch>
-		<BoBO_TaskSwch>:
-		{
-			IniRead, TaskMuEx,config.ini, config, TaskMuEx, 1
-			if TaskMuEx = 1
-			{
-				; run %A_ScriptDir%\custom\apps\TaskSwch\TaskMuEx.exe /n
-				run %A_ScriptDir%\custom\apps\TaskSwch\TaskSwch.exe /t
-				return
-			}
-			else
-			{
-				return
-			}
-		return
-		}
+
 	;功能：关闭所有资源管理器窗口
 		^#u::
 			GroupAdd, Explore, ahk_class CabinetWClass
@@ -173,9 +154,80 @@
 
 	
 	
-	; 功能：任务栏
+	;功能：任务栏
 		#q::Gosub,showTim
-; ################# ` 相关 #################
+	;功能：窗口设置****************************
+		; !Enter:: GoSub,Sub_MaxAllRestore
+		^!#up:: GoSub,Sub_MaxAllWindows
+		CapsLock & Enter:: GoSub,Sub_MaxRestore
+		CapsLock & Space:: WinMinimize A
+
+		#Enter:: GoSub,Sub_MaxAllRestore
+		Pause:: GoSub,Sub_MaxAllRestore
+
+		LShift & MButton::GoSub,Sub_MaxRestore
+		LWin & LButton::GoSub,Sub_MaxRestore
+	;************** 按住Caps拖动鼠标^    ************** {{{1
+		;按住caps加左键拖动窗口
+			Capslock & LButton::
+			Escape & LButton::
+				CoordMode, Mouse  ; Switch to screen/absolute coordinates.
+				MouseGetPos, EWD_MouseStartX, EWD_MouseStartY, EWD_MouseWin
+				WinGetPos, EWD_OriginalPosX, EWD_OriginalPosY,,, ahk_id %EWD_MouseWin%
+				WinGet, EWD_WinState, MinMax, ahk_id %EWD_MouseWin% 
+				if EWD_WinState = 0  ; Only if the window isn't maximized 
+					SetTimer, EWD_WatchMouse, 10 ; Track the mouse as the user drags it.
+			return
+
+			EWD_WatchMouse:
+				GetKeyState, EWD_LButtonState, LButton, P
+				if EWD_LButtonState = U  ; Button has been released, so drag is complete.
+				{
+					SetTimer, EWD_WatchMouse, off
+					return
+				}
+				;GetKeyState, EWD_EscapeState, Escape, P
+				;if EWD_EscapeState = D  ; Escape has been pressed, so drag is cancelled.
+				;{
+				;	SetTimer, EWD_WatchMouse, off
+				;	WinMove, ahk_id %EWD_MouseWin%,, %EWD_OriginalPosX%, %EWD_OriginalPosY%
+				;	return
+				;}
+				; Otherwise, reposition the window to match the change in mouse coordinates
+				; caused by the user having dragged the mouse:
+				CoordMode, Mouse
+				MouseGetPos, EWD_MouseX, EWD_MouseY
+				WinGetPos, EWD_WinX, EWD_WinY,,, ahk_id %EWD_MouseWin%
+				SetWinDelay, -1   ; Makes the below move faster/smoother.
+				WinMove, ahk_id %EWD_MouseWin%,, EWD_WinX + EWD_MouseX - EWD_MouseStartX, EWD_WinY + EWD_MouseY - EWD_MouseStartY
+				EWD_MouseStartX := EWD_MouseX  ; Update for the next timer-call to this subroutine.
+				EWD_MouseStartY := EWD_MouseY
+			return
+
+		;按住caps加右键放大和缩小窗口
+			; Capslock & RButton::
+			Escape & RButton::
+				CoordMode, Mouse, Screen ; Switch to screen/absolute coordinates.
+				MouseGetPos, EWD_MouseStartX, EWD_MouseStartY, EWD_MouseWin
+				WinGetPos, EWD_OriginalPosX, EWD_OriginalPosY, EWD_WinWidth, EWD_WinHeight, ahk_id %EWD_MouseWin%
+				EWD_StartPosX := EWD_WinWidth - EWD_MouseStartX
+				EWD_StartPosY := EWD_WinHeight - EWD_MouseStartY
+				
+				WinGet, EWD_WinState, MinMax, ahk_id %EWD_MouseWin% 
+				if EWD_WinState = 0  ; Only if the window isn't maximized 
+					SetTimer, EWD_ResizeWindow, 10 ; Track the mouse as the user drags it.
+			Return
+			EWD_ResizeWindow:
+				If Not GetKeyState("RButton", "P"){
+					SetTimer, EWD_ResizeWindow, off
+					Return
+				}
+				CoordMode, Mouse, Screen ; Switch to screen/absolute coordinates.
+				MouseGetPos, EWD_MouseX, EWD_MouseY
+				SetWinDelay, -1   ; Makes the below move faster/smoother.
+				WinMove, ahk_id %EWD_MouseWin%,, EWD_OriginalPosX, EWD_OriginalPosY, EWD_StartPosX + EWD_MouseX, EWD_StartPosY + EWD_MouseY
+			Return
+; ################# ` 相关 ################
 	; `剪贴复制粘贴删除
 	` & 1:: SendInput,^x
 	` & 2:: SendInput,^c
@@ -278,7 +330,7 @@
 	#If
 
 ; ##########系统.任务栏##########
-	; ;在任务栏上滚轮调整音量 {{{2
+	;在任务栏上滚轮调整音量 {{{2
 	#If MouseIsOver("ahk_class Shell_TrayWnd")
 	{
 		WheelUp::Send {Volume_Up}
@@ -286,37 +338,6 @@
 	}
 	#If
 ; ##########程序便捷.社交##########大部份来自EZ大神
-	; Tim
-	showTim:
-	{
-		Process, Wait, TIM.exe, 1
-		NewPID := ErrorLevel  ; 由于 ErrorLevel 会经常发生改变, 所以要立即保存这个值.
-		if not NewPID
-		{
-			; 如果没有Tim或没运行保持原有
-			send,#{q}
-			return
-		}
-		if NewPID
-		{
-			if TIM_Swith_var=2 ;
-			TIM_Swith_var=0
-			TIM_Swith_var+=1
-			TIM_var=0
-			if (TIM_Swith_var=1 )
-			{    
-				TrayIcon_Button("TIM.exe", "L")
-				return
-			}
-			if (TIM_Swith_var=2)
-			{
-				send,{Esc}
-				return
-			}
-			return
-			}
-	return
-	}
 	; TIM
 		#If WinActive("ahk_class TXGuiFoundation") and WinActive("ahk_exe TIM.exe")
 		{
@@ -353,6 +374,7 @@
 			; ^r::Gosub, <BoBO_Test>
 			return
 		}
+		#If
 
 	; QQ
 		#If WinActive("ahk_class TXGuiFoundation") and WinActive("ahk_exe qq.exe")
@@ -372,6 +394,7 @@
 			!w::Gosub, <Tx_OpenWithTc>
 			return
 		}
+		#If
 	; 微信
 		#IfWinActive ahk_exe WeChat.exe
 		{
@@ -407,23 +430,25 @@
 			!w::Gosub, <Wx_OpenWithTc>
 			return
 		}
+		#If
 	; telegram电报
-	#IfWinActive ahk_exe Telegram.exe
-	{
-		!w::Gosub, <Tg_OpenWithTc>
-		!/::CoordWinClick(150,52)
-		!1::CoordWinClick(TG_Start_X, TG_Start_Y+(1-1)*TG_Bar_Height)
-		!2::CoordWinClick(TG_Start_X, TG_Start_Y+(2-1)*TG_Bar_Height)
-		!3::CoordWinClick(TG_Start_X, TG_Start_Y+(3-1)*TG_Bar_Height)
-		!4::CoordWinClick(TG_Start_X, TG_Start_Y+(4-1)*TG_Bar_Height)
-		!5::CoordWinClick(TG_Start_X, TG_Start_Y+(5-1)*TG_Bar_Height)
-		!6::CoordWinClick(TG_Start_X, TG_Start_Y+(6-1)*TG_Bar_Height)
-		!7::CoordWinClick(TG_Start_X, TG_Start_Y+(7-1)*TG_Bar_Height)
-		!8::CoordWinClick(TG_Start_X, TG_Start_Y+(8-1)*TG_Bar_Height)
-		!9::CoordWinClick(TG_Start_X, TG_Start_Y+(9-1)*TG_Bar_Height)
-		!0::CoordWinClick(TG_Start_X, TG_Start_Y+(10-1)*TG_Bar_Height)
-		return
-	}
+		#IfWinActive ahk_exe Telegram.exe
+		{
+			!w::Gosub, <Tg_OpenWithTc>
+			!/::CoordWinClick(150,52)
+			!1::CoordWinClick(TG_Start_X, TG_Start_Y+(1-1)*TG_Bar_Height)
+			!2::CoordWinClick(TG_Start_X, TG_Start_Y+(2-1)*TG_Bar_Height)
+			!3::CoordWinClick(TG_Start_X, TG_Start_Y+(3-1)*TG_Bar_Height)
+			!4::CoordWinClick(TG_Start_X, TG_Start_Y+(4-1)*TG_Bar_Height)
+			!5::CoordWinClick(TG_Start_X, TG_Start_Y+(5-1)*TG_Bar_Height)
+			!6::CoordWinClick(TG_Start_X, TG_Start_Y+(6-1)*TG_Bar_Height)
+			!7::CoordWinClick(TG_Start_X, TG_Start_Y+(7-1)*TG_Bar_Height)
+			!8::CoordWinClick(TG_Start_X, TG_Start_Y+(8-1)*TG_Bar_Height)
+			!9::CoordWinClick(TG_Start_X, TG_Start_Y+(9-1)*TG_Bar_Height)
+			!0::CoordWinClick(TG_Start_X, TG_Start_Y+(10-1)*TG_Bar_Height)
+			return
+		}
+		#If
 
 ; ##########程序便捷.工具##########
 	; Everything
@@ -436,6 +461,7 @@
 				; run, https://www.dogedoge.com/results?q=%Keywords%
 				return
 			}
+		#If
 	; 智能跳转
 		#If WinActive("ahk_group GroupDiagJump") and WinActive("ahk_class #32770")
 		{
@@ -446,6 +472,7 @@
 			!w:: GoSub,Sub_SendCurDiagPath2Tc ;发送TC路径到对话框路径
 			return
 		}
+		#If
 
 ; ##########程序便捷.浏览器########## 谷歌内核浏览器一般都支持 火狐没测
 	#If WinActive("ahk_group group_browser")
@@ -530,6 +557,7 @@
 			EmptyMem()
 			return
 	}
+	#If
 ; ##########程序便捷.资源管理器&桌面##########
 	;资源浏览器
 		#If WinActive("ahk_class CabinetWClass") or WinActive("ahk_class ExploreWClass")
@@ -541,6 +569,7 @@
 			^#z::Gosub,ZipDirectory
 			return
 		}
+		#If 
 	;桌面
 		#If WinActive("ahk_class Progman") or WinActive("ahk_class WorkerW")
 		{
@@ -563,7 +592,8 @@
 					run, %TCPath% /T /O /S /A /L=%selected%
 				}
 			return
-		}	
+		}
+		#If 
 ; ##########程序便捷.Total Commander##########
 	#If WinActive("ahk_class TTOTAL_CMD")
 	{
@@ -756,22 +786,26 @@
 			}
 		return
 	}
+	#If
 ; ##########程序便捷.办公##########
 	; Word
 		#If WinActive("ahk_class OpusApp")
 		{
 			!w::Gosub, <BoBO_OpenLocalFliesWord>
 		}
+		#If
 	; Excel
 		#If WinActive("ahk_class XLMAIN")
 		{
 			!w::Gosub, <BoBO_OpenLocalFliesExcel>
 		}
+		#If
 	; PowerPoint
 		#If WinActive("ahk_class Case_POWERPNT")
 		{
 			!w::Gosub, <BoBO_OpenLocalFliesPowerPoint>
 		}
+		#If
 ; ##########程序便捷.专业软件##########补充测试,具体看各自的插件
 	; Blender
 		#If WinActive("ahk_exe blender.exe")
@@ -800,8 +834,9 @@
 			; 	Loop %BlenderCursorRepeat% {
 			; 		Send {LCtrl Down}{Right}{LCtrl Up}
 			; 	}
-			; Return
+			Return
 		}
+		#If
 	; Photoshop
 		#If WinActive("ahk_exe Photoshop.exe")
 		{	
@@ -827,6 +862,7 @@
 				GoSub,Sub_KeyClick
 			return
 		}
+		#If
 	; 3DsMax
 		#If WinActive("ahk_exe 3dsmax.exe")
 		{
@@ -835,6 +871,7 @@
 			` & 3:: Gosub, <3DsMax_Key>
 			return
 		}
+		#If
 
 	menuPsAlt:
 		menu, menuPsAlt, add,用AE编辑, Ps_UserAeEidtor
@@ -868,6 +905,7 @@
 				Menu, transformSet, add, Png转Ico,<em_BoBO_PNGToICO>
 				Menu, transformSet, add, DDS转PNG,<em_BoBO_DDSToPNG>
 				Menu, transformSet, add, 中文转拼音,<Tools_ChineseConversionPinyin>
+				
 
 			IniRead, myCompany,config.ini, config, myCompany, 1
 			if myCompany = kuaiyou
@@ -901,6 +939,7 @@
 				Menu,CommanderSet , add, Test,<TcPostMsgTest>
 			Menu, menuTc, Show
 		return 
+
 
 
 
@@ -1371,3 +1410,136 @@ return
     run %A_ScriptDir%\custom\apps\HuntAndPeck\hap.exe /hint
 	return	
 }
+
+
+Sub_MaxRestore:
+	WinGet, Status_minmax ,MinMax,A
+	If (Status_minmax=1){
+		WinRestore A
+	}
+    ; If (Status_minmax=2){
+	; 	GoSub,Sub_MaxRestore
+	; }
+	else{
+		WinMaximize A
+	}
+return
+
+Sub_MaxAllRestore:
+    ifWinExist, ahk_id %FullscreenWindow%
+    {
+        if PMenu                    ; Restore the menu.
+            DllCall("SetMenu", "UInt", FullscreenWindow, "UInt", PMenu)
+        WinSet, Style, +0xC40000    ; Restore WS_CAPTION|WS_SIZEBOX.
+        WinMove,,, PX, PY, PW, PH   ; Restore position and size.
+        FullscreenWindow =
+        return
+    }
+
+    WinGet, Style, Style, A
+    if (Style & 0xC40000) != 0xC40000 ; WS_CAPTION|WS_SIZEBOX
+        return
+
+    FullscreenWindow := WinExist("A")
+    
+    WinGetPos, PX, PY, PW, PH
+    
+    ; Remove WS_CAPTION|WS_SIZEBOX.
+    WinSet, Style, -0xC40000
+    
+    PMenu := DllCall("GetMenu", "UInt", FullscreenWindow)
+    ; Remove the window's menu.
+    if PMenu
+        DllCall("SetMenu", "UInt", FullscreenWindow, "UInt", 0)
+    
+    ; Get the area of whichever monitor the window is on.
+    SysGet, m, Monitor, % ClosestMonitorTo(PX + PW//2, PY + PH//2)
+    
+    ; Size the window to fill the entire screen.
+    WinMove,,, mLeft, mTop, mRight-mLeft, mBottom-mTop
+return
+
+Sub_MaxAllWindows:
+	WinGet, Window_List, List ; Gather a list of running programs
+	Loop, %Window_List%
+	{
+		wid := Window_List%A_Index%
+		WinGetTitle, wid_Title, ahk_id %wid%
+		WinGet, Style, Style, ahk_id %wid%
+		;(WS_CAPTION 0xC00000| WS_SYSMENU 0x80000| WS_MAXIMIZEBOX 0x10000) | WS_SIZEBOX 0x40000
+		If (!(Style & 0xC90000) or !(Style & 0x40000) or (Style & WS_DISABLED) or !(wid_Title)) ; skip unimportant windows ; ! wid_Title or
+			Continue
+		;MsgBox, % (Style & 0x40000)
+		WinGet, es, ExStyle, ahk_id %wid%
+		Parent := Decimal_to_Hex( DllCall( "GetParent", "uint", wid ) )
+		WinGet, Style_parent, Style, ahk_id %Parent%
+		Owner := Decimal_to_Hex( DllCall( "GetWindow", "uint", wid , "uint", "4" ) ) ; GW_OWNER = 4
+		WinGet, Style_Owner, Style, ahk_id %Owner%
+
+		If (((es & WS_EX_TOOLWINDOW)  and !(Parent)) ; filters out program manager, etc
+			or ( !(es & WS_EX_APPWINDOW)
+			and (((Parent) and ((Style_parent & WS_DISABLED) =0)) ; These 2 lines filter out windows that have a parent or owner window that is NOT disabled -
+				or ((Owner) and ((Style_Owner & WS_DISABLED) =0))))) ; NOTE - some windows result in blank value so must test for zero instead of using NOT operator!
+			continue
+		WinGet, Status_minmax ,MinMax,ahk_id %wid%
+		If (Status_minmax!=1) {
+			WinMaximize,ahk_id %wid%
+		}
+		;MsgBox, 4, , Visiting All Windows`n%a_index% of %Window_List%`n`n%wid_Title%`nContinue?
+		;IfMsgBox, NO, break
+	}
+return
+
+; 窗口居中
+<BoBO_CenterWindow>:
+	{
+		WinGetActiveTitle, var_title
+		CenterWindow(var_title)
+		return
+	}
+; 窗口居中	
+<BoBO_TaskSwch>:
+{
+	IniRead, TaskMuEx,config.ini, config, TaskMuEx, 1
+	if TaskMuEx = 1
+	{
+			; run %A_ScriptDir%\custom\apps\TaskSwch\TaskMuEx.exe /n
+		run %A_ScriptDir%\custom\apps\TaskSwch\TaskSwch.exe /t
+		return
+		}
+		else
+		{
+			return
+		}
+	return
+}
+	showTim:
+	{
+		Process, Wait, TIM.exe, 1
+		NewPID := ErrorLevel  ; 由于 ErrorLevel 会经常发生改变, 所以要立即保存这个值.
+		if not NewPID
+		{
+			; 如果没有Tim或没运行保持原有
+			send,#{q}
+			return
+		}
+		if NewPID
+		{
+			if TIM_Swith_var=2 ;
+			TIM_Swith_var=0
+			TIM_Swith_var+=1
+			TIM_var=0
+			if (TIM_Swith_var=1 )
+			{    
+				TrayIcon_Button("TIM.exe", "L")
+				return
+			}
+			if (TIM_Swith_var=2)
+			{
+				send,{Esc}
+				return
+			}
+			return
+			}
+	return
+	}
