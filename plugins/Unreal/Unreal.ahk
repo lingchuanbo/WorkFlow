@@ -7,6 +7,7 @@
 ;normal模式
     vim.SetMode("normal", "Unreal")
     vim.Map("<insert>", "<Unreal_SwithMode>", "Unreal")
+
 ;insert模式
     vim.Comment("<Unreal_Materials_If>", "If_条件表达式")
     vim.Comment("<Unreal_Materials_Multiply>", "Multiply_乘法表达式")
@@ -37,60 +38,62 @@
     vim.Map("=", "<Unreal_屏幕上>", "Unreal")
     vim.Map("-", "<Unreal_屏幕下>", "Unreal")
 
-    vim.Map("<Caps-w>", "<Unreal_上>", "Unreal")
-    vim.Map("<Caps-s>", "<Unreal_下>", "Unreal")
+    ; vim.Map("<Caps-w>", "<Unreal_上>", "Unreal")
+    ; vim.Map("<Caps-s>", "<Unreal_下>", "Unreal")
  
 
-    vim.Map("vi", "<Unreal_Materials_If>", "Unreal")
-    vim.Map("vmu", "<Unreal_Materials_Multiply>", "Unreal")
-    vim.Map("vma", "<Unreal_Materials_Mask>", "Unreal")
-    vim.Map("vvv", "<Unreal_Materials_Constant>", "Unreal")
-    vim.Map("vv1", "<Unreal_Materials_Constant2Vector>", "Unreal")
-    vim.Map("vv2", "<Unreal_Materials_Constant2Vector>", "Unreal")
-    vim.Map("vv3", "<Unreal_Materials_Constant3Vector>", "Unreal")
-    vim.Map("vv4", "<Unreal_Materials_Constant4Vector>", "Unreal")
-    vim.Map("vpo", "<Unreal_Materials_Power>", "Unreal")
-    vim.Map("vpa", "<Unreal_Materials_Panner>", "Unreal")
-    vim.Map("vps1", "<Unreal_Materials_ScalarParameter>", "Unreal")
-    vim.Map("vps4", "<Unreal_Materials_VectorParam>", "Unreal")
-    vim.Map("va", "<Unreal_Materials_Add>", "Unreal")
-    vim.Map("vo", "<Unreal_Materials_OneMinus>", "Unreal")
-    vim.Map("vr", "<Unreal_Materials_ReflectionVector>", "Unreal")
-    vim.Map("vd", "<Unreal_Materials_Divide>", "Unreal")
-    vim.Map("vb", "<Unreal_Materials_BumpOffset>", "Unreal")
-    vim.Map("vl", "<Unreal_Materials_LinearInterpolate>", "Unreal")
-    vim.Map("vt", "<Unreal_Materials_TextureSample>", "Unreal")
-    vim.Map("vu", "<Unreal_Materials_TextureCoordinate>", "Unreal")
-    vim.Map("<Alt>", "<Unreal_Materials_Tab>", "Unreal")
-    vim.Map("z", "<Unreal_FindObject>", "Unreal")
-    vim.Map("c", "<Unreal_吸附>", "Unreal")
+    vim.Map("<SP-v>i", "<Unreal_Materials_If>", "Unreal")
+    vim.Map("<SP-v>mu", "<Unreal_Materials_Multiply>", "Unreal")
+    vim.Map("<SP-v>ma", "<Unreal_Materials_Mask>", "Unreal")
+    vim.Map("<SP-v>vv", "<Unreal_Materials_Constant>", "Unreal")
+    vim.Map("<SP-v>v1", "<Unreal_Materials_Constant2Vector>", "Unreal")
+    vim.Map("<SP-v>v2", "<Unreal_Materials_Constant2Vector>", "Unreal")
+    vim.Map("<SP-v>v3", "<Unreal_Materials_Constant3Vector>", "Unreal")
+    vim.Map("<SP-v>v4", "<Unreal_Materials_Constant4Vector>", "Unreal")
+    vim.Map("<SP-v>po", "<Unreal_Materials_Power>", "Unreal")
+    vim.Map("<SP-v>pa", "<Unreal_Materials_Panner>", "Unreal")
+    vim.Map("<SP-v>ps1", "<Unreal_Materials_ScalarParameter>", "Unreal")
+    vim.Map("<SP-v>ps4", "<Unreal_Materials_VectorParam>", "Unreal")
+    vim.Map("<SP-v>a", "<Unreal_Materials_Add>", "Unreal")
+    vim.Map("<SP-v>o", "<Unreal_Materials_OneMinus>", "Unreal")
+    vim.Map("<SP-v>r", "<Unreal_Materials_ReflectionVector>", "Unreal")
+    vim.Map("<SP-v>d", "<Unreal_Materials_Divide>", "Unreal")
+    vim.Map("<SP-v>b", "<Unreal_Materials_BumpOffset>", "Unreal")
+    vim.Map("<SP-v>l", "<Unreal_Materials_LinearInterpolate>", "Unreal")
+    vim.Map("<SP-v>t", "<Unreal_Materials_TextureSample>", "Unreal")
+    vim.Map("<SP-v>u", "<Unreal_Materials_TextureCoordinate>", "Unreal")
+
+    ; vim.Map("s", "<Unreal_RButton>", "Unreal")
+  
+
+    ; vim.Map("<a-c>", "<Unreal_吸附>", "Unreal")
 
 
+
+
+    vim.Map("<a-h>", "<Unreal_物件_显示>", "Unreal")
+    ; vim.Map("d", "<Unreal_快速复制选中>", "Unreal")
+    ; vim.Map("w", "<Unreal_视窗_切换显示>", "Unreal")
+
+    vim.Map("<LB-z>", "<Unreal_FindObject>", "Unreal")
 
     vim.Map("<F4>", "<Unreal_视图>", "Unreal")
     vim.Map("<LB-F4>", "<Unreal_视图_默认>", "Unreal")
-    vim.Map("h", "<Unreal_物件_显示>", "Unreal")
-    vim.Map("d", "<Unreal_快速复制选中>", "Unreal")
-    vim.Map("w", "<Unreal_视窗_切换显示>", "Unreal")
+    vim.map("<Space>", "<Unreal_Space>", "Unreal")
+    vim.Map("<SP-q>1", "<Unreal_视图_透视>", "Unreal")
+    vim.Map("<SP-q>2", "<Unreal_视图_顶视图>", "Unreal")
+    vim.Map("<SP-q>3", "<Unreal_视图_左视图>", "Unreal")
+    vim.Map("<SP-q>4", "<Unreal_视图_前视图>", "Unreal")
+    vim.Map("<SP-q>5", "<Unreal_视图_后视图>", "Unreal")
 
-    
+    vim.Map("<a-q>", "<Unreal_RButton>", "Unreal")
 
-    vim.Map("p", "<Unreal_视图_透视>", "Unreal")
-    vim.Map("t", "<Unreal_视图_顶视图>", "Unreal")
-    ; vim.Map("p", "<Unreal_视图_底视图>", "AfterEffects")
-    vim.Map("l", "<Unreal_视图_左视图>", "Unreal")
-    ; vim.Map("p", "<Unreal_视图_右视图>", "AfterEffects")
-    vim.Map("f", "<Unreal_视图_前视图>", "Unreal")
-    vim.Map("b", "<Unreal_视图_后视图>", "Unreal")
-
-
-
-
-    vim.BeforeActionDo("Unreal_CheckMode", "Unreal") ; by Array
-
+    vim.BeforeActionDo("Unrea ml_CheckMode", "Unreal") ; by Array
+    #Include %A_ScriptDir%\plugins\Unreal\UnrealPlus.ahk
     ; vim.Map("<Caps-w>", "<Unreal_RButton>", "Unreal")
     ; vim.Map("<Caps-s>", "<Unreal_移动下>", "Unreal")
-
+    ;载入增强按键plugins
+    
 
     ;载入按键
     ; #Include %A_ScriptDir%\plugins\Unreal\UnrealKey.ahk
@@ -105,10 +108,11 @@ Unreal_CheckMode()
         {
             return True 
         }
+        
     If (A_Cursor=="IBeam") ;工字光标
         {
             ; Menu, Tray, Icon, %A_ScriptDir%\workflow_icon_normal.png ;切换到默认模式
-            return True
+            return False
         }
 }
 
@@ -154,6 +158,9 @@ return
  MsgBox, "Hello"
 return
 
+<Unreal_Space>:
+Send, {Space}
+Return
 ; filename = "F:/BoBOAHK/WorkFlow/custom/Unreal/test.py"
 ; exec(compile(open(filename).read(), filename, 'exec'))
 
@@ -257,9 +264,10 @@ Return
 Return
 
 
-<Unreal_Materials_Tab>:
-    Send, {Click, up, right}
+<Unreal_RButton>:
+    ; Send, {Click, up, right}
     ; MouseMove, -10,  0,, R
+    Send, {RButton}
 Return
 
 Unreal_Materials(Text){

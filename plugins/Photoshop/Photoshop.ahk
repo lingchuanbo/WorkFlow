@@ -49,6 +49,11 @@ Photoshop:
     vim.Map("0", "<PS_Duplicate_图层中心>", "Photoshop")
     vim.Map("1", "<PS_Brush_Small>", "Photoshop")
     vim.Map("2", "<PS_Brush_Big>", "Photoshop")
+
+    vim.Map("3", "<PS_RButton>", "Photoshop")
+    vim.Map("4", "<PS_Delete>", "Photoshop")
+
+
     vim.Map("-", "<PS_Screen_Small>", "Photoshop")
     vim.Map("=", "<PS_Screen_Big>", "Photoshop")
 
@@ -71,35 +76,36 @@ Photoshop:
     vim.Map("<F8>4", "<PS_Script_TransformEach>", "Photoshop") 
 
     vim.map("?","<ShowHelp>","Photoshop")
-
-    vim.Map("/u", "<PS_AutoUpdate>", "Photoshop")
+    ; vim.Map("/u", "<PS_AutoUpdate>", "Photoshop")
     
-
-    ; vim.Map("<F1>", "<PS-Test>", "Photoshop")
     vim.Map("<LB-d>", "<PS_向下合并>", "Photoshop")
     vim.Map("<LB-e>", "<PS_多边形选区>", "Photoshop")
 
     vim.Map("<SP-d>", "<PS_Delete>", "AfterEffects")
     vim.Map("<Space>", "<PS_Space>", "Photoshop")
 
-    vim.BeforeActionDo("Photoshop_CheckMode", "Photoshop") ; by Array
+    vim.BeforeActionDo("Photoshop_CheckMode", "Photoshop") ; 
+
 return
+
 ; 对符合条件的控件使用insert模式，而不是normal模式
 Photoshop_CheckMode()
 {
     ControlGetFocus, ctrl, A
     PixelGetColor, psinputt, 13, 473 ; By 天甜
     ;匹配颜色2019
-    if ((psinputt = 0x1f1f1f) or (psinputt = 0x383838) or (psinputt = 0x808080) or (psinputt = 0xbfbfbf) or WinExist("ahk_class #32770")) 	;
+    if ((psinputt = 0x1f1f1f) or (psinputt = 0x383838) or (psinputt = 0x808080) or (psinputt = 0xbfbfbf)) 	;
 		{
 		    return true
 		}
     if RegExMatch(ctrl, "i)Edit")
     {
+
         return True
     }
     if RegExMatch(ctrl, "i)Edit1")
     {
+        
         return True
     }
     else
@@ -625,28 +631,9 @@ return
 
 
 <PS_Duplicate_X>:
- 
-    DoubleClickTime := DllCall("GetDoubleClickTime") ; in milliseconds
-    ; Wait for 'd' to be released
-    KeyWait, x
-    if (A_TimeSinceThisHotkey > DoubleClickTime) {
-        msgbox,未绑定
-        return
-    }
-    ; Wait for 'd' to be pressed down again (option "d")
-    ; But timeout after T0.5 seconds (If DoubleClickTime is 500)
-    KeyWait, x, % "d T"DoubleClickTime/1000
-    If ! Errorlevel
-    {
-        send ^{w}
-        return
-    }
-    else
-    {
-        send {x}
-        return
-    }
-
+	GV_KeyClickAction1 := "SendInput,{x}"
+	GV_KeyClickAction2 := "SendInput,^{w}"
+	GoSub,Sub_KeyClick
 return
 
 
@@ -961,6 +948,12 @@ return
 }
 
 
+<PS_RButton>:
+{
+    ; 右键
+    Send,{RButton}
+    return
+}
 
 <PS_加暗加亮>:
 {

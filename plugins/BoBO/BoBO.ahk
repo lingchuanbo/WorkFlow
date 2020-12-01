@@ -845,10 +845,7 @@
 			` & 3:: Gosub, <PS_明颜色>
 			` & 4:: Gosub, <PS_暗颜色>
 			` & 5:: Gosub, <PS_加暗加亮>
-			3::SendInput,{RButton}
-			
 
-			4::SendInput,{Delete}
 
 			Space & WheelDown::send [		;缩小画笔
 			Space & WheelUp::send ]			;放大画笔
@@ -872,6 +869,16 @@
 			return
 		}
 		#If
+	;Unreal Engine
+		#If WinActive("ahk_exe UE4Editor.exe")
+		{
+			; s::
+			; 	GV_KeyClickAction1 := "SendInput,{s}"
+			; 	GV_KeyClickAction2 := "GoSub,<Unreal_RButton>"
+			; 	GoSub,Sub_KeyClick
+			; Return
+		}
+		#If 
 
 	menuPsAlt:
 		menu, menuPsAlt, add,用AE编辑, Ps_UserAeEidtor
