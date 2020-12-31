@@ -685,7 +685,12 @@
 		; 	GV_KeyClickAction2 := "TcSendPos(907)"
 		; 	GoSub,Sub_KeyClick
 		; return
-		F7::TcSendPos(907) ;新建文件夹
+		; 新建文件夹
+		F7::
+			GV_KeyClickAction1 := "TcSendPos,907"
+			GV_KeyClickAction2 := "TcSendPos,2931"
+			GoSub,Sub_KeyClick
+		return
 		F8::
 
 		;按住Tab 鼠标左键 交换两侧
