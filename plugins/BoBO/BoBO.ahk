@@ -473,7 +473,16 @@
 			return
 		}
 		#If
-
+	; 文本工具
+		#If WinActive("ahk_exe notepad.exe")
+		{
+			q::
+				GV_KeyClickAction1 := "send,{q}"
+				GV_KeyClickAction2 := "send,!{F4}"
+				GoSub,Sub_KeyClick
+			return
+		}
+		#If
 ; ##########程序便捷.浏览器########## 谷歌内核浏览器一般都支持 火狐没测
 	#If WinActive("ahk_group group_browser")
 	{

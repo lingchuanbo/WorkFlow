@@ -89,7 +89,6 @@
     vim.Map("<a-q>", "<Unreal_RButton>", "Unreal")
 
     vim.BeforeActionDo("Unrea ml_CheckMode", "Unreal") ; by Array
-    #Include %A_ScriptDir%\plugins\Unreal\UnrealPlus.ahk
     ; vim.Map("<Caps-w>", "<Unreal_RButton>", "Unreal")
     ; vim.Map("<Caps-s>", "<Unreal_移动下>", "Unreal")
     ;载入增强按键plugins

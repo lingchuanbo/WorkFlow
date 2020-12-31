@@ -30,11 +30,11 @@ clipboard = ffmpeg -i input.m4a -vn -acodec copy output.aac
 send,^v
 return
 
-:*:ggg::
-;clipboard = Dan Ebberts ;可任意更改剪切板内容
-clipboard = 1236547890 ;NVIDIA密码
-send,^v
-return
+; :*:ggg::
+; ;clipboard = Dan Ebberts ;可任意更改剪切板内容
+; clipboard = 1236547890 ;NVIDIA密码
+; send,^v
+; return
 
 :*:ddv:: ;c语言编程通用代码段
 clipboard=#include <stdio.h>`n`nint main()`n{`n	return 0;`n}
@@ -73,23 +73,28 @@ clipboard = Niagara
 send,^v
 return
 
-:*:ue:: 
+:*:unreal:: 
 clipboard = Unreal Engine
 send,^v
 return
 
-:*:un:: 
+:*:uni:: 
 clipboard = Unity
 send,^v
 return
 
-:*:loo::
-clipboard = LookAE
-send,^v
-return
+; :*:loo::
+; clipboard = LookAE
+; send,^v
+; return
 
 :*:bili::
 clipboard = bilibili
+send,^v
+return
+
+:*:ggg::
+clipboard = google.com
 send,^v
 return
 
@@ -162,7 +167,7 @@ send,{f4} ;切换到英文
 return
 
 :*:win::
-clipboard = windows
+clipboard = Windows
 send,^v
 return
 
@@ -187,20 +192,6 @@ sleep,50
 send,{f4} ;切换到英文
 return
 
-:*:gra::
-clipboard = film grain
-send,^v
-sleep,50
-send,{f4} ;切换到英文
-return
-
-:*:lig::
-clipboard = key light
-send,^v
-sleep,50
-send,{f4} ;切换到英文
-return
-
 :*:mavic::
 clipboard = 大疆 Mavic Mini
 send,^v
@@ -214,7 +205,7 @@ send,^v
 sleep,50
 return
 
-:*:gml::
+:*:gmail::
 clipboard = lingchuanbo@gmail.com
 send,^v
 sleep,50

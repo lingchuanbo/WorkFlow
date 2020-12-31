@@ -151,6 +151,7 @@ element:=Array[index]
 #Include %A_ScriptDir%\lib\WinHttpRequest.ahk
 #Include %A_ScriptDir%\lib\NvAPI.ahk
 #Include %A_ScriptDir%\lib\TrayIcon.ahk
+#Include %A_ScriptDir%\lib\OnWin.ahk
 ;用户自定义配置yy
 #Include %A_ScriptDir%\custom\custom.ahk
 
