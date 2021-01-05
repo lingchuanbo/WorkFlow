@@ -292,6 +292,17 @@
 	CapsLock & q::SendInput,{Blind}{PgUp}
 	CapsLock & f::SendInput,{Blind}{PgDn}
 
+
+	;显示 复制和剪切的内容
+		~^x::
+		~^c::		;~ 表示次热键并不屏蔽按键原有功能
+			Sleep, 100	;等待0.1s 强制机械等待剪贴板出现内容 
+			;clip:=clipboard
+			StringLeft,clipboard_left,clipboard,500
+			Tooltip,已复制：%clipboard_left%		;在鼠标右侧显示clip(clipboard内容)
+			Sleep,800
+			Tooltip,
+		Return
 ; ################# Tab相关 #################
 	#If GV_ToggleTabKeys=1
 		Tab & s::SendInput,{Blind}{Down}
@@ -674,9 +685,9 @@
 			Send,^+{w}
 		return
 
-		c::
+		~LCtrl & c::
 			GV_KeyClickAction1 := "Send,{c}"
-			GV_KeyClickAction2 := "Gosub,<TcCopyFilePath>"
+			GV_KeyClickAction2 := "Gosub,<cm_CopyFullNamesToClip>"
 			GoSub,Sub_KeyClick
 		return
 			;智能对话框跳转 f
@@ -910,10 +921,6 @@
 		MsgBox, "有需求在写"
 	return
 
-
-
-
-
 ; ##########程序便捷.菜单##########
 	; 菜单
 		menuTc:
@@ -958,13 +965,17 @@
 			Menu, menuTc, add,命令行, :CommanderSet
 				Menu,CommanderSet , add, AE: 批渲染,<em_BoBO_AeRender>
 				Menu,CommanderSet , add, Test,<TcPostMsgTest>
+
+			Menu, menuTc, add,&S 搜索, :SearchSet
+				Menu,SearchSet , add, Everything搜索当前目录,<em_Search_everything>
+				Menu,SearchSet , add, Everything搜索文件名,<em_Search_SearchTCFileName>
+				Menu,SearchSet , add, Google搜索文件名,<em_Search_GoogleName>
+				Menu,SearchSet , add, Google翻译文件名,<em_Search_GoogleTranslator>
+				Menu,SearchSet , add, 百度-搜索文件名,<em_Search_Baidu>
+				Menu,SearchSet , add, 多吉-搜索文件名,<em_Search_Doge>
+				Menu,SearchSet , add, 萌搜-搜索文件名,<em_Search_Mengso>
 			Menu, menuTc, Show
 		return 
-
-
-
-
-
 
 mBase64En:
     keyword=%Clipboard%

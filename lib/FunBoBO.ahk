@@ -1037,4 +1037,16 @@ CurrentBrowserOpenURL(url)
     Clipboard=  ;清理
     return
 }
-
+; 如果没打开则打开，如果打开了就切换到该程序。
+; https://blog.csdn.net/qq_35208390/article/details/107372727
+; 用法 RunOrActivateProgram("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
+RunOrActivateProgram(Program, WorkingDir="", WindowSize=""){ 
+    SplitPath Program, ExeFile 
+    Process, Exist, %ExeFile% 
+    PID = %ErrorLevel% 
+    if (PID = 0) { 
+    Run, %Program%, %WorkingDir%, %WindowSize% 
+    }else{ 
+    WinActivate, ahk_pid %PID% 
+    } 
+}

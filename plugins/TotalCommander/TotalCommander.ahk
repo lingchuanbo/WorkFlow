@@ -3454,6 +3454,10 @@ return
 ;<cm_CopyFullNamesToClip>: >>复制文件名及完整路径{{{2
 <cm_CopyFullNamesToClip>:
     SendPos(2018)
+    Sleep,10
+    Tooltip,已复制当前路径：%Clipboard%		;在鼠标右侧显示clip(clipboard内容)
+    Sleep,800
+    Tooltip,
 return
 ;<cm_CopyNetNamesToClip>: >>复制文件名及网络路径{{{2
 <cm_CopyNetNamesToClip>:
@@ -4739,6 +4743,27 @@ return
 <em_BoBO_PackH5_hp>:
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_PackH5_hp`)"
 return
+<em_Search_everything>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_Everything-SearchTCCurrentPath`)"
+return
+<em_Search_SearchTCFileName>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_Everything-SearchTCFileName`)"
+return
+<em_Search_GoogleName>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_Search-Google`)"
+return
+<em_Search_GoogleTranslator>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_Translator-Google`)"
+return
+<em_Search_Baidu>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_Search-Baidu`)"
+return
+<em_Search_Doge>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_Search-Doge`)"
+return
+<em_Search_Mengso>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_Search-Mengso`)"
+return
 ;调用Everything搜索tc当前窗口路径
 <TC_Everyting>:
 	; SendMessage 1074, 21, 0, , ahk_class TTOTAL_CMD
@@ -4769,7 +4794,7 @@ return
 }
 ; 拷贝路径
 <TcCopyFilePath>:
- Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CopyFullNamesToClip`)"
+Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CopyFullNamesToClip`)"
 return
 ; 访问历史记录_Mod BoBO From capsEZ
 

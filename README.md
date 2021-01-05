@@ -7,16 +7,21 @@
 ____________________________________________________
 ### **什么是[WorkFLow？](https://github.com/lingchuanbo/WorkFlow/releases)**
 
-WorkFLow以Array&kawvin大神版的[VimDesktop](https://github.com/linxinhong/VimDesktop)为母版进行二次开发，主要面向图像图像软件进行编写.并集成一些功能性脚本！
+WorkFLow以Array&kawvin大神版的[VimDesktop](https://github.com/linxinhong/VimDesktop)为母版进行二次开发，主要面向图像图像软件进行编写.并集成一些功能性脚本满足自用！
 
-不定期更新，目前以功能优先，自己便捷使用！
+不定期更新，目前以功能优先，自己便捷使用，魔改有毒，斟酌使用！
 
 个别源码来自Array & kawvin & EZ & liuyukuan!表示感谢！感谢！感谢！
 
-## **最新版本为3.6.7**
+## **最新版本为2021.1.1**
 
-目前已支持 **AfterEffect|Photoshop|3DsMax|Unity(未测试)**
+目前已支持 **AfterEffect|Photoshop|3DsMax|UE4**
 
+2021-01-06
+----------------------------
+1.对TC进一步优化双击F为Everything搜索当前目录 Shift+右键 新增搜索 Ctrl+c+c复制为文件路径
+2.全局复制提示
+    
 2020-07-20
 ----------------------------
 TC
