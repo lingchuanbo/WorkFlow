@@ -884,6 +884,15 @@ KeyClickAction(act){
 	; 	Run, "%A_ScriptDir%\tools\TotalCMD\Tools\TCFS2\TCFS2.exe" /ef "tem(%Number%)"
 	; 	return
 	}
+	else If RegExMatch(act,"i)^(TcCMD,)",m) {
+		CommandName:=% substr(act,strlen(m1)+1)
+		Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef %CommandName%
+		; PostMessage 1075, %Number%, 0, , AHK_CLASS TTOTAL_CMD
+	; else If RegExMatch(act,"i)^(TcSendCommand,)",m) {
+	; 	Number:=% substr(act,strlen(m1)+1)
+	; 	Run, "%A_ScriptDir%\tools\TotalCMD\Tools\TCFS2\TCFS2.exe" /ef "tem(%Number%)"
+	; 	return
+	}
 	else If RegExMatch(act,"i)^(OpenWebURL,)",m) {
 		Clipboard = % substr(act,strlen(m1)+1) ; <-- place url here.
 		; MsgBox,%Clipboard%
@@ -1049,4 +1058,14 @@ RunOrActivateProgram(Program, WorkingDir="", WindowSize=""){
     }else{ 
     WinActivate, ahk_pid %PID% 
     } 
+}
+; TC调用命令 命令名字
+; 用法 TcCMD("tem(`cm_MkDir`)")
+TcCMD(CommandName){
+	Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef %CommandName%
+}
+; TC调用命令号码
+SendPos(Number)
+{
+    PostMessage 1075, %Number%, 0, , AHK_CLASS TTOTAL_CMD
 }

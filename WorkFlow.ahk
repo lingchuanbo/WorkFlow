@@ -82,8 +82,10 @@ global zParam
 
 ; 程序路径
 IniRead,TCExePath,config.ini,TotalCommander_Config,TCPath
+IniRead,TCExePath,config.ini,TotalCommander_Config,TCDirPath
 IniRead,AeExePath,config.ini,BOBOPath_Config,AEPath
 global TCExePath := TCExePath
+global TCDirPath := TCDirPath
 global AeExePath := AeExePath
 
 ;颜色

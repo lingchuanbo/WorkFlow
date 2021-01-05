@@ -440,10 +440,6 @@ ControlSend, SysListView321,^z, ahk_class Progman, FolderView
 	WinSet, Style, ^0xC40000 , ahk_class TTOTAL_CMD
 	SendPos(540)
 return
-;SendPos(Number)
-;{
-;    PostMessage 1075, %Number%, 0, , AHK_CLASS TTOTAL_CMD
-;}
 
 ;文件解锁
 <TC_FileUnlock>:
@@ -2609,10 +2605,7 @@ TCCOMMAND:
     vim.Comment("<cm_LoadSelOnDemandFields>", "仅选中的文件按需加载备注")
     vim.Comment("<cm_ContentStopLoadFields>", "停止后台加载备注")
 return
-SendPos(Number)
-{
-    PostMessage 1075, %Number%, 0, , AHK_CLASS TTOTAL_CMD
-}
+
 
 ;<cm_SrcComments>: >>来源窗口: 显示文件备注{{{2
 <cm_SrcComments>:
