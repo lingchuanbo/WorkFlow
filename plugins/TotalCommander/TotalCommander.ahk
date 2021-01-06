@@ -4715,7 +4715,8 @@ return
 <TC_ShowMainMenu>:
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_ShowMainMenu`)"
 return
-; TC图片AE编辑
+; TC图片AE编辑r
+
 <menuTcToAe>:
 Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CopyFullNamesToClip`)"
 ; msgbox,%clipboard%

@@ -1059,7 +1059,7 @@ RunOrActivateProgram(Program, WorkingDir="", WindowSize=""){
     WinActivate, ahk_pid %PID% 
     } 
 }
-; TC调用命令 命令名字
+; TC调用命令名
 ; 用法 TcCMD("tem(`cm_MkDir`)")
 TcCMD(CommandName){
 	Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef %CommandName%
@@ -1069,3 +1069,8 @@ SendPos(Number)
 {
     PostMessage 1075, %Number%, 0, , AHK_CLASS TTOTAL_CMD
 }
+
+
+
+
+   

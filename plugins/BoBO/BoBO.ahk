@@ -702,9 +702,9 @@
 			GV_KeyClickAction2 := "TcSendPos,2931"
 			GoSub,Sub_KeyClick
 		return
-		F8::
-			TcCMD("tem(`cm_MkDir`)")
-		return
+		; F8::
+		; 	TcCMD("tem(`cm_MkDir`)")
+		; return
 		;按住Tab 鼠标左键 交换两侧
 		Tab & LButton::
 			Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_Exchange`)"

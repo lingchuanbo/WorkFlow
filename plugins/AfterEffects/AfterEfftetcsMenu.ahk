@@ -32,11 +32,11 @@ function_menuAfterEffect:
     ` & 2::send,{n}
     ` & 3::send, ^+x
 
-    `::
-    	GV_KeyClickAction1 := "Gosub,<Ae_QuickMenu>"
-		GV_KeyClickAction2 := "Send,{~`}"
-		GoSub,Sub_KeyClick
-    return
+    ; `::
+    ; 	GV_KeyClickAction1 := "Gosub,<Ae_QuickMenu>"
+	; 	GV_KeyClickAction2 := "Send,{~`}"
+	; 	GoSub,Sub_KeyClick
+    ; return
     ; Alt & `::send,{`}
 }
 
