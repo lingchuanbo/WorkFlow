@@ -686,7 +686,7 @@
 		return
 
 		~LCtrl & c::
-			GV_KeyClickAction1 := "Send,{c}"
+			GV_KeyClickAction1 := "Send,^{c}"
 			GV_KeyClickAction2 := "Gosub,<cm_CopyFullNamesToClip>"
 			GoSub,Sub_KeyClick
 		return
