@@ -241,3 +241,81 @@ return
 ;         Send, #{Space}
 ;     }
 ; }
+:*:111:: ;无损删除当前行
+send,{end}{shiftdown}{home}{shiftup}{delete}{delete}
+return
+
+:*:222:: ;无损删除当前向下2行
+send,{end}{shiftdown}{home}{shiftup}{delete}{delete}
+send,{end}{shiftdown}{home}{shiftup}{delete}{delete}
+return
+
+:*:333:: ;无损删除当前向下3行
+send,{end}{shiftdown}{home}{shiftup}{delete}{delete}
+send,{end}{shiftdown}{home}{shiftup}{delete}{delete}
+send,{end}{shiftdown}{home}{shiftup}{delete}{delete}
+return
+
+:*:444:: ;无损删除当前向下4行
+send,{end}{shiftdown}{home}{shiftup}{delete}{delete}
+send,{end}{shiftdown}{home}{shiftup}{delete}{delete}
+send,{end}{shiftdown}{home}{shiftup}{delete}{delete}
+send,{end}{shiftdown}{home}{shiftup}{delete}{delete}
+return
+
+:*:555:: ;无损删除当前向下5行
+send,{end}{shiftdown}{home}{shiftup}{delete}{delete}
+send,{end}{shiftdown}{home}{shiftup}{delete}{delete}
+send,{end}{shiftdown}{home}{shiftup}{delete}{delete}
+send,{end}{shiftdown}{home}{shiftup}{delete}{delete}
+send,{end}{shiftdown}{home}{shiftup}{delete}{delete}
+return
+
+:*:888:: ;复制当前行到剪切板
+send,{home}{shiftdown}{end}{shiftup}
+send,^c
+clipboard = %clipboard%   ; 把任何复制的文件, HTML 或其他格式的文本转换为纯文本
+send, {end}
+return
+
+:*:999:: ;粘贴剪切板内容到当前行
+clipboard = %clipboard%   ; 把任何复制的文件, HTML 或其他格式的文本转换为纯文本
+send,{home}{shiftdown}{end}{shiftup}
+send,^v
+send, {end}
+return
+
+^+1::
+send,+{home} ;选中并复制当前光标位置到行首
+send,^c
+clipboard = %clipboard%   ; 把任何复制的文件, HTML 或其他格式的文本转换为纯文本
+send, {end}
+return
+
+^+2::
+send,+{end} ;选中并复制当前光标位置到行末
+send,^c
+clipboard = %clipboard%   ; 把任何复制的文件, HTML 或其他格式的文本转换为纯文本
+send, {end}
+return
+
+^+3::
+clipboard = %clipboard%   ; 把任何复制的文件, HTML 或其他格式的文本转换为纯文本
+send,+{home} ;选中并粘贴当前光标位置到行首
+send,^v
+return
+
+^+4::
+clipboard = %clipboard%   ; 把任何复制的文件, HTML 或其他格式的文本转换为纯文本
+send,+{end} ;选中并粘贴当前光标位置到行末
+send,^v
+send, {end}
+return
+
+^+5:: ;删除光标到行首的内容
+send,+{home}{delete}
+return
+
+^+6:: ;删除光标到行末的内容
+send,+{end}{delete}
+return
