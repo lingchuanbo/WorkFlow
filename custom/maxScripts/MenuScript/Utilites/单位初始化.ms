@@ -6,6 +6,8 @@ units.SystemType = #inches
 
 units.SystemScale = 1 
 
+backgroundColor = color 0 0 0
+
 SetGridSpacing(10)  
 
 -- Example taken from reference

@@ -69,9 +69,10 @@ rollout FumeFXLightArray "FumeFXLightArray " width:200 height:250
 				RGBLights[i].baseobject.hotspot = 50
 				RGBLights[i].baseobject.castshadows = on
 				RGBLights[i].baseobject.shadowmultiplier = 3
+				RGBLights[i].baseobject.atmosShadows = on
+				RGBLights[i].baseobject.showCone = on
+				RGBLights[i].baseobject.overshoot = on
 				RGBLights[i].shadowGenerator = raytraceShadow()	
-				
-				
 				
 			)
 			else
@@ -83,11 +84,12 @@ rollout FumeFXLightArray "FumeFXLightArray " width:200 height:250
 				RGBLights[i].baseobject.falloff = 80
 				RGBLights[i].baseobject.hotspot = 50
 				RGBLights[i].baseobject.castshadows = on
+				RGBLights[i].baseobject.atmosShadows = on
+				RGBLights[i].baseobject.showCone = on
+				RGBLights[i].baseobject.overshoot = on
 				RGBLights[i].baseobject.shadowmultiplier = 3
 				RGBLights[i].shadowGenerator = vrayShadow()
 						
-				
-				
 			)
 		
 		
@@ -171,6 +173,9 @@ for i = 1 to rgbLights.count do
 				RGBLights[i].baseobject.falloff = 80
 				RGBLights[i].baseobject.hotspot = 50
 				RGBLights[i].baseobject.castshadows = on
+				RGBLights[i].baseobject.atmosShadows = on
+				RGBLights[i].baseobject.showCone = on
+				RGBLights[i].baseobject.overshoot = on
 				RGBLights[i].baseobject.shadowmultiplier = 3
 				RGBLights[i].shadowGenerator = raytraceShadow()	
 				
@@ -184,6 +189,9 @@ for i = 1 to rgbLights.count do
 				RGBLights[i].baseobject.falloff = 80
 				RGBLights[i].baseobject.hotspot = 50
 				RGBLights[i].baseobject.castshadows = on
+				RGBLights[i].baseobject.atmosShadows = on
+				RGBLights[i].baseobject.showCone = on
+				RGBLights[i].baseobject.overshoot = on
 				RGBLights[i].baseobject.shadowmultiplier = 3
 				RGBLights[i].shadowGenerator = vrayShadow()
 			)
