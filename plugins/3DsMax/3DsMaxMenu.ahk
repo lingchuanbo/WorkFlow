@@ -5,7 +5,47 @@
 	; ~LButton & RButton::send ^w
 	return
 }
-
+#If WinActive("ahk_exe maya.exe")
+{
+	~Alt & MButton::
+	send, {alt down}{lbutton down}
+	keywait, MButton
+	send, {alt up}{lbutton up}
+	return
+	MButton::
+	send, {alt down}{mbutton down}
+	keywait, MButton
+	send, {alt up}{mbutton up}
+	return
+	~Alt & LButton::
+		send, {mbutton down}
+		keywait, LButton
+		send, {mbutton up}
+	return
+	; https://cveld.net/?p=550
+	;  ~S &amp; RButton::
+	; send, {alt down}{Lbutton down}
+	; keywait, RButton
+	; send, {alt up}{Lbutton up}
+	; return
+	; ~S &amp; LButton::
+	; send, {alt down}{Mbutton down}
+	; keywait, LButton
+	; send, {alt up}{Mbutton up}
+	; return
+	; ~S &amp; MButton::
+	; send, {alt down}{Rbutton down}
+	; keywait, MButton
+	; send, {alt up}{Rbutton up}
+	; return
+	
+	; MButton::
+	; send, {alt down}{mbutton down}
+	; keywait, MButton
+	; send, {alt up}{mbutton up}
+	; return
+ 
+}
 menuDSMAX:
 	menu, menu3DsMax, add, 3DsMax脚本菜单(%_Author%), WHATSUPMAX
 	dirMenu0=%A_ScriptDir%\custom\maxScripts\MenuScript

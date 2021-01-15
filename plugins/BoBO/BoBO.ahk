@@ -681,6 +681,13 @@
 			GV_KeyClickAction2 := "Send,^{w}"
 			GoSub,Sub_KeyClick
 		return
+
+		q::
+			GV_KeyClickAction1 := "Send,{q}"
+			GV_KeyClickAction2 := "TcCMD,tem(`cm_GoToParent`)"
+			GoSub,Sub_KeyClick
+		return
+
 		~LButton & x::
 			Send,^+{w}
 		return
@@ -702,17 +709,25 @@
 			GV_KeyClickAction2 := "TcSendPos,2931"
 			GoSub,Sub_KeyClick
 		return
-		; F8::
+		F8::
+			GV_KeyClickAction1 := "Gosub,<TcCountDirContent>"
+			GV_KeyClickAction2 := "Gosub,<cm_DirBranch>"
+			GoSub,Sub_KeyClick
+		return
+		~LButton & F8::
+			TcCMD("tem(`cm_DirBranchSel`)")
+		return
 		; 	TcCMD("tem(`cm_MkDir`)")
 		; return
 		;按住Tab 鼠标左键 交换两侧
 		Tab & LButton::
 			Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_Exchange`)"
 		return
-			
+		
 		~Ctrl & LButton::
 			send,^{Tab}
 		return
+
 		; ~Shift & LButton::
 		; 	send,^+{Tab}
 		; return
@@ -928,11 +943,13 @@
 			Menu, menuTc, add,新建,:createDir
 				Menu, createDir, add,新建文件夹,<Tools_MkDir>
 				Menu, createDir, add,新建文件夹_日期,<Tools_NewFilesDate>
+				Menu, createDir, add,计算文件大小,<TcCountDirContent>
 
 			Menu, menuTc, add,转换, :transformSet
 				Menu, transformSet, add, Png转Gif,<em_BoBO_PNGToGIF>
 				Menu, transformSet, add, Png转Ico,<em_BoBO_PNGToICO>
 				Menu, transformSet, add, DDS转PNG,<em_BoBO_DDSToPNG>
+				Menu, transformSet, add, 合并图片为PDF,<em_Magic_MergeJPG2PDF>
 				Menu, transformSet, add, 中文转拼音,<Tools_ChineseConversionPinyin>
 				
 
@@ -1269,6 +1286,7 @@ Sub_SendTcCurPath2Diag:
 
 	;再发送剪贴板路径到控件
 	WinActive("ahk_group GroupDiagJump")
+	sleep 10
 	ControlFocus, Edit1, A
 	send,{Backspace}
 	sleep 100
@@ -1578,42 +1596,51 @@ return
 	return
 	}
 
-IfNoteP_Active:
-If (note_hwnd := WinActive("ahk_group GroupDiagJump")) {
-	SetTimer, %A_ThisLabel%, Off
-	WinGetActiveStats, nTitle, N_W, N_H, N_X, N_Y
-	Gui_Show(N_W+N_X, N_H+N_Y-100)
-	SetTimer, IfNoteP_Move, 100
-}
-Return
+; IfNoteP_Active:
+; If (note_hwnd := WinActive("ahk_group GroupDiagJump")) {
+; 	SetTimer, %A_ThisLabel%, Off
+; 	WinGetActiveStats, nTitle, N_W, N_H, N_X, N_Y
+; 	Gui_Show(N_W+N_X-10, N_H+N_Y-100)
+; 	SetTimer, IfNoteP_Move, 100
+; }
+; Return
 
-IfNoteP_Move:
-If !(note_hwnd := WinActive("ahk_group GroupDiagJump")) {
-	SetTimer, %A_ThisLabel%, Off
-	Gui_Show("hide")
-	SetTimer, IfNoteP_Active, 100
-	Return
-}
+; IfNoteP_Move:
+; If !(note_hwnd := WinActive("ahk_group GroupDiagJump")) {
+; 	SetTimer, %A_ThisLabel%, Off
+; 	Gui_Show("hide")
+; 	SetTimer, IfNoteP_Active, 100
+; 	Return
+; }
 
-WinGetActiveStats, nTitle, N_W, N_H, N_X, N_Y
-If (N_X <> Last_NX || N_Y <> Last_NY) {
-	Gui_Show(N_W+N_X, N_H+N_Y-100)
-	Last_NX := N_X, Last_NY := N_Y
-}
-Return
-; 吸附窗口
-Gui_Show(X, Y="") {
-	If InStr(X, "hide")
-		Gui, Window3770:Hide
-	Else
-		Gui, Window3770:Show, NoActivate x%X% y%Y%, MyGuiWin
-	Return
-}
+; WinGetActiveStats, nTitle, N_W, N_H, N_X, N_Y
+; If (N_X <> Last_NX || N_Y <> Last_NY) {
+; 	Gui_Show(N_W+N_X-10, N_H+N_Y-100)
+; 	Last_NX := N_X, Last_NY := N_Y
+; }
+; Return
+; ; 吸附窗口
+; Gui_Show(X, Y="") {
+; 	If InStr(X, "hide")
+; 	{
+; 		sleep 10
+; 		Gui, Window3770:Hide
+; 	}
+		
+; 	Else
+; 	{
+; 		sleep 10
+; 		Gui, Window3770:Show, NoActivate x%X% y%Y%, MyGuiWin
+; 	}
 
-Btn:
-	GoSub,Sub_SendTcCurPath2Diag
-	msgbox
-return
-Btn2:
-GoSub,Sub_SendCurDiagPath2Tc
-return
+; 	Return
+; }
+
+; Btn:
+; 	WinActive("ahk_group GroupDiagJump")
+; 	sleep 100
+; 	GoSub,Sub_SendTcCurPath2Diag
+; return
+; Btn2:
+; GoSub,Sub_SendCurDiagPath2Tc
+; return

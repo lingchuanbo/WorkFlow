@@ -4964,6 +4964,12 @@ return
 
 return
 
+<TcCountDirContent>:
+TcCMD("tem(`cm_CountDirContent`)")
+return
+<em_Magic_MergeJPG2PDF>:
+TcCMD("tem(`em_Magic_MergeJPG2PDF`)")
+return
 
 ; ;-------------Tc函数----------------------------------
 ;作用:同步滚动TC左右面板
