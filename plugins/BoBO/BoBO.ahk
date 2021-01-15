@@ -724,7 +724,13 @@
 			Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_Exchange`)"
 		return
 		
+		` & 1::
 		~Ctrl & LButton::
+			send,^+{Tab}
+		return
+
+		` & 2::
+		~Ctrl & RButton::
 			send,^{Tab}
 		return
 
