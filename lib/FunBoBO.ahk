@@ -1070,7 +1070,3 @@ SendPos(Number)
     PostMessage 1075, %Number%, 0, , AHK_CLASS TTOTAL_CMD
 }
 
-
-
-
-   

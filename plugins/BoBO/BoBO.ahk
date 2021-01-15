@@ -1268,6 +1268,7 @@ Sub_SendTcCurPath2Diag:
 	Clipboard:=clipraw
 
 	;再发送剪贴板路径到控件
+	WinActive("ahk_group GroupDiagJump")
 	ControlFocus, Edit1, A
 	send,{Backspace}
 	sleep 100
@@ -1576,3 +1577,43 @@ return
 			}
 	return
 	}
+
+IfNoteP_Active:
+If (note_hwnd := WinActive("ahk_group GroupDiagJump")) {
+	SetTimer, %A_ThisLabel%, Off
+	WinGetActiveStats, nTitle, N_W, N_H, N_X, N_Y
+	Gui_Show(N_W+N_X, N_H+N_Y-100)
+	SetTimer, IfNoteP_Move, 100
+}
+Return
+
+IfNoteP_Move:
+If !(note_hwnd := WinActive("ahk_group GroupDiagJump")) {
+	SetTimer, %A_ThisLabel%, Off
+	Gui_Show("hide")
+	SetTimer, IfNoteP_Active, 100
+	Return
+}
+
+WinGetActiveStats, nTitle, N_W, N_H, N_X, N_Y
+If (N_X <> Last_NX || N_Y <> Last_NY) {
+	Gui_Show(N_W+N_X, N_H+N_Y-100)
+	Last_NX := N_X, Last_NY := N_Y
+}
+Return
+; 吸附窗口
+Gui_Show(X, Y="") {
+	If InStr(X, "hide")
+		Gui, Window3770:Hide
+	Else
+		Gui, Window3770:Show, NoActivate x%X% y%Y%, MyGuiWin
+	Return
+}
+
+Btn:
+	GoSub,Sub_SendTcCurPath2Diag
+	msgbox
+return
+Btn2:
+GoSub,Sub_SendCurDiagPath2Tc
+return
