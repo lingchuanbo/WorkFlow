@@ -116,6 +116,13 @@ Loop,parse,GroupDiagJump,`n,`r
     GroupAdd,GroupDiagJump,%MyVar_Val%
 }
 
+; Gui, Window3770:+LastFound +ToolWindow +AlwaysOnTop -Caption -Border HWNDGui_Hwnd
+; Gui, Window3770:Margin, 0, 0
+; Gui, Window3770:Add, Button, vButton1 gBtn, 获取TC路径
+; Gui, Window3770:Add, Button, vButton2 gBtn2, 发送至TC
+; Gui, Window3770:Add, Button, Default w80, OK
+; SetTimer, IfNoteP_Active, 100
+
 #Include %A_ScriptDir%\lib\DynamicFileMenu.ahk
 #Include %A_ScriptDir%\lib\checkUser.ahk
 #Include %A_ScriptDir%\lib\DownloadFile.ahk
