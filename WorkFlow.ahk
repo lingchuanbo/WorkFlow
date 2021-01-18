@@ -83,10 +83,8 @@ global zParam
 ; 程序路径
 IniRead,TCExePath,config.ini,TotalCommander_Config,TCPath
 IniRead,TCExePath,config.ini,TotalCommander_Config,TCDirPath
-IniRead,AeExePath,config.ini,BOBOPath_Config,AEPath
 global TCExePath := TCExePath
 global TCDirPath := TCDirPath
-global AeExePath := AeExePath
 
 ;颜色
 ;背景颜色
@@ -116,12 +114,19 @@ Loop,parse,GroupDiagJump,`n,`r
     GroupAdd,GroupDiagJump,%MyVar_Val%
 }
 
-; Gui, Window3770:+LastFound +ToolWindow +AlwaysOnTop -Caption -Border HWNDGui_Hwnd
-; Gui, Window3770:Margin, 0, 0
-; Gui, Window3770:Add, Button, vButton1 gBtn, 获取TC路径
-; Gui, Window3770:Add, Button, vButton2 gBtn2, 发送至TC
-; Gui, Window3770:Add, Button, Default w80, OK
-; SetTimer, IfNoteP_Active, 100
+;   获取进程路径
+GetProcessPath(){
+    WinGet, pPath, ProcessPath, A
+    SplitPath,pPath,pName,pDir,,pNameNoExt
+    if(pName="AfterFX.exe")
+    {
+        ; MsgBox %pPath%
+        Return pPath
+    }else{
+        MsgBox "AE未运行，请先运行!"
+    }
+    return
+ }
 
 #Include %A_ScriptDir%\lib\DynamicFileMenu.ahk
 #Include %A_ScriptDir%\lib\checkUser.ahk
@@ -155,40 +160,18 @@ Loop,parse,GroupDiagJump,`n,`r
 #Include %A_ScriptDir%\custom\custom.ahk
 
 ; ----------------------------------
-;   获取进程路径
-GetProcessPath(){
-;  DetectHiddenWindows,On
-;  Process,Exist,%P%
-;  if ErrorLevel>0
-;  {
-;  PID=%ErrorLevel%
-;  WinGet,lujing,ProcessPath,ahk_pid %pid%
-;  return lujing
-;  }
-;  else
-;  return "Sorry,找不到" %P% "!"
-    WinGet, pPath, ProcessPath, A
-    SplitPath,pPath,pName,pDir,,pNameNoExt
-    if(pName="AfterFX.exe")
-    {
-        ; MsgBox %pPath%
-        Return pPath
-    }else{
-        MsgBox "AE未运行，请先运行!"
-    }
-    return
- }
+
  GetProcessPathAll(p){
 	DetectHiddenWindows,On
 	Process,Exist,%P%
 	if ErrorLevel>0
 	{
-	PID=%ErrorLevel%
-	WinGet,lujing,ProcessPath,ahk_pid %pid%
-	return lujing
+		PID=%ErrorLevel%
+		WinGet,lujing,ProcessPath,ahk_pid %pid%
+		return lujing
 	}
 	else
-	return "Sorry,找不到" %P% "!"
+		return "Sorry,找不到" %P% "!"
  }
 ; 动态加载|User|函数
 QZ_UpdatePlugin()监测

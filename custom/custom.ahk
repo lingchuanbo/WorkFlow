@@ -1,5 +1,9 @@
 ﻿;自动快捷输入高频常用词
 ;=========================================================
+:*:runf::
+clipboard = runFile(projectFolder.."cube.lua")
+send,^v
+return
 :*:ffmpeg::
 clipboard = ffmpeg -i input.mkv output.mp4
 send,^v

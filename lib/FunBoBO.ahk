@@ -217,10 +217,7 @@ getCurrentDir(ByRef CurWinClass="")
 ;   getAeScript("路径")
 ;   文件放置位置必须在本脚本目录下
 getAeScript(AeScriptPath){
-
-    ; WinActivate, ahk_exe AfterFX.exe
-    ; global AeExePath := ini.BOBOPath_Config.AEPath
-	AeExePath := GetProcessPath()
+	global AeExePath:= GetProcessPath()
     Run, %AeExePath% -r %A_ScriptDir%\%AeScriptPath%,,Hide
     return
 }
@@ -231,9 +228,6 @@ getAeScript(AeScriptPath){
 ;   文件放置位置必须在本脚本目录下
 
 getAeScriptCommand(AeScriptCommand){
-
-    ; WinActivate, ahk_exe AfterFX.exe
-    ; global AeExePath := ini.BOBOPath_Config.AEPath
 	AeExePath := GetProcessPath()
     Run, %AeExePath% -r %AeScriptCommand%,,Hide
     return
