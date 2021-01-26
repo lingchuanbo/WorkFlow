@@ -18,6 +18,6 @@ except:
     ctypes.windll.user32.MessageBoxA(0,u"请先保存文件 !!! .^_ ^".encode('gb2312'),u' BoBO'.encode('gb2312'),0)
     print("文件没保存!")
 else:
-    command ="%A_ScriptDir%\\tools\\TotalCMD\\TOTALCMD.EXE /O /S /L=" + Path
+    command ="%A_ScriptDir%\\tools\\TotalCMD /O /S /L=" + Path
     os.system(command)
 }

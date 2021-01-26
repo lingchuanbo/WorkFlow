@@ -911,8 +911,8 @@ ShowHelp()
     posx += 0
     posy += 0
 
-    ToolTipFont("s10","Microsoft YaHei") ;==================BoBO
-    ToolTipColor("053445", "40A1EC") ;==================BoBO
+    ; ToolTipFont("s10","Microsoft YaHei") ;==================BoBO
+    ; ToolTipColor("053445", "40A1EC") ;==================BoBO
     Tooltip, %np%, %posx%, %posy%
 }
 

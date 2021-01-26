@@ -4,36 +4,6 @@
 clipboard = runFile(projectFolder.."cube.lua")
 send,^v
 return
-:*:ffmpeg::
-clipboard = ffmpeg -i input.mkv output.mp4
-send,^v
-return
-
-:*:iffmp::
-clipboard = ffmpeg -i input.flv output.mp4
-send,^v
-return
-
-:*:iiffmp::
-clipboard = ffmpeg -i input.mp4 -c:v libx264 -crf 24 -preset slower output.mp4
-send,^v
-return
-
-:*:sffmp::
-clipboard = ffmpeg -i input.mp4 -c:v libx264 -crf 24 -s 1280:720 -preset slower output.mp4
-send,^v
-return
-
-:*:affmp::
-clipboard = ffmpeg -i input.mp4 -vn -acodec copy output.aac
-send,^v
-return
-
-:*:iaffmp::
-clipboard = ffmpeg -i input.m4a -vn -acodec copy output.aac
-send,^v
-return
-
 ; :*:ggg::
 ; ;clipboard = Dan Ebberts ;可任意更改剪切板内容
 ; clipboard = 1236547890 ;NVIDIA密码

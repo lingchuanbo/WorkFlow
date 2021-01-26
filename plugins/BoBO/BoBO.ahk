@@ -101,7 +101,7 @@
 			; SendMessage, 0x112, 0xF170, 2,, Program Manager	
 			Run,%A_ScriptDir%\custom\apps\ScrnOff.EXE *911
 			return
-			; msgbox
+			; msgbox*****
 		}
 	;功能：快速打开驱动盘(热键：Tab + 左键	)
 		Tab & LButton::Gosub,<BoBO_SubFolder>
@@ -963,9 +963,12 @@
 			if myCompany = kuaiyou
 			{
 				Menu, menuTc, add,游戏开发, :GameDevSet
+				Menu, GameDevSet, add, 复制txt目录结构,<em_BoBO_txtCopy>
 				Menu, GameDevSet, add, 打包文件_H5,<GameDevSetPackH5>
 				Menu, GameDevSet, add, 打包文件_As,<GameDevSetPackAs>
-				Menu, GameDevSet, add, 打包文件_H5_换皮,<em_BoBO_PackH5_hp>
+				Menu, GameDevSet, add, 拷贝打包资源,<em_work_copyGameFileTxt>
+				Menu, GameDevSet, add, fxjID修改,<em_work_fxjid>
+				; Menu, GameDevSet, add, 打包文件_H5_换皮,<em_BoBO_PackH5_hp>
 				Menu, GameDevSet, add, Atlas前缀修改,<GameDevSetAtlas>
 				Menu, GameDevSet, add, 删除游戏资源,<GameDevDeleteH5>
 				Menu, GameDevSet, add, 编辑器 >> 仙谕,<GameDevSetFxEditorXY>
@@ -981,6 +984,13 @@
 				Menu, Toolset, add, 整理: 当前文件向上移,<Tools_MoveUpDir>
 				Menu, Toolset, add, 删除: 空目录,<Tools_NullDir>
 				Menu, Toolset, add, 删除: PNG文件,<Tools_DeletePNG>
+
+			Menu, menuTc, add,重命名, :workReName
+				Menu, workReName, add, 命名为: 标准,<em_BoBO_RenName_default>
+				Menu, workReName, add, 命名为: 一级目录名+文件名,<em_work_rename_1>
+				Menu, workReName, add, 命名为: 二级目录+文件名,<em_work_rename_2>
+				Menu, workReName, add, 命名为: 三级目录+文件名,<em_work_rename_3>
+				Menu, workReName, add, 命名为: JBT规范,<em_work_rename_jbt>
 
 			Menu, menuTc, add,图片, :TcIMG
 				Menu, TcIMG, add, 编辑: 在AfterEffect编辑,<menuTcToAe>
@@ -1003,16 +1013,16 @@
 
 mBase64En:
     keyword=%Clipboard%
-	ToolTipFont("s12","Microsoft YaHei")
-    ToolTipColor("053445", "40A1EC")
+	; ToolTipFont("s12","Microsoft YaHei")
+    ; ToolTipColor("053445", "40A1EC")
     ToolTip % LC_Base64_EncodeText(text:=keyword) "//ctrl+v Paste"
     Clipboard:=LC_Base64_EncodeText(text:=keyword) 
 return
 
 mBase64De:
     keyword=%Clipboard%
-	ToolTipFont("s12","Microsoft YaHei")
-    ToolTipColor("053445", "40A1EC")
+	; ToolTipFont("s12","Microsoft YaHei")
+    ; ToolTipColor("053445", "40A1EC")
     ToolTip % LC_Base64_DecodeText(text:=keyword) "//ctrl+v Paste"
     Clipboard:=LC_Base64_DecodeText(text:=keyword)
 return

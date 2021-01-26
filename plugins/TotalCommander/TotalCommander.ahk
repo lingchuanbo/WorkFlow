@@ -340,10 +340,14 @@ return
 <TC_ToggleTC>:
     ExePath := ini.TotalCommander_Config.TCPath
     tClass := ini.ahk_class_Config.TCClass
+    NewTitle = 【TotalCMD】_WorkFlow
+    FunBoBO_RunActivationTitle(ExePath,tClass,NewTitle) 
+    ; WinSet, Style, ^0xC40000 , ahk_class TTOTAL_CMD
+	; SendPos(540)
     ; NewTitle =
     ; FunBoBO_RunActivationTitle(ExePath,tClass,NewTitle)
     ; FunBoBO_HideOrActivation2(ExePath,tClass)
-    FunBoBO_RunActivation(ExePath,tClass)
+    ; FunBoBO_RunActivation(ExePath,tClass)
 return
 
 
@@ -4647,15 +4651,36 @@ return
 return
 
 ; Tc增强菜单
-
+<em_BoBO_RenName_default>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_RenName_default`)"
+return
+<em_work_rename_jbt>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_work_rename_jbt`)"
+return
+<em_work_rename_1>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_work_rename_1`)"
+return
+<em_work_rename_2>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_work_rename_2`)"
+return
+<em_work_rename_3>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_work_rename_2`)"
+return
 <GameDevSetPackAs>:
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_PackAs`)"
 return
-
 <GameDevSetPackH5>:
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_PackH5`)"
 return
-
+<em_work_copyGameFileTxt>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_work_copyGameFileTxt`)"
+return
+<em_BoBO_txtCopy>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_txtCopy`)"
+return
+<em_work_fxjid>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_work_fxjid`)"
+return
 <GameDevSetAtlas>:
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_atlas`)"
 return

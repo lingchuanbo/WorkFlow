@@ -4,7 +4,7 @@
 Search:
     @("ssgg", "Google搜索")
     @("ssbd", "Baidu搜索")
-    @("ssdd", "多吉搜索")
+    @("ssdj", "多吉搜索")
     @("ssmg", "Magi搜索")
     @("biliblili", "在 Bilibili 搜索视频")
     @("youtube", "在 YouTuBe 站搜索视频")
@@ -23,7 +23,7 @@ ssbd:
     Run, https://www.baidu.com/baidu?wd=%word%
 return
 
-ssdd:
+ssdj:
     word := UrlEncode(Arg == "" ? clipboard : Arg)
     Run, https://www.dogedoge.com/results?q=%word%
 return

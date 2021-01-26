@@ -15,6 +15,8 @@
             "framesToTime((s+f)%d);";
             // seLayers[i].transform.position.expression = 'loopOut("Cycle")';
             seLayers[i].timeRemapEnabled = true;
-			seLayers[i].property("ADBE Time Remapping").expression = myEffectTxt
+            seLayers[i].property("ADBE Time Remapping").expression = myEffectTxt
+            setTimeout(500);
+            seLayers[i].timeRemapEnabled = false;
 	}
 	// app.endUndoGroup();

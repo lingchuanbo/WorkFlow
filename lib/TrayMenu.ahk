@@ -212,8 +212,8 @@ ExitApp
 
 Backup:
 Gui,Backup: Hide
-ToolTipFont("s12","Microsoft YaHei")
-ToolTipColor("053445", "40A1EC")
+; ToolTipFont("s12","Microsoft YaHei")
+; ToolTipColor("053445", "40A1EC")
 ToolTip, 正在执行备份！
 sleep 100
 SetTimer, RemoveToolTip, -1000
@@ -222,8 +222,8 @@ return
 
 BackupRestore:
 Gui,Backup: Hide
-ToolTipFont("s12","Microsoft YaHei")
-ToolTipColor("053445", "40A1EC")
+; ToolTipFont("s12","Microsoft YaHei")
+; ToolTipColor("053445", "40A1EC")
 ToolTip, 正在执行还原操作！
 sleep 100
 SetTimer, RemoveToolTip, -1000

@@ -1,19 +1,4 @@
-﻿ScriptGuard1()                    ; Hides AutoHotkey source in compiled scripts
-{ ; By TAC109, Edition: 23Aug2020 ; To use just include this code in your script
-  static _ := ScriptGuard1()      ; Is automatically actioned when script starts
-  local ahk:=">AUTOHOTKEY SCRIPT<", pt:=rc:=sz:=0
-  if A_IsCompiled                 ; See bit.ly/ScriptGuard for more details
-  { if (rc:=DllCall("FindResource",  "Ptr",0, "Str",ahk, "Ptr",10, "Ptr"))
-    && (sz:=DllCall("SizeofResource","Ptr",0, "Ptr",rc,  "Uint"))
-    && (pt:=DllCall("LoadResource",  "Ptr",0, "Ptr",rc,  "Ptr"))
-    && (pt:=DllCall("LockResource",  "Ptr",pt,"Ptr"))
-    && (DllCall("VirtualProtect", "Ptr",pt, "Ptr",sz, "UInt",0x40, "UInt*",rc))
-      DllCall("RtlZeroMemory", "UInt",pt, "Int",sz) ; Wipe script from memory
-    else MsgBox 64,,% "Warning: ScriptGuard1 not active!`n`nError = "
-      . (A_LastError=1814 ? ("Resource Name '" ahk "' not found.`nTo fix, see "
-      . "the 'Example 1' comments at http://bit.ly/BinMod.") : A_LastError)
-} }  
-#NoEnv
+﻿#NoEnv
 #SingleInstance, Force
 #NoTrayIcon
 #MaxHotkeysPerInterval 200
@@ -176,7 +161,7 @@ if (FileExist(A_ScriptDir "\Conf\Skins\" g_SkinConf.BackgroundPicture))
     Gui, Add, Picture, x0 y0, % A_ScriptDir "\Conf\Skins\" g_SkinConf.BackgroundPicture
 }
 
-border := 0
+border := 10
 if (g_SkinConf.BorderSize >= 0)
 {
     border := g_SkinConf.BorderSize
@@ -1852,7 +1837,7 @@ AlignText(text)
         hasCol2 := true
         Loop, Parse, text, `n, `r
         {
-            if (SubStr(text, 3, 1) != "|" || SubStr(text, 8, 1) != "|")
+            if (SubStr(A_LoopField, 3, 1) != "|" || SubStr(A_LoopField, 8, 1) != "|")
             {
                 hasCol2 := false
                 break
@@ -2032,6 +2017,7 @@ KeyHelp:
     ToolTip, % KeyHelpText()
     SetTimer, RemoveToolTip, 5000
 return
+
 
 
 #include %A_ScriptDir%\Lib\EasyIni.ahk

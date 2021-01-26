@@ -110,8 +110,8 @@ ShowInfo(){
     MouseGetPos, posx, posy, A
     posx += 40
     posy += 40
-    ToolTipFont("s10","Microsoft YaHei") ;==================BoBO
-    ToolTipColor("053445", "40A1EC") ;==================BoBO
+    ; ToolTipFont("s10","Microsoft YaHei") ;==================BoBO
+    ; ToolTipColor("053445", "40A1EC") ;==================BoBO
     Tooltip, %np%, %posx%, %posy%
 }
 

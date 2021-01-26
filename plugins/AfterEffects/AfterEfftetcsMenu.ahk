@@ -146,7 +146,7 @@ OpenLocalFilesRender:
 }
 RunAeScript:
     curpath := menu_itempath("filelist1", dirMenu1)
-	WinActivate, ahk_exe AfterFX.exe
+	; WinActivate, ahk_exe AfterFX.exe
     ; global AeExePath := ini.BOBOPath_Config.AEPath
     global AeExePath := GetProcessPath()
     RunWait, %AeExePath% -s -r %curpath%,,Hide
@@ -179,7 +179,7 @@ if (activeItem instanceof CompItem) {
     ), %dirMenu0%\setPreset.jsx,UTF-8
 
 	sleep 50
-	WinActivate, ahk_exe AfterFX.exe
+	; WinActivate, ahk_exe AfterFX.exe
 	global AeExePath := GetProcessPath()
     RunWait, %AeExePath% -s -r %setPreset%,,Hide
 	sleep 50
@@ -213,7 +213,7 @@ if (activeItem instanceof CompItem) {
     ), %dirMenu2%\setPreset.jsx,UTF-8
 
 	sleep 50
-	WinActivate, ahk_exe AfterFX.exe
+	; WinActivate, ahk_exe AfterFX.exe
 	global AeExePath := GetProcessPath()
     RunWait, %AeExePath% -s -r %setPreset%,,Hide
 	sleep 50
@@ -261,7 +261,7 @@ if(sl) {
     ), %dirMenu3%\setPreset.jsx,UTF-8
 
 	sleep 50
-	WinActivate, ahk_exe AfterFX.exe
+	; WinActivate, ahk_exe AfterFX.exe
 	; global AeExePath := ini.BOBOPath_Config.AEPath
     AeExePath := GetProcessPath()
     RunWait, %AeExePath% -s -r %setPreset%,,Hide

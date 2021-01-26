@@ -269,17 +269,25 @@ runPsScript(PsPath){
 
 ; 函数功能：运行自定义标题
 FunBoBO_RunActivationTitle(ExePath,tClass,NewTitle){
+	WinSetTitle, %NewTitle% ; %N_Title%
     IfWinExist, AHK_CLASS %tClass%
     {
         WinGet, AC, MinMax, AHK_CLASS %tClass%
         if Ac = -1
-            Winactivate, AHK_ClASS %tClass%
-
+		{
+			Winactivate, AHK_ClASS %tClass%
+			WinSetTitle, %NewTitle% 
+		}
         else
-                Ifwinnotactive, AHK_CLASS %tClass%
-                Winactivate, AHK_CLASS %tClass%
-            else
-                Winminimize, AHK_CLASS %tClass%
+        Ifwinnotactive, AHK_CLASS %tClass%
+		{
+			Winactivate, AHK_CLASS %tClass%
+			WinSetTitle, %NewTitle% ; %N_Title%
+		}
+            
+        else
+            Winminimize, AHK_CLASS %tClass%
+			WinSetTitle, %NewTitle% ; %N_Title%
     }
     else
     {
@@ -287,7 +295,10 @@ FunBoBO_RunActivationTitle(ExePath,tClass,NewTitle){
         Loop, 4
         {
             IfWinNotActive, AHK_CLASS %tClass%
-                WinActivate, AHK_CLASS %tClass%        
+			{
+				WinActivate, AHK_CLASS %tClass%
+				WinSetTitle, %NewTitle% ; %N_Title%
+			}     
             else
                 Break
             Sleep, 500

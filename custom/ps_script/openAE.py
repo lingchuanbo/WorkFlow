@@ -19,5 +19,5 @@ except:
     ctypes.windll.user32.MessageBoxA(0,u"请先保存文件 !!! .^_ ^".encode('gb2312'),u' BoBO'.encode('gb2312'),0)
     print("文件没保存!")
 else:
-    command =r'"C:\\Program Files\\Adobe\\Adobe After Effects CC 2018\\Support Files\\AfterFX.exe"'+" "+ Path + Name
+    command =r'""'+" "+ Path + Name
     os.system(command)
