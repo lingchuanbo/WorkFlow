@@ -107,17 +107,17 @@ return
 
 menuAe:
     ; Click 1
-	menu, thismenu, add, AE动态脚本菜单(%_Author%), WHATSUP
+	menu, thismenu, add, MenuPlus 2021.0, WHATSUP
 	; menu, thismenu, add, (&O).A整理, :AeManage
 	dirMenu0=%A_ScriptDir%\custom\ae_scripts\Effect
 	dirMenu1=%A_ScriptDir%\custom\ae_scripts\otherScript
 	dirMenu2=%A_ScriptDir%\custom\ae_scripts\Preset
     dirMenu3=%A_ScriptDir%\custom\ae_scripts\Expression
 
-	menu_fromfiles("filelist0", "特效库", "RunAePreset0", dirMenu0, "*.ffx", "thismenu", 1)
-	menu_fromfiles("filelist1", "脚本库", "RunAeScript", dirMenu1, "*.jsx|*.jsxbin", "thismenu", 1)
-	menu_fromfiles("filelist2", "预设", "RunAePreset1", dirMenu2, "*.ffx", "thismenu", 1)
-    menu_fromfiles("filelist3", "表达式", "Expression", dirMenu3, "*.txt", "thismenu", 1)
+	menu_fromfiles("filelist0", "&E Effects", "RunAePreset0", dirMenu0, "*.ffx", "thismenu", 1)
+	menu_fromfiles("filelist1", "&S Scripts", "RunAeScript", dirMenu1, "*.jsx|*.jsxbin", "thismenu", 1)
+	menu_fromfiles("filelist2", "&P Presets", "RunAePreset1", dirMenu2, "*.ffx", "thismenu", 1)
+    menu_fromfiles("filelist3", "&X Expression", "Expression", dirMenu3, "*.txt", "thismenu", 1)
 
 	menu, thismenu, add, .整理项目&清理缓存,<Ae_OrganizeProjectAssetsDiskCache>
 	menu, thismenu, add, .清除时间轴中未使用的素材图层,<Ae_ReduceNoFootage>
