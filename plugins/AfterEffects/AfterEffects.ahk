@@ -154,7 +154,7 @@ Return
 return
 
 <AfterEffects_Alt>:
-		GV_KeyClickAction1 := "SendInput,{Alt}"
+		GV_KeyClickAction1 := "GoSub,menuAe"
 		GV_KeyClickAction2 := "GoSub,menuAeAlt"
 		GoSub,Sub_KeyClick
 return		

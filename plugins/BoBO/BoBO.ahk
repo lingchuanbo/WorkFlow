@@ -654,6 +654,12 @@
 			TcSendPos(3003)
 		return
 
+		Alt::
+			GV_KeyClickAction1 := "Gosub,<cm_DirectoryHotlist>"
+			GV_KeyClickAction2 := "Gosub,menuTc"
+			GoSub,Sub_KeyClick
+		return
+
 
 		;双击右键，发送退格，返回上一级目录
 		~RButton::

@@ -4955,22 +4955,22 @@ TC_LeftRight()
 
 ; 访问历史记录_Mod BoBO From capsEZ
 
-<TC_AltSwitch>:
-{   
-	keyPress:=analyseKeyPress()
-	if (keyPress=1){
-         GoSub,<cm_DirectoryHotlist>
-         return
-	}
-    ; if (keyPress=2){
-    ;     return
-	; }
-    if (keyPress=2){
-        GoSub,<TC_azHistory_Mod>
-        return
-	}
-    return
-}
+; <TC_AltSwitch>:
+; {   
+; 	keyPress:=analyseKeyPress()
+; 	if (keyPress=1){
+;          GoSub,<cm_DirectoryHotlist>
+;          return
+; 	}
+;     ; if (keyPress=2){
+;     ;     return
+; 	; }
+;     if (keyPress=2){
+;         GoSub,<TC_azHistory_Mod>
+;         return
+; 	}
+;     return
+; }
 
 <TcPostMsg>:
 	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"

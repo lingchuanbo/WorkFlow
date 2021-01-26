@@ -71,6 +71,7 @@ Shell Folders/ProgramFiles=shell:programfiles
 Shell Folders/ProgramData=shell:Common AppData
 Shell Folders/Administrative tools=shell:Common Administrative Tools
 工具/=submenu
+工具/Powerpro=%WorkFlow%\tools\Powerpro\powerpro.exe
 工具/进程=%WorkFlow%\tools\TotalCMD\Tools\ProcessExplorer\procexp64.exe
 工具/拷贝=%WorkFlow%\tools\TotalCMD\Tools\ExtremeCopy\ExtremeCopy.exe
 工具/GIF录制=%WorkFlow%\tools\Honeycam\Honeycam.exe
