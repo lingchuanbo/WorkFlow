@@ -666,6 +666,18 @@
 			GoSub,Sub_KeyClick
 		return
 
+		/::
+			GV_KeyClickAction1 := "send,{/}"
+			GV_KeyClickAction2 := "Gosub,<cm_SrcPathFocus2>"
+			GoSub,Sub_KeyClick
+		return
+
+
+
+		~LButton & RButton::
+			Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_MatchSrc`)"
+		return
+
 
 		;双击右键，发送退格，返回上一级目录
 		~RButton::
