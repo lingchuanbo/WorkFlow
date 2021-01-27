@@ -533,6 +533,12 @@
 			GoSub,Sub_KeyClick
 		return
 
+		~Alt::
+			GV_KeyClickAction1 := "SendInput,^{l}"
+			GV_KeyClickAction2 := "SendInput,^+{q}"
+			GoSub,Sub_KeyClick
+		return
+
 	; 打开无痕模式&打开谷歌	
 		F8::
 			GV_KeyClickAction1 := "OpenWebURL,google.com"
@@ -541,15 +547,15 @@
 		return
 
 	; 滚轮切换标签
-		~$WheelDown::
-		~$WheelUp::
-			MouseGetPos,, ypos
-			If (ypos>40) Or (ypos<0)
-			Return
-			IfEqual,A_ThisHotkey,~$WheelDown, Send ^{PgDn}
-			Else Send ^{PgUp}
-			EmptyMem()
-			return
+		; ~$WheelDown::
+		; ~$WheelUp::
+		; 	MouseGetPos,, ypos
+		; 	If (ypos>40) Or (ypos<0)
+		; 	Return
+		; 	IfEqual,A_ThisHotkey,~$WheelDown, Send ^{PgDn}
+		; 	Else Send ^{PgUp}
+		; 	EmptyMem()
+		; 	return
 	; 双击关闭
 		~LButton::
 			WinGetPos,,, w, h, A

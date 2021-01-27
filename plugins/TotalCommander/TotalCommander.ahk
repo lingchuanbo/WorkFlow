@@ -184,6 +184,8 @@
     vim.Comment("<TC_TCIMG_MoveExtensions>","按扩展名移动文件") 
     vim.Comment("<TC_TCIMG_DirGetInputName>","移到输入文件")
     vim.Comment("<TC_Everyting>","Everything搜索当前目录")
+    vim.Comment("<cm_CopyNamesToClip>","复制文件名")
+    
     
     ; vim.Comment("<TC_FastCopy_CopyInfo>","FastCopy快速复制Info&Extra..") 
     ; vim.Comment("<TC_FastCopy_CopyCVT>","FastCopy快速复制CVT/SSP..")   
@@ -4815,6 +4817,10 @@ return
 <TcCopyFilePath>:
 Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CopyFullNamesToClip`)"
 return
+; 拷贝文件名
+; <cm_CopyNamesToClip>:
+; Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CopyNamesToClip`)"
+; return
 ; 访问历史记录_Mod BoBO From capsEZ
 
 <TC_azHistory_Mod>:

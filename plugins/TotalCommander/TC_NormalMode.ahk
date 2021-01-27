@@ -96,6 +96,7 @@
     ;~ vim.map("<SP-c>g", "<cm_CopySrcPathToClip>", "TTOTAL_CMD")
     ;~ vim.map("<SP-c>t", "<cm_SyncChangeDir>", "TTOTAL_CMD")
     vim.map("<SP-c>e", "<TC_FileCopyForBak>", "TTOTAL_CMD")
+    vim.map("<SP-c>n", "<cm_CopyNamesToClip>", "TTOTAL_CMD")
     ;复制到文件夹不打开目录
     ;~ vim.map("<SP-c>n", "<TC_OpenDirAndPaste>", "TTOTAL_CMD")   
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
