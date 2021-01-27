@@ -3448,13 +3448,18 @@ return
 return
 ;<cm_CopyNamesToClip>: >>复制文件名{{{2
 <cm_CopyNamesToClip>:
-    SendPos(2017)
+    ; SendPos(2017)
+    TcCMD("tem(`cm_CopyNamesToClip`)")
+    Sleep,10
+    Tooltip,已复制文件名：`n%Clipboard%		;在鼠标右侧显示clip(clipboard内容)
+    Sleep,800
+    Tooltip,
 return
 ;<cm_CopyFullNamesToClip>: >>复制文件名及完整路径{{{2
 <cm_CopyFullNamesToClip>:
     SendPos(2018)
     Sleep,10
-    Tooltip,已复制当前路径：%Clipboard%		;在鼠标右侧显示clip(clipboard内容)
+    Tooltip,已复制当前路径：`n%Clipboard%		;在鼠标右侧显示clip(clipboard内容)
     Sleep,800
     Tooltip,
 return
@@ -4721,6 +4726,11 @@ return
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_MoveFilesToDir`)"
 return
 
+<cm_SrcPathFocus2>:
+	TcCMD("tem(`cm_SrcPathFocus`)")
+	sleep,50
+	send,{Enter}
+return
 
 ; Python:中文转拼音
 

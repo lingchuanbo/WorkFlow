@@ -81,8 +81,16 @@
   
     
 
-;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    vim.map("<A-e>1", "<cm_SrcShort>", "TTOTAL_CMD")  
+    vim.map("<A-e>2", "<cm_SrcComments>", "TTOTAL_CMD")
+    vim.map("<A-e>3", "<cm_SrcLong>", "TTOTAL_CMD") 
+    vim.map("<A-e>q", "<cm_SrcTree>", "TTOTAL_CMD") 
+    vim.map("<A-e>w", "<cm_SrcThumbs>", "TTOTAL_CMD") 
+    vim.map("<A-e>e", "<cm_SrcByDateTime>", "TTOTAL_CMD") 
+    vim.map("<A-e>a", "<cm_SrcUnsorted>", "TTOTAL_CMD")
+    vim.map("<A-e>s", "<cm_SrcNegOrder>", "TTOTAL_CMD") 
 
+;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	;复制/移动到右侧 f取file的意思 filecopy
     ;移动到右侧 c取copy的意思 filecopy
@@ -96,7 +104,7 @@
     ;~ vim.map("<SP-c>g", "<cm_CopySrcPathToClip>", "TTOTAL_CMD")
     ;~ vim.map("<SP-c>t", "<cm_SyncChangeDir>", "TTOTAL_CMD")
     vim.map("<SP-c>e", "<TC_FileCopyForBak>", "TTOTAL_CMD")
-    vim.map("<SP-c>n", "<cm_CopyNamesToClip>", "TTOTAL_CMD")
+    vim.map("<SP-c>c", "<cm_CopyNamesToClip>", "TTOTAL_CMD")
     ;复制到文件夹不打开目录
     ;~ vim.map("<SP-c>n", "<TC_OpenDirAndPaste>", "TTOTAL_CMD")   
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
