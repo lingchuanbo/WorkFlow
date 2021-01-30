@@ -61,7 +61,10 @@
     ;双按
     vim.map("c", "<TC_double_ClearDupTab>", "TTOTAL_CMD") ;清理重复标签 
     vim.map("f", "<TC_double_Everything>", "TTOTAL_CMD") ;清理重复标签 
-    
+    vim.map("q", "<TC_double_返回>", "TTOTAL_CMD") 
+    vim.map("x", "<TC_double_关闭非活动窗口>", "TTOTAL_CMD") 
+
+    vim.map("C-A-q", "<TC_test>", "TTOTAL_CMD") 
 ;KJ上下选中，HL左右选中
     vim.map("<SP-h>", "<left>", "TTOTAL_CMD")
     vim.map("<SP-j>", "<down>", "TTOTAL_CMD")

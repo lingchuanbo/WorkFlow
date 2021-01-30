@@ -258,6 +258,9 @@ return
 <TC_9>:
     Vim_HotKeyCount :=
 return
+<TC_test>:
+    msgbox,"Hello"
+return
 
 
 /*
@@ -5058,3 +5061,15 @@ reTcNameEdit()
     	return (out="TInEdit1") and (A_Cursor="Arrow")
     }
 }
+
+; 双按
+<TC_double_返回>:
+	GV_KeyClickAction1 := "Send,{q}"
+	GV_KeyClickAction2 := "TcCMD,tem(`cm_GoToParent`)"
+	GoSub,Sub_KeyClick
+return
+<TC_double_关闭非活动窗口>:
+	GV_KeyClickAction1 := "Send,{x}"
+	GV_KeyClickAction2 := "Send,^{w}"
+	GoSub,Sub_KeyClick
+return

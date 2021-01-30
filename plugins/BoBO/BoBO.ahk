@@ -672,8 +672,6 @@
 			GoSub,Sub_KeyClick
 		return
 
-
-
 		~LButton & RButton::
 			Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_MatchSrc`)"
 		return
@@ -689,26 +687,9 @@
 			}
 		Return
 		;智能对话框跳转 f
-		~LButton::
+		~Alt & LButton::
 			GV_KeyClickAction1 := ""
 			GV_KeyClickAction2 := "Gosub,Sub_SendTcPathCurDiag"
-			GoSub,Sub_KeyClick
-		return
-
-		n::
-			GV_KeyClickAction1 := "Send,{n}"
-			GV_KeyClickAction2 := "Send,^{t}"
-			GoSub,Sub_KeyClick
-		return
-		x::
-			GV_KeyClickAction1 := "Send,{x}"
-			GV_KeyClickAction2 := "Send,^{w}"
-			GoSub,Sub_KeyClick
-		return
-
-		q::
-			GV_KeyClickAction1 := "Send,{q}"
-			GV_KeyClickAction2 := "TcCMD,tem(`cm_GoToParent`)"
 			GoSub,Sub_KeyClick
 		return
 
@@ -749,12 +730,12 @@
 		return
 		
 		` & 1::
-		~Ctrl & LButton::
+		; ~Ctrl & LButton::
 			send,^+{Tab}
 		return
 
 		` & 2::
-		~Ctrl & RButton::
+		; ~Ctrl & RButton::
 			send,^{Tab}
 		return
 
@@ -765,8 +746,9 @@
 		Space & WheelDown::Tc_WindowScroll(0)		
 		Space & WheelUp::Tc_WindowScroll(1)		
 
-
-		Return
+		; ^!q::
+		; 	gosub,<TC_test>
+		; Return
 
 		; Tc点击空白完成重命名操作
 		#If reTcNameEdit()
@@ -918,8 +900,8 @@
 			` & 5:: Gosub, <PS_加暗加亮>
 
 
-			Space & WheelDown::send [		;缩小画笔
-			Space & WheelUp::send ]			;放大画笔
+			` & WheelDown::sendinput, {[}	;缩小画笔
+			` & WheelUp::sendinput,{]} 			;放大画笔
 
 			; `::send,{b}
 			` & LButton::Gosub, ps_double_BrushSwith
