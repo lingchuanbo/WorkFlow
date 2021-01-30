@@ -20,6 +20,11 @@ function_menuAfterEffect:
 	; 	GV_KeyClickAction2 := "send,+{F3}"
 	; 	GoSub,Sub_KeyClick
     ; return
+    Alt::
+        GV_KeyClickAction1 := "GoSub,menuAe"
+        GV_KeyClickAction2 := "GoSub,menuAeAlt"
+        GoSub,Sub_KeyClick
+    return	
 
 
     ; 1::

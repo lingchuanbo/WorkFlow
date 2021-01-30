@@ -3,7 +3,7 @@
     ;vim.Map("<SP-q>", "<HelloWorld>", "AfterEffects")
     ; vim.Map("<CapsLock>", "<Ae_Script_QuickMenu>", "AfterEffects")
     vim.Map("/", "<Ae_SplitLayer>", "AfterEffects")
-    vim.Map("<Alt>", "<AfterEffects_Alt>", "AfterEffects")
+    ; vim.Map("<Alt>", "<AfterEffects_Alt>", "AfterEffects")
     ; vim.Map("/0", "<Ae_Open>", "AfterEffects")
     ; vim.Map("/1", "<Ae_Save>", "AfterEffects")
     ; vim.Map("/2", "<Ae_SaveAs>", "AfterEffects")

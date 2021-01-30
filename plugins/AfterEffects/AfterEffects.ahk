@@ -129,9 +129,9 @@ return
 <RunAE>:
     ExePath := ini.BOBOPath_Config.AEPath
     tClass := ini.ahk_class_Config.AEClass
-    NewTitle = 【a b同时搜a和b】【a|b搜a或b】【a!b搜a排除b】开正则后.单个?(0或1) *(0或多) +(1或多)  \b边界 ^开始 $结尾 \转义
-    FunBoBO_RunActivationTitle(ExePath,tClass,NewTitle) 
-    ; FunBoBO_RunActivation(ExePath,tClass)
+    ; NewTitle = 【a b同时搜a和b】【a|b搜a或b】【a!b搜a排除b】开正则后.单个?(0或1) *(0或多) +(1或多)  \b边界 ^开始 $结尾 \转义
+    ; FunBoBO_RunActivationTitle(ExePath,tClass,NewTitle) 
+    FunBoBO_RunActivation(ExePath,tClass)
 Return
 
 ;   单键切换
@@ -154,9 +154,10 @@ Return
 return
 
 <AfterEffects_Alt>:
-		GV_KeyClickAction1 := "GoSub,menuAe"
-		GV_KeyClickAction2 := "GoSub,menuAeAlt"
-		GoSub,Sub_KeyClick
+msgbox
+	; GV_KeyClickAction1 := "GoSub,menuAe"
+	; GV_KeyClickAction2 := "GoSub,menuAeAlt"
+	; GoSub,Sub_KeyClick
 return		
 
 <displyTips>:
