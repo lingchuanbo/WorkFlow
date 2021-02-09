@@ -151,6 +151,16 @@
 			tooltip 原透明度: %Transparent_New% `n新透明度: %Transparent%
 			SetTimer, RemoveToolTip_transparent_Lwin, 1500
 		return
+		!z::
+			Value:=WindowList[WindowList.Length()-1]
+			IfWinNotExist,ahk_id  %Value%
+			{
+				WindowList.RemoveAt(WindowList.Length()-1)
+			}
+			
+			WinActivate,ahk_id  %Value%
+			
+			return
 
 	
 	
@@ -348,6 +358,9 @@
 		WheelDown::Send {Volume_Down}
 	}
 	#If
+
+
+
 ; ##########程序便捷.社交##########大部份来自EZ大神
 	; TIM
 		#If WinActive("ahk_class TXGuiFoundation") and WinActive("ahk_exe TIM.exe")

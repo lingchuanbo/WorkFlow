@@ -1075,3 +1075,16 @@ SendPos(Number)
     PostMessage 1075, %Number%, 0, , AHK_CLASS TTOTAL_CMD
 }
 
+AlertWindowList:
+	Value := WindowList.Pop()
+	if (Value=WinExist("A"))
+		{
+			WindowList.push(WinExist("A"))
+		}
+	else
+		{
+			if (value!="")
+				WindowList.push(Value)
+			WindowList.push(WinExist("A"))
+		}
+return

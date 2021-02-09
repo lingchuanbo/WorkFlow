@@ -127,6 +127,9 @@ GetProcessPath(){
     }
     return
  }
+;   记录窗口
+SetTimer, AlertWindowList, 500
+WindowList:=[]
 
 #Include %A_ScriptDir%\lib\DynamicFileMenu.ahk
 #Include %A_ScriptDir%\lib\checkUser.ahk
@@ -153,7 +156,7 @@ GetProcessPath(){
 ; #Include %A_ScriptDir%\lib\Base64Enc.ahk
 #Include %A_ScriptDir%\lib\UriEncode.ahk
 #Include %A_ScriptDir%\lib\WinHttpRequest.ahk
-#Include %A_ScriptDir%\lib\NvAPI.ahk
+; #Include %A_ScriptDir%\lib\NvAPI.ahk
 #Include %A_ScriptDir%\lib\TrayIcon.ahk
 #Include %A_ScriptDir%\lib\OnWin.ahk
 ;用户自定义配置yy
@@ -180,6 +183,5 @@ Sleep, 1000
 ; #Include *i %A_ScriptDir%\User\plugins.ahk
 #Include *i %A_ScriptDir%\function\function.ahk
 return
-
 
 
