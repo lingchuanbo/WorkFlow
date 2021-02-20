@@ -13,6 +13,7 @@
     vim.Map("<insert>", "<Blender_SwithMode>", "Blender")
     ;载入按键
     #Include %A_ScriptDir%\plugins\Blender\BlenderKey.ahk
+    #Include %A_ScriptDir%\plugins\Blender \BlenderMenu.ahk
 
 return
 

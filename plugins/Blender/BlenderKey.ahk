@@ -1,4 +1,4 @@
-﻿    vim.Map("<Alt>", "<Blender_QuickCommander>", "Blender")
+﻿    ; vim.Map("<Alt>", "<Blender_QuickCommander>", "Blender")
     vim.Map("vv", "<Blender_Toobar>", "Blender")
     vim.Map("vb", "<Blender_PieMenu>", "Blender")
     vim.Map("vtw", "<Blender_ToggleMaxzeArea1>", "Blender")

@@ -81,8 +81,8 @@ Photoshop:
     vim.Map("<LB-d>", "<PS_向下合并>", "Photoshop")
     vim.Map("<LB-e>", "<PS_多边形选区>", "Photoshop")
 
-    vim.Map("<SP-d>", "<PS_Delete>", "AfterEffects")
-    vim.Map("<Space>", "<PS_Space>", "Photoshop")
+    ; vim.Map("<SP-d>", "<PS_Delete>", "Photoshop")
+    ; vim.Map("<Space>", "<PS_Space>", "Photoshop")
 
     vim.BeforeActionDo("Photoshop_CheckMode", "Photoshop") ; 
 
@@ -262,7 +262,6 @@ return
 <PS_Space>:
 {
     SendInput,{Space}
-    ; send, {Enter}
     return
 }
 ; ^#l::MouseClick,WheelDown,,,10,0,D,R

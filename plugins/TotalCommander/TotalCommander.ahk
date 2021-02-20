@@ -346,7 +346,7 @@ return
     ExePath := ini.TotalCommander_Config.TCPath
     tClass := ini.ahk_class_Config.TCClass
     NewTitle = 【TotalCMD】_WorkFlow
-    FunBoBO_RunActivationTitle(ExePath,tClass,NewTitle) 
+    FunBoBO_RunActivation(ExePath,tClass) 
     ; WinSet, Style, ^0xC40000 , ahk_class TTOTAL_CMD
 	; SendPos(540)
     ; NewTitle =
