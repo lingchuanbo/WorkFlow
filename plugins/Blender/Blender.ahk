@@ -1,5 +1,4 @@
 ﻿Blender:
-  vim.setwin("Word","OpusApp","WINWORD.EXE")
     vim.SetAction("<Blender_InsertMode>", "进入VIM模式")
     vim.SetAction("<Blender_NormalMode>", "返回正常模式")
     vim.SetWin("Blender","GHOST_WindowClass","blender.exe")
@@ -24,6 +23,11 @@ Blender_CheckMode()
     If RegExMatch(ctrl,"i)Edit")
         {
             return True 
+        }
+    If (A_Cursor=="IBeam") ;工字光标
+        {
+            ; Menu, Tray, Icon, %A_ScriptDir%\workflow_icon_normal.png ;切换到默认模式
+            return True
         }
 }
 
@@ -66,23 +70,85 @@ return
 ; #搜索命令
 <Blender_QuickCommander>:
 {
-    t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-    settimer, Blender_tappedkey_tab, %t%
-    if (t == "off")
-    goto Blender_double_tab
-    return
-    Blender_tappedkey_tab:
-        {
-            Send, {F3}
-            return
-        }
-    Blender_double_tab:
-        {
-            Send, {Tab}
-            return
-        }
+    Send, +{a}
     return
 }
+
+; #工具条
+<Blender_Toobar>:
+send,+{Space}
+return
+; #Pie菜单
+<Blender_PieMenu>:
+send,!{w}
+return
+
+
+; Screen
+; #渲染
+<Blender_Render>:
+send,{F12}
+return
+; #渲染动画
+<Blender_RenderAnimation>:
+send,^{F12}
+return
+
+
+; #显示渲染
+<Blender_ViewRender>:
+send,{F11}
+return
+; #显示渲染动画
+<Blender_ViewRenderAnimation>:
+send,^{F11}
+return
+
+; 显示隐藏渲染窗口
+<Blender_ToggleMaxzeArea1>:
+send,^{Space}
+return
+<Blender_ToggleMaxzeArea2>:
+send,^!{Space}
+return
+
+
+; 选中和框选
+<Blender_SelectObject>:
+	GV_KeyClickAction1 := "send,{a}"
+	GV_KeyClickAction2 := "send,{b}"
+	GoSub,Sub_KeyClick
+return
+
+; 选中和框选
+<Blender_z>:
+	GV_KeyClickAction1 := "send,{z}"
+	GV_KeyClickAction2 := "send,{NumpadDot}"
+	GoSub,Sub_KeyClick
+return
+
+<Blender_w>:
+	GV_KeyClickAction1 := "send,{w}"
+	GV_KeyClickAction2 := "send,^{Space}"
+	GoSub,Sub_KeyClick
+return
+; 模型最大化
+<Blender_ObjectCernt>:
+send,{NumpadDot}
+return
+; 模型位置归0
+<Blender_0>:
+	GV_KeyClickAction1 := "send,{0}"
+	GV_KeyClickAction2 := "gosub,<Blender_Object0>"
+	GoSub,Sub_KeyClick
+return
+
+<Blender_Object0>:
+send,+{s}
+sleep,50
+send,8
+return
+
 
 ; #双击快速添加
 <Blender_QuickAdd>:
