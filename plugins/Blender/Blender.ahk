@@ -1,7 +1,7 @@
 ﻿Blender:
     vim.SetAction("<Blender_InsertMode>", "进入VIM模式")
     vim.SetAction("<Blender_NormalMode>", "返回正常模式")
-    vim.SetWin("Blender","GHOST_WindowClass","blender.exe")
+    vim.SetWin("Blender","ahk_exe","blender.exe")
     vim.BeforeActionDo("Blender_CheckMode", "Blender")
     ; #Include %A_ScriptDir%\plugins\Blender\BlenderComment.ahk 
     
@@ -13,7 +13,7 @@
     vim.Map("<insert>", "<Blender_SwithMode>", "Blender")
     ;载入按键
     #Include %A_ScriptDir%\plugins\Blender\BlenderKey.ahk
-    #Include %A_ScriptDir%\plugins\Blender \BlenderMenu.ahk
+    ; #Include %A_ScriptDir%\plugins\Blender\BlenderMenu.ahk
 
 return
 
@@ -122,6 +122,20 @@ return
 return
 
 ; 选中和框选
+<Blender_Alt>:
+	GV_KeyClickAction1 := "send,+{a}"
+	GV_KeyClickAction2 := "send,^{a}"
+	GoSub,Sub_KeyClick
+return
+
+<Blender_Duplicate>:
+	GV_KeyClickAction1 := "send,{d}"
+	GV_KeyClickAction2 := "send,+{d}"
+	GoSub,Sub_KeyClick
+return
+
+
+; 选中和框选
 <Blender_z>:
 	GV_KeyClickAction1 := "send,{z}"
 	GV_KeyClickAction2 := "send,{NumpadDot}"
@@ -129,8 +143,8 @@ return
 return
 
 <Blender_w>:
-	GV_KeyClickAction1 := "send,{w}"
-	GV_KeyClickAction2 := "send,^{Space}"
+	GV_KeyClickAction1 := "send,{g}"
+	GV_KeyClickAction2 := "send,^!{q}"
 	GoSub,Sub_KeyClick
 return
 ; 模型最大化
@@ -145,12 +159,38 @@ return
 return
 
 <Blender_Object0>:
-send,+{s}
-sleep,50
-send,8
+    send,+{s}
+    sleep,50
+    send,8
 return
 
+<Blender_窗口最大>:
+	GV_KeyClickAction1 := "send,{w}"
+	GV_KeyClickAction2 := "send,!{w}"
+	GoSub,Sub_KeyClick
+return
 
+<Blender_视窗_摄像机>:
+	send,{Numpad0}
+return
+<Blender_视窗_前视图>:
+	send,{Numpad1}
+return
+<Blender_视窗_左视图>:
+	send,^{Numpad3}
+return
+<Blender_视窗_右视图>:
+	send,{Numpad3}
+return
+<Blender_视窗_透视与正交>:
+	send,{Numpad5}
+return
+<Blender_视窗_透视>:
+	send,{Numpad5}
+return
+<Blender_视窗_顶视图>:
+	send,{Numpad7}
+return
 ; #双击快速添加
 <Blender_QuickAdd>:
 {
@@ -178,11 +218,76 @@ return
     SendInput, {mbutton}
     return
 }
-<testBlenderScript>:
+; #移动&双Q渲染
+<Blender_q>:
 {
-    Run,"F:/BoBOProgram/Blender/blender.exe" --python-console "F:/BoBOAHK/WorkFlow/custom/blender/test.py"
+    GV_KeyClickAction1 := "send,{w}"
+	GV_KeyClickAction2 := "gosub,<Blender_Render>"
+	GoSub,Sub_KeyClick
+return
+}
+
+; #增强x 双击删除
+<Blender_X>:
+	GV_KeyClickAction1 := "send,{x}"
+	GV_KeyClickAction2 := "gosub,<Blender_DeleteOK>"
+	GoSub,Sub_KeyClick
+return
+
+<Blender_V>:
+	GV_KeyClickAction1 := "send,{z}"
+	GV_KeyClickAction2 := "gosub,<Blender_渲染画面>"
+	GoSub,Sub_KeyClick
+return
+
+<Blender_渲染画面>:
+sendinput,{z}
+sendinput,{8}
+return
+
+; #搜索
+<Blender_F>:
+	; GV_KeyClickAction1 := "send,{f}"
+	; GV_KeyClickAction2 := "send,{F3}"
+	; GoSub,Sub_KeyClick
+    send,{F3}
+return
+
+<Blender_DeleteOK>:
+{
+    SendInput, {x}
+    SendInput, {Enter}
     return
 }
-; filename = "F:/BoBOAHK/WorkFlow/custom/blender/test.py"
-; exec(compile(open(filename).read(), filename, 'exec'))
-
+<Blender_显示>:
+{
+    ; SendInput, {x}
+    SendInput, +{z}
+    return
+}
+<Blender_缩放>:
+{
+    ; SendInput, {x}
+    SendInput, {s}
+    return
+}
+; <Blender_旋转>:
+; {
+;     ; SendInput, {x}
+;     SendInput, {r}
+;     return
+; }
+<Blender_上一帧>:
+{
+    sendinput,{Alt down}{WheelUp}
+    KeyWait LButton
+	Send {Alt Up}
+    return
+}
+<Blender_下一帧>:
+{
+	sendinput,{Alt down}{WheelDown}
+    KeyWait LButton
+	Send {Alt Up}
+    return
+}

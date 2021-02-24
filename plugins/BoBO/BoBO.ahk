@@ -165,7 +165,7 @@
 	
 	
 	;功能：任务栏
-		#q::Gosub,showTim
+		; #q::Gosub,showTim
 	;功能：窗口设置****************************
 		; !Enter:: GoSub,Sub_MaxAllRestore
 		^!#up:: GoSub,Sub_MaxAllWindows
@@ -175,7 +175,7 @@
 		#Enter:: GoSub,Sub_MaxAllRestore
 		Pause:: GoSub,Sub_MaxAllRestore
 
-		LShift & MButton::GoSub,Sub_MaxRestore
+		; LShift & MButton::GoSub,Sub_MaxRestore
 		LWin & LButton::GoSub,Sub_MaxRestore
 	;************** 按住Caps拖动鼠标^    ************** {{{1
 		;按住caps加左键拖动窗口
@@ -915,7 +915,81 @@
 			; Return
 		}
 		#If 
-
+	;Blender
+		#If WinActive("ahk_exe blender.exe")
+		{
+			LButton & F2::send,{F2}
+			; Space::    
+			; 	start := A_TickCount            ; measure current time.
+			; 	KeyWait, Space                    ; wait for Space to be released.
+			; 	duration := A_TickCount - start ; calculate if Space was held for less than ### ms.
+			; 	if (duration < 180){            ; if so
+			; 		SendEvent, {Space}            ; send Space else send nothing. 
+			; 	}
+			; 	return
+            ; Alt::    
+			; 	start := A_TickCount            ; measure current time.
+			; 	KeyWait, Alt                    ; wait for Space to be released.
+			; 	duration := A_TickCount - start ; calculate if Space was held for less than ### ms.
+			; 	if (duration < 180){            ; if so
+			; 		SendEvent, {Alt}            ; send Space else send nothing. 
+			; 	}
+			; 	return
+			; LButton::
+			; 	if GetKeyState("Space", "p"){ ; If Spacebar is being held down while Mouse button is pressed.
+			; 		Send {MButton Down}  
+			; 		KeyWait, LButton 
+			; 		Send {MButton Up}
+			; 	return   
+			; 	} 
+            ;     if GetKeyState("Alt", "p"){ ; If Spacebar is being held down while Mouse button is pressed.
+			; 		Send {MButton Down}   
+			; 		KeyWait, LButton
+			; 		Send {MButton Up}
+			; 	return   
+			; 	}else {
+			; 		Click, down ; Click is necessary over Send as the button sometimes stops responding for unknown reasons.
+			; 		KeyWait, LButton
+			; 		Click, up
+			; 		return 
+			; 	} 
+			; 	return
+			Alt & RButton::
+				if GetKeyState("RButton", "p"){
+					SendEvent, ^{MButton Down}
+					KeyWait, RButton
+					SendEvent, ^{MButton Up}
+					Return
+				} else {
+					Click, down, Right
+					KeyWait, RButton
+					Click, up, Right
+					return
+				}
+				return
+			Alt & LButton::
+				if GetKeyState("Lbutton", "p"){ ; If Spacebar is being held down while Mouse button is pressed.
+					Send {MButton Down}  
+					KeyWait, LButton 
+					Send {MButton Up}
+				return   
+				}
+			Alt & MButton::
+			; ; MButton::
+					if GetKeyState("Mbutton", "p")
+					{
+						sendinput, +{Mbutton down}
+						KeyWait, Mbutton
+						Click, up, Right
+						Send, {Mbutton up}
+						Return
+					}
+			return
+			; MButton up::
+			; 	SendEvent {Mbutton up}
+			; Return 
+		}
+		#If
 	menuPsAlt:
 		menu, menuPsAlt, add,用AE编辑, Ps_UserAeEidtor
 		menu, menuPsAlt, add,在TC显示, Ps_TotalCMD
@@ -931,6 +1005,8 @@
 	Ps_Export:
 		MsgBox, "有需求在写"
 	return
+
+
 
 ; ##########程序便捷.菜单##########
 	; 菜单
