@@ -358,9 +358,6 @@
 		WheelDown::Send {Volume_Down}
 	}
 	#If
-
-
-
 ; ##########程序便捷.社交##########大部份来自EZ大神
 	; TIM
 		#If WinActive("ahk_class TXGuiFoundation") and WinActive("ahk_exe TIM.exe")
@@ -614,6 +611,10 @@
 		{
 			;!w::openPathTc() ;桌面到TC
 			!q::HideOrShowDesktopIcons() ;隐藏、显示桌面图标！
+			~LButton::
+				if (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200)
+					gosub,<TC_ToggleTC>
+			return
 			;桌面到TC
 			!w:: 
 				if(TCPath="")
@@ -1073,6 +1074,7 @@
 				Menu,SearchSet , add, 百度-搜索文件名,<em_Search_Baidu>
 				Menu,SearchSet , add, 多吉-搜索文件名,<em_Search_Doge>
 				Menu,SearchSet , add, 萌搜-搜索文件名,<em_Search_Mengso>
+			Menu, menuTc, add,菜单栏, <em_TrackMainMenu>
 			Menu, menuTc, Show
 		return 
 
@@ -1622,6 +1624,8 @@ Sub_MaxAllWindows:
 		;IfMsgBox, NO, break
 	}
 return
+
+
 
 ; 窗口居中
 <BoBO_CenterWindow>:

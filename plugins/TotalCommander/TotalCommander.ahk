@@ -4674,7 +4674,7 @@ return
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_work_rename_2`)"
 return
 <em_work_rename_3>:
- Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_work_rename_2`)"
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_work_rename_3`)"
 return
 <GameDevSetPackAs>:
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_PackAs`)"
@@ -4797,6 +4797,9 @@ return
 return
 <em_Search_Mengso>:
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_Search-Mengso`)"
+return
+<em_TrackMainMenu>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_TrackMainMenu`)"
 return
 ;调用Everything搜索tc当前窗口路径
 <TC_Everyting>:

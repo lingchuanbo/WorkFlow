@@ -291,3 +291,6 @@ return
 	Send {Alt Up}
     return
 }
+<Blender_恢复E功能>:
+sendinput,{e}
+return
