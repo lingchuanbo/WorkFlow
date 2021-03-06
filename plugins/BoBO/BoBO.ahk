@@ -351,11 +351,18 @@
 	#If
 
 ; ##########系统.任务栏##########
-	;在任务栏上滚轮调整音量 {{{2
+	
 	#If MouseIsOver("ahk_class Shell_TrayWnd")
-	{
+	{	
+		;在任务栏上滚轮调整音量 {{{2
 		WheelUp::Send {Volume_Up}
 		WheelDown::Send {Volume_Down}
+		;在任务栏上双击显示桌面
+		~LButton::
+			if (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200)
+					send,#{d}
+			return
+		~Alt::run %A_ScriptDir%\custom\apps\TaskSwch\TaskSwch.exe /t
 	}
 	#If
 ; ##########程序便捷.社交##########大部份来自EZ大神
@@ -594,7 +601,7 @@
 			return
 	}
 	#If
-; ##########程序便捷.资源管理器&桌面##########
+; ##########系统.资源管理器&桌面##########
 	;资源浏览器
 		#If WinActive("ahk_class CabinetWClass") or WinActive("ahk_class ExploreWClass")
 		{
