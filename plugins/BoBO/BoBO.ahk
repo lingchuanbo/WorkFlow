@@ -358,8 +358,8 @@
 		WheelUp::Send {Volume_Up}
 		WheelDown::Send {Volume_Down}
 		;在任务栏上双击显示桌面
-		~LButton::
-			if (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200)
+		~Alt & LButton::
+			; if (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200)
 					send,#{d}
 			return
 		~Alt::run %A_ScriptDir%\custom\apps\TaskSwch\TaskSwch.exe /t

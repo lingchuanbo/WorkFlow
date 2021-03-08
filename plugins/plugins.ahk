@@ -16,26 +16,24 @@
 #include *i %A_ScriptDir%\plugins\Unity3D\Unity3D.ahk
 #include *i %A_ScriptDir%\plugins\Unreal\Unreal.ahk
 #include *i %A_ScriptDir%\plugins\Word\Word.ahk
-#include *i %A_ScriptDir%\plugins\Xplorer2\Xplorer2.ahk
 /*
 [ExtensionsTime]
 3DsMax=20200917145237
 AfterEffects=20210129100802
 BeyondCompare4=20210224102011
 Blender=20210225093723
-BoBO=20210224163003
+BoBO=20210308152143
 Eagle=20201118100420
 EveryThing=20210122134713
 Excel=20200901105222
 Explorer=20200901105222
 General=20210122102959
 GoogleChrome=20201121145214
-Photoshop=20210224161000
+Photoshop=20210302174116
 TCCompare=20200901105222
 TCDialog=20200901105222
-TotalCommander=20210301135851
+TotalCommander=20210305152008
 Unity3D=20200901105222
 Unreal=20201201193155
 Word=20200901105222
-Xplorer2=20210302115249
 */
