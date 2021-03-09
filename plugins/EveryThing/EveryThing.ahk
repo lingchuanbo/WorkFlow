@@ -112,7 +112,8 @@ EVERYTHING_CheckMode(){
 
 ;全局
 <RunEverything>:
-    ExePath := ini.BOBOPath_Config.EverythingPath
+    ExePath = %A_ScriptDir%\tools\TotalCMD\Everything.exe
+    ; ExePath := ini.BOBOPath_Config.EverythingPath
     tClass := ini.ahk_class_Config.Everything_Class
     NewTitle = 【a b同时搜a和b】【a|b搜a或b】【a!b搜a排除b】开正则后.单个?(0或1) *(0或多) +(1或多)  \b边界 ^开始 $结尾 \转义
     FunBoBO_RunActivationTitle(ExePath,tClass,NewTitle) 
