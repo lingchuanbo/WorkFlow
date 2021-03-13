@@ -5,47 +5,9 @@
     global TCDirPath
     global ini
     
-    TCPath := ini.TotalCommander_Config.TCPath
-    TCDirPath := ini.TotalCommander_Config.TCDirPath
-    TCINI := ini.TotalCommander_Config.TCINI
-    ; if !FileExist(TCPath)
-    ; {
-    ;     Process, Exist, totalcmd.exe
-    ;     if ErrorLevel
-    ;     {
-    ;         WinGet, TCPath, ProcessPath, ahk_pid %ErrorLevel%
-    ;     }
-    ;     else
-    ;     {
-    ;         Process, Exist, totalcmd64.exe
-    ;         if ErrorLevel
-    ;             WinGet, TCPath, ProcessPath, ahk_pid %ErrorLevel%
-    ;     }
-
-    ;     if TCPath
-    ;         ; IniWrite, %TCPath%, %ConfigPath%, TotalCommander_Config, TCPath
-    ; }
-
-    ; if TCPath and Not FileExist(TCPath)
-    ; {
-    ;     RegRead, TCDir, HKEY_CURRENT_USER, Software\Ghisler\Total Commander, InstallDir
-    ;     if FileExist(TCDir "\totalcmd.exe")
-    ;         l .= TCDir "\totalcmd.exe`n"
-    ;     if FileExist(TCDir "\totalcmd64.exe")
-    ;         l .= TCDir "\totalcmd64.exe`n"
-    ;     GUI, FindTC:Add, Edit, w300 ReadOnly R3, %TCDir%
-    ;     GUI, FindTC:Add, Button, w300 gTotalcomander_select_tc, TOTALCMD.EXE   (&A)
-    ;     GUI, FindTC:Add, Button, w300 gTotalcomander_select_tc64, TOTALCMD64.EXE (&S)
-    ;     GUI, FindTC:Add, Button, w300 gTotalcomander_select_tcdir, TC目录路径不对? (&D)
-    ;     GUI, FindTC:Show, , Total Commander 设置路径
-    ; }
-
-    ; if TCPath and not FileExist(TCINI)
-    ; {
-    ;     SplitPath, TCPath, , dir
-    ;     TCINI := dir "\wincmd.ini"
-    ;     ; IniWrite, %TCINI%, %ConfigPath%, TotalCommander_Config, TCINI
-    ; }
+    TCPath = %A_ScriptDir%\tools\TotalCMD\TOTALCMD.EXE
+    TCDirPath = %A_ScriptDir%\tools\TotalCMD
+    TCINI = %A_ScriptDir%\tools\TotalCMD\wincmd.ini
 
     TCMarkINI := RegExReplace(TCPath, "i)totalcmd6?4?.exe$", "TCMark.ini")
 
@@ -246,7 +208,7 @@ return
 
 <TC_0>:
 <TC_1>:
-Run, F:\MyBackups\MyTools\TotalCommander\Tools\Everything\Everything.exe
+Run, %TCDirPath%\Everything.exe
 return
 <TC_2>:
 <TC_3>:
@@ -343,9 +305,9 @@ return
 return
 ; <TC_ToggleTC> {{{1
 <TC_ToggleTC>:
-    ExePath := ini.TotalCommander_Config.TCPath
-    tClass := ini.ahk_class_Config.TCClass
-    NewTitle = 【TotalCMD】_WorkFlow
+
+    ExePath = %A_ScriptDir%\tools\TotalCMD\TOTALCMD.EXE
+    tClass = TTOTAL_CMD
     FunBoBO_RunActivation(ExePath,tClass) 
     ; WinSet, Style, ^0xC40000 , ahk_class TTOTAL_CMD
 	; SendPos(540)
@@ -4562,7 +4524,7 @@ return
 }
 <TC_double_F2>:
 {   
-    GV_KeyClickAction1 := "Gosub,<TC_F2_ReName>"
+    GV_KeyClickAction1 := "Send,{F2}"
 	GV_KeyClickAction2 := "Send,{Alt}"
 	GoSub,Sub_KeyClick
 return
