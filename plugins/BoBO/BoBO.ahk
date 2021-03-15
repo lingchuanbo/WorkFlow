@@ -165,7 +165,7 @@
 	
 	
 	;功能：任务栏
-		; #q::Gosub,showTim
+		#q::Gosub,showTim
 	;功能：窗口设置****************************
 		; !Enter:: GoSub,Sub_MaxAllRestore
 		^!#up:: GoSub,Sub_MaxAllWindows
@@ -362,14 +362,36 @@
 			; if (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200)
 					send,#{d}
 			return
+		~Alt & RButton::
+			Run,"%A_ScriptDir%\custom\apps\Popsel\PopSel.exe" /n "work.lst"
+			return
+		#RButton::
+			Run,"%A_ScriptDir%\custom\apps\Popsel\PopSel.exe" /n "System.lst"
+			return
 		~Alt::run %A_ScriptDir%\custom\apps\TaskSwch\TaskSwch.exe /t
+
 	}
 	#If
 ; ##########程序便捷.社交##########大部份来自EZ大神
 	; TIM
 		#If WinActive("ahk_class TXGuiFoundation") and WinActive("ahk_exe TIM.exe")
 		{
-			; #z::
+			;点右键选撤回
+			!c::
+				send,{RButton}
+				Sleep,100
+				send,{Down 2}{Enter}
+			Return
+			;点右键选删除
+			!d::
+				send,{RButton}
+				Sleep,200
+				send,{Up 2}{Enter}
+				Sleep,200
+				send,{Enter}
+			Return
+
+			; !::TrayIcon_Button("TIM.exe", "L")
 		; TrayIcon_Button("WeChat.exe", "L")
 		; return
 
