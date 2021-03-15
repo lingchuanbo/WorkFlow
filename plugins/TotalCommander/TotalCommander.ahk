@@ -4743,7 +4743,8 @@ return
 
 ; Python:创建文件_日期
 <Tools_NewFilesDate>:
- Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_NewFiles`)"
+;  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_NewFiles`)"
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tcm(907,1) delay(500) send(`<[d]_xxx{enter}`)"
 return
 <Tools_DeletePNG>:
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_fastcopy_deletePNG`)"
