@@ -1,10 +1,3 @@
-ahk例子
-带图标
-#g::run %COMMANDER_PATH%\Tools\popsel\PopSel.exe /is /pc /n
-不带图标
-#g::run %COMMANDER_PATH%\Tools\popsel\PopSel.exe /pc /n
-#RButton::run %COMMANDER_PATH%\Tools\popsel\PopSel.exe /n
-
 Menu lines:
 	Menu item name = semicolon separated item data
 
@@ -21,4 +14,5 @@ Item data in menu line:
 	#1 Icon file path
 	#2 Icon position 0.. (or empty)
 
+Menu files are accepted as ANSI (Windows), UTF-8 or UTF-16 LE (with or without BOM)
 *
