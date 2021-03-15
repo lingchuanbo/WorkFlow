@@ -1,3 +1,12 @@
+TotalcmdHere=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L=D:\xxx\
+C常用目录DirMenu/=submenu
+C常用目录DirMenu/桌面=%COMMANDER_PATH%\Totalcmd.exe; /T /O /P=L /L="%userprofile%"
+C常用目录DirMenu/我的文档=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L="%ProgramFiles%"
+C常用目录DirMenu/下载=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L="%USERPROFILE%\Downloads\"
+C常用目录DirMenu/Totalcmd=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L="%COMMANDER_PATH%"
+-=
+1Windows/=submenu
+1Windows/控制面板=C:\Windows\System32\control.exe
 基本/=submenu
 基本/浏览器-Google谷歌=%WorkFlow%\tools\GoogleChrome\App\chrome.exe
 基本/浏览器-FireFox火狐=%WorkFlow%\tools\Mozila\Firefox\firefox.exe
