@@ -368,8 +368,27 @@
 		#RButton::
 			Run,"%A_ScriptDir%\custom\apps\Popsel\PopSel.exe" /n "System.lst"
 			return
-		~Alt::run %A_ScriptDir%\custom\apps\TaskSwch\TaskSwch.exe /t
+		~Alt::
+			{
+				t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
+				settimer, tappedkey_TrayWnd, %t%
+				if (t == "off")
+				goto double_TrayWnd
+				return
+				tappedkey_TrayWnd:
+					{
+						run %A_ScriptDir%\custom\apps\TaskSwch\TaskSwch.exe /t
+						return
+					}
+				return
 
+				double_TrayWnd:
+					{
+						PopSel("work.lst")
+						return
+					}
+				return
+			}
 	}
 	#If
 ; ##########程序便捷.社交##########大部份来自EZ大神
@@ -390,17 +409,6 @@
 				Sleep,200
 				send,{Enter}
 			Return
-
-			; !::TrayIcon_Button("TIM.exe", "L")
-		; TrayIcon_Button("WeChat.exe", "L")
-		; return
-
-			
-		; Loop,% o.MaxIndex()
-		; {
-		;  WinShow % "QQ ahk_class TXGuiFoundation ahk_pid " o[A_Index].pid
-		;  WinActivate % "QQ ahk_class TXGuiFoundation ahk_pid " o[A_Index].pid
-		; }
 
 			;快速到QQ接收的文件目录，请在config.ini对应修改qq号
 			^f::CoordWinClick(92,48)
@@ -544,6 +552,7 @@
 		F3::send,{Blind}^{Tab}
 	; 关闭
 		F4::SendInput,^w
+		
 	; 鼠标左右点击关闭
 		~LButton & RButton::send ^w
 	; 快速清理缓存
@@ -573,10 +582,26 @@
 		return
 
 		~Alt::
-			GV_KeyClickAction1 := "SendInput,^{l}"
-			GV_KeyClickAction2 := "SendInput,^+{q}"
-			GoSub,Sub_KeyClick
+		{
+			t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
+			settimer, tappedkey_web, %t%
+			if (t == "off")
+			goto double_web
+			return
+			tappedkey_web:
+				{
+					PopSel("web.lst")
+					return
+				}
+			return
+
+			double_web:
+				{
+					SendInput,^{l}
+					return
+				}
 		return
+		}
 
 	; 打开无痕模式&打开谷歌	
 		F8::
