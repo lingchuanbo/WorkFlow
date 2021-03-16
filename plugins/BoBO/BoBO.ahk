@@ -5,7 +5,6 @@
 
 ; ################# 辅助增强 #################
 	; 命令行
-		#q::Gosub,<BoBO_HuntAndPeck>
 		#h::run,cmd
 		^#h::run,*RunAs cmd
  	;按住Win加滚轮来调整音量大小
@@ -25,6 +24,10 @@
 			sleep,500
 			tooltip,
 		return
+	;功能：字母跳转
+		#q::Gosub,<BoBO_HuntAndPeck>
+	;功能：快速打开浏览器
+		#g::Send,#{2}
 	;功能：软件启动器(热键：Win+右键	)		
 		#RButton::
 		{
@@ -558,10 +561,10 @@
 		~LButton & RButton::send ^w
 	; 快速清理缓存
 		~LButton & Delete::GoSub,<GoogleChrome_清除浏览数据>
-	; 返回
-		!LButton:: Browser_Back
 	; 向前
-		!RButton:: Browser_Forward
+		!LButton:: Browser_Forward
+	; 返回
+		!RButton:: Browser_Back
 	; 定位输入栏
 		F6::
 			GV_KeyClickAction1 := "SendInput,^l"
@@ -610,6 +613,19 @@
 			GV_KeyClickAction2 := "GoSub,<GoogleChrome_无痕>"
 			GoSub,Sub_KeyClick
 		return
+
+		q::
+			GV_KeyClickAction1 := "send,{q}"
+			GV_KeyClickAction2 := "send,!{Left}"
+			GoSub,Sub_KeyClick
+		return
+
+		e::
+			GV_KeyClickAction1 := "send,{e}"
+			GV_KeyClickAction2 := "send,!{Right}"
+			GoSub,Sub_KeyClick
+		return
+
 
 	; 滚轮切换标签
 		; ~$WheelDown::
