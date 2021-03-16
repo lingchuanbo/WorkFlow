@@ -1,1 +1,8 @@
-Downloads=files;*.*;%userprofile%\downloads
+工作软件/=submenu
+工作软件/Adobe Effect CS6=C:\Program Files\Adobe\Adobe After Effects CS6\Support Files\AfterFX.exe
+工作软件/Adobe Effect 2020=C:\Program Files\Adobe\Adobe After Effects 2020\Support Files\AfterFX.exe
+工作软件/3DsMax 2017=C:\Program Files\Autodesk\3ds Max 2017\3dsmax.exe
+工作软件/3DsMax 2021=C:\Program Files\Autodesk\3ds Max 2021\3dsmax.exe
+-=
+Unreal Engine Editor=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L=D:\xxx\
+Blender=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L=D:\xxx\
