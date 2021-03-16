@@ -81,10 +81,11 @@ global this_title=
 global zParam
 
 ; 程序路径
-IniRead,TCExePath,config.ini,TotalCommander_Config,TCPath
-IniRead,TCExePath,config.ini,TotalCommander_Config,TCDirPath
-global TCExePath := TCExePath
-global TCDirPath := TCDirPath
+; IniRead,TCExePath,config.ini,TotalCommander_Config,TCPath
+; IniRead,TCExePath,config.ini,TotalCommander_Config,TCDirPath
+; global TCExePath := TCExePath
+global TCDirPath := "%A_ScriptDir%\tools\TotalCMD"
+global TCPath := "%A_ScriptDir%\tools\TotalCMD\TOTALCMD.EXE"
 
 ;颜色
 ;背景颜色

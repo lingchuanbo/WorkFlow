@@ -5,8 +5,9 @@
 
 ; ################# 辅助增强 #################
 	; 命令行
-		 #h::run,cmd
-		 ^#h::run,*RunAs cmd
+		#q::Gosub,<BoBO_HuntAndPeck>
+		#h::run,cmd
+		^#h::run,*RunAs cmd
  	;按住Win加滚轮来调整音量大小
  		LWin & WheelUp::Send,{Volume_Up}
  		LWin & WheelDown::Send,{Volume_Down}
@@ -165,7 +166,7 @@
 	
 	
 	;功能：任务栏
-		#q::Gosub,showTim
+		; #q::Gosub,showTim
 	;功能：窗口设置****************************
 		; !Enter:: GoSub,Sub_MaxAllRestore
 		^!#up:: GoSub,Sub_MaxAllWindows

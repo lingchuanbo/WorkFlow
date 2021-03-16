@@ -714,7 +714,6 @@ mouserMove(){
 
 
 openPathTc(){	
-    TCPath := ini.TotalCommander_Config.TCPath
 	MouseGetPos, , , id, control
 	WinGetTitle, title, ahk_id %id%
 	getPath=%title%
