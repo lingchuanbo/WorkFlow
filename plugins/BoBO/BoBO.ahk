@@ -594,14 +594,14 @@
 			return
 			tappedkey_web:
 				{
-					PopSel("web.lst")
+					SendInput,^{l}
 					return
 				}
 			return
 
 			double_web:
 				{
-					SendInput,^{l}
+					PopSel("web.lst")
 					return
 				}
 		return
@@ -614,18 +614,18 @@
 			GoSub,Sub_KeyClick
 		return
 
-		q::
-			GV_KeyClickAction1 := "send,{q}"
-			GV_KeyClickAction2 := "send,!{Left}"
-			GoSub,Sub_KeyClick
-		return
-
-		e::
-			GV_KeyClickAction1 := "send,{e}"
+		Space & q::
+			GV_KeyClickAction1 := "send,!{Left}"
 			GV_KeyClickAction2 := "send,!{Right}"
 			GoSub,Sub_KeyClick
 		return
 
+		; Space & e::
+		; 	GV_KeyClickAction1 := "send,{e}"
+		; 	GV_KeyClickAction2 := "send,!{Right}"
+		; 	GoSub,Sub_KeyClick
+		; return
+		Space::send,{Space}
 
 	; 滚轮切换标签
 		; ~$WheelDown::

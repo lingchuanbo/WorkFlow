@@ -14,6 +14,7 @@ function_menuAfterEffect:
      ;;便捷菜单
     +RButton::Gosub,menuAe
     !RButton::Gosub,menuAeAltExpressions
+    LButton & Alt::Gosub,AeAltLButton
 
     ; Alt::
 	; 	GV_KeyClickAction1 := "Gosub,menuAe"
@@ -78,7 +79,20 @@ Ae_pluginTools:
 return
 
 
-
+AeAltLButton:
+    Menu, AeAltLButton, add, (&D) 克隆合成组, CompDuplicator
+    Menu, AeAltLButton, add, (&R) 批量重命名, BatchRename
+    Menu, AeAltLButton, add, (&R) 精简项目,<Ae_ReduceProject>
+    Menu, AeAltLButton, add, (&P) 项目清理,<Ae_ProjectCleaner>
+    ; Menu, menuAlt, add, (&R) 批量替换素材, BatchReplaceFile
+    ; Menu, menuAlt, add, (&R) 批量重命名, BatchRename
+    ; Menu, menuAlt, add, (&R) 批量渲染, :ManageRender
+    ;     Menu, ManageRender, add, %_AeRENDER%,RENDER
+    ;     Menu, ManageRender, add, %_AeNameRENDER%,NameRENDER
+    ;     Menu, ManageRender, add, %_AeNameDirection%,NameDirection
+    ;     Menu, ManageRender, add, %_AeName%, Name
+    Menu, AeAltLButton, Show
+return
 
 menuAeAlt:
     Menu, menuAlt, add, (&R) 批量导入素材, ImmigrationREG
@@ -126,10 +140,7 @@ menuAe:
 
 	menu, thismenu, add, .整理项目&清理缓存,<Ae_OrganizeProjectAssetsDiskCache>
 	menu, thismenu, add, .清除时间轴中未使用的素材图层,<Ae_ReduceNoFootage>
-	menu, thismenu, add, .精简项目,<Ae_ReduceProject>
-    menu, thismenu, add, .项目清理,<Ae_ProjectCleaner>
 	menu, thismenu, add, .文件所在位置, OpenLocalFiles
-
 	menu, thismenu, add, .文件所在位置【渲染】, OpenLocalFilesRender
 
    Menu, thismenu, Show

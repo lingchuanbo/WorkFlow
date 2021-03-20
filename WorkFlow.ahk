@@ -86,7 +86,6 @@ global zParam
 ; global TCExePath := TCExePath
 global TCDirPath := "%A_ScriptDir%\tools\TotalCMD"
 global TCPath := "%A_ScriptDir%\tools\TotalCMD\TOTALCMD.EXE"
-
 ;颜色
 ;背景颜色
 IniRead,BGColor,config.ini,Color_Config,BGColor

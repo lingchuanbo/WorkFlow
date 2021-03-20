@@ -343,19 +343,9 @@ return
 return
 
 <TC_Un7zip>:
-    t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-    settimer, TC_tappedkey_Un7zip, %t%
-    if (t == "off")
-    goto TC_double_Un7zip
-    return
-
-    TC_tappedkey_Un7zip:
-    GoSub,<TC_BZUnpackFiles>
-    return
-
-    TC_double_Un7zip:
-    GoSub,<TC_To7zip>
-    return
+	GV_KeyClickAction1 := "GoSub,<TC_BZUnpackFiles>"
+	GV_KeyClickAction2 := "GoSub,<em_BZUniZip_B>"
+	GoSub,Sub_KeyClick
 return
 
 ;点击文本搜索框
@@ -4705,8 +4695,8 @@ return
 
 ; Python:创建文件_日期
 <Tools_NewFilesDate>:
-;  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_NewFiles`)"
- Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tcm(907,1) delay(500) send(`<[d]_xxx{enter}`)"
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_BoBO_NewFiles`)"
+;  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tcm(907,1) delay(500) send(`<[d]_xxx{enter}`)"
 return
 <Tools_DeletePNG>:
  Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_fastcopy_deletePNG`)"
@@ -4972,6 +4962,10 @@ return
 	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CopySrcPathToClip`)"
 	msgbox %Clipboard%
 
+return
+
+<em_BZUniZip_B>:
+TcCMD("tem(`em_BZUniZip_B`)")
 return
 
 <TcCountDirContent>:

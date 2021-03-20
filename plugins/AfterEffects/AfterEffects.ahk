@@ -127,11 +127,12 @@ return
 
 ;   全局运行AE
 <RunAE>:
-    ExePath := ini.BOBOPath_Config.AEPath
-    tClass := ini.ahk_class_Config.AEClass
-    ; NewTitle = 【a b同时搜a和b】【a|b搜a或b】【a!b搜a排除b】开正则后.单个?(0或1) *(0或多) +(1或多)  \b边界 ^开始 $结尾 \转义
-    ; FunBoBO_RunActivationTitle(ExePath,tClass,NewTitle) 
-    FunBoBO_RunActivation(ExePath,tClass)
+    ; ExePath := ini.BOBOPath_Config.AEPath
+    ; tClass := ini.ahk_class_Config.AEClass
+    ; ; NewTitle = 【a b同时搜a和b】【a|b搜a或b】【a!b搜a排除b】开正则后.单个?(0或1) *(0或多) +(1或多)  \b边界 ^开始 $结尾 \转义
+    ; ; FunBoBO_RunActivationTitle(ExePath,tClass,NewTitle) 
+    ; FunBoBO_RunActivation(ExePath,tClass)
+    send,#{3}
 Return
 
 ;   单键切换
