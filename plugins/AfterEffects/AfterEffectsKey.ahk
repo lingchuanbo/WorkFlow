@@ -35,7 +35,8 @@
     vim.Map("<F8>5", "<Ae_Script_GlobalRename>", "AfterEffects")
     vim.Map("<F9>", "<Ae_Double_FindAeFiles>", "AfterEffects")
     vim.Map("<F9>1", "<Ae_Double_F9>", "AfterEffects")  
-    vim.Map("<F12>", "<Ae_Script_AEProject>", "AfterEffects")
+    ; vim.Map("<F12>", "<Ae_Script_AEProject>", "AfterEffects")
+    vim.Map("<F12>", "<Ae_OrganizeProjectAssetsDiskCache>", "AfterEffects")
 
     vim.map("[","<Ae_Double_[>","AfterEffects")
     vim.map("]","<Ae_Double_]>","AfterEffects")
@@ -118,6 +119,9 @@
     ; vim.Map("<Ctrl>", "<Ae_Double_Ctrl>", "AfterEffects")
     ; vim.Map("<Shift>", "<Ae_Double_Shift>", "AfterEffects")
     vim.Map("<Space>", "<AeSpace>", "AfterEffects") 
+    vim.Map("<SP-w>", "<Ae_LayerMoveUp>", "AfterEffects")
+    vim.Map("<SP-s>", "<Ae_LayerMoveDown>", "AfterEffects")
+    
     ;vim.Map("<C-c>", "<Ae_CopyPaste>", "AfterEffects")
     ; vim.Map("<C-LButton>", "<AeSpace>", "AfterEffects")
     ; vim.Map("<~LC>", "<Ae_LCtrl>", "AfterEffects")

@@ -1489,6 +1489,19 @@ return
     return
 }
 
+; 图层向上
+<Ae_LayerMoveUp>:
+{
+    send,^{]}
+    return
+}
+<Ae_LayerMoveDown>:
+{
+    send,^{[}
+    return
+}
+
+
 <Ae_SplitLayer>:
     getAeScript("custom\ae_scripts\commands\SplitLayer.jsx")
 return
