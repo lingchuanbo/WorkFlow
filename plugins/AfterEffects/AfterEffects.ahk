@@ -794,12 +794,12 @@ return
         {
             Run,%A_ScriptDir%\tools\TotalCMD\Tools\MemReduct\memreduct.exe
             Sleep, 200
-            Send, ^{F1}
+            Send, ^{F2}
             return
         }
         if NewPID
         {
-            Send, ^{F1}
+            Send, ^{F2}
             return
         }
 return
@@ -1408,9 +1408,16 @@ Return
 ;调用动画预设文件
 <Ae_Double_f>:
 	GV_KeyClickAction1 := "send,{f}"
-	GV_KeyClickAction2 := "Gosub,<Ae_Preset_Apply>"
+	GV_KeyClickAction2 := "Gosub,<Ae_QuickMenu2>"
 	GoSub,Sub_KeyClick
 return
+
+<Ae_QuickMenu2>:
+{
+    getAeScript("custom\ae_scripts\00_QuickMenu.jsxbin")
+    return
+}
+
 <Ae_Preset_Apply>:
 {
     send ^+!{f}
