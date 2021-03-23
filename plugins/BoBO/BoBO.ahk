@@ -25,7 +25,17 @@
 			tooltip,
 		return
 	;功能：字母跳转
-		#q::Gosub,<BoBO_HuntAndPeck>
+		#q::
+		SendInput,^!{q}
+		return
+		#w::
+		Gosub,<BoBO_HuntAndPeck>
+		return
+		; 	GV_KeyClickAction1 := "Gosub,<BoBO_HuntAndPeck>"
+		; 	GV_KeyClickAction2 := "SendInput,^!{q}"
+		; 	GoSub,Sub_KeyClick
+		; return
+		; # & Alt::SendInput,^!{q}
 	;功能：快速打开浏览器
 		#g::Send,#{2}
 	;功能：软件启动器(热键：Win+右键	)		
@@ -35,6 +45,7 @@
 			; run %A_ScriptDir%\custom\apps\Popsel\PopSel.exe /pc /n ;带图标
 			return
 		}
+
 	;功能：启动记事本并去标题等
 		#n::
 			run, %A_ScriptDir%\tools\TotalCMD\Tools\Notepad\Notepad.exe /b /f %A_ScriptDir%\tools\TotalCMD\Tools\Notepad\Notepad.ini, , , OutputVarPID
