@@ -3,7 +3,11 @@
 	Esc::Gosub,<3DsMax_esc>
 	+RButton::Gosub,menuDSMAX
 	; ~LButton & RButton::send ^w
-	return
+	^!+p::runMaxScript("MenuScript\Utilites\初始化.ms")
+	^!+o::runMaxScript("MenuScript\Utilites\2倍动画缩放.ms")
+	^!+l::runMaxScript("MenuScript\Utilites\3倍动画缩放.ms")
+	^!+i::runMaxScript("MenuScript\Utilites\4倍动画缩放.ms")
+	^!+u::runMaxScript("MenuScript\Utilites\6倍动画缩放.ms")
 }
 #If WinActive("ahk_exe maya.exe")
 {

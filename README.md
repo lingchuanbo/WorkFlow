@@ -1,4 +1,5 @@
-
+### **自用神器，不接受任何建议！**
+<!-- 
 ### **本软件为小众软件，会用牛逼，不会用垃圾！**
 
 **绿色无污染！解压即可运行！**
@@ -120,4 +121,4 @@ PS
 再次致谢**Array & kawvin & EZ & liuyukuan**！
 
 #### 6.请我喝一杯？
-![pay](https://raw.githubusercontent.com/lingchuanbo/WorkFlow/master/pay.png)
+![pay](https://raw.githubusercontent.com/lingchuanbo/WorkFlow/master/pay.png) -->
