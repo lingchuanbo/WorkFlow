@@ -877,12 +877,15 @@ KeyClickAction(act){
 	else If RegExMatch(act,"i)^(GoSub,)",m) {
 		GoSub,% substr(act,strlen(m1)+1)
 	}
+	else If RegExMatch(GoFun,"i)^(GoFun,)",m) {
+		substr(act,strlen(m1)+1)
+	}
 	else If RegExMatch(act,"i)^(TcSendPos,)",m) {
 		Number:=% substr(act,strlen(m1)+1)
 		PostMessage 1075, %Number%, 0, , AHK_CLASS TTOTAL_CMD
-		ToolTip,"烹羊宰牛且为乐 会须一饮三百杯" ;提示文本
-		sleep,800
-		tooltip,
+		; ToolTip,"烹羊宰牛且为乐 会须一饮三百杯" ;提示文本
+		; sleep,800
+		; tooltip,
 	; else If RegExMatch(act,"i)^(TcSendCommand,)",m) {
 	; 	Number:=% substr(act,strlen(m1)+1)
 	; 	Run, "%A_ScriptDir%\tools\TotalCMD\Tools\TCFS2\TCFS2.exe" /ef "tem(%Number%)"
@@ -1093,3 +1096,9 @@ PopSel(lst){
 return
 }
 
+fun_TCselectFileByNum(n){
+	Sendinput,{Home}
+	Sleep,200
+	Sendinput,{Down %n%}
+	Sendinput,{Enter}
+}
