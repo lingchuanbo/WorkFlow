@@ -559,6 +559,16 @@
 ; ##########程序便捷.浏览器########## 谷歌内核浏览器一般都支持 火狐没测
 	#If WinActive("ahk_group group_browser")
 	{
+			;调用mpv播放
+		!g::
+			;先点击IDM浮动
+			ControlClick, IDM Download Button class1, , , LEFT, 1, x12 y8
+			sleep 1000
+			;再来处理
+			ControlGetText,Out,Edit1,下载文件信息 ahk_class #32770 ahk_exe IDMan.exe
+			WinClose,下载文件信息 ahk_class #32770 ahk_exe IDMan.exe
+			run,%TCDirPath%\Plugins\WLX\vlister\mpv.exe "%Out%"
+		return
 	; 新建
 		F1::Send,^{t}
 	; 切换向左
@@ -674,6 +684,7 @@
 										Else Send {Click middle}
 			EmptyMem()
 			return
+
 	}
 	#If
 ; ##########系统.资源管理器&桌面##########

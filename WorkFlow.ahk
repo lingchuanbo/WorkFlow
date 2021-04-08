@@ -46,7 +46,7 @@ SetWinDelay,0
 ; ;--20191216
 SetWorkingDir %A_ScriptDir%
 
-global Version:="1.1"
+global Version:="1.2"
 global Update:="2021"
 ; ;--2020-0305 截屏取词
 If (!pToken:=Gdip_Startup()) {
@@ -133,7 +133,7 @@ WindowList:=[]
 
 #Include %A_ScriptDir%\lib\DynamicFileMenu.ahk
 #Include %A_ScriptDir%\lib\checkUser.ahk
-#Include %A_ScriptDir%\lib\DownloadFile.ahk
+; #Include %A_ScriptDir%\lib\DownloadFile.ahk
 #Include %A_ScriptDir%\lib\AutoExecute.ahk
 #Include %A_ScriptDir%\lib\AutoUpdate.ahk
 #Include %A_ScriptDir%\lib\FunBoBO.ahk
@@ -145,19 +145,19 @@ WindowList:=[]
 #Include %A_ScriptDir%\core\VimDConfig.ahk
 #Include %A_ScriptDir%\lib\class_EasyINI.ahk
 #Include %A_ScriptDir%\lib\acc.ahk
-#Include %A_ScriptDir%\lib\ini.ahk
+; #Include %A_ScriptDir%\lib\ini.ahk
 #Include %A_ScriptDir%\lib\gdip.ahk
 #Include %A_ScriptDir%\lib\Logger.ahk
 #Include %A_ScriptDir%\lib\Updater.ahk
 #Include %A_ScriptDir%\lib\TrayMenu.ahk
-#Include %A_ScriptDir%\lib\ImageButton.ahk
+; #Include %A_ScriptDir%\lib\ImageButton.ahk
 #Include %A_ScriptDir%\plugins\plugins.ahk
 #Include %A_ScriptDir%\lib\libcrypt.ahk
 ; #Include %A_ScriptDir%\lib\Base64Enc.ahk
-#Include %A_ScriptDir%\lib\UriEncode.ahk
+; #Include %A_ScriptDir%\lib\UriEncode.ahk
 #Include %A_ScriptDir%\lib\WinHttpRequest.ahk
 ; #Include %A_ScriptDir%\lib\NvAPI.ahk
-#Include %A_ScriptDir%\lib\TrayIcon.ahk
+; #Include %A_ScriptDir%\lib\TrayIcon.ahk
 #Include %A_ScriptDir%\lib\OnWin.ahk
 ;用户自定义配置yy
 #Include %A_ScriptDir%\custom\custom.ahk

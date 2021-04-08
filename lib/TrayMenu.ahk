@@ -4,40 +4,20 @@ menu, Tray, DeleteAll
 Menu, Tray, NoStandard
 ;menu, Tray, UseErrorLevel
 Menu, Tray, tip, %_AppName%`n版本:%Version%
-menu, Tray, add, %_AppName% %Version% ,About
-Menu, Tray, disable, %_AppName% %Version% 
+menu, Tray, add, %_AppName% %Update%.%Version%,About
+Menu, Tray, disable, %_AppName% %Update%.%Version%
 menu, Tray, add
-; menu, Tray, add, %_StartUp%(&S),StartUp
 
-
-;if StartUp
-
-;menu, Tray, check, %_StartUp%
-;menu, Tray, add, %_UpdatPlugins% &U, <UpdatPlugins>
-;menu, tray, disable, %_Author%
-; Menu, Tray, add, %_HotKeyManagement%(&H), <VimDConfig_KeymapEdit>
-; Menu, Tray, add, 功能管理, <VimDConfig_function>
-; Menu, Tray, Add, %_Config%(&C), <VimDConfig_EditConfig>
-; Menu, Tray, Add, %_Path%(&P), <EditConfig>
-;Menu, Tray, Add,
-;Menu, Tray, Add, 编辑Custom &C, <VimDConfig_EditCustom>
-; Menu, Tray, Add,
-;Menu, Tray, Add, (&H) %_Help%, <VIMD_Help>
-
-;menu, Tray, add, (&U) %_Updater% , <Updater>
 Menu, LangSet, add, 中文,中文
 Menu, LangSet, add, English,English
 Menu, tray, add, %_Language%, :LangSet
 
 
 Menu, aboutMe, add, %_Help%(&H), <VIMD_Help>
-; Menu, aboutMe, add, %_Update%(&U), <VIMD_Update>
+
 Menu, aboutMe, add, %_Web%(&W), <VIMD_WorkFlowWeb>
 Menu, tray, add, %_aboutMe%(&L), :aboutMe
-; Menu, aboutMe, add, (&U) %_Update%, Check_Update
 
-; Menu, aboutMe, add, 系统状态监测(&B), 系统状态监测
-; Menu, aboutMe, add, %_AppName%添加为系统变量(&B), <VIMD_EnvSystem>
 
 Menu, OptionSet, add, %_Initialization%, <VIMD_Initialization>
 Menu, OptionSet, add, 将 %_AppName% 目录添加为系统变量(&B), <VIMD_EnvSystem>
