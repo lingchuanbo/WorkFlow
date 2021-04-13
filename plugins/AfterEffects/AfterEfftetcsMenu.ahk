@@ -84,6 +84,8 @@ AeAltLButton:
     Menu, AeAltLButton, add, (&R) 批量重命名, BatchRename
     Menu, AeAltLButton, add, (&R) 精简项目,<Ae_ReduceProject>
     Menu, AeAltLButton, add, (&P) 项目清理,<Ae_ProjectCleaner>
+    Menu, AeAltLButton, add, (&P) 版本转换,ProjectConver
+    
     ; Menu, menuAlt, add, (&R) 批量替换素材, BatchReplaceFile
     ; Menu, menuAlt, add, (&R) 批量重命名, BatchRename
     ; Menu, menuAlt, add, (&R) 批量渲染, :ManageRender

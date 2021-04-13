@@ -28,7 +28,7 @@
 		#q::
 		SendInput,^!{q}
 		return
-		#w::
+		#f::
 		Gosub,<BoBO_HuntAndPeck>
 		return
 		; 	GV_KeyClickAction1 := "Gosub,<BoBO_HuntAndPeck>"
@@ -318,16 +318,16 @@
 	CapsLock & f::SendInput,{Blind}{PgDn}
 
 
-	;显示 复制和剪切的内容
-		~^x::
-		~^c::		;~ 表示次热键并不屏蔽按键原有功能
-			Sleep, 100	;等待0.1s 强制机械等待剪贴板出现内容 
-			;clip:=clipboard
-			StringLeft,clipboard_left,clipboard,500
-			Tooltip,已复制：%clipboard_left%		;在鼠标右侧显示clip(clipboard内容)
-			Sleep,800
-			Tooltip,
-		Return
+	; ;显示 复制和剪切的内容
+	; 	~^x::
+	; 	~^c::		;~ 表示次热键并不屏蔽按键原有功能
+	; 		Sleep, 100	;等待0.1s 强制机械等待剪贴板出现内容 
+	; 		;clip:=clipboard
+	; 		StringLeft,clipboard_left,clipboard,500
+	; 		Tooltip,已复制：%clipboard_left%		;在鼠标右侧显示clip(clipboard内容)
+	; 		Sleep,800
+	; 		Tooltip,
+	; 	Return
 ; ################# Tab相关 #################
 	#If GV_ToggleTabKeys=1
 		Tab & s::SendInput,{Blind}{Down}
@@ -538,6 +538,7 @@
 	; 智能跳转
 		#If WinActive("ahk_group GroupDiagJump") and WinActive("ahk_class #32770")
 		{
+			!f::GoSub,<BoBO_HuntAndPeck>
 			!e::GoSub,Sub_SendCurDiagPath2Exp		;发送对话框路径到_系统资管中
 			; !t:: GoSub,Sub_SendCurDiagPath2Tc ;发送对话框路径到_TC
 			; !g:: GoSub,Sub_SendTcCurPath2Diag
@@ -1084,6 +1085,17 @@
 			; Return 
 		}
 		#If
+	; Evetything
+		#If WinActive("ahk_exe Everything.exe")
+			{
+				;点右键选撤回
+				^c::
+					send,{RButton}
+					Sleep,100
+					send,{Down 3}
+				Return
+				}
+		#If
 	menuPsAlt:
 		menu, menuPsAlt, add,用AE编辑, Ps_UserAeEidtor
 		menu, menuPsAlt, add,在TC显示, Ps_TotalCMD
@@ -1099,8 +1111,6 @@
 	Ps_Export:
 		MsgBox, "有需求在写"
 	return
-
-
 
 ; ##########程序便捷.菜单##########
 	; 菜单
@@ -1141,6 +1151,8 @@
 				Menu, Toolset, add, 整理: 按文件类型,<Tools_Classification>
 				Menu, Toolset, add, 整理: 递归文件到当前目录,<Tools_MoveFilesToDir>
 				Menu, Toolset, add, 整理: 当前文件向上移,<Tools_MoveUpDir>
+				Menu, Toolset, add, 整理: 关闭重复标签,<TC_关闭重复标签>
+
 				Menu, Toolset, add, 删除: 空目录,<Tools_NullDir>
 				Menu, Toolset, add, 删除: PNG文件,<Tools_DeletePNG>
 

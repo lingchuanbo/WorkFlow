@@ -20,7 +20,7 @@
     ; vim.Map("<f9>2", "<GoogleChrome_OpenTranslate>", "GoogleChrome")
     ; vim.Map("<f9>3", "<GoogleChrome_OpenDogeDoge>", "GoogleChrome")
     ; vim.Map("<f9>4", "<GoogleChrome_下载>", "GoogleChrome")
-    vim.map("?","<ShowHelp>","GoogleChrome")
+    ; vim.map("?","<ShowHelp>","GoogleChrome")
 return
 
 ;【全局运行AE】

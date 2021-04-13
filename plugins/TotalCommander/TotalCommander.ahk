@@ -4570,6 +4570,9 @@ return
 <TC_TCIMG_RenAddDateTime>:
  Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_TCIMG_RenAddDateTime`)"
 return
+;关闭重复标签
+<TC_关闭重复标签>:
+Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tcm(3009,1) delay(200) send(`d`)"
 ;将所选对象移动到上一级,向上移动一级,并向上选择移动的对象
 <TC_TCIMG_DirGetUp>:
  Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_TCIMG_DirGetUp`)"
