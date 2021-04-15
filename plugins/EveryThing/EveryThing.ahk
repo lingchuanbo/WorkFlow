@@ -35,21 +35,20 @@
     vim.map("c","<EVERYTHING_复制完整路径>","EVERYTHING")
     vim.map("y","<EVERYTHING_复制完整路径>","EVERYTHING")
 
-    vim.map("fx","<EVERYTHING_搜索内容>","Everything")
-    vim.map("fu","<EVERYTHING_搜索音频>","Everything")
-    vim.map("fn","<EVERYTHING_搜索清除>","EVERYTHING")
-    vim.map("fz","<EVERYTHING_搜索压缩>","EVERYTHING")
-    vim.map("fd","<EVERYTHING_搜索文档>","EVERYTHING")
-    vim.map("fe","<EVERYTHING_搜索可执行>","EVERYTHING")
-    vim.map("ff","<EVERYTHING_搜索文件夹>","EVERYTHING")
-    vim.map("fi","<EVERYTHING_搜索文件>","EVERYTHING")
-    vim.map("fp","<EVERYTHING_搜索图像>","EVERYTHING")
-    vim.map("fv","<EVERYTHING_搜索视频>","EVERYTHING")
-    vim.map("f1","<EVERYTHING_搜索一级父文件夹>","EVERYTHING")
-    vim.map("f2","<EVERYTHING_搜索二级父文件夹>","EVERYTHING")
-    vim.map("f3","<EVERYTHING_搜索三级父文件夹>","EVERYTHING")
-    vim.map("f4","<EVERYTHING_搜索游戏资源>","EVERYTHING")
-
+    vim.map("/fx","<EVERYTHING_搜索内容>","Everything")
+    vim.map("/fu","<EVERYTHING_搜索音频>","Everything")
+    vim.map("/fn","<EVERYTHING_搜索清除>","EVERYTHING")
+    vim.map("/fz","<EVERYTHING_搜索压缩>","EVERYTHING")
+    vim.map("/fd","<EVERYTHING_搜索文档>","EVERYTHING")
+    vim.map("/fe","<EVERYTHING_搜索可执行>","EVERYTHING")
+    vim.map("/ff","<EVERYTHING_搜索文件夹>","EVERYTHING")
+    vim.map("/fi","<EVERYTHING_搜索文件>","EVERYTHING")
+    vim.map("/fp","<EVERYTHING_搜索图像>","EVERYTHING")
+    vim.map("/fv","<EVERYTHING_搜索视频>","EVERYTHING")
+    vim.map("/f1","<EVERYTHING_搜索一级父文件夹>","EVERYTHING")
+    vim.map("/f2","<EVERYTHING_搜索二级父文件夹>","EVERYTHING")
+    vim.map("/f3","<EVERYTHING_搜索三级父文件夹>","EVERYTHING")
+    vim.map("/f4","<EVERYTHING_搜索游戏资源>","EVERYTHING")
 
     vim.map(".t","<EVERYTHING_搜索文件大小10K>","EVERYTHING")
     vim.map(".s","<EVERYTHING_搜索文件大小100K>","EVERYTHING")
@@ -66,7 +65,7 @@
     vim.map("ae","<EVERYTHING_按扩展名排序>","EVERYTHING")
     ;导航
     vim.map("ge","<EVERYTHING_跳转至搜索框>","EVERYTHING")
-    vim.map("<ctrl>l","<EVERYTHING_跳转至搜索框>","EVERYTHING")
+    vim.map("<Alt>","<EVERYTHING_跳转至搜索框>","EVERYTHING")
     vim.map("gl","<EVERYTHING_跳转至搜索列表>","EVERYTHING")
     vim.map("gg","<EVERYTHING_移动到第一行>","EVERYTHING")
     vim.map("G","<EVERYTHING_移动到最后行>","EVERYTHING")
@@ -82,6 +81,8 @@
     vim.map("e","<EVERYTHING_使用指定程序打开>","EVERYTHING")
     vim.map("z","<EVERYTHING_回车>","EVERYTHING")
 
+    vim.map("f","<EVERYTHING_字母定位>","EVERYTHING")
+
     vim.map("0","<0>","EVERYTHING")
     vim.map("1","<1>","EVERYTHING")
     vim.map("2","<2>","EVERYTHING")
@@ -92,11 +93,6 @@
     vim.map("7","<7>","EVERYTHING")
     vim.map("8","<8>","EVERYTHING")
     vim.map("9","<9>","EVERYTHING")
-    vim.map("f","<运行且激活程序Everything>","EVERYTHING")
-    vim.map("<Alt>1","<EVERYTHING_仙谕场景>","EVERYTHING")
-    vim.map("<Alt>2","<EVERYTHING_仙谕界面>","EVERYTHING")
-    ;vim.map("<lwin>f","<ToggleEverything>")
-    vim.map("<F1>","<ToggleEverything>")
 
     vim.BeforeActionDo("EVERYTHING_CheckMode", "EVERYTHING") ; by Array
     Return
@@ -109,7 +105,9 @@ EVERYTHING_CheckMode(){
     
 }
 
-
+<EVERYTHING_字母定位>:
+    gosub,<BoBO_HuntAndPeck>
+return
 ;全局
 <RunEverything>:
     ExePath = %A_ScriptDir%\tools\TotalCMD\Everything.exe
@@ -563,18 +561,18 @@ return
 
 
 
-<运行且激活程序Everything>:
-{
-DetectHiddenWindows, on
-IfWinNotExist ahk_class EVERYTHING
-    Run %tcdir%\Tools\Everything.exe
-Else
-IfWinNotActive ahk_class EVERYTHING
-WinActivate
-Else
-WinMinimize
-Return
-}
+; <运行且激活程序Everything>:
+; {
+; DetectHiddenWindows, on
+; IfWinNotExist ahk_class EVERYTHING
+;     Run %tcdir%\Tools\Everything.exe
+; Else
+; IfWinNotActive ahk_class EVERYTHING
+; WinActivate
+; Else
+; WinMinimize
+; Return
+; }
 
 <ToggleEverything>:
     IfWinExist,ahk_class EVERYTHING
