@@ -28,13 +28,10 @@
 		#q::
 		SendInput,^!{q}
 		return
-		#f::
+	;功能：字母定位	
+		#w::
 		Gosub,<BoBO_HuntAndPeck>
 		return
-		; 	GV_KeyClickAction1 := "Gosub,<BoBO_HuntAndPeck>"
-		; 	GV_KeyClickAction2 := "SendInput,^!{q}"
-		; 	GoSub,Sub_KeyClick
-		; return
 		; # & Alt::SendInput,^!{q}
 	;功能：快速打开浏览器
 		#g::Send,#{2}
@@ -554,6 +551,20 @@
 				GV_KeyClickAction1 := "send,{q}"
 				GV_KeyClickAction2 := "send,!{F4}"
 				GoSub,Sub_KeyClick
+			return
+		}
+		#If
+		#If WinActive("ahk_exe xnview.exe")
+		{
+			; 路径传递TC
+			F9::
+				ControlGetText, OutputVar, Edit1, A
+				DiagPath := % OutputVar
+				WinActivate ahk_class TTOTAL_CMD
+				PostMessage 1075, 3001, 0, , AHK_CLASS TTOTAL_CMD
+				ControlSetText, Edit1, cd %DiagPath%, ahk_class TTOTAL_CMD
+				Sleep 400
+				ControlSend, Edit1, {Enter}, ahk_class TTOTAL_CMD
 			return
 		}
 		#If
