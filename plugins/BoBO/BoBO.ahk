@@ -28,6 +28,8 @@
 		#q::
 		SendInput,^!{q}
 		return
+	;功能：清空回车
+		#Del::FileRecycleEmpty ; win + del
 	;功能：字母定位	
 		#w::
 		Gosub,<BoBO_HuntAndPeck>
@@ -119,20 +121,11 @@
 		Tab & LButton::Gosub,<BoBO_SubFolder>
 		<BoBO_SubFolder>:
 		{
-			; IniRead, TaskMuEx,config.ini, config, TaskMuEx, 1 [/20,200] [/.TXT.DLL] [*.TXT]/+E/VF [/20,200] 
-			; if TaskMuEx = 1
-			; {
-				; run %A_ScriptDir%\custom\apps\TaskSwch\TaskMuEx.exe /n
-				run %A_ScriptDir%\custom\apps\SubFolder\SubFolder.EXE フォルダー名 /-(AD) /-N /-R /-S /-H /-L /-M /-Y /-R /+E [/.TXT.DLL] [*.TXT]
-				return 
-			; }
-			; else
-			; {
-			; 	return
-			; }
-		}
+
+			run %A_ScriptDir%\custom\apps\SubFolder\SubFolder.EXE フォルダー名 /-(AD) /-N /-R /-S /-H /-L /-M /-Y /-R /+E [/.TXT.DLL] [*.TXT]
+			return 
 		return
-		
+		}
 	;LShift+鼠标滚轮调整窗口透明度（设置30-255的透明度，低于30基本上就看不见了，如需要可自行修改）
 		~LShift & WheelUp::
 		; 透明度调整，增加。
@@ -708,6 +701,8 @@
 			^!t::Gosub,<BoBO_OpenLocalDirCommander>
 			^!w::Run,%A_ScriptDir%\custom\apps\TaskSwch\ClsFoldr.EXE ;关闭重复窗口
 			^#z::Gosub,ZipDirectory
+			~MButton::Send !{Up} ;中键上一级
+			`::Send !{Up} ;中键上一级
 			return
 		}
 		#If 
@@ -1137,6 +1132,7 @@
 				Menu, transformSet, add, DDS转PNG,<em_BoBO_DDSToPNG>
 				Menu, transformSet, add, 合并图片为PDF,<em_Magic_MergeJPG2PDF>
 				Menu, transformSet, add, 中文转拼音,<Tools_ChineseConversionPinyin>
+				Menu, transformSet, add, Atlas转PNG,<Tools_ChineseConversionPinyin>
 				
 
 			IniRead, myCompany,config.ini, config, myCompany, 1
