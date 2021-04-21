@@ -45,6 +45,7 @@ function_menuAfterEffect:
     ` & 1::send,{b}
     ` & 2::send,{n}
     ` & 3::send, ^+x
+    ` & 4::send, {Enter}{Right}
 
     ; `::
     ; 	GV_KeyClickAction1 := "Gosub,<Ae_QuickMenu>"

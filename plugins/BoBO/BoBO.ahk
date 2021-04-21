@@ -28,6 +28,8 @@
 		#q::
 		SendInput,^!{q}
 		return
+	;功能：清空回车
+		#Del::FileRecycleEmpty ; win + del
 	;功能：字母定位	
 		#w::
 		Gosub,<BoBO_HuntAndPeck>
@@ -119,20 +121,9 @@
 		Tab & LButton::Gosub,<BoBO_SubFolder>
 		<BoBO_SubFolder>:
 		{
-			; IniRead, TaskMuEx,config.ini, config, TaskMuEx, 1 [/20,200] [/.TXT.DLL] [*.TXT]/+E/VF [/20,200] 
-			; if TaskMuEx = 1
-			; {
-				; run %A_ScriptDir%\custom\apps\TaskSwch\TaskMuEx.exe /n
-				run %A_ScriptDir%\custom\apps\SubFolder\SubFolder.EXE フォルダー名 /-(AD) /-N /-R /-S /-H /-L /-M /-Y /-R /+E [/.TXT.DLL] [*.TXT]
-				return 
-			; }
-			; else
-			; {
-			; 	return
-			; }
+			run %A_ScriptDir%\custom\apps\SubFolder\SubFolder.EXE フォルダー名 /-(AD) /-N /-R /-S /-H /-L /-M /-Y /-R /+E [/.TXT.DLL] [*.TXT]
+			return 
 		}
-		return
-		
 	;LShift+鼠标滚轮调整窗口透明度（设置30-255的透明度，低于30基本上就看不见了，如需要可自行修改）
 		~LShift & WheelUp::
 		; 透明度调整，增加。
@@ -442,7 +433,6 @@
 			!-::CoordWinClick(Tim_Start_X, Tim_Start_Y+(11-1)*Tim_Bar_Height)
 			!=::CoordWinClick(Tim_Start_X, Tim_Start_Y+(12-1)*Tim_Bar_Height)
 			; ^r::Gosub, <BoBO_Test>
-			return
 		}
 		#If
 
@@ -671,17 +661,38 @@
 		; 	EmptyMem()
 		; 	return
 	; 双击关闭
-		~LButton::
-			WinGetPos,,, w, h, A
-			MouseGetPos,xpos, ypos
-			WinGet,Mom,MinMax
-			If ((ypos>45)And(Mom<1))Or((ypos>28)And(Mom>0)) Or (ypos<0)
-			Return
-			If (A_PriorHotkey="~LButton") and (A_TimeSincePriorHotkey<200)
-			; 此处和知乎版本不同 ↓
-			send ^w
-			; 此处和知乎版本不同 ↑
-			return
+		; ~LButton::
+		; 	WinGetPos,,, w, h, A
+		; 	MouseGetPos,xpos, ypos
+		; 	WinGet,Mom,MinMax
+		; 	If ((ypos>45)And(Mom<1))Or((ypos>28)And(Mom>0)) Or (ypos<0)
+		; 	Return
+		; 	If (A_PriorHotkey="~LButton") and (A_TimeSincePriorHotkey<200)
+		; 	; 此处和知乎版本不同 ↓
+		; 	send ^w
+		; 	; 此处和知乎版本不同 ↑
+		; 	return
+		LButton::
+			Send,{LButton Down}
+			if(A_Cursor="Unknown"){
+				MouseGetPos,smx,smy
+				KeyWait,LButton,U
+				MouseGetPos,nmx,nmy
+				k:=Abs(nmx-smx)+Abs(nmy-smy)
+				if(k>30 and k<200){
+					Send,{Esc}
+					Sleep,1
+					c:=(nmy-smy>0)?"^{LButton}":"+^{LButton}"
+					MouseMove,smx,smy
+					Send,%c%
+				} else {
+					Send,{LButton Up}
+				}
+			} else {
+				KeyWait,LButton,U
+				Send,{LButton Up}
+			}
+		return
 
 	; 右键关闭标签
 		~RButton Up::
@@ -708,7 +719,8 @@
 			^!t::Gosub,<BoBO_OpenLocalDirCommander>
 			^!w::Run,%A_ScriptDir%\custom\apps\TaskSwch\ClsFoldr.EXE ;关闭重复窗口
 			^#z::Gosub,ZipDirectory
-			return
+			~MButton::Send !{Up} ;中键上一级
+			`::Send !{Up} ;中键上一级
 		}
 		#If 
 	;桌面
@@ -1137,6 +1149,7 @@
 				Menu, transformSet, add, DDS转PNG,<em_BoBO_DDSToPNG>
 				Menu, transformSet, add, 合并图片为PDF,<em_Magic_MergeJPG2PDF>
 				Menu, transformSet, add, 中文转拼音,<Tools_ChineseConversionPinyin>
+				Menu, transformSet, add, Atlas转PNG,<Tools_ChineseConversionPinyin>
 				
 
 			IniRead, myCompany,config.ini, config, myCompany, 1

@@ -1,11 +1,11 @@
 ==========================================================================
-yƒ^ƒCƒgƒ‹z SubFolder Ver 2.040
-y “ú  •t z 2020/11/20
+yƒ^ƒCƒgƒ‹z SubFolder Ver 2.100
+y “ú  •t z 2021/02/20
 yƒtƒ@ƒCƒ‹z SubFolder.LZH
 y’†    gz SubFolder.exe
-             SubFoldJO.exe Ver 2.040 2020/11/20
-             SubFolder.chm 2020/11/20
-             SubFolder.txt 2020/11/20
+             SubFoldJO.exe Ver 2.060 2021/01/05
+             SubFolder.chm 2021/01/05
+             SubFolder.txt 2021/01/05
              SubFolder.inf 2020/11/20
 y’˜ìŒ ŽÒz Hirayama KA
 yŠJ”­ŠÂ‹«z Win XP 10 + Microsoft VC++ 6.0 (SP6)
@@ -698,9 +698,17 @@ SubFolder ‚Å‚Ì‘I‘ð‚ª *.EXE *.COM “™‚ÌŽÀsƒtƒ@ƒCƒ‹‚È‚ç ƒ_ƒCƒAƒƒO‚Í ƒRƒ}ƒ“ƒhƒ‰ƒCƒ
   2020/11/20 Ver 2.040 Eƒ}ƒ‹ƒ`ƒ‚ƒjƒ^[ŠÂ‹«‚Å‚Ì •\Ž¦ˆÊ’uŽw’è ‚ÌƒRƒ}ƒ“ƒhƒ‰ƒCƒ“‚à /,-200 ‚â
     /-200 “™‚Ì—lŽ®‚ª ‚«‚¿‚ñ‚Æˆ—‚³‚ê‚È‚¢‚Ì‚Æ ˆÊ’u•\Ž¦ 0,0 “™‚ª”F‚ß‚ç‚ê‚È‚¢‚Ì‚ðC³‚µ‚Ü‚µ‚½B
     SubFolder.exe ‚ª SubFoldJO.exe ‚É‘—‚éŒø—¦‚ðŽáŠ±‚Å‚·‚ª—Ç‚­‚µ‚Ü‚µ‚½B–” ƒtƒHƒ‹ƒ_[‚ÉŠÖ˜A•t‚¯‚é
-    SubFolder.inf ‚Í ƒtƒHƒ‹ƒ_[Œo—ð‚ð‹L‰¯‚µ‚È‚¢ /-R •t‚«ŠÖ˜A•t‚¯‚éŽ–‚É‚µ‚Ü‚µ‚½B
+    SubFolder.inf ‚Í ƒtƒHƒ‹ƒ_[Œo—ð‚ð‹L‰¯‚µ‚È‚¢ /-R •t‚«‚ÅŠÖ˜A•t‚¯‚éŽ–‚É‚µ‚Ü‚µ‚½B
     •K‚¸ SubFolder.exe SubFoldJO.exe ‹¤‚É•Ï‚¦‚Ä‰º‚³‚¢B
     SubFolder.inf ‚Í ã‘‚«‚Å OK ‚Å‚·B( ‚µ‚È‚­‚Ä‚à–â‘è‚Í—L‚è‚Ü‚¹‚ñB)
+  2021/01/05 Ver 2.060 E’ÊíŽg—p‚·‚éƒtƒHƒ‹ƒ_[[‚³‚Í‚»‚ê’ö[‚¢‚Í‚¸‚Í‚È‚¢‚Ì‚Å Å‰‚É—pˆÓ‚·‚é
+    ƒ|ƒbƒvƒAƒbƒvƒƒjƒ…[‚Í”’i‚É‚µ‚Ä[‚¢Š‚ÍƒIƒ“ƒfƒ}ƒ“ƒh‚Å—pˆÓ‚·‚é—l‚É‚µ‚Ä Å‰‚Æ ƒVƒXƒeƒ€‚Ì
+    •‰‰×‚ð­‚µ‚Å‚àŒ¸‚ç‚·—l‚É‚µ‚Ü‚µ‚½B
+  2021/02/20 Ver 2.100 E˜A‘±‚µ‚Ä‰ºˆÊ‚ÌƒtƒHƒ‹ƒ_[‚ðŠJ‚¯‚éŽž‚ÌƒVƒXƒeƒ€ƒŠƒ\[ƒXŽæ“¾‚ð API ‚àŠÜ‚ß‚Ä
+    —Þ„‚·‚é—l‚É‚É‚µ‚Ä •s“K“–‚ÈƒƒbƒZ[ƒW‚ð•\Ž¦‚·‚é‚Ì‚Í–³‚­‚µ‚ÄƒVƒXƒeƒ€‚Ö‚ÌˆÀ‘S«‚à‚‚ß‚Ü‚µ‚½B
+    ˆÓŽ¯“I‚Éƒƒjƒ…[‚ðÁ‚·‚Ì‚ð‚æ‚è®‡«‚ª‚ ‚èŠmŽÀ«‚Ì‚ ‚éƒƒbƒZ[ƒWƒ|ƒXƒg‚É•Ï‚¦‚Ü‚µ‚½B
+    V‚É‰½‚©‚ðŠJ‚¢‚Ä‘Ò‚Âƒ‹[ƒeƒBƒ“‚ðˆêŒ³‰»‚µ‚ÄŒø—¦‰»‚ÆƒTƒCƒY‚ÌŒ¸­‚ð‚µ‚Ü‚µ‚½B
+
 
 œƒTƒ|[ƒg
 ‚²ˆÓŒ©E‚²—v–]‚ÍA‰º‹Lˆ¶‚Ä‚Ü‚Å‚¨Šè‚¢‚µ‚Ü‚·B
