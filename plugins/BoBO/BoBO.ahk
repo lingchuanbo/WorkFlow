@@ -4,7 +4,8 @@
 ; ~^v::Run, %A_ScriptDir%\custom\apps\HuntAndPeck\hap.exe /hint
 
 ; ################# 辅助增强 #################
-	; 命令行
+		; LCtrl::selectmenu()
+	; 命令行s
 		#h::run,cmd
 		^#h::run,*RunAs cmd
  	;按住Win加滚轮来调整音量大小
@@ -41,7 +42,6 @@
 		#RButton::
 		{
 			run %A_ScriptDir%\custom\apps\Popsel\PopSel.exe /n
-			; run %A_ScriptDir%\custom\apps\Popsel\PopSel.exe /pc /n ;带图标
 			return
 		}
 
@@ -307,15 +307,16 @@
 
 
 	; ;显示 复制和剪切的内容
-	; 	~^x::
-	; 	~^c::		;~ 表示次热键并不屏蔽按键原有功能
-	; 		Sleep, 100	;等待0.1s 强制机械等待剪贴板出现内容 
-	; 		;clip:=clipboard
-	; 		StringLeft,clipboard_left,clipboard,500
-	; 		Tooltip,已复制：%clipboard_left%		;在鼠标右侧显示clip(clipboard内容)
-	; 		Sleep,800
-	; 		Tooltip,
-	; 	Return
+		~^x::
+		~^c::		;~ 表示次热键并不屏蔽按键原有功能
+			Sleep, 100	;等待0.1s 强制机械等待剪贴板出现内容 
+			;clip:=clipboard
+			StringLeft,clipboard_left,clipboard,500
+			; Tooltip,已复制：%clipboard_left%		;在鼠标右侧显示clip(clipboard内容)
+			; ToolTip(%clipboard_left%)
+			ToolTip 已复制：%clipboard_left%
+			SetTimer, ToolTipOff, -1000
+		Return
 ; ################# Tab相关 #################
 	#If GV_ToggleTabKeys=1
 		Tab & s::SendInput,{Blind}{Down}
@@ -1137,6 +1138,12 @@
 
 ; ##########程序便捷.菜单##########
 	; 菜单
+		menuBase:
+			Menu, menuBase, add,复制选中文字,<Tools_MkDir>
+			Menu, menuBase, add,Google搜索,<Tools_MkDir>
+			Menu, menuBase, add,Google翻译,<Tools_MkDir>
+			Menu, menuBase, Show
+		return
 		menuTc:
 			Menu, menuTc, add,新建,:createDir
 				Menu, createDir, add,新建文件夹,<Tools_MkDir>
@@ -1809,7 +1816,9 @@ return
 			}
 	return
 	}
-
+ToolTipOff:
+	ToolTip
+Return
 ; IfNoteP_Active:
 ; If (note_hwnd := WinActive("ahk_group GroupDiagJump")) {
 ; 	SetTimer, %A_ThisLabel%, Off

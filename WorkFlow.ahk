@@ -19,12 +19,7 @@ if not A_IsAdmin
 #Persistent
 #InstallKeybdHook
 #MaxHotkeysPerInterval 1000
-; ;--20191216
-; #WinActivateForce
-; #InstallMouseHook
-; #MaxMem 4	;max memory per var use
-; #MaxHotkeysPerInterval 100 ;Avoid warning when mouse wheel turned very fast
-; ;--20191216
+
 Process, Priority,,high			;脚本高优先级
 CoordMode, Tooltip, Screen
 CoordMode, Mouse, Screen
@@ -37,22 +32,15 @@ FileEncoding, utf-8
 SendMode Input
 ListLines Off
 SetCapsLockState AlwaysOff
-;Suspend, on
 SetStoreCapslockMode, off
-; ;--20191216
-; SetTitleMatchMode, 2
+
 SetTitleMatchMode, 2				;窗口标题模糊匹配-3为必须精确匹配 -2部分匹配 -1开头匹配
 SetWinDelay,0
-; ;--20191216
 SetWorkingDir %A_ScriptDir%
 
 global Version:="1.2"
 global Update:="2021"
-; ;--2020-0305 截屏取词
-If (!pToken:=Gdip_Startup()) {
-	msgbox, 48, gdiplus error!, Gdiplus failed to start. Please ensure you have gdiplus on your system
-	ExitApp
-}
+
 
 FeedbackLink=https://www.notion.so/7df31102696b43dd948dab655bd1e1f7?v=5cdef8f68af74cfabca156cfb739a299
 HelpLink=https://www.notion.so/7df31102696b43dd948dab655bd1e1f7?v=5cdef8f68af74cfabca156cfb739a299
@@ -133,34 +121,23 @@ WindowList:=[]
 
 #Include %A_ScriptDir%\lib\DynamicFileMenu.ahk
 #Include %A_ScriptDir%\lib\checkUser.ahk
-; #Include %A_ScriptDir%\lib\DownloadFile.ahk
 #Include %A_ScriptDir%\lib\AutoExecute.ahk
 #Include %A_ScriptDir%\lib\AutoUpdate.ahk
 #Include %A_ScriptDir%\lib\FunBoBO.ahk
-;#Include %A_ScriptDir%\lib\Translate.ahk
-; #Include %A_ScriptDir%\lib\TipColor.ahk
 #Include %A_ScriptDir%\lib\TrayMenu.ahk
 #Include %A_ScriptDir%\core\Main.ahk
 #Include %A_ScriptDir%\core\class_vim.ahk
 #Include %A_ScriptDir%\core\VimDConfig.ahk
 #Include %A_ScriptDir%\lib\class_EasyINI.ahk
 #Include %A_ScriptDir%\lib\acc.ahk
-; #Include %A_ScriptDir%\lib\ini.ahk
 #Include %A_ScriptDir%\lib\gdip.ahk
 #Include %A_ScriptDir%\lib\Logger.ahk
 #Include %A_ScriptDir%\lib\Updater.ahk
 #Include %A_ScriptDir%\lib\TrayMenu.ahk
-; #Include %A_ScriptDir%\lib\ImageButton.ahk
 #Include %A_ScriptDir%\plugins\plugins.ahk
 #Include %A_ScriptDir%\lib\libcrypt.ahk
-; #Include %A_ScriptDir%\lib\Base64Enc.ahk
-; #Include %A_ScriptDir%\lib\UriEncode.ahk
-#Include %A_ScriptDir%\lib\WinHttpRequest.ahk
-; #Include %A_ScriptDir%\lib\NvAPI.ahk
-; #Include %A_ScriptDir%\lib\TrayIcon.ahk
 #Include %A_ScriptDir%\lib\OnWin.ahk
-;用户自定义配置yy
-#Include %A_ScriptDir%\custom\custom.ahk
+;用户自定义配置yy#Include %A_ScriptDir%\custom\custom.ahk
 
 ; ----------------------------------
 
