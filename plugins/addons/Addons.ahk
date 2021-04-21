@@ -564,7 +564,7 @@
 ; ##########程序便捷.浏览器########## 谷歌内核浏览器一般都支持 火狐没测
 	#If WinActive("ahk_group group_browser")
 	{
-			;调用mpv播放
+		;调用mpv播放
 		!g::
 			;先点击IDM浮动
 			ControlClick, IDM Download Button class1, , , LEFT, 1, x12 y8
@@ -573,6 +573,29 @@
 			ControlGetText,Out,Edit1,下载文件信息 ahk_class #32770 ahk_exe IDMan.exe
 			WinClose,下载文件信息 ahk_class #32770 ahk_exe IDMan.exe
 			run,%TCDirPath%\Plugins\WLX\vlister\mpv.exe "%Out%"
+		return
+
+		;拖动链接在新标签打开
+		LButton::
+			Send,{LButton Down}
+			if(A_Cursor="Unknown"){
+				MouseGetPos,smx,smy
+				KeyWait,LButton,U
+				MouseGetPos,nmx,nmy
+				k:=Abs(nmx-smx)+Abs(nmy-smy)
+				if(k>30 and k<200){
+					Send,{Esc}
+					Sleep,1
+					c:=(nmy-smy>0)?"^{LButton}":"+^{LButton}"
+					MouseMove,smx,smy
+					Send,%c%
+				} else {
+					Send,{LButton Up}
+				}
+			} else {
+				KeyWait,LButton,U
+				Send,{LButton Up}
+			}
 		return
 	; 新建
 		F1::Send,^{t}
@@ -664,17 +687,17 @@
 		; 	EmptyMem()
 		; 	return
 	; 双击关闭
-		~LButton::
-			WinGetPos,,, w, h, A
-			MouseGetPos,xpos, ypos
-			WinGet,Mom,MinMax
-			If ((ypos>45)And(Mom<1))Or((ypos>28)And(Mom>0)) Or (ypos<0)
-			Return
-			If (A_PriorHotkey="~LButton") and (A_TimeSincePriorHotkey<200)
-			; 此处和知乎版本不同 ↓
-			send ^w
-			; 此处和知乎版本不同 ↑
-			return
+		; ~LButton::
+		; 	WinGetPos,,, w, h, A
+		; 	MouseGetPos,xpos, ypos
+		; 	WinGet,Mom,MinMax
+		; 	If ((ypos>45)And(Mom<1))Or((ypos>28)And(Mom>0)) Or (ypos<0)
+		; 	Return
+		; 	If (A_PriorHotkey="~LButton") and (A_TimeSincePriorHotkey<200)
+		; 	; 此处和知乎版本不同 ↓
+		; 	send ^w
+		; 	; 此处和知乎版本不同 ↑
+		; 	return
 
 	; 右键关闭标签
 		~RButton Up::
