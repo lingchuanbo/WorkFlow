@@ -4,7 +4,6 @@
 ; ~^v::Run, %A_ScriptDir%\custom\apps\HuntAndPeck\hap.exe /hint
 
 ; ################# 辅助增强 #################
-		; LCtrl::selectmenu()
 	; 命令行s
 		#h::run,cmd
 		^#h::run,*RunAs cmd
