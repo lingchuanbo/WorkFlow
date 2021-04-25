@@ -304,18 +304,19 @@
 	CapsLock & q::SendInput,{Blind}{PgUp}
 	CapsLock & f::SendInput,{Blind}{PgDn}
 
-
 	; ;显示 复制和剪切的内容
 		~^x::
 		~^c::		;~ 表示次热键并不屏蔽按键原有功能
-			Sleep, 100	;等待0.1s 强制机械等待剪贴板出现内容 
-			;clip:=clipboard
-			StringLeft,clipboard_left,clipboard,500
-			; Tooltip,已复制：%clipboard_left%		;在鼠标右侧显示clip(clipboard内容)
-			; ToolTip(%clipboard_left%)
-			ToolTip 已复制：%clipboard_left%
-			SetTimer, ToolTipOff, -1000
+			GV_KeyClickAction1 := "Gosub,CopyTip"
+			GV_KeyClickAction2 := "Gosub,menuBase"
+			GoSub,Sub_KeyClick
 		Return
+CopyTip:
+	Sleep, 100	;等待0.1s 强制机械等待剪贴板出现内容 
+	StringLeft,clipboard_left,clipboard,500
+	ToolTip 已复制：%clipboard_left%
+	SetTimer, ToolTipOff, -1000
+return
 ; ################# Tab相关 #################
 	#If GV_ToggleTabKeys=1
 		Tab & s::SendInput,{Blind}{Down}
@@ -1138,9 +1139,10 @@
 ; ##########程序便捷.菜单##########
 	; 菜单
 		menuBase:
-			Menu, menuBase, add,复制选中文字,<Tools_MkDir>
-			Menu, menuBase, add,Google搜索,<Tools_MkDir>
-			Menu, menuBase, add,Google翻译,<Tools_MkDir>
+			Menu, menuBase, Add, (&G) %_searchGoogle%, mGoogle
+			Menu, menuBase, Add, (&D) %_searchBaidu%, mBaidu
+			Menu, menuBase, Add, (&T) %_googleTranslate%, mGoogleTranslate	
+			; Menu, menuBase, Add, (&D) %_googleTranslate%, mdeepLTranslate
 			Menu, menuBase, Show
 		return
 		menuTc:
@@ -1163,18 +1165,17 @@
 			{
 				Menu, menuTc, add,游戏开发, :GameDevSet
 				Menu, GameDevSet, add, 复制txt目录结构,<em_BoBO_txtCopy>
-				Menu, GameDevSet, add, 打包文件_H5,<GameDevSetPackH5>
-				Menu, GameDevSet, add, 打包文件_As,<GameDevSetPackAs>
+				Menu, GameDevSet, add, 打包_H5,<TC_打包工具_打包Atlas>
+				Menu, GameDevSet, add, 打包_SSP,<TC_打包工具_打包SSP>
+				Menu, GameDevSet, add, SSP转PNG,<TC_打包工具_ssp转png>
+				Menu, GameDevSet, add, Atlas转PNG,<TC_打包工具_atlas转png>
 				Menu, GameDevSet, add, 拷贝打包资源,<em_work_copyGameFileTxt>
 				Menu, GameDevSet, add, fxjID修改,<em_work_fxjid>
-				; Menu, GameDevSet, add, 打包文件_H5_换皮,<em_BoBO_PackH5_hp>
 				Menu, GameDevSet, add, Atlas前缀修改,<GameDevSetAtlas>
 				Menu, GameDevSet, add, 删除游戏资源,<GameDevDeleteH5>
 				Menu, GameDevSet, add, 编辑器 >> 仙谕,<GameDevSetFxEditorXY>
 				Menu, GameDevSet, add, 编辑器 >> 三国,<GameDevSetFxEditorSG>
 			}
-
-
 			Menu, menuTc, add,工具, :Toolset
 				Menu, Toolset, add, 整理: PNG恢复目录,<em_BoBO_pngFilesRest>
 				Menu, Toolset, add, 整理: PNG展开,<em_BoBO_openFilesDir>
@@ -1182,10 +1183,8 @@
 				Menu, Toolset, add, 整理: 递归文件到当前目录,<Tools_MoveFilesToDir>
 				Menu, Toolset, add, 整理: 当前文件向上移,<Tools_MoveUpDir>
 				Menu, Toolset, add, 整理: 关闭重复标签,<TC_关闭重复标签>
-
 				Menu, Toolset, add, 删除: 空目录,<Tools_NullDir>
 				Menu, Toolset, add, 删除: PNG文件,<Tools_DeletePNG>
-
 			Menu, menuTc, add,重命名, :workReName
 				Menu, workReName, add, 命名为: 标准,<em_BoBO_RenName_default>
 				Menu, workReName, add, 命名为: 一级目录名+文件名,<em_work_rename_1>
@@ -1213,43 +1212,37 @@
 			Menu, menuTc, Show
 		return 
 
-mBase64En:
-    keyword=%Clipboard%
-	; ToolTipFont("s12","Microsoft YaHei")
-    ; ToolTipColor("053445", "40A1EC")
-    ToolTip % LC_Base64_EncodeText(text:=keyword) "//ctrl+v Paste"
-    Clipboard:=LC_Base64_EncodeText(text:=keyword) 
-return
 
-mBase64De:
-    keyword=%Clipboard%
-	; ToolTipFont("s12","Microsoft YaHei")
-    ; ToolTipColor("053445", "40A1EC")
-    ToolTip % LC_Base64_DecodeText(text:=keyword) "//ctrl+v Paste"
-    Clipboard:=LC_Base64_DecodeText(text:=keyword)
+mGoogle:
+txt = %Clipboard%
+Run,https://www.google.com/search?hl=zh-CN&lr=lang_zh-CN&q=%txt%
 return
-
-mGenQR:
-	; GUI,GQR: Default
-	; GUIControlGet,Test,,Edit1
-	keyword=%Clipboard%
-	GUI,pic:Destroy
-	GUI,pic:Add,Pic,x0 y0 w200 h-1 hwndhimage,% f:=GEN_QR_CODE(keyword)
-	; GUI,pic:Add,Text,x20 y542 h24,按Esc取消
-	; GUI,pic:Add,Button,x420 y540 w100 h24 gmSaveAs,另存为(&S)
-	GUI,pic:Show,w200 h200
+mBaidu:
+txt = %Clipboard%
+Run,https://www.baidu.com/s?wd=%txt%
 return
-
-PICGUIEscape:
-  GUI,pic:Destroy
-return
-
-mSaveAs:
-  Fileselectfile,nf,s16,,另存为,PNG图片(*.png)
-  If not strlen(nf)
-    return
-  nf := RegExMatch(nf,"i)\.png") ? nf : nf ".png"
-  Filecopy,%f%,%nf%,1
+mGoogleTranslate:
+	;选中文本
+	txt = %Clipboard%
+	; 判断如果是中文就翻译成英文
+	Loop, parse, txt, `n, `r
+	{
+		S_LoopField=%A_LoopField%
+		if (RegExMatch(S_LoopField,"[^\x00-\xff]+"))
+		{
+			; MsgBox, 中文
+			ToolTip % GoogleTranslate(S_LoopField,from := "auto", to :=0409)
+			SetTimer, ToolTipOff, -2000
+			return
+		}
+		; ; 判断如果是英文就翻译成中文
+		if (RegExMatch(S_LoopField,"^[A-Za-z]+"))
+		{
+			ToolTip % GoogleTranslate(S_LoopField)
+			SetTimer, ToolTipOff, -2000
+			return
+		}
+	}
 return
 
 mdeepLTranslate:
@@ -1264,22 +1257,12 @@ mdeepLTranslate:
 		S_LoopField=%A_LoopField%
 		if (RegExMatch(S_LoopField,"[^\x00-\xff]+"))
 		{
-			; Clipboard := translator.translate(S_LoopField, "en", "zh")
-			; ToolTipFont("s12","Microsoft YaHei")
-			; ToolTipColor("053445", "40A1EC")
-			; ToolTip % Clipboard
 			Run,https://www.deepl.com/translator#zh/en/%S_LoopField%
 			return
 		}
 		; ; 判断如果是英文就翻译成中文
 		if (RegExMatch(S_LoopField,"^[A-Za-z]+"))
 		{
-			; translator := new DeepLTranslator()
-			; txt = %Clipboard%
-			; Clipboard := translator.translate(S_LoopField, "zh", "en")
-			; ToolTipFont("s12","Microsoft YaHei")
-			; ToolTipColor("053445", "40A1EC")
-			; ToolTip % Clipboard
 			Run,https://www.deepl.com/translator#en/zh/%S_LoopField%
 			return
 		}

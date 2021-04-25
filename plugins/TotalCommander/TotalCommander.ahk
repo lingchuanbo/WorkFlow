@@ -5043,3 +5043,50 @@ return
 <TC_Atlas转PNG>:
     Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`em_AtlasClip`)"
 return
+
+<TC_打包工具_打包SSP>:
+    Clipboard:=
+    param=ssp
+    Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CopyNetNamesToClip`)"
+    sleep,100
+    Loop, parse, Clipboard , `n, `r
+    {
+        Run ,"%TCDirPath%\Tools\Swf2SpriteSheetPackH5\Swf2SpriteSheetPackH5.exe" %param% %A_LoopField%
+        Sleep, 500
+    }
+return
+<TC_打包工具_打包Atlas>:
+    Clipboard:=
+    param=atlas
+    Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CopyNetNamesToClip`)"
+    sleep,500
+    Loop, parse, Clipboard , `n, `r
+    {
+        Run ,"%TCDirPath%\Tools\Swf2SpriteSheetPackH5\Swf2SpriteSheetPackH5.exe" %param% %A_LoopField%
+        Sleep, 500
+    }
+return
+<TC_打包工具_atlas转png>:
+    Clipboard:=
+    param=atlas2png
+    Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CopyNetNamesToClip`)"
+    sleep,500
+    Loop, parse, Clipboard , `n, `r
+    {
+        Run ,"%TCDirPath%\Tools\Swf2SpriteSheetPackH5\Swf2SpriteSheetPackH5.exe" %param% %A_LoopField%
+        Sleep, 500
+    }
+return
+<TC_打包工具_ssp转png>:
+    Clipboard:=
+    param=ssp2png
+    Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CopyNetNamesToClip`)"
+    sleep,500
+    Loop, parse, Clipboard , `n, `r
+    {
+        Run ,"%TCDirPath%\Tools\Swf2SpriteSheetPackH5\Swf2SpriteSheetPackH5.exe" %param% %A_LoopField%
+        Sleep, 500
+    }
+return
+
+
