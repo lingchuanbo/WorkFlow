@@ -137,6 +137,9 @@ WindowList:=[]
 #Include %A_ScriptDir%\plugins\plugins.ahk
 #Include %A_ScriptDir%\lib\libcrypt.ahk
 #Include %A_ScriptDir%\lib\OnWin.ahk
+; #Include %A_ScriptDir%\lib\Jxon.ahk
+; #Include %A_ScriptDir%\lib\Base64Enc.ahk
+; #Include %A_ScriptDir%\lib\Translate.ahk
 ;用户自定义配置yy#Include %A_ScriptDir%\custom\custom.ahk
 
 ; ----------------------------------

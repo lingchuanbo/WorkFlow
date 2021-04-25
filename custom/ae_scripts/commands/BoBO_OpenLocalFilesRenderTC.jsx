@@ -10,7 +10,7 @@ if (myNumItemsIndex >= 1) {
     var getDir=getAllDir.substr(1,1);
     var getDirPath=getAllDir.substring(2);
     var Dir=getDir + ':' + getDirPath
-    system.callSystem("E:\\BoBOAHK\\WorkFlow\\tools\\TotalCMD\\TOTALCMD.EXE /O /T /R=" + Dir);
+    system.callSystem("D:\\BoBO\\WorkFlow\\tools\\TotalCMD\\TOTALCMD.EXE /O /T /R=" + Dir);
 }else{
     alert("当前无渲染文件！")
 }

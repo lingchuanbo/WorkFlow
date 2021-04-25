@@ -47,6 +47,7 @@ If Language=CN
     global _AutoUpdate ="正在更新插件，更新完毕自动重启脚本！"
     ;Ctrl+C  Ctrl+C加强
     global _searchGoogle = "谷歌搜索"
+    global _searchBaidu = "百度搜索"
     global _searchDogeDoge = "狗狗搜索"
     global _googleTranslateCn = "谷歌翻译成中文"
     global _googleTranslateEn = "谷歌翻译成英文"

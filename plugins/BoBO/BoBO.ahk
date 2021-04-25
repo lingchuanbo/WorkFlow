@@ -1141,7 +1141,7 @@ return
 		menuBase:
 			Menu, menuBase, Add, (&G) %_searchGoogle%, mGoogle
 			Menu, menuBase, Add, (&D) %_searchBaidu%, mBaidu
-			Menu, menuBase, Add, (&T) %_googleTranslate%, mGoogleTranslate	
+			; Menu, menuBase, Add, (&T) %_googleTranslate%, mGoogleTranslate	
 			; Menu, menuBase, Add, (&D) %_googleTranslate%, mdeepLTranslate
 			Menu, menuBase, Show
 		return
@@ -1221,29 +1221,29 @@ mBaidu:
 txt = %Clipboard%
 Run,https://www.baidu.com/s?wd=%txt%
 return
-mGoogleTranslate:
-	;选中文本
-	txt = %Clipboard%
-	; 判断如果是中文就翻译成英文
-	Loop, parse, txt, `n, `r
-	{
-		S_LoopField=%A_LoopField%
-		if (RegExMatch(S_LoopField,"[^\x00-\xff]+"))
-		{
-			; MsgBox, 中文
-			ToolTip % GoogleTranslate(S_LoopField,from := "auto", to :=0409)
-			SetTimer, ToolTipOff, -2000
-			return
-		}
-		; ; 判断如果是英文就翻译成中文
-		if (RegExMatch(S_LoopField,"^[A-Za-z]+"))
-		{
-			ToolTip % GoogleTranslate(S_LoopField)
-			SetTimer, ToolTipOff, -2000
-			return
-		}
-	}
-return
+; mGoogleTranslate:
+; 	;选中文本
+; 	txt = %Clipboard%
+; 	; 判断如果是中文就翻译成英文
+; 	Loop, parse, txt, `n, `r
+; 	{
+; 		S_LoopField=%A_LoopField%
+; 		if (RegExMatch(S_LoopField,"[^\x00-\xff]+"))
+; 		{
+; 			; MsgBox, 中文
+; 			ToolTip % GoogleTranslate(S_LoopField,from := "auto", to :=0409)
+; 			SetTimer, ToolTipOff, -2000
+; 			return
+; 		}
+; 		; ; 判断如果是英文就翻译成中文
+; 		if (RegExMatch(S_LoopField,"^[A-Za-z]+"))
+; 		{
+; 			ToolTip % GoogleTranslate(S_LoopField)
+; 			SetTimer, ToolTipOff, -2000
+; 			return
+; 		}
+; 	}
+; return
 
 mdeepLTranslate:
 	;选中文本
