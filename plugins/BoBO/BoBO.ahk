@@ -1141,6 +1141,7 @@ return
 		menuBase:
 			Menu, menuBase, Add, (&G) %_searchGoogle%, mGoogle
 			Menu, menuBase, Add, (&D) %_searchBaidu%, mBaidu
+			Menu, menuBase, Add, (&D) %_searchToutiao%, mToutiao
 			; Menu, menuBase, Add, (&T) %_googleTranslate%, mGoogleTranslate	
 			; Menu, menuBase, Add, (&D) %_googleTranslate%, mdeepLTranslate
 			Menu, menuBase, Show
@@ -1216,6 +1217,10 @@ return
 mGoogle:
 txt = %Clipboard%
 Run,https://www.google.com/search?hl=zh-CN&lr=lang_zh-CN&q=%txt%
+return
+mToutiao:
+txt = %Clipboard%
+Run,https://so.toutiao.com/search?dvpf=pc&source=input&keyword=%txt%
 return
 mBaidu:
 txt = %Clipboard%
