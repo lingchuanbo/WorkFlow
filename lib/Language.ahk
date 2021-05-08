@@ -53,6 +53,7 @@ If Language=CN
     global _googleTranslateEn = "谷歌翻译成英文"
     global _googleTranslate = "谷歌翻译"
     global _deepLTranslate = "DeepL翻译"
+    global _searchToutiao = "头条搜索"
 
     global _Base64En = "Base64加密"
     global _Base64De = "Base64解密"
