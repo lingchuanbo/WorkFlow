@@ -304,7 +304,7 @@ return
 <3DsMax_getDown>:
     send, {.}
 return
-
+; 播放暂停
 <3DsMax_Play>:
 send,{/}
 return
@@ -383,31 +383,19 @@ Return
 <3DsMax_Double_I>:
 {
     ; 独立显示|显示全部
-    DoubleClickTime := DllCall("GetDoubleClickTime") 
-    KeyWait, i
-    if (A_TimeSinceThisHotkey > DoubleClickTime) {
-        ; runPath = unhide objects
-        ; runMaxScriptTxt(runPath)
-        return
-    }
-    KeyWait, i, % "d T"DoubleClickTime/1000
-    If ! Errorlevel
-        {
-            ; runPath = unhide objects
-            ; runMaxScriptTxt(runPath)
-            runMaxScriptCommands("IsolateSelection.ms")
-            return
-        }
-    else
-        {
-            send {i}
-            return
-        }
+    GV_KeyClickAction1 := "send,{i}"
+	GV_KeyClickAction2 := "Gosub,<3DSMAX_独立显示>"
+	GoSub,Sub_KeyClick
     return
-
-
 }
 Return
+
+<3DSMAX_独立显示>:
+runMaxScriptCommands("IsolateSelection.ms")
+return
+<3DSMAX_解除独立显示>:
+runMaxScriptCommands("IsolateEnd.ms")
+return
 
 <3DsMax_Double_H>:
 {
@@ -425,15 +413,10 @@ Return
             runPath = hide Selection
             runMaxScriptTxt(runPath)
             return
-            ; runPath = actionMan.executeAction 0 "281"
-            ; runMaxScriptTxt(runPath)
-            ; return
         }
     else
         {
             send {h}
-            ; runPath = hide Selection
-            ; runMaxScriptTxt(runPath)
             return
         }
     return
@@ -503,184 +486,90 @@ Return
 
 <3DsMax_Double_W>:
 {
-
-
-    t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-    settimer, 3DsMax_tappedkey_W, %t%
-
-    if (t == "off")
-    goto 3DsMax_double_W
+    GV_KeyClickAction1 := "SendInput,{w}"
+	GV_KeyClickAction2 := "SendInput,!{w}"
+	GoSub,Sub_KeyClick
     return
-
-    3DsMax_tappedkey_W:
-    runMaxScriptCommands("Move.ms")
-    return
-
-
-    3DsMax_double_W:
-    ; runMaxScriptCommands("MaximizeViewport.ms")
-    SendInput, !{w}
-    return  
-
 }
 <3DsMax_Double_F>:
 {
-
-    ; DoubleClickTime := DllCall("GetDoubleClickTime") ; in milliseconds
-    ; KeyWait, f
-    ; if (A_TimeSinceThisHotkey > DoubleClickTime) {
-
-    ;     runPath =unfreeze objects
-    ;     runMaxScriptTxt(runPath)
-    ;     return
-    ; }
-    ; KeyWait, f, % "d T"DoubleClickTime/1000
-    ; If ! Errorlevel
-    ;     {
-    ;         runPath = freeze Selection
-    ;         runMaxScriptTxt(runPath)
-    ;         return
-    ;     }
-    ; else
-    ;     {
-    ;         send {f}
-    ;         return
-    ;     }
-    ; return
-    t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-    settimer, 3DsMax_tappedkey_f, %t%
-
-    if (t == "off")
-    goto 3DsMax_double_f
+    GV_KeyClickAction1 := "send,{f}"
+	GV_KeyClickAction2 := "Gosub,<3DsMax_Freeze>"
+	GoSub,Sub_KeyClick
     return
-
-    3DsMax_tappedkey_f:
-        Send, f
-    return
-
-    3DsMax_double_f:
-            runPath = freeze Selection
-            runMaxScriptTxt(runPath)
-    return  
-
-
 }
-<3DsMax_unfreeze>:
+; 冻结
+<3DsMax_Freeze>:
+    runPath = freeze Selection
+    runMaxScriptTxt(runPath)
+return
+; 解冻
+<3DsMax_unFreeze>:
         KeyWait LButton
         runPath =unfreeze objects
         runMaxScriptTxt(runPath)
 return
+
 <3DsMax_Double_D>:
 {
-    ; 复制粘贴|删除
-    DoubleClickTime := DllCall("GetDoubleClickTime") ; in milliseconds
-    KeyWait, d
-    if (A_TimeSinceThisHotkey > DoubleClickTime) {
-        Send,{Delete}
-        return
-    }
-    KeyWait, d, % "d T"DoubleClickTime/1000
-    If ! Errorlevel
-        {
-            send ^{v}
-            return
-        }
-    else
-        {
-            send {d}
-            return
-        }
+    GV_KeyClickAction1 := "send,{d}"
+	GV_KeyClickAction2 := "send,^{v}"
+	GoSub,Sub_KeyClick
     return
 }
 
 <3DsMax_Double_0>:
 {
-    ; t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-    ; settimer, 3DsMax_tappedkey_0, %t%
-    ; if (t == "off")
-    ; goto 3DsMax_double_0
-    ; return
-
-    ; 3DsMax_tappedkey_0:
-    ;     Send,0
-    ; return
-
-    ; 3DsMax_double_0:
-    ;     runMaxScriptCommands("XYZ_0.ms")
-    ; return
-    DoubleClickTime := DllCall("GetDoubleClickTime") ; in milliseconds
-    KeyWait, 0
-    if (A_TimeSinceThisHotkey > DoubleClickTime) {
-        runMaxScriptCommands("PivotCenter.ms")
-        return
-    }
-    KeyWait, 0, % "d T"DoubleClickTime/1000
-    If ! Errorlevel
-        {
-            runMaxScriptCommands("XYZ_0.ms") 
-            return
-        }
-    else
-        {
-            send 0
-            return
-        }
+    GV_KeyClickAction1 := "Gosub,<3DsMax_物体归0>"
+	GV_KeyClickAction2 := "Gosub,<3DsMax_坐标归0>"
+	GoSub,Sub_KeyClick
     return
-
 }
+
+<3DsMax_坐标归0>:
+    runMaxScriptCommands("PivotCenter.ms")
+return
+<3DsMax_物体归0>:
+    runMaxScriptCommands("XYZ_0.ms")
+return
+
 
 <3DsMax_Double_X>:
 {
-    ; 搜索|ActiveType|删除
-    DoubleClickTime := DllCall("GetDoubleClickTime") ; in milliseconds
-    KeyWait, x
-    if (A_TimeSinceThisHotkey > DoubleClickTime) {
-        Send,{Delete}
-        return
-    }
-    KeyWait, x, % "d T"DoubleClickTime/1000
-    If ! Errorlevel
-        {
-            runMaxScript("activeType.ms")
-            return
-        }
-    else
-        {
-            send {x}
-            return
-        }
+    ; 删除|ActiveType
+    GV_KeyClickAction1 := "Send,{Delete}"
+	GV_KeyClickAction1 := "Send,{x}"
+	GoSub,Sub_KeyClick
     return
 }
 Return
-<3DsMax_Tab>:
+<3DsMax_ActiveType>:
 {
     runMaxScript("activeType.ms")
     return  
 }
+; <3DsMax_Double_Y>:
+; {
+;     t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
+;     settimer, 3DsMax_tappedkey_y, %t%
+;     if (t == "off")
+;     goto 3DsMax_double_y
+;     return
 
+;     3DsMax_tappedkey_y:
+;     Send {y}
+;     return
 
-<3DsMax_Double_Y>:
-{
-    t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-    settimer, 3DsMax_tappedkey_y, %t%
-    if (t == "off")
-    goto 3DsMax_double_y
-    return
-
-    3DsMax_tappedkey_y:
-    Send {y}
-    return
-
-    3DsMax_double_y:
-    Send, ^!+{y}
-    return
-}
-Return
+;     3DsMax_double_y:
+;     Send, ^!+{y}
+;     return
+; }
+; Return
 
 
 <3DsMax_Double_S>:
 {
-    GV_KeyClickAction1 := "Gosub,<3DsMax_Tab>"
+    GV_KeyClickAction1 := "Gosub,<3DsMax_ActiveType>"
 	GV_KeyClickAction2 := "Send,x"
 	GoSub,Sub_KeyClick
 }
@@ -711,35 +600,6 @@ Return
     return
 }
 
-
-;播放暂停
-<3DsMax_Numpad0>:
-{
-    Send, /
-}
-Return
-
-; Scrolllock::
-; Suspend,Toggle
-; Return
-
-; +Scrolllock::
-; reloadgg
-; return
-
-<3DsMax_activeType>:
-{
-    ; run, %A_ScriptDir%\custom\maxScripts\MXSPyCOM.exe -f %A_ScriptDir%\custom\maxScripts\activeType.ms 
-}
-Return
-
-;动作保存模块
-; <3DsMax_saveAniTime>:
-; {
-;     run, %A_ScriptDir%\custom\maxScripts\MXSPyCOM.exe -f %A_ScriptDir%\custom\maxScripts\saveAniTime.ms 
-;     return
-; }
-
 ;批渲染脚本
 <3DsMax_render8Direction>:
 {
@@ -758,46 +618,19 @@ Return
     return
 }
 
-;功能性脚本
-
 <3DsMax_Double_E>:
 {
     ; 缩放
-    DoubleClickTime := DllCall("GetDoubleClickTime") ; in milliseconds
-    KeyWait, e
-    if (A_TimeSinceThisHotkey > DoubleClickTime) {
-        ; Send,^{s}
-        return
-    }
-    KeyWait, e, % "d T"DoubleClickTime/1000
-    If ! Errorlevel
-        {
-            runPath = rotate $ (angleaxis 90 [0,0,1])
-            runMaxScriptTxt(runPath)
-            return
-        }
-    else
-        {
-            send {e}
-            return
-        }
-    return
+    GV_KeyClickAction1 := "Send,{e}"
+    GV_KeyClickAction2 := "Gosub,<3DsMax_旋转90度>"
+	GoSub,Sub_KeyClick
 }
 
-
-
-;#Include,%A_ScriptDir%\plugins\3DsMax\3DsMaxPlus.ahk
-; 只在3DsMax界面上生效的热键，这个就只是在max的Label1窗口起作用，
-; 在其他地方6还是6，
-; #If ActiveControlIs("Label1")
-; 6::Send {F5}
-; 7::MsgBox
-; #If
-
-; ActiveControlIs(Control) {
-;     ControlGetFocus, FocusedControl, A
-;     return (FocusedControl=Control)
-; }
+<3DsMax_旋转90度>:
+    runPath = rotate $ (angleaxis 90 [0,0,1])
+    runMaxScriptTxt(runPath)
+    return
+return
 
 ;位置坐标操作
 ;物体归00点
@@ -874,47 +707,9 @@ return
 ;Ini传递数值给SetEvn
 <3DsMax_Ini>:
 {
-    ; getWorkFLowIni=%A_ScriptDir%\custom\maxScripts
-
-    ; openSetEvn=%A_ScriptDir%\setEvn.ms
-
-    ; gotoSetEvn=%A_ScriptDir%\custom\maxScripts\Startup\setEvn.ms
-
-    ; fileread, ContentsMaxscript, %openSetEvn%
-
-    ; RegExMatch(ContentsMaxscript,"(\\|.:\\).*\\",newPath) ;正则替换内容
-
-    ; FileRead, Contents, %openSetEvn% 
-    ;     if not ErrorLevel 
-    ;         { 
-                
-    ;             Contents := StrReplace(Contents, newPath, getWorkFLowIni)
-
-    ;             FileDelete, %gotoSetEvn% ;先删除文件
-                
-    ;             sleep 500
-
-    ;             FileAppend, %Contents%, %gotoSetEvn% ;输出文件
-
-    ;             Contents = ; 清理内存
-
-    ;             sleep 200
-
-    ;             run, %A_ScriptDir%\3DsMax初始化.bat
-    ;         }
-; ######第二种写法
-
-    ; Gui, Color, 37474F
-    ; Gui -Caption
-
-    ; Gui, Font, s32,Microsoft YaHei
-	; Gui, +AlwaysOnTop +Disabled -SysMenu +Owner 
-	; Gui, Add, Text,cffffff,3DsMax初始化配置
-	; Gui, Show, xCenter yCenter, 状态, NoActivate,
-	; sleep, 1200
-	; Gui, Destroy
-    
     gotoSetEvn=%A_ScriptDir%\custom\maxScripts\Startup\setEvn.ms
+    getPathIni=%A_ScriptDir%\custom\maxScripts\total_commander.ini
+    getTCExePath=%A_ScriptDir%\tools\TotalCMD\TOTALCMD.EXE
     FileDelete, %gotoSetEvn% ;先删除文件
     FileAppend,  ; 这里需要逗号.
     (
@@ -929,8 +724,21 @@ return
 
     sleep 2000
 
+        if !FileExist("%getPathIni%")
+    {
+        FileDelete, %getPathIni%
+        FileAppend,  ; 这里需要逗号.
+        (
+[TotalCommander]
+1=empty
+path=%getTCExePath%
+        ), %getPathIni%,UTF-16-RAW
+        Return
+    }
+
     ; run, %A_ScriptDir%\plugins\3DsMax\3DsMaxInfo.bat
-    Max2021:="C:\Program Files\Autodesk\3ds Max 2020"
+    Max2022:="C:\Program Files\Autodesk\3ds Max 2022"
+    Max2021:="C:\Program Files\Autodesk\3ds Max 2021"
     Max2020:="C:\Program Files\Autodesk\3ds Max 2020"
     Max2019:="C:\Program Files\Autodesk\3ds Max 2019"
     Max2018:="C:\Program Files\Autodesk\3ds Max 2018"
@@ -938,50 +746,62 @@ return
     Max2016:="C:\Program Files\Autodesk\3ds Max 2016"
     Max2015:="C:\Program Files\Autodesk\3ds Max 2015"
     Max2014:="C:\Program Files\Autodesk\3ds Max 2014"
-
+    if FileExist("C:\Program Files\Autodesk\3ds Max 2022\3dsmax.exe")
+    {
+        FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2021%\scripts\Startup, 1
+        MsgBox, %Max2021%已经配置完毕！请重启程序!
+        Return
+    }
+    sleep 1000
     if FileExist("C:\Program Files\Autodesk\3ds Max 2021\3dsmax.exe")
     {
         FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2021%\scripts\Startup, 1
         MsgBox, %Max2021%已经配置完毕！请重启程序!
         Return
     }
-
+    sleep 1000
     if FileExist("C:\Program Files\Autodesk\3ds Max 2020\3dsmax.exe")
     {
         FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2020%\scripts\Startup, 1
         MsgBox, %Max2020%已经配置完毕！请重启程序!
         Return
     }
+    sleep 1000
     if FileExist("C:\Program Files\Autodesk\3ds Max 2019\3dsmax.exe")
     {
         FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2019%\scripts\Startup, 1
         MsgBox, %Max2019%已经配置完毕！请重启程序!
         Return
     }
+    sleep 1000
     if FileExist("C:\Program Files\Autodesk\3ds Max 2018\3dsmax.exe")
     {
         FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2018%\scripts\Startup, 1
         MsgBox,%Max2018% 已经配置完毕！请重启程序!
         Return
     }
+    sleep 1000
     if FileExist("C:\Program Files\Autodesk\3ds Max 2017\3dsmax.exe")
     {
         FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2017%\scripts\Startup, 1
         MsgBox, %Max2017% 已经配置完毕！请重启3DsMax
         Return
     }
+    sleep 1000
     if FileExist("C:\Program Files\Autodesk\3ds Max 2016\3dsmax.exe")
     {
         FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2016%\scripts\Startup, 1
         MsgBox, %Max2016% 已经配置完毕！请重启3DsMax
         Return
     }
+    sleep 1000
     if FileExist("C:\Program Files\Autodesk\3ds Max 2015\3dsmax.exe")
     {
         FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2015%\scripts\Startup, 1
         MsgBox, %Max2015% 已经配置完毕！请重启3DsMax
         Return
     }
+    sleep 1000
     if FileExist("C:\Program Files\Autodesk\3ds Max 2014\3dsmax.exe")
     {
         FileCopyDir,%A_ScriptDir%\custom\maxScripts\Startup,%Max2014%\scripts\Startup, 1

@@ -8,7 +8,7 @@
     vim.Map("h", "<3DsMax_Double_H>", "3DsMax")
     vim.Map("a", "<3DsMax_Double_A>", "3DsMax")
     vim.Map("z", "<3DsMax_Double_Z>", "3DsMax")
-    vim.Map("y", "<3DsMax_Double_Y>", "3DsMax")
+    ; vim.Map("y", "<3DsMax_Double_Y>", "3DsMax")
     vim.Map("o", "<3DsMax_Double_O>", "3DsMax")
     vim.Map("x", "<3DsMax_Double_X>", "3DsMax")
     vim.Map("s", "<3DsMax_Double_S>", "3DsMax")
@@ -18,6 +18,8 @@
     vim.Map("vb", "<3DsMax_Viewport_FrontBack>", "3DsMax")
 
     vim.map("?","<ShowHelp>","3DsMax")
+    vim.map("<Numpad0>","<3DsMax_Play>","3DsMax")
+    
 
 
     ; vim.map("<SP-1>","<3DsMax_1>","3DsMax")
@@ -35,7 +37,7 @@
     vim.Map("<F4>", "<3DsMax_Key>", "3DsMax")
 
     vim.Map("<F5>", "<3DsMax_Play>", "3DsMax")
-    vim.map("<F7>","<3DsMax_maxToTotalcmd>","3DsMax")
+    ; vim.map("<F7>","<3DsMax_maxToTotalcmd>","3DsMax")
     vim.Map("<F9>", "<3DsMax_Double_F9>", "3DsMax")
 
 
@@ -44,11 +46,11 @@
     vim.map("<Space>", "<3DsMax_Space>", "3DsMax")
     ;组合方式
     vim.Map("0", "<3DsMax_Double_0>", "3DsMax")
-    vim.Map("x1", "<3DsMax_PivotCenter>", "3DsMax")
-    vim.Map("x2", "<3DsMax_PivotRotate>", "3DsMax")
-    vim.Map("x3", "<3DsMax_maxXYZ>", "3DsMax")
-    vim.Map("x4", "<3DsMax_PivotSet>", "3DsMax")
-    vim.Map("x5", "<3DsMax_PivotReset>", "3DsMax")
+    vim.Map("<SP-x>1", "<3DsMax_PivotCenter>", "3DsMax")
+    vim.Map("<SP-x>2", "<3DsMax_PivotRotate>", "3DsMax")
+    vim.Map("<SP-x>3", "<3DsMax_maxXYZ>", "3DsMax")
+    vim.Map("<SP-x>4", "<3DsMax_PivotSet>", "3DsMax")
+    vim.Map("<SP-x>5", "<3DsMax_PivotReset>", "3DsMax")
 
     ; vim.Map("<SP-x>", "<3DsMax_activeType>", "3DsMax")
     ;vim.Map("<SP-R>", "<3DsMax_maxRotate90>", "3DsMax")  
@@ -74,6 +76,7 @@
     vim.Map("<LB-v>1", "<3DsMax_convertToPoly>", "3DsMax")
     vim.Map("<LB-v>2", "<3DsMax_convertToMesh>", "3DsMax")
     vim.Map("<LB-v>3", "<3DsMax_convertToSpline>", "3DsMax")
+    vim.Map("<LB-i>", "<3DSMAX_解除独立显示>", "3DsMax")
 
     vim.map("?","<ShowHelp>","3DsMax")
 

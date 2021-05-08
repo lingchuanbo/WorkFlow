@@ -1,7 +1,7 @@
 ﻿#If WinActive("ahk_exe 3dsmax.exe")
 {
 	Esc::Gosub,<3DsMax_esc>
-	+RButton::Gosub,menuDSMAX
+	+RButton::Gosub,menu3DSMAX
 	; ~LButton & RButton::send ^w
 	^!+p::runMaxScript("MenuScript\Utilites\初始化.ms")
 	^!+o::runMaxScript("MenuScript\Utilites\2倍动画缩放.ms")
@@ -50,7 +50,7 @@
 	; return
  
 }
-menuDSMAX:
+menu3DSMAX:
 	menu, menu3DsMax, add, 3DsMax脚本菜单(%_Author%), WHATSUPMAX
 	dirMenu0=%A_ScriptDir%\custom\maxScripts\MenuScript
 	dirMenu1=%A_ScriptDir%\custom\maxScripts\MenuScriptCreate
