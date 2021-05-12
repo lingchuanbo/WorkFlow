@@ -6,3 +6,4 @@
 -=
 Unreal Engine Editor=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L=D:\xxx\
 Blender=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L=D:\xxx\
+设置=Configuration

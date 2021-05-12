@@ -87,7 +87,7 @@
 
     
 
-    vim.Map("<Tab>", "<3DsMax_Tab>", "3DsMax")
+    ; vim.Map("<Tab>", "<3DsMax_Tab>", "3DsMax")
     vim.Map("<Esc>", "<3DsMax_esc>", "3DsMax")
     vim.Map("<CapsLock>", "<3DsMax_CapsLock_Tab>", "3DsMax")
 

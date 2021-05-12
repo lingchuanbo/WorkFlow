@@ -40,7 +40,7 @@
 	;功能：软件启动器(热键：Win+右键	)		
 		#RButton::
 		{
-			run %A_ScriptDir%\custom\apps\Popsel\PopSel.exe /n
+			PopSel("PopSel.lst")
 			return
 		}
 
@@ -354,47 +354,7 @@ return
 		Escape::send,{Escape}
 	#If
 
-; ##########系统.任务栏##########
-	
-	#If MouseIsOver("ahk_class Shell_TrayWnd")
-	{	
-		;在任务栏上滚轮调整音量 {{{2
-		WheelUp::Send {Volume_Up}
-		WheelDown::Send {Volume_Down}
-		;在任务栏上双击显示桌面
-		~Alt & LButton::
-			; if (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200)
-					send,#{d}
-			return
-		~Alt & RButton::
-			Run,"%A_ScriptDir%\custom\apps\Popsel\PopSel.exe" /n "work.lst"
-			return
-		#RButton::
-			Run,"%A_ScriptDir%\custom\apps\Popsel\PopSel.exe" /n "System.lst"
-			return
-		~Alt::
-			{
-				t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-				settimer, tappedkey_TrayWnd, %t%
-				if (t == "off")
-				goto double_TrayWnd
-				return
-				tappedkey_TrayWnd:
-					{
-						run %A_ScriptDir%\custom\apps\TaskSwch\TaskSwch.exe /t
-						return
-					}
-				return
 
-				double_TrayWnd:
-					{
-						PopSel("work.lst")
-						return
-					}
-				return
-			}
-	}
-	#If
 ; ##########程序便捷.社交##########大部份来自EZ大神
 	; TIM
 		#If WinActive("ahk_class TXGuiFoundation") and WinActive("ahk_exe TIM.exe")
@@ -711,7 +671,7 @@ return
 
 	}
 	#If
-; ##########系统.资源管理器&桌面##########
+; ##########系统&资源管理器&桌面&任务栏##########
 	;资源浏览器
 		#If WinActive("ahk_class CabinetWClass") or WinActive("ahk_class ExploreWClass")
 		{
@@ -752,6 +712,46 @@ return
 			return
 		}
 		#If 
+	;任务栏
+		#If MouseIsOver("ahk_class Shell_TrayWnd")
+		{	
+			;在任务栏上滚轮调整音量 {{{2
+			WheelUp::Send {Volume_Up}
+			WheelDown::Send {Volume_Down}
+			;在任务栏上双击显示桌面
+			~Alt & LButton::
+				; if (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 200)
+						send,#{d}
+				return
+			; ~Alt & RButton::
+			; 	PopSel("work.lst")
+			; 	return
+			#RButton::
+				PopSel("System.lst")
+				return
+			~Alt::
+				{
+					t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
+					settimer, tappedkey_TrayWnd, %t%
+					if (t == "off")
+					goto double_TrayWnd
+					return
+					tappedkey_TrayWnd:
+						{
+							run %A_ScriptDir%\custom\apps\TaskSwch\TaskSwch.exe /t
+							return
+						}
+					return
+
+					double_TrayWnd:
+						{
+							PopSel("work.lst")
+							return
+						}
+					return
+				}
+		}
+		#If
 ; ##########程序便捷.Total Commander##########
 	#If WinActive("ahk_class TTOTAL_CMD")
 	{

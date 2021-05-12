@@ -624,6 +624,7 @@ Return
     GV_KeyClickAction1 := "Send,{e}"
     GV_KeyClickAction2 := "Gosub,<3DsMax_旋转90度>"
 	GoSub,Sub_KeyClick
+    return
 }
 
 <3DsMax_旋转90度>:
@@ -693,16 +694,11 @@ return
 send, 5
 return
 
-
-
 <3DsMax_CapsLock_Tab>:
 {
     send,{Tab}
     return
 }
-
-
-
 
 ;Ini传递数值给SetEvn
 <3DsMax_Ini>:

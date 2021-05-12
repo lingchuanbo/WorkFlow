@@ -16,6 +16,6 @@
             // seLayers[i].transform.position.expression = 'loopOut("Cycle")';
             seLayers[i].timeRemapEnabled = true;
             seLayers[i].property("ADBE Time Remapping").expression = myEffectTxt
-            seLayers[i].timeRemapEnabled = false;
+            //seLayers[i].timeRemapEnabled = false;
 	}
 	// app.endUndoGroup();
