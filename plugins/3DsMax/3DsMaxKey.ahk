@@ -18,7 +18,7 @@
     vim.Map("vb", "<3DsMax_Viewport_FrontBack>", "3DsMax")
 
     vim.map("?","<ShowHelp>","3DsMax")
-    vim.map("<Numpad0>","<3DsMax_Play>","3DsMax")
+    ; vim.map("<Numpad0>","<3DsMax_Play>","3DsMax")
     
 
 

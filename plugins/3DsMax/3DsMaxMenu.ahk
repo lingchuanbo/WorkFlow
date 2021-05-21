@@ -51,7 +51,7 @@
  
 }
 menu3DSMAX:
-	menu, menu3DsMax, add, 3DsMax脚本菜单(%_Author%), WHATSUPMAX
+	; menu, menu3DsMax, add, 3DsMax脚本菜单(%_Author%), WHATSUPMAX
 	dirMenu0=%A_ScriptDir%\custom\maxScripts\MenuScript
 	dirMenu1=%A_ScriptDir%\custom\maxScripts\MenuScriptCreate
 	dirMenu2=%A_ScriptDir%\custom\maxScripts\GameDevelop

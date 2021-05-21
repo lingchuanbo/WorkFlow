@@ -9,6 +9,7 @@
 #include *i %A_ScriptDir%\plugins\Explorer\Explorer.ahk
 #include *i %A_ScriptDir%\plugins\General\General.ahk
 #include *i %A_ScriptDir%\plugins\GoogleChrome\GoogleChrome.ahk
+#include *i %A_ScriptDir%\plugins\Houdini\Houdini.ahk
 #include *i %A_ScriptDir%\plugins\Photoshop\Photoshop.ahk
 #include *i %A_ScriptDir%\plugins\TCCompare\TCCompare.ahk
 #include *i %A_ScriptDir%\plugins\TCDialog\TCDialog.ahk
@@ -18,21 +19,22 @@
 #include *i %A_ScriptDir%\plugins\Word\Word.ahk
 /*
 [ExtensionsTime]
-3DsMax=20210421152458
+3DsMax=20210508172858
 AfterEffects=20210421152458
 BeyondCompare4=20210421152458
 Blender=20210421152458
-BoBO=20210421152650
+BoBO=20210513104922
 Eagle=20210421152458
 EveryThing=20210421152458
 Excel=20210421152458
 Explorer=20210421152458
 General=20210421152458
 GoogleChrome=20210421152458
+Houdini=20210521183622
 Photoshop=20210421152458
 TCCompare=20210421152458
 TCDialog=20210421152458
-TotalCommander=20210421152458
+TotalCommander=20210507184731
 Unity3D=20210421152458
 Unreal=20210421152458
 Word=20210421152458

@@ -25,9 +25,9 @@
 			tooltip,
 		return
 	;功能：字母跳转
-		#q::
-		SendInput,^!{q}
-		return
+		; #q::
+		; SendInput,^!{q}
+		; return
 	;功能：清空回车
 		#Del::FileRecycleEmpty ; win + del
 	;功能：字母定位	
@@ -37,13 +37,9 @@
 		; # & Alt::SendInput,^!{q}
 	;功能：快速打开浏览器
 		#g::Send,#{2}
-	;功能：软件启动器(热键：Win+右键	)		
-		#RButton::
-		{
-			PopSel("PopSel.lst")
-			return
-		}
-
+	;功能：软件启动器(热键：Win+右键	)
+		#q::PopSel("")	
+		#RButton::PopSel("")
 	;功能：启动记事本并去标题等
 		#n::
 			run, %A_ScriptDir%\tools\TotalCMD\Tools\Notepad\Notepad.exe /b /f %A_ScriptDir%\tools\TotalCMD\Tools\Notepad\Notepad.ini, , , OutputVarPID
