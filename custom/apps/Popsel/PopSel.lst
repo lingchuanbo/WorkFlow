@@ -1,44 +1,52 @@
-³£ÓÃDirMenu/=submenu
-³£ÓÃDirMenu/×ÀÃæ=%COMMANDER_PATH%\Totalcmd.exe; /T /O /P=L /L="%userprofile%"
-³£ÓÃDirMenu/ÎÒµÄÎÄµµ=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L="%ProgramFiles%"
-³£ÓÃDirMenu/ÏÂÔØ=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L="%USERPROFILE%\Downloads\"
-³£ÓÃDirMenu/Totalcmd=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L="%COMMANDER_PATH%"
-³£ÓÃDirMenu/WorkFlow=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L="%WorkFlow%"
+å¸¸ç”¨DirMenu/=submenu
+å¸¸ç”¨DirMenu/æ¡Œé¢=%COMMANDER_PATH%\Totalcmd.exe; /T /O /P=L /L="%userprofile%"
+å¸¸ç”¨DirMenu/æˆ‘çš„æ–‡æ¡£=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L="%ProgramFiles%"
+å¸¸ç”¨DirMenu/ä¸‹è½½=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L="%USERPROFILE%\Downloads\"
+å¸¸ç”¨DirMenu/ç™¾åº¦ç½‘ç›˜ä¸‹è½½ç›®å½•=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L="E:\BaiduNetdiskDownload\"
+å¸¸ç”¨DirMenu/Totalcmd=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L="%COMMANDER_PATH%"
+å¸¸ç”¨DirMenu/è½¯ä»¶åº“=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L="%WorkFlow%\tools"
+å¸¸ç”¨DirMenu/WorkFlow=%COMMANDER_PATH%\Totalcmd.exe;/T /O /P=L /L="%WorkFlow%"
+å¸¸ç”¨DirMenu/å¿«é€Ÿè®¿é—®=%WorkFlow%\custom\apps\SubFolder\SubFolder.EXE; ãƒ•ã‚©ãƒ«ãƒ€ãƒ¼å /-(AD) /-N /-R /-S /-H /-L /-M /-Y /-R /+E [/.TXT.DLL] [*.TXT]
 -=
-»ù±¾/=submenu
-»ù±¾/GoogleChrome=%WorkFlow%\tools\GoogleChrome\App\chrome.exe
-»ù±¾/Eagle=%WorkFlow%\tools\Eagle\Eagle.exe
-»ù±¾/Notion±Ê¼Ç=https://www.Notion.so
-»ù±¾/Teambition¹¤×÷Ì¨=https://www.teambition.com/
-»ù±¾/ÃÜÂë¹ÜÀíÆ÷=%WorkFlow%\tools\Bitwarden\Bitwarden.exe
-»ù±¾/°¢ÀïÍøÅÌ=C:\Program Files (x86)\aDrive\aDrive.exe
-»ù±¾/°Ù¶ÈÍøÅÌ=C:\Users\BoBO\AppData\Roaming\baidu\BaiduNetdisk\BaiduNetdisk.exe
-¹¤×÷/=submenu
-¹¤×÷/Adobe After Effects CS6=C:\Program Files\Adobe\Adobe After Effects CS6\Support Files\AfterFX.exe
-¹¤×÷/Adobe After Effects 2021=C:\Program Files\Adobe\Adobe After Effects 2021\Support Files\AfterFX.exe
-¹¤×÷/3ds Max 2017=C:\Program Files\Autodesk\3ds Max 2017\3dsmax.exe
-¹¤×÷/3ds Max 2022=C:\Program Files\Autodesk\3ds Max 2022\3dsmax.exe
-¹¤×÷/Unreal=C:\Program Files (x86)\Epic Games\Launcher\Portal\Binaries\Win32\EpicGamesLauncher.exe
-¹¤×÷/Unity=C:\Program Files\Unity\Editor\Unity.exe
-¹¤×÷/3Ds Max=%WorkFlow%\Custom\Maxscripts\Mxs_bundle\Maxlauncher.bat
-¹¤×÷/Blender=%WorkFlow%\tools\Blender\blender.exe
-¹¤×÷/Spine=%WorkFlow%\tools\Spine\Spine.exe
-¹¤×÷/XMind ZEN=%bobodir%\XMind ZEN\XMind ZEN.exe
-¹¤¾ß/=submenu
-¹¤¾ß/Ô¶³Ì=C:\Program Files (x86)\ToDesk\ToDesk.exe
-¹¤¾ß/GIFÂ¼ÖÆ=%WorkFlow%\tools\Honeycam\Honeycam.exe
-¹¤¾ß/ÊÓÆµÂ¼ÖÆ=%WorkFlow%\tools\Honeycam\Honeycam.exe
-¹¤¾ß/¿ÆÑ§¹¤¾ß=%WorkFlow%\tools\Clash.NET\ClashDotNet.exe
-¹¤¾ß/½ø³Ì=%WorkFlow%\tools\TotalCMD\Tools\ProcessExplorer\procexp64.exe
-¹¤¾ß/ÏÂÔØ=%WorkFlow%\tools\IDM\Bin\IDMan.exe
-¹¤¾ß/ÒôÀÖ=%WorkFlow%\tools\NetMusic\unlockncm.bat
-¹¤¾ß/½ØÍ¼=%WorkFlow%\tools\Snipaste\Snipaste.exe
-¹¤¾ß/Ğ¶ÔØ=%WorkFlow%\tools\Uninstaller.exe
+&Aå¸¸ç”¨/=submenu
+&Aå¸¸ç”¨/&GoogleChrome=%WorkFlow%\tools\GoogleChrome\App\chrome.exe
+&Aå¸¸ç”¨/&Eagle=%WorkFlow%\tools\Eagle\Eagle.exe
+&Aå¸¸ç”¨/&Notionç¬”è®°=https://www.Notion.so
+&Aå¸¸ç”¨/&Teambitionå·¥ä½œå°=https://www.teambition.com/
+&Aå¸¸ç”¨/&På¯†ç ç®¡ç†å™¨=%WorkFlow%\tools\Bitwarden\Bitwarden.exe
+&Aå¸¸ç”¨/&Aé˜¿é‡Œç½‘ç›˜=C:\Program Files (x86)\aDrive\aDrive.exe
+&Aå¸¸ç”¨/&Bç™¾åº¦ç½‘ç›˜=C:\Users\BoBO\AppData\Roaming\baidu\BaiduNetdisk\BaiduNetdisk.exe
+&Aå¸¸ç”¨/&TIM=%WorkFlow%\tools\TIM\Bin\TIM.exe
+&Wå·¥ä½œ/=submenu
+&Wå·¥ä½œ/Adobe After Effects CS6=C:\Program Files\Adobe\Adobe After Effects CS6\Support Files\AfterFX.exe
+&Wå·¥ä½œ/Adobe After Effects 2021=C:\Program Files\Adobe\Adobe After Effects 2021\Support Files\AfterFX.exe
+&Wå·¥ä½œ/Adobe Photoshop CS6=C:\Program Files\Adobe\Adobe Photoshop CS6\Adobe Photoshop CS6\Photoshop.exe
+&Wå·¥ä½œ/3ds Max 2017=C:\Program Files\Autodesk\3ds Max 2017\3dsmax.exe
+&Wå·¥ä½œ/3ds Max 2022=C:\Program Files\Autodesk\3ds Max 2022\3dsmax.exe
+&Wå·¥ä½œ/3Ds Maxç‰¹åˆ«ç‰ˆ=%WorkFlow%\Custom\Maxscripts\Mxs_bundle\Maxlauncher.bat
+&Wå·¥ä½œ/Houdini=C:\Program Files\Side Effects Software\Houdini 18.5.532\bin\houdini.exe
+&Wå·¥ä½œ/Unreal=C:\Program Files (x86)\Epic Games\Launcher\Portal\Binaries\Win32\EpicGamesLauncher.exe
+&Wå·¥ä½œ/Unity=C:\Program Files\Unity\Editor\Unity.exe
+&Wå·¥ä½œ/Blender=%WorkFlow%\tools\Blender\blender.exe
+&Wå·¥ä½œ/Spine=%WorkFlow%\tools\Spine\Spine.exe
+&Wå·¥ä½œ/XMind ZEN=%bobodir%\XMind ZEN\XMind ZEN.exe
+&Tå·¥å…·/=submenu
+&Tå·¥å…·/è¿œç¨‹=C:\Program Files (x86)\ToDesk\ToDesk.exe
+&Tå·¥å…·/GIFå½•åˆ¶=%WorkFlow%\tools\Honeycam\Honeycam.exe
+&Tå·¥å…·/è§†é¢‘å½•åˆ¶=%WorkFlow%\tools\BandicamPortable\BandicamPortable.exe
+&Tå·¥å…·/ç§‘å­¦å·¥å…·=%WorkFlow%\tools\Clash.NET\ClashDotNet.exe
+&Tå·¥å…·/è¿›ç¨‹=%WorkFlow%\tools\TotalCMD\Tools\ProcessExplorer\procexp64.exe
+&Tå·¥å…·/ä¸‹è½½=%WorkFlow%\tools\IDM\Bin\IDMan.exe
+&Tå·¥å…·/éŸ³ä¹=%WorkFlow%\tools\NetMusic\unlockncm.bat
+&Tå·¥å…·/æˆªå›¾=%WorkFlow%\tools\Snipaste\Snipaste.exe
+&Tå·¥å…·/å¸è½½=%WorkFlow%\tools\RevoUninstallerPro\RevoUPPort.exe
 -=
-±Ø±¸¹¤¾ß/=submenu
-±Ø±¸¹¤¾ß/WorkFlow=%WorkFlow%\WorkFlow.ahk
-±Ø±¸¹¤¾ß/QuickZ=D:\BoBO\QuickZ\QuickZ.ahk
+å¿…å¤‡å·¥å…·/=submenu
+å¿…å¤‡å·¥å…·/WorkFlow=%WorkFlow%\WorkFlow.ahk
+å¿…å¤‡å·¥å…·/QuickZ=D:\BoBO\QuickZ\QuickZ.ahk
 -=
-VSCODE=C:\Users\BoBO\AppData\Local\Programs\Microsoft VS Code\Code.exe
-TIM=%WorkFlow%\tools\TIM\Bin\TIM.exe
-ÉèÖÃ=Configuration
+&VSCODE=C:\Users\BoBO\AppData\Local\Programs\Microsoft VS Code\Code.exe
+-=
+&Såˆ‡æ¢ä»»åŠ¡æ =%WorkFlow%\custom\apps\TaskSwch\TaskSwch.exe;/t
+&Oè®¾ç½®=Configuration
+&Qé€€å‡º=Cancel
