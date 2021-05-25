@@ -37,6 +37,7 @@
 &T工具/科学工具=%WorkFlow%\tools\Clash.NET\ClashDotNet.exe
 &T工具/进程=%WorkFlow%\tools\TotalCMD\Tools\ProcessExplorer\procexp64.exe
 &T工具/下载=%WorkFlow%\tools\IDM\Bin\IDMan.exe
+&T工具/种子下载=%WorkFlow%\tools\uTorrent\utorrent.exe
 &T工具/音乐=%WorkFlow%\tools\NetMusic\unlockncm.bat
 &T工具/截图=%WorkFlow%\tools\Snipaste\Snipaste.exe
 &T工具/卸载=%WorkFlow%\tools\RevoUninstallerPro\RevoUPPort.exe
