@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>Particle Looper Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<p><font size="2" face="Arial, Helvetica, sans-serif"><b><font size="4">Particle 
+  Looper 1.0</font></b><br>
+  <b>Written By: Jason Hayes<br>
+  Date: 02/12/2002<br>
+  Developed for 3D Studio MAX 4.2</b></font></p>
+<br>
+<hr>
+<font size="2" face="Arial, Helvetica, sans-serif"> Particle Looper is a script 
+that will loop any of the following supported particle system types: </font> 
+<ul>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Blizzard</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">PArray</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">PCloud</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Super Spray<br>
+    </font></li>
+</ul>
+<p><font size="2" face="Arial, Helvetica, sans-serif">The advantage of using this 
+  over Peter Watje's &quot;Particles +&quot; plugin is that you can use some of 
+  the default MAX particle systems in case you need to use instanced geometry. 
+  What sucks is that it's a big cheese workaround, but it does the trick! :)</font></p>
+<p><font size="2" face="Arial, Helvetica, sans-serif"><b><font size="3">Description</font></b><br>
+  </font></p>
+<hr>
+<font size="2" face="Arial, Helvetica, sans-serif"> <b>Pick Base Particle System</b> 
+- Use this to choose the base system.<br>
+<b>Emitter Start / Stop</b> <b>Frame Range</b> - The number of frames between 
+the base Emitters Start / Stop frame. It should automatically get this number. 
+This number MUST be the EXACT same amount of frames as the length of your animation.<br>
+<b>Consistent wire color</b> - If this option is checked, the script will make 
+all systems the same wire color as the base.<br>
+</font><font size="2" face="Arial, Helvetica, sans-serif"><b>Loop Particle System</b> 
+- Generates the loop.<br>
+<b>Delete Looped System</b> - The Particle Looper script generates copies of the 
+base system and adds a prefix of &quot;<b>PL_</b>&quot;. Clicking this will remove 
+any objects with that prefix.</font> 
+<p>&nbsp;</p>
+<p><font size="2" face="Arial, Helvetica, sans-serif"><b><font size="3">How in 
+  the heck do I use this thing?</font></b></font></p>
+<ol>
+  <li> <font size="2" face="Arial, Helvetica, sans-serif">The Emitter Start and 
+    Stop range MUST be the EXACT same number of frames as the length of your animation. 
+    Example: <font color="#0000FF">animation length = 900f, Emitter Start = -300, 
+    Emitter Stop = 600</font>. The range between the start and stop is exactly<font color="#0000FF"> 
+    900</font> frames. </font> </li>
+  <li><font size="2" face="Arial, Helvetica, sans-serif">I've found if you start 
+    the Emitter at a negative frame such as -300, it works much better than starting 
+    at a positive frame.</font></li>
+  <li><font size="2" face="Arial, Helvetica, sans-serif">For a 900 frame animation, 
+    I've found that the <font color="#0000FF">Display Until</font> and <font color="#0000FF">Life</font> 
+    values should be set to 2000. This number will probably go up or down expodentially 
+    depending on the length of your animation.</font></li>
+</ol>
+<p>&nbsp;</p>
+<p><font size="2" face="Arial, Helvetica, sans-serif">Please e-mail bugs to: <a href="mailto:jhayes@ballisticpixel.com">jhayes@ballisticpixel.com</a></font></p>
+</body>
+</html>
