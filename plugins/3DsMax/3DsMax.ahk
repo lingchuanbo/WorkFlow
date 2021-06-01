@@ -632,7 +632,15 @@ Return
     runMaxScriptTxt(runPath)
     return
 return
-
+<3DsMax_旋转-90度>:
+    runPath = rotate $ (angleaxis -90 [0,0,1])
+    runMaxScriptTxt(runPath)
+    return
+return
+<3DSMAX_初始化去黑删灯光>:
+    runMaxScriptCommands("DeleteLightAndBgBlack.ms")
+    return
+return
 ;位置坐标操作
 ;物体归00点
 <3DsMax_maxPos>:

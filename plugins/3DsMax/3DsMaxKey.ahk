@@ -71,7 +71,8 @@
     ; vim.Map("/2", "<3DsMax_UpDater>", "3DsMax")
     vim.Map("?1", "<3DsMax_CopyToStartup>", "3DsMax")
 
-
+    vim.Map("<LB-1>1", "<3DsMax_旋转-90度>", "3DsMax")
+    vim.Map("<LB-1>2", "<3DsMax_旋转90度>", "3DsMax")
     ; 转换Poly|Mesh|Spline
     vim.Map("<LB-v>1", "<3DsMax_convertToPoly>", "3DsMax")
     vim.Map("<LB-v>2", "<3DsMax_convertToMesh>", "3DsMax")
