@@ -15,6 +15,7 @@ function_menuAfterEffect:
     +RButton::Gosub,menuAe
     !RButton::Gosub,menuAeAltExpressions
     LButton & Alt::Gosub,AeAltLButton
+    XButton2::send,{Space}
 
     ; Alt::
 	; 	GV_KeyClickAction1 := "Gosub,menuAe"

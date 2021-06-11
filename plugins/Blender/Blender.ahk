@@ -79,11 +79,11 @@ return
 <Blender_Toobar>:
 send,+{Space}
 return
+
 ; #Pie菜单
 <Blender_PieMenu>:
 send,!{w}
 return
-
 
 ; Screen
 ; #渲染
@@ -147,6 +147,17 @@ return
 	GV_KeyClickAction2 := "send,^!{q}"
 	GoSub,Sub_KeyClick
 return
+
+
+; Add和编辑
+<Blender_AddEditor>:
+	GV_KeyClickAction1 := "send,{a}"
+	GV_KeyClickAction2 := "send,{b}"
+	GoSub,Sub_KeyClick
+return
+
+
+
 ; 模型最大化
 <Blender_ObjectCernt>:
 send,{NumpadDot}
@@ -240,6 +251,12 @@ return
 	GoSub,Sub_KeyClick
 return
 
+<Blender_c>:
+	GV_KeyClickAction1 := "send,{c}"
+	GV_KeyClickAction2 := "gosub,<Blender_视窗转为摄像机>"
+	GoSub,Sub_KeyClick
+return
+
 <Blender_渲染画面>:
 sendinput,{z}
 sendinput,{8}
@@ -292,5 +309,9 @@ return
     return
 }
 <Blender_恢复E功能>:
-sendinput,{e}
+    sendinput,{e}
+return
+
+<Blender_视窗转为摄像机>:
+	send,^!{Numpad0}
 return

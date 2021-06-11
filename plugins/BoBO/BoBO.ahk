@@ -518,40 +518,32 @@ return
 ; ##########程序便捷.浏览器########## 谷歌内核浏览器一般都支持 火狐没测
 	#If WinActive("ahk_group group_browser")
 	{
-			;调用mpv播放
-		!g::
-			;先点击IDM浮动
-			ControlClick, IDM Download Button class1, , , LEFT, 1, x12 y8
-			sleep 1000
-			;再来处理
-			ControlGetText,Out,Edit1,下载文件信息 ahk_class #32770 ahk_exe IDMan.exe
-			WinClose,下载文件信息 ahk_class #32770 ahk_exe IDMan.exe
-			run,%TCDirPath%\Plugins\WLX\vlister\mpv.exe "%Out%"
-		return
-	; 新建
+		;调用mpv播放
+		!g::GoSub,Sub_Idm2Mpv
+		; 新建
 		F1::Send,^{t}
-	; 切换向左
+		; 切换向左
 		F2::send,{Blind}^+{Tab}
-	; 切换向右
+		; 切换向右
 		F3::send,{Blind}^{Tab}
-	; 关闭
+		; 关闭
 		F4::SendInput,^w
 		
-	; 鼠标左右点击关闭
+		; 鼠标左右点击关闭
 		~LButton & RButton::send ^w
-	; 快速清理缓存
+		; 快速清理缓存
 		~LButton & Delete::GoSub,<GoogleChrome_清除浏览数据>
-	; 向前
+		; 向前
 		!LButton:: Browser_Forward
-	; 返回
+		; 返回
 		!RButton:: Browser_Back
-	; 定位输入栏
+		; 定位输入栏
 		F6::
 			GV_KeyClickAction1 := "SendInput,^l"
 			GV_KeyClickAction2 := "SendInput,^k"
 			GoSub,Sub_KeyClick
 		return
-	; 打开书签&Google
+		; 打开书签&Google
 		; 键鼠操作
 		~LButton & q::
 			GV_KeyClickAction1 := "OpenWebURL,google.com"
@@ -587,7 +579,24 @@ return
 		return
 		}
 
-	; 打开无痕模式&打开谷歌	
+		;按住左键点右键发送Ctrl+W关闭标签
+		; ~LButton & RButton:: send ^w
+
+		XButton1 & RButton::SendInput,^c
+		XButton2 & RButton::SendInput,^c
+
+		XButton1 & LButton::SendInput,^v
+		XButton2 & LButton::SendInput,^v
+
+		XButton2 & XButton1::GoSub,Sub_Idm2Mpv
+		XButton1 & XButton2::GoSub,Sub_Idm2Mpv
+
+		XButton1 & WheelUp::SendInput,{Blind}{Left}
+		XButton2 & WheelUp::SendInput,{Blind}{Left}
+		XButton1 & WheelDown::SendInput,{Blind}{Right}
+		XButton2 & WheelDown::SendInput,{Blind}{Right}
+
+		; 打开无痕模式&打开谷歌	
 		F8::
 			GV_KeyClickAction1 := "OpenWebURL,google.com"
 			GV_KeyClickAction2 := "GoSub,<GoogleChrome_无痕>"
@@ -667,6 +676,122 @@ return
 
 	}
 	#If
+; ##########在浏览器中单独启用空格组合键##########
+	#If WinActive("ahk_group group_browser") and (GV_GroupBrowserToggleSpaceKeys = 1)
+	{
+
+		Space & j:: SendInput,{Blind}{Down}
+		Space & k:: SendInput,{Blind}{Up}
+		Space & h:: SendInput,{Blind}{Left}
+		Space & l:: SendInput,{Blind}{Right}
+
+		Space & w:: SendInput,{Blind}^{Right}
+		Space & b:: SendInput,{Blind}^{Left}
+
+		Space & e:: SendInput,{Blind}{PgDn}
+		Space & q:: SendInput,{Blind}{PgUp}
+
+		Space & s:: SendInput,^v{Enter}
+		Space & \:: SendInput,^a^v{Enter}
+
+		;在链接上右键菜单，然后选另存为
+		Space & a:: 
+			Send,{RButton}
+			sleep,200
+			send,k
+		return
+
+		;复制文本
+		Space & RButton:: SendInput,^c
+
+		Space & LButton::
+			If (GetCursorShape() = GV_CursorInputBox){
+				SendInput,{Click}
+				sleep,100
+				SendInput,^v{Enter}
+			} else if(GetCursorShape() = GV_CursorClick) {
+				SendInput,{MButton}
+			} else {
+				SendInput,{Enter}
+			}
+		return
+
+		;连击3下用来选中文本段落，然后复制
+		Space & XButton1:: 
+			Send,{Click 3}
+			sleep 100
+			Send,^c
+		return
+
+		Space & c::
+			GV_KeyClickAction1 := "SendInput,^c"
+			GV_KeyClickAction2 := "SendInput,^{Home}^+{End}^c"
+			GoSub,Sub_KeyClick
+		return
+
+		Space & x::
+			GV_KeyClickAction1 := "SendInput,^x"
+			GV_KeyClickAction2 := "SendInput,^{Home}^+{End}^x"
+			GoSub,Sub_KeyClick
+		return
+
+		Space & v::
+			GV_KeyClickAction1 := "SendInput,^v"
+			GV_KeyClickAction2 := "SendInput,^{Home}^+{End}^v"
+			GoSub,Sub_KeyClick
+		return
+
+		Space & u::
+			GV_KeyClickAction1 := "SendInput,{End}"
+			GV_KeyClickAction2 := "SendInput,^{End}"
+			GoSub,Sub_KeyClick
+		return
+
+		Space & i::
+			GV_KeyClickAction1 := "SendInput,{Home}"
+			GV_KeyClickAction2 := "SendInput,^{Home}"
+			GoSub,Sub_KeyClick
+		return
+
+		Space & n::
+			GV_KeyClickAction1 := "SendInput,{PgDn}"
+			GV_KeyClickAction2 := "SendInput,^{PgDn}"
+			GoSub,Sub_KeyClick
+		return
+
+		Space & m::
+			GV_KeyClickAction1 := "SendInput,{PgUp}"
+			GV_KeyClickAction2 := "SendInput,^{PgUp}"
+			GoSub,Sub_KeyClick
+		return
+
+		Space & f::GoSub,Sub_Idm2Mpv
+
+
+		$Space::send,{Blind}{space}
+		^Space::^Space
+		+Space::+Space
+	}
+	Sub_Idm2Mpv:
+		;先点击IDM浮动
+		ControlGetPos, x, y, w, h, IDM Download Button class1
+		ControlClick, IDM Download Button class1, , , LEFT, 1, x12 y8
+		sleep 500
+		MouseMove, x,y
+		;再来处理，自己在30秒钟内选择具体哪一条清晰度等
+		WinWaitActive, 下载文件信息 ahk_class #32770, , 30
+		if ErrorLevel
+		{
+			return
+		}
+		else
+		{
+			;ControlGetText,Out,Edit1,下载文件信息 ahk_class #32770 ahk_exe IDMan.exe
+			ControlGetText,Out,Edit1,下载文件信息 ahk_class #32770
+			WinClose,下载文件信息 ahk_class #32770
+			run,%TCDirPath%\Plugins\WLX\vlister\mpv.exe "%Out%"
+		}
+	return
 ; ##########系统&资源管理器&桌面&任务栏##########
 	;资源浏览器
 		#If WinActive("ahk_class CabinetWClass") or WinActive("ahk_class ExploreWClass")
@@ -1138,6 +1263,10 @@ return
 			Menu, menuBase, Add, (&G) %_searchGoogle%, mGoogle
 			Menu, menuBase, Add, (&D) %_searchBaidu%, mBaidu
 			Menu, menuBase, Add, (&D) %_searchToutiao%, mToutiao
+			Menu, menuBase, Add, (&D) 视频下载(单), mANNIE
+			Menu, menuBase, Add, (&D) 视频下载(列表), mANNIE
+			; Menu, menuBase, Add, (&D) 代理视频下载(单), mANNIEPROXY
+			; Menu, menuBase, Add, (&D) 代理视频下载(列表), mANNIEPROXYList
 			; Menu, menuBase, Add, (&T) %_googleTranslate%, mGoogleTranslate	
 			; Menu, menuBase, Add, (&D) %_googleTranslate%, mdeepLTranslate
 			Menu, menuBase, Show
@@ -1147,6 +1276,8 @@ return
 				Menu, createDir, add,新建文件夹,<Tools_MkDir>
 				Menu, createDir, add,新建文件夹_日期,<Tools_NewFilesDate>
 				Menu, createDir, add,计算文件大小,<TcCountDirContent>
+				Menu, createDir, add,我的目录,<em_BoBO_Path>
+				
 
 			Menu, menuTc, add,转换, :transformSet
 				Menu, transformSet, add, Png转Gif,<em_BoBO_PNGToGIF>
@@ -1221,6 +1352,20 @@ return
 mBaidu:
 txt = %Clipboard%
 Run,https://www.baidu.com/s?wd=%txt%
+return
+mANNIE:
+txt = %Clipboard%
+Run,%A_ScriptDir%\tools\TotalCMD\Tools\Python\Python37\python.exe -i D:\BoBO\WorkFlow\tools\TotalCMD\Tools\Python\批处理_视频下载.py %txt%
+return
+mANNIEOnly:
+txt = %Clipboard%
+Run,%A_ScriptDir%\tools\TotalCMD\Tools\Python\Python37\python.exe -i D:\BoBO\WorkFlow\tools\TotalCMD\Tools\Python\批处理_视频下载单.py %txt%
+return
+mANNIEPROXY:
+Run,%A_ScriptDir%\tools\TotalCMD\Tools\Python\Python37\python.exe -i D:\BoBO\WorkFlow\tools\TotalCMD\Tools\Python\批处理_视频下载单YT.py %txt%
+return
+mANNIEPROXYList:
+Run,%A_ScriptDir%\tools\TotalCMD\Tools\Python\Python37\python.exe -i D:\BoBO\WorkFlow\tools\TotalCMD\Tools\Python\批处理_视频下载YT.py %txt%
 return
 ; mGoogleTranslate:
 ; 	;选中文本

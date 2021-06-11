@@ -4464,36 +4464,36 @@ return
 return
 ;<cm_ContentStopLoadFields>: >>停止后台加载备注{{{2
 ;双击获得发生图片到AE
-<TC_GotoAe>:
-{   
-    t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-    settimer, tc_tappedkey_F5, %t%
+; <TC_GotoAe>:
+; {   
+;     t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
+;     settimer, tc_tappedkey_F5, %t%
 
-    if (t == "off")
-    goto tc_double_F5
-    return
+;     if (t == "off")
+;     goto tc_double_F5
+;     return
 
-    tc_tappedkey_F5:
-    Send,{F5}
-    return
+;     tc_tappedkey_F5:
+;     Send,{F5}
+;     return
 
-    tc_double_F5:
-    clipboard = ; 清空剪贴板重新获取
-    Clipboard:= getCurrentDir()
-    ;MsgBox,%Clipboard%
-    IfWinNotActive ahk_exe AfterFX.exe
-    {
-        FunBoBO_HideOrActivation1(ini.BOBOPath_Config.AEPath,ini.ahk_class_Config.AEClass)
-        WinWait,ahk_exe AfterFX.exe
-        if ErrorLevel			;如果5秒没激活，则退出
-        WinActivate
-        sendinput,^i
-        sleep,300
-        send,^v
-        send,{Enter}    
-    }
-return
-}
+;     tc_double_F5:
+;     clipboard = ; 清空剪贴板重新获取
+;     Clipboard:= getCurrentDir()
+;     ;MsgBox,%Clipboard%
+;     IfWinNotActive ahk_exe AfterFX.exe
+;     {
+;         FunBoBO_HideOrActivation1(ini.BOBOPath_Config.AEPath,ini.ahk_class_Config.AEClass)
+;         WinWait,ahk_exe AfterFX.exe
+;         if ErrorLevel			;如果5秒没激活，则退出
+;         WinActivate
+;         sendinput,^i
+;         sleep,300
+;         send,^v
+;         send,{Enter}    
+;     }
+; return
+; }
 <TC_double_ClearDupTab>:
 {   
     t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
@@ -4949,7 +4949,9 @@ TC_LeftRight()
 ; 	}
 ;     return
 ; }
-
+<em_BoBO_Path>:
+ Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`LOADLIST`D:\BoBO\WorkFlow\path.txt)"
+return
 <TcPostMsg>:
 	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_FocusTrg`)"
 	Run "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_OpenNewTab`)"
@@ -5090,3 +5092,18 @@ return
 return
 
 
+<TC_复制不需要确定>:
+	GV_KeyClickAction1 := "Send,{F5}"
+	GV_KeyClickAction2 := "TcCMD,tem(`em_TcFS2ForceCopy`)"
+	GoSub,Sub_KeyClick
+return
+<TC_移动不需要确定>:
+	GV_KeyClickAction1 := "Send,{F5}"
+	GV_KeyClickAction2 := "TcCMD,tem(`em_TcFS2ForceMove`)"
+	GoSub,Sub_KeyClick
+return
+<TC_重命名和添加时间>:
+	GV_KeyClickAction1 := "Send,{F2}"
+	GV_KeyClickAction2 := "TcCMD,tem(`em_TCIMG_RenAddDateTime`)"
+	GoSub,Sub_KeyClick
+return

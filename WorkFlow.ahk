@@ -53,6 +53,13 @@ global color3=007310
 global color4=303030
 ;tab系列组合键，适合左键右鼠，启用后直接按tab会感觉有一点延迟，默认开启，开关为ctrl+win+alt+花号
 global GV_ToggleTabKeys := 1
+;正常鼠标指针
+GV_CursorNormal_64Win710 := 124973738
+;超链接鼠标指针
+GV_CursorClick_64Win710 := 1197314685
+
+GV_CursorInputBox := GV_CursorInputBox_64Win710
+GV_CursorClick := GV_CursorClick_64Win710
 ; Tim/QQ位置
 global Tim_Start_X := 100
 global Tim_Start_Y := 100
@@ -67,7 +74,8 @@ global TG_Start_Y := 110
 global TG_Bar_Height := 62 
 global this_title=
 global zParam
-
+;在浏览器中启用空格系列快捷键
+GV_GroupBrowserToggleSpaceKeys := 1
 ; 程序路径
 ; IniRead,TCExePath,config.ini,TotalCommander_Config,TCPath
 ; IniRead,TCExePath,config.ini,TotalCommander_Config,TCDirPath

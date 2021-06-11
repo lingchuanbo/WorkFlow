@@ -1,48 +1,43 @@
-﻿;     vim.Map("<Alt>", "<Blender_Alt>", "Blender")
-;     vim.Map("v", "<Blender_V>", "Blender")
-;     ; vim.Map("vb", "<Blender_PieMenu>", "Blender")
-;     ; vim.Map("vtw", "<Blender_ToggleMaxzeArea1>", "Blender")
-;     ; vim.Map("vte", "<Blender_ToggleMaxzeArea2>", "Blender")
+﻿    vim.Map("<Alt>", "<Houdini_Alt>", "Houdini")
+
+     ; vim.Map("a", "<Houdini_SelectObject>", "Houdini")
+    vim.Map("z", "<Houdini_z>", "Houdini")
+    vim.Map("w", "<Houdini_窗口切换>", "Houdini")
+    vim.Map("p", "<Houdini_窗口切换透视正视>", "Houdini")
+    vim.Map("0", "<Houdini_透视正视>", "Houdini")
     
+    ;  显示
+    vim.Map("<F4>", "<Houdini_切换阴影线框>", "Houdini")
+    
+     ;  基本操作
+    vim.Map("<LB-x>", "<Houdini_删除>", "Houdini")
+;     vim.Map("0", "<Houdini_0>", "Houdini")
 
-;     vim.Map("<F5>", "<Blender_Render>", "Blender")
-;     vim.Map("<F5>1", "<Blender_RenderAnimation>", "Blender")
-;     vim.Map("<F5>2", "<Blender_ViewRenderAnimation>", "Blender")
-;     vim.Map("<F5>3", "<Blender_ViewRender>", "Blender")
-;     vim.Map("<F9>", "<Blender_Render>", "Blender")
-
-;     ; vim.Map("a", "<Blender_SelectObject>", "Blender")
-;     ; vim.Map("z", "<Blender_z>", "Blender")
-;     vim.Map("d", "<Blender_Duplicate>", "Blender")
-;     vim.Map("x", "<Blender_X>", "Blender")
-;     vim.Map("s", "<Blender_F>", "Blender")
-;     vim.Map("q", "<Blender_q>", "Blender")
-;     vim.Map("w", "<Blender_w>", "Blender")
-;     vim.Map("e", "<Blender_缩放>", "Blender")
-
-;     vim.Map("0", "<Blender_0>", "Blender")
-; ; 操作
-;     vim.Map("<F4>", "<Blender_显示>", "Blender")
-;     vim.Map("<LB-x>", "<Blender_DeleteOK>", "Blender")
-;     vim.Map("<LB-e>", "<Blender_恢复E功能>", "Blender")
-;     vim.Map("<c-e>", "<Blender_恢复E功能>", "Blender")
 ; ; 视窗
-;     vim.Map("cc", "<Blender_视窗_摄像机>", "Blender")
-;     vim.Map("ct", "<Blender_视窗_顶视图>", "Blender")
-;     vim.Map("cf", "<Blender_视窗_前视图>", "Blender")
-;     vim.Map("f", "<Blender_视窗_前视图>", "Blender")
-;     vim.Map("cl", "<Blender_视窗_左视图>", "Blender")
-;     vim.Map("cr", "<Blender_视窗_右视图>", "Blender")
-;     vim.Map("cu", "<Blender_视窗_透视与正交>", "Blender")
-;     vim.Map("cp", "<Blender_视窗_透视>", "Blender")
-;     vim.Map("p", "<Blender_视窗_透视>", "Blender")
+    vim.Map("<LB-v>1", "<Houdini_透视>", "Houdini")
+
+    vim.Map("<LB-v>2", "<Houdini_前视图>", "Houdini")
+    vim.Map("<LB-v>3", "<Houdini_顶视图>", "Houdini")
+    vim.Map("<LB-v>4", "<Houdini_右视图>", "Houdini")
+    vim.Map("<LB-v>5", "<Houdini_UV视图>", "Houdini")
+; ; 面板
+    vim.Map("<LB-d>1", "<Houdini_场景视图>", "Houdini")
+    vim.Map("<LB-d>2", "<Houdini_网络编辑器>", "Houdini")
+    vim.Map("<LB-d>3", "<Houdini_参数>", "Houdini")
+    vim.Map("<LB-d>4", "<Houdini_节点树视角>", "Houdini")
+    vim.Map("<LB-d>5", "<Houdini_文本框>", "Houdini")
+    vim.Map("<LB-d>6", "<Houdini_频道编辑>", "Houdini")
+    vim.Map("<LB-d>7", "<Houdini_材质调色板>", "Houdini")
+    vim.Map("<LB-d>8", "<Houdini_参看详细>", "Houdini")
+    vim.Map("<LB-d>8", "<Houdini_场景视角>", "Houdini")
 
 ; ; 动画
-;     vim.map("<F2>","<Blender_上一帧>","Blender")
-;     vim.map("<F3>","<Blender_下一帧>","Blender")
+    vim.map("<F2>","<Houdini_上一帧>","Houdini")
+    vim.map("<F3>","<Houdini_下一帧>","Houdini")
 
-vim.map("<A-s>","<Houdini_搜索>","Houdini")
+    vim.map("<A-s>","<Houdini_搜索>","Houdini")
+    vim.map("<F7>","<Houdini_面板>","Houdini")
 
-vim.map("w","<Houdini_移动>","Houdini")
-vim.map("e","<Houdini_旋转>","Houdini")
-vim.map("r","<Houdini_缩放>","Houdini")
+; vim.map("w","<Houdini_移动>","Houdini")
+; vim.map("e","<Houdini_旋转>","Houdini")
+; vim.map("r","<Houdini_缩放>","Houdini")

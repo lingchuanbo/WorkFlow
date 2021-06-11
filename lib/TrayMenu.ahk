@@ -21,6 +21,7 @@ Menu, tray, add, %_aboutMe%(&L), :aboutMe
 
 Menu, OptionSet, add, %_Initialization%, <VIMD_Initialization>
 Menu, OptionSet, add, 将 %_AppName% 目录添加为系统变量(&B), <VIMD_EnvSystem>
+Menu, OptionSet, add, 将 FFmpeg添加为系统变量(非必要)(&B), <VIMD_EnvSystemFFmpeg>
 Menu, OptionSet, add, %_BackupRestore%, <VIMD_BackupRestore>
 
 Menu, tray, add, %_Option%, :OptionSet
@@ -117,6 +118,32 @@ Return
     (
 #Include %A_ScriptDir%\lib\Environment.ahk
 Env_SystemAdd("%_AppName%","%A_ScriptDir%")
+return
+ExitApp
+    ), %A_ScriptDir%\Env_SystemAdd.ahk,UTF-8
+    sleep 500
+    run, %A_ScriptDir%\Env_SystemAdd.ahk
+    sleep 2000
+    FileDelete, %A_ScriptDir%\Env_SystemAdd.ahk
+    return
+}
+<VIMD_EnvSystemFFmpeg>:
+{
+    Gui, Color, 37474F
+    Gui -Caption
+    Gui, Font, s32,Microsoft YaHei
+	  Gui, +AlwaysOnTop +Disabled -SysMenu +Owner 
+	  Gui, Add, Text,cffffff,设置%_AppName%为系统变量
+	  Gui, Show, xCenter yCenter, 状态, NoActivate,
+	  sleep, 1200
+	  Gui, Destroy
+    
+    gotoSetEvn=%A_ScriptDir%\Env_SystemAdd.ahk
+    FileDelete, %gotoSetEvn% ;先删除文件
+    FileAppend,  ; 这里需要逗号.
+    (
+#Include %A_ScriptDir%\lib\Environment.ahk
+Env_SystemAdd("ffmpeg","%A_ScriptDir%\tools\TotalCMD\Tools\ffmpeg.exe")
 return
 ExitApp
     ), %A_ScriptDir%\Env_SystemAdd.ahk,UTF-8

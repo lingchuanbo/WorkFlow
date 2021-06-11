@@ -4,19 +4,25 @@
       {
         "label": "MXSPyCOM execute Script",
         "type": "process",
-        // Add MXSPyCOM.exe to PATH or use file root, i.e: "C:/MXSPyCOM/MXSPyCOM.exe"
-        "command":"F:/BoBOAHK/Vimdesktop/custom/maxScripts/MXSPyCOM.exe",
+        "command": "D:/MXSPyCOM.exe",
         "args": [
-            "-f",
-            { "value": "${file}", "quoting": "strong" }
+          "-f",
+          {
+            "value": "${file}",
+            "quoting": "strong"
+          }
         ],
-        "group": "test",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
         "presentation": {
-            "echo": true,
-            "reveal": "silent",
-            "focus": false,
-            "panel": "shared"
-        }
-    }
-  ]
+          "echo": true,
+          "reveal": "silent",
+          "focus": false,
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      }
+    ]
 }

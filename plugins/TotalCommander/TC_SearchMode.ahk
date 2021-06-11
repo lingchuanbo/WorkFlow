@@ -158,3 +158,5 @@
     vim.map("<SP-.>r", "<cm_Restore>", "TCQuickSearch")
     vim.map("<SP-.>v", "<cm_VerticalPanels>", "TCQuickSearch")
     
+
+

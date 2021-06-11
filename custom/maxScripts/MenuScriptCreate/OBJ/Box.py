@@ -1,24 +1,30 @@
-'''
-    Demonstrates creating many different types of scene objects that are visible in the viewport.
-    The scene objects are grouped by type. 
-    The types created are Cameras, Lights, Geometric Objects, Shapes, Helpers, Modifiers and Materials.
-'''
-import MaxPlus
+"""
+    Provide a PySide2 dialog for the pyramid tool.
+"""
+from PySide2.QtWidgets import QWidget, QDialog, QLabel, QVBoxLayout, QPushButton
+from pymxs import runtime as rt
+from .graphics import make_pyramid_mesh
 
-def CreateBox():
-    # 创建指定的对象 盒子
-    box = MaxPlus.Factory.CreateGeomObject(MaxPlus.ClassIds.Box)
-    # 创建节点
-    boxNode = MaxPlus.Factory.CreateNode(box,'FX_Object')
+class PyMaxDialog(QDialog):
+    """
+    Custom dialog attached to the 3ds Max main window
+    Message label and action push button to create a pyramid in the 3ds 
+    Max scene graph
+    """
+    def __init__(self, parent=QWidget.find(rt.windows.getMAXHWND())):
+        super(PyMaxDialog, self).__init__(parent)
+        self.setWindowTitle('Pyside2 Qt Window')
+        self.init_ui()
 
-    # box属性
-    # box.ParameterBlock.Length.Value = 50
-    # box.ParameterBlock.Width.Value = 50
-    # box.ParameterBlock.Height.Value = 50
+    def init_ui(self):
+        """ Prepare Qt UI layout for custom dialog """
+        main_layout = QVBoxLayout()
+        label = QLabel("Click button to create a pyramid in the scene")
+        main_layout.addWidget(label)
 
-    return box
+        btn = QPushButton("Pyramid")
+        btn.clicked.connect(make_pyramid_mesh)
+        main_layout.addWidget(btn)
 
-
-    # return box
-
-p=CreateBox()
+        self.setLayout(main_layout)
+        self.resize(250, 100)

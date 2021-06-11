@@ -192,4 +192,7 @@
     vim.map("<SP-.>m", "<cm_Maximize>", "TTOTAL_CMD")
     vim.map("<SP-.>r", "<cm_Restore>", "TTOTAL_CMD")
     vim.map("<SP-.>v", "<cm_VerticalPanels>", "TTOTAL_CMD")
-    
+
+    vim.map("<F5>", "<TC_复制不需要确定>", "TTOTAL_CMD")
+    vim.map("<F6>", "<TC_移动不需要确定>", "TTOTAL_CMD")
+    vim.map("<F2>", "<TC_重命名和添加时间>", "TTOTAL_CMD")
