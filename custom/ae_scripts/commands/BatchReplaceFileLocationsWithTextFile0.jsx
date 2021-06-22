@@ -35,7 +35,7 @@ function BatchReplaceFileLocationsWithTextFile() {
                 var tmpFile =  new File(WinPathtoURI(arrayContents[i+2]));
                 //alert(tmpFile);
                 if(isSequence[i]){
-                    sel[i].replaceWithSequence(tmpFile,1);  //0 不支持 1 支持
+                    sel[i].replaceWithSequence(tmpFile,0);  //0 不支持 1 支持
                 }else{
                     sel[i].replace(tmpFile);
                 }

@@ -100,7 +100,8 @@ return
 
 menuAeAlt:
     Menu, menuAlt, add, (&R) 批量导入素材, ImmigrationREG
-    Menu, menuAlt, add, (&R) 批量替换素材, BatchReplaceFile
+    Menu, menuAlt, add, (&R) 批量替换素材_目录命名, BatchReplaceFile
+    Menu, menuAlt, add, (&R) 批量替换素材, BatchReplaceFile0
     Menu, menuAlt, add, (&R) 批量重命名, BatchRename
     Menu, menuAlt, add, (&R) 批量渲染, :ManageRender
         Menu, ManageRender, add, %_AeRENDER%,RENDER

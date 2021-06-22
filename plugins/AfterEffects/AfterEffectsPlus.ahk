@@ -170,7 +170,10 @@ BatchReplaceFile:
 	Gui,Ae: Hide   
     getAeScript("custom\ae_scripts\commands\BatchReplaceFileLocationsWithTextFile.jsx")
 return
-
+BatchReplaceFile0:
+	Gui,Ae: Hide   
+    getAeScript("custom\ae_scripts\commands\BatchReplaceFileLocationsWithTextFile0.jsx")
+return
 RenderGarden:
 	Gui,Ae: Hide   
     ;RG10-6441-1070-2018注册码
