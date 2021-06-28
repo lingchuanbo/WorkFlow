@@ -25,7 +25,7 @@ Menu, OptionSet, add, 将 FFmpeg添加为系统变量(非必要)(&B), <VIMD_EnvS
 Menu, OptionSet, add, %_BackupRestore%, <VIMD_BackupRestore>
 
 Menu, tray, add, %_Option%, :OptionSet
-
+Menu, Tray, Add, %_ShortCutHelper%(&R), Run_ShortCutHelper
 Menu, Tray, Add, %_Pause%(&P), <Pause>
 Menu, Tray, Add, %_Restart%(&R), <Reload>
 Menu, Tray, Add, %_Exit%(&X), Exit

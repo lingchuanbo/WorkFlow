@@ -1158,6 +1158,7 @@ return
 	;Blender
 		#If WinActive("ahk_exe blender.exe")
 		{
+			; MButton::BetterBlenderNav()
 			LButton & F2::send,{F2}
 			; Space::    
 			; 	start := A_TickCount            ; measure current time.
@@ -1230,6 +1231,7 @@ return
 			; Return 
 		}
 		#If
+
 	; Evetything
 		#If WinActive("ahk_exe Everything.exe")
 			{
@@ -1947,51 +1949,7 @@ return
 ToolTipOff:
 	ToolTip
 Return
-; IfNoteP_Active:
-; If (note_hwnd := WinActive("ahk_group GroupDiagJump")) {
-; 	SetTimer, %A_ThisLabel%, Off
-; 	WinGetActiveStats, nTitle, N_W, N_H, N_X, N_Y
-; 	Gui_Show(N_W+N_X-10, N_H+N_Y-100)
-; 	SetTimer, IfNoteP_Move, 100
-; }
-; Return
 
-; IfNoteP_Move:
-; If !(note_hwnd := WinActive("ahk_group GroupDiagJump")) {
-; 	SetTimer, %A_ThisLabel%, Off
-; 	Gui_Show("hide")
-; 	SetTimer, IfNoteP_Active, 100
-; 	Return
-; }
-
-; WinGetActiveStats, nTitle, N_W, N_H, N_X, N_Y
-; If (N_X <> Last_NX || N_Y <> Last_NY) {
-; 	Gui_Show(N_W+N_X-10, N_H+N_Y-100)
-; 	Last_NX := N_X, Last_NY := N_Y
-; }
-; Return
-; ; 吸附窗口
-; Gui_Show(X, Y="") {
-; 	If InStr(X, "hide")
-; 	{
-; 		sleep 10
-; 		Gui, Window3770:Hide
-; 	}
-		
-; 	Else
-; 	{
-; 		sleep 10
-; 		Gui, Window3770:Show, NoActivate x%X% y%Y%, MyGuiWin
-; 	}
-
-; 	Return
-; }
-
-; Btn:
-; 	WinActive("ahk_group GroupDiagJump")
-; 	sleep 100
-; 	GoSub,Sub_SendTcCurPath2Diag
-; return
-; Btn2:
-; GoSub,Sub_SendCurDiagPath2Tc
-; return
+Run_ShortCutHelper:
+	Run,%A_ScriptDir%\ShortCutHelper.exe
+return
