@@ -10,6 +10,17 @@
  	;按住Win加滚轮来调整音量大小
  		LWin & WheelUp::Send,{Volume_Up}
  		LWin & WheelDown::Send,{Volume_Down}
+	;按住Win+C打开默认资源管理器，按Win+c+c关闭其它管理器	
+		LWin & c::
+			GV_KeyClickAction1 := "Gosub,Run_Explore"
+			GV_KeyClickAction2 := "Gosub,Run_ExploreCls"
+			GoSub,Sub_KeyClick
+		return
+		LWin & x::
+			GV_KeyClickAction1 := "send,#{x}"
+			GV_KeyClickAction2 := "Gosub,Run_ClsClose"
+			GoSub,Sub_KeyClick
+		return
 	;功能：关闭(Alt + x)
 		!x::send, ^w
 	;功能：最小化窗口
@@ -1994,3 +2005,19 @@ Run_ShortCutHelper:
 }
 	
 
+Run_ClsClose:
+{
+	Run,%A_ScriptDir%\custom\apps\TaskSwch\ClsClose.exe
+	return
+}
+
+Run_Explore:
+{
+	Run,explorer.exe
+	return
+}
+Run_ExploreCls:
+{
+	Run,%A_ScriptDir%\custom\apps\TaskSwch\ClsFoldr.EXE
+	return
+}

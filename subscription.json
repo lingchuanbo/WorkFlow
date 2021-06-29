@@ -935,12 +935,32 @@
             "detail": "快速截图"
           },
           {
+            "key": "Win+S",
+            "detail": "快捷键显示助手"
+          },
+          {
             "key": "Win+Q",
-            "detail": "搜索"
+            "detail": "快捷启动"
           },
           {
             "key": "Win+E",
-            "detail": "我的电脑"
+            "detail": "启动TotalCMD"
+          },
+          {
+            "key": "Win+F",
+            "detail": "Everything搜索"
+          },
+          {
+            "key": "Win+W",
+            "detail": "快速定位"
+          },
+          {
+            "key": "Win+C",
+            "detail": "我的电脑,Win+c+c关闭其它窗口"
+          },
+          {
+            "key": "Win+C+C",
+            "detail": "关闭其它窗口"
           },
           {
             "key": "Win+D",
@@ -951,12 +971,24 @@
             "detail": "运行"
           },
           {
+            "key": "Win+X",
+            "detail": "传统控制面板"
+          },
+          {
+            "key": "Win+X+X",
+            "detail": "关闭同类所有窗口"
+          },
+          {
             "key": "Win+← →",
             "detail": "分屏操作"
           },
           {
             "key": "Win+Tab",
             "detail": "新建桌面"
+          },
+          {
+            "key": "Win+F4",
+            "detail": "关闭同类所有窗口"
           },
           {
             "key": "Win+↓↑",
@@ -969,6 +1001,10 @@
           {
             "key": "Win+I",
             "detail": "打开设置"
+          },
+          {
+            "key": "Win+~",
+            "detail": "打开控制面板"
           },
           {
             "key": "Win+123..",
