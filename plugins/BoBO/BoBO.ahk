@@ -412,6 +412,18 @@ return
 			return
 		}
 		#If
+		
+		#IfWinActive ahk_exe ShortCutHelper.exe
+		{
+			ESC::sendinput,!{F4}
+			LButton::
+				GV_KeyClickAction1 := "SendInput,{LButton}"
+				GV_KeyClickAction2 := "SendInput,!{F4}"
+				GoSub,Sub_KeyClick
+			return	
+
+		}
+		#If
 	; 微信
 		#IfWinActive ahk_exe WeChat.exe
 		{

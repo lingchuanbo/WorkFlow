@@ -5059,7 +5059,7 @@ return
 return
 <TC_打包工具_打包Atlas>:
     Clipboard:=
-    param=atlas
+    param=txt
     Run, "%TCDirPath%\Tools\TCFS2\TCFS2.exe" /ef "tem(`cm_CopyNetNamesToClip`)"
     sleep,500
     Loop, parse, Clipboard , `n, `r
