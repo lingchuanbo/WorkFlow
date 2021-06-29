@@ -29,6 +29,7 @@ If Language=CN
 
     global _VIMMode:="进入 WorkFlow"
     global _ExitVIMMode:="退出 WorkFlow"
+    global _WindowsActivation:="激活系统"
     
 
     global _StartUp="开机自启"

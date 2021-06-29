@@ -22,10 +22,11 @@ Menu, tray, add, %_aboutMe%(&L), :aboutMe
 Menu, OptionSet, add, %_Initialization%, <VIMD_Initialization>
 Menu, OptionSet, add, 将 %_AppName% 目录添加为系统变量(&B), <VIMD_EnvSystem>
 Menu, OptionSet, add, 将 FFmpeg添加为系统变量(非必要)(&B), <VIMD_EnvSystemFFmpeg>
+Menu, OptionSet, add, %_ShortCutHelper%, Run_ShortCutHelper
+Menu, OptionSet, add, %_WindowsActivation%, Run_WindowsActivation
 Menu, OptionSet, add, %_BackupRestore%, <VIMD_BackupRestore>
 
 Menu, tray, add, %_Option%, :OptionSet
-Menu, Tray, Add, %_ShortCutHelper%(&R), Run_ShortCutHelper
 Menu, Tray, Add, %_Pause%(&P), <Pause>
 Menu, Tray, Add, %_Restart%(&R), <Reload>
 Menu, Tray, Add, %_Exit%(&X), Exit

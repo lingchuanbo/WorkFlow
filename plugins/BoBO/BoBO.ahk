@@ -2021,3 +2021,8 @@ Run_ExploreCls:
 	Run,%A_ScriptDir%\custom\apps\TaskSwch\ClsFoldr.EXE
 	return
 }
+Run_WindowsActivation:
+{
+	Run,%A_ScriptDir%\\KMS_VL_ALL_AIO.cmd
+	return
+}
