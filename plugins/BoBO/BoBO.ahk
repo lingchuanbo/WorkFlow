@@ -412,16 +412,29 @@ return
 			return
 		}
 		#If
-		
-		#IfWinActive ahk_exe ShortCutHelper.exe
+
+		#IfWinActive ahk_exe MassiGra.exe
 		{
-			ESC::sendinput,!{F4}
-			LButton::
-				GV_KeyClickAction1 := "SendInput,{LButton}"
-				GV_KeyClickAction2 := "SendInput,!{F4}"
+			MButton::sendinput,{LButton}
+			RButton::sendinput,{LButton}
+			2::sendinput,{RButton}
+			WheelUp::sendinput,{+}
+			WheelDown::sendinput,{-}
+			Ctrl & LButton::
+				GV_KeyClickAction1 := "SendInput,{f}"
+				GV_KeyClickAction2 := "sendinput,{g}"
 				GoSub,Sub_KeyClick
 			return	
-
+		}
+		#IfWinActive ahk_exe ShortCutHelper.exe
+		{
+			ESC::sendinput,!{s}
+			LButton::
+				GV_KeyClickAction1 := "SendInput,!{s}"
+				GV_KeyClickAction2 := "sendinput,!{F4}"
+				GoSub,Sub_KeyClick
+			return	
+			Alt & w::Run,%A_ScriptDir%\config.json
 		}
 		#If
 	; 微信
@@ -1962,6 +1975,22 @@ ToolTipOff:
 	ToolTip
 Return
 
+
 Run_ShortCutHelper:
-	Run,%A_ScriptDir%\ShortCutHelper.exe
-return
+{
+	Process, Wait, ShortCutHelper.exe, 1
+	NewPID := ErrorLevel  ; 由于 ErrorLevel 会经常发生改变, 所以要立即保存这个值.
+	if not NewPID
+	{
+		; 如果进程没有ShortCutHelper则运行
+		Run,%A_ScriptDir%\ShortCutHelper.exe
+		return
+	}
+	if NewPID
+	{
+		sendinput,!s
+		return
+	}
+}
+	
+

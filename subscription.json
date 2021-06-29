@@ -895,6 +895,29 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Total Commander",
+      "appkeys": [
+        {
+          "classification": "常用",
+          "keys": [
+            {
+              "key": "Ctrl+K-S",
+              "detail": "快捷键设置"
+            }
+          ]
+        },
+        {
+          "classification": "编辑",
+          "keys": [
+            {
+              "key": "Ctrl+Shift+Enter",
+              "detail": "向上插入"
+            }
+          ]
+        }
+      ]
     }
     
   ],
@@ -994,6 +1017,16 @@
   },
   "global":{
     "appkeys": [
+      {
+        "classification": "系统增强",
+        "keys": [
+          {"key": "Win+右键","detail": "便捷启动"},
+          {"key": "Win+F","detail": "Everything搜索"},
+          {"key": "Win+E","detail": "启动TotalCMD"},
+          {"key": "Win+滚轮上下","detail": "音量+-"},
+          {"key": "Shift+滚轮上下","detail": "透明+-"} 
+        ]
+      },
       {
         "classification": "输入法",
         "keys": [
