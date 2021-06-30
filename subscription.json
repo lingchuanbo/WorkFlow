@@ -900,8 +900,44 @@
       "name": "Total Commander",
       "appkeys": [
         {
-          "classification": "常用",
+          "classification": "定位",
           "keys": [
+            {
+              "key": "Shift+字母",
+              "detail": "切换盘符"
+            },
+            {
+              "key": "Ctrl+D 或者 Alt",
+              "detail": "收藏夹"
+            },
+            {
+              "key": "Shift+右键",
+              "detail": "增强功能菜单"
+            },
+            {
+              "key": "Alt+D",
+              "detail": "聚焦地址栏"
+            },
+            {
+              "key": "\\",
+              "detail": "定位到目录下第一个文件"
+            },
+            {
+              "key": "[",
+              "detail": "定位到当前目录下第一个文件夹"
+            },
+            {
+              "key": "Alt＋Shift＋Z",
+              "detail": "桌面文件夹"
+            },
+            {
+              "key": "Alt＋Shift＋C",
+              "detail": "控制面板"
+            },
+            {
+              "key": "Ctrl+S",
+              "detail": "查找文件"
+            },
             {
               "key": "Ctrl+K-S",
               "detail": "快捷键设置"
@@ -909,11 +945,476 @@
           ]
         },
         {
-          "classification": "编辑",
+          "classification": "选择文件",
           "keys": [
             {
-              "key": "Ctrl+Shift+Enter",
-              "detail": "向上插入"
+              "key": "鼠标右键",
+              "detail": "鼠标右键按住滑行"
+            },
+            {
+              "key": "Ctrl+A",
+              "detail": "全选"
+            },
+            {
+              "key": ",",
+              "detail": "取消全选"
+            },
+            {
+              "key": "Ctrl+I",
+              "detail": "反选"
+            },
+            {
+              "key": "Alt+＝",
+              "detail": "选择相同扩展名的文件"
+            },
+            {
+              "key": "Ctrl+Shift+D",
+              "detail": "导入剪贴板中文件列表"
+            }
+          ]
+        },
+        {
+          "classification": "操作文件",
+          "keys": [
+            {
+              "key": "Shift+字母",
+              "detail": "切换盘符"
+            },
+            {
+              "key": "F3",
+              "detail": "查看"
+            },
+            {
+              "key": "F4",
+              "detail": "F4menu接管编辑功能"
+            },
+            {
+              "key": "F5",
+              "detail": "复制"
+            },
+            {
+              "key": "F6",
+              "detail": "移动"
+            },
+            {
+              "key": "F7",
+              "detail": "新建目录"
+            },
+            {
+              "key": "F8",
+              "detail": "删除"
+            },
+            {
+              "key": "F9",
+              "detail": "调用指定的播放器软件"
+            }
+          ]
+        },
+        {
+          "classification": "压缩/解压缩",
+          "keys": [
+            {
+              "key": "Ctrl+E",
+              "detail": "解压"
+            },
+            {
+              "key": "Alt+E",
+              "detail": "解压至当前目录"
+            },
+            {
+              "key": "Ctrl+shift+E",
+              "detail": "解压至对面面板"
+            }
+          ]
+        },
+        {
+          "classification": "文件名/路径/文件比较",
+          "keys": [
+            {
+              "key": "Ctrl+M",
+              "detail": "批量重命名"
+            },
+            {
+              "key": "Ctrl+Shift+C",
+              "detail": "复制文件名和完整路径"
+            },
+            {
+              "key": "Ctrl+Shift+N",
+              "detail": "复制文件名"
+            },
+            {
+              "key": "Ctrl+Shift+M",
+              "detail": "复制文件名而不要扩展名"
+            },
+            {
+              "key": "Ctrl+Shift+P",
+              "detail": "复制文件路径"
+            },
+            {
+              "key": "Ctrl+Shift+alt+C",
+              "detail": "复制所有的自定义列内容"
+            },
+            {
+              "key": "Ctrl+H",
+              "detail": "比较文件夹"
+            },
+            {
+              "key": "Ctrl+shift+B",
+              "detail": "用BeyondCompare比较"
+            }
+          ]
+        },
+        {
+          "classification": "Ctrl+数字系列按键",
+          "keys": [
+            {
+              "key": "Shift+字母",
+              "detail": "Ctrl+1、2、3、4"
+            },
+            {
+              "key": "ctrl+5",
+              "detail": "窗口分隔条位于50%"
+            },
+            {
+              "key": "Ctrl+6",
+              "detail": "纵向排列面板"
+            },
+            {
+              "key": "Ctrl+0",
+              "detail": "选择文件类型"
+            },
+            {
+              "key": "Ctrl+9",
+              "detail": "显示所有文件"
+            },
+            {
+              "key": "ctrl+8",
+              "detail": "上次选择的文件类型"
+            },
+            {
+              "key": "Ctrl+7",
+              "detail": "仅显示选定的文件"
+            }
+          ]
+        },
+        {
+          "classification": "标签相关",
+          "keys": [
+            {
+              "key": "Alt+1234567890",
+              "detail": "跳转到对应的标签"
+            },
+            {
+              "key": "Shift+[ ]即{ }",
+              "detail": "上/下一个标签"
+            },
+            {
+              "key": "Ctrl+P",
+              "detail": "标签菜单"
+            },
+            {
+              "key": "Alt+P",
+              "detail": "自定义列菜单"
+            }
+          ]
+        },
+        {
+          "classification": "列表/横竖切换",
+          "keys": [
+            {
+              "key": "Alt+E",
+              "detail": "列表显示"
+            },
+            {
+              "key": "Alt+Q",
+              "detail": "预览模式"
+            },
+            {
+              "key": "F11",
+              "detail": "横竖切换效果"
+            }
+          ]
+        },
+        {
+          "classification": "打开/编辑文件",
+          "keys": [
+            {
+              "key": "F4 或 Ctrl+;",
+              "detail": "编辑"
+            },
+            {
+              "key": "'（回车左边的按键）",
+              "detail": "右键菜单"
+            },
+            {
+              "key": "Enter",
+              "detail": "直接打开"
+            },
+            {
+              "key": "Ctrl+Enter",
+              "detail": "用Nircmd调用外部定义方式打开"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Adobe After Effects",
+      "appkeys": [
+        {
+          "classification": "增强菜单",
+          "keys": [
+            {
+              "key": "Shift+右键 或 Alt",
+              "detail": "增强菜单1-常规"
+            },
+            {
+              "key": "双Alt",
+              "detail": "增强菜单2-批处理"
+            },
+            {
+              "key": "左键+Alt",
+              "detail": "增强菜单3-项目相关"
+            },
+            {
+              "key": "Alt+D",
+              "detail": "聚焦地址栏"
+            },
+            {
+              "key": "\\",
+              "detail": "定位到目录下第一个文件"
+            },
+            {
+              "key": "[",
+              "detail": "定位到当前目录下第一个文件夹"
+            },
+            {
+              "key": "Alt＋Shift＋Z",
+              "detail": "桌面文件夹"
+            },
+            {
+              "key": "Alt＋Shift＋C",
+              "detail": "控制面板"
+            },
+            {
+              "key": "Ctrl+S",
+              "detail": "查找文件"
+            },
+            {
+              "key": "Ctrl+K-S",
+              "detail": "快捷键设置"
+            }
+          ]
+        },
+        {
+          "classification": "选择文件",
+          "keys": [
+            {
+              "key": "鼠标右键",
+              "detail": "鼠标右键按住滑行"
+            },
+            {
+              "key": "Ctrl+A",
+              "detail": "全选"
+            },
+            {
+              "key": ",",
+              "detail": "取消全选"
+            },
+            {
+              "key": "Ctrl+I",
+              "detail": "反选"
+            },
+            {
+              "key": "Alt+＝",
+              "detail": "选择相同扩展名的文件"
+            },
+            {
+              "key": "Ctrl+Shift+D",
+              "detail": "导入剪贴板中文件列表"
+            }
+          ]
+        },
+        {
+          "classification": "操作文件",
+          "keys": [
+            {
+              "key": "Shift+字母",
+              "detail": "切换盘符"
+            },
+            {
+              "key": "F3",
+              "detail": "查看"
+            },
+            {
+              "key": "F4",
+              "detail": "F4menu接管编辑功能"
+            },
+            {
+              "key": "F5",
+              "detail": "复制"
+            },
+            {
+              "key": "F6",
+              "detail": "移动"
+            },
+            {
+              "key": "F7",
+              "detail": "新建目录"
+            },
+            {
+              "key": "F8",
+              "detail": "删除"
+            },
+            {
+              "key": "F9",
+              "detail": "调用指定的播放器软件"
+            }
+          ]
+        },
+        {
+          "classification": "压缩/解压缩",
+          "keys": [
+            {
+              "key": "Ctrl+E",
+              "detail": "解压"
+            },
+            {
+              "key": "Alt+E",
+              "detail": "解压至当前目录"
+            },
+            {
+              "key": "Ctrl+shift+E",
+              "detail": "解压至对面面板"
+            }
+          ]
+        },
+        {
+          "classification": "文件名/路径/文件比较",
+          "keys": [
+            {
+              "key": "Ctrl+M",
+              "detail": "批量重命名"
+            },
+            {
+              "key": "Ctrl+Shift+C",
+              "detail": "复制文件名和完整路径"
+            },
+            {
+              "key": "Ctrl+Shift+N",
+              "detail": "复制文件名"
+            },
+            {
+              "key": "Ctrl+Shift+M",
+              "detail": "复制文件名而不要扩展名"
+            },
+            {
+              "key": "Ctrl+Shift+P",
+              "detail": "复制文件路径"
+            },
+            {
+              "key": "Ctrl+Shift+alt+C",
+              "detail": "复制所有的自定义列内容"
+            },
+            {
+              "key": "Ctrl+H",
+              "detail": "比较文件夹"
+            },
+            {
+              "key": "Ctrl+shift+B",
+              "detail": "用BeyondCompare比较"
+            }
+          ]
+        },
+        {
+          "classification": "Ctrl+数字系列按键",
+          "keys": [
+            {
+              "key": "Shift+字母",
+              "detail": "Ctrl+1、2、3、4"
+            },
+            {
+              "key": "ctrl+5",
+              "detail": "窗口分隔条位于50%"
+            },
+            {
+              "key": "Ctrl+6",
+              "detail": "纵向排列面板"
+            },
+            {
+              "key": "Ctrl+0",
+              "detail": "选择文件类型"
+            },
+            {
+              "key": "Ctrl+9",
+              "detail": "显示所有文件"
+            },
+            {
+              "key": "ctrl+8",
+              "detail": "上次选择的文件类型"
+            },
+            {
+              "key": "Ctrl+7",
+              "detail": "仅显示选定的文件"
+            }
+          ]
+        },
+        {
+          "classification": "标签相关",
+          "keys": [
+            {
+              "key": "Alt+1234567890",
+              "detail": "跳转到对应的标签"
+            },
+            {
+              "key": "Shift+[ ]即{ }",
+              "detail": "上/下一个标签"
+            },
+            {
+              "key": "Ctrl+P",
+              "detail": "标签菜单"
+            },
+            {
+              "key": "Alt+P",
+              "detail": "自定义列菜单"
+            }
+          ]
+        },
+        {
+          "classification": "列表/横竖切换",
+          "keys": [
+            {
+              "key": "Alt+E",
+              "detail": "列表显示"
+            },
+            {
+              "key": "Alt+Q",
+              "detail": "预览模式"
+            },
+            {
+              "key": "F11",
+              "detail": "横竖切换效果"
+            }
+          ]
+        },
+        {
+          "classification": "打开/编辑文件",
+          "keys": [
+            {
+              "key": "F4 或 Ctrl+;",
+              "detail": "编辑"
+            },
+            {
+              "key": "'（回车左边的按键）",
+              "detail": "右键菜单"
+            },
+            {
+              "key": "Enter",
+              "detail": "直接打开"
+            },
+            {
+              "key": "Ctrl+Enter",
+              "detail": "用Nircmd调用外部定义方式打开"
             }
           ]
         }
