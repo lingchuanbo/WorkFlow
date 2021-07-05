@@ -897,6 +897,241 @@
       ]
     },
     {
+      "name": "unrealeditor",
+      "appkeys": [
+        {
+          "classification": "通用",
+          "keys": [
+            {
+              "key": "Ctrl+Shift+P",
+              "detail": "命令窗口"
+            }
+          ]
+        },
+        {
+          "classification": "编辑器",
+          "keys": [
+            {
+              "key": "Ctrl+X",
+              "detail": "剪切行"
+            }
+          ]
+        },
+        {
+          "classification": "内容浏览器",
+          "keys": [
+            {
+              "key": "Ctrl+X",
+              "detail": "剪切行"
+            }
+          ]
+        },
+        {
+          "classification": "游戏",
+          "keys": [
+            {
+              "key": "Ctrl+X",
+              "detail": "剪切行"
+            }
+          ]
+        },
+        {
+          "classification": "额外功能",
+          "keys": [
+            {
+              "key": "Ctrl+X",
+              "detail": "剪切行"
+            }
+          ]
+        },
+        {
+          "classification": "视图位置",
+          "keys": [
+            {
+              "key": "Ctrl+X",
+              "detail": "剪切行"
+            }
+          ]
+        },
+        {
+          "classification": "视口显示",
+          "keys": [
+            {
+              "key": "Ctrl+X",
+              "detail": "剪切行"
+            }
+          ]
+        },
+        {
+          "classification": "视口功能",
+          "keys": [
+            {
+              "key": "Ctrl+X",
+              "detail": "剪切行"
+            }
+          ]
+        },
+        {
+          "classification": "Actor变换&操作",
+          "keys": [
+            {
+              "key": "Ctrl+X",
+              "detail": "剪切行"
+            }
+          ]
+        },
+        {
+          "classification": "蓝图编辑器",
+          "keys": [
+            {
+              "key": "Ctrl+X",
+              "detail": "剪切行"
+            }
+          ]
+        },
+        {
+          "classification": "蓝图导航",
+          "keys": [
+            {
+              "key": "Ctrl+X",
+              "detail": "剪切行"
+            }
+          ]
+        },
+        {
+          "classification": "蓝图节点",
+          "keys": [
+            {
+              "key": "Ctrl+X",
+              "detail": "剪切行"
+            }
+          ]
+        },
+        {
+          "classification": "蓝图调试",
+          "keys": [
+            {
+              "key": "F7",
+              "detail": "编译"
+            },
+            {
+              "key": "F9",
+              "detail": "设置断点"
+            },
+            {
+              "key": "Ctrl+Shift+F9",
+              "detail": "清除所有断点"
+            },
+            {
+              "key": "F10",
+              "detail": "跳过"
+            },
+            {
+              "key": "F11",
+              "detail": "跳进"
+            },
+            {
+              "key": "Alt+Shift+F11",
+              "detail": "跳出"
+            }
+          ]
+        },
+        {
+          "classification": "材质",
+          "keys": [
+            {
+              "key": "1+左键",
+              "detail": "Constant"
+            },
+            {
+              "key": "2+左键",
+              "detail": "Constant2Vector"
+            },
+            {
+              "key": "3+左键",
+              "detail": "Constant3Vector"
+            },
+            {
+              "key": "4+左键",
+              "detail": "Constant4Vector"
+            },
+            {
+              "key": "A+左键",
+              "detail": "Add"
+            },
+            {
+              "key": "B+左键",
+              "detail": "BumpOffset"
+            },
+            {
+              "key": "D+左键",
+              "detail": "Divide"
+            },
+            {
+              "key": "E+左键",
+              "detail": "Power"
+            },
+            {
+              "key": "F+左键",
+              "detail": "MaterialFunctionCall"
+            },
+            {
+              "key": "I+左键",
+              "detail": "IF"
+            },
+            {
+              "key": "L+左键",
+              "detail": "Lerp"
+            },
+            {
+              "key": "M+左键",
+              "detail": "Multiply"
+            },
+            {
+              "key": "N+左键",
+              "detail": "Normalize"
+            },
+            {
+              "key": "O+左键",
+              "detail": "OnerMinus"
+            },
+            {
+              "key": "P+左键",
+              "detail": "Panner"
+            },
+            {
+              "key": "R+左键",
+              "detail": "RelectionVector"
+            },
+            {
+              "key": "S+左键",
+              "detail": "ScalarParameter"
+            },
+            {
+              "key": "T+左键",
+              "detail": "TextureSample"
+            },
+            {
+              "key": "U+左键",
+              "detail": "TextureCoordinate"
+            },
+            {
+              "key": "V+左键",
+              "detail": "VectorParameter"
+            },
+            {
+              "key": "Shift+C",
+              "detail": "ComponentMask"
+            },
+            {
+              "key": "Space",
+              "detail": "刷新节点预览"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "Total Commander",
       "appkeys": [
         {
@@ -1232,6 +1467,284 @@
             {
               "key": "Ctrl+Shift+D",
               "detail": "导入剪贴板中文件列表"
+            }
+          ]
+        },
+        {
+          "classification": "操作文件",
+          "keys": [
+            {
+              "key": "Shift+字母",
+              "detail": "切换盘符"
+            },
+            {
+              "key": "F3",
+              "detail": "查看"
+            },
+            {
+              "key": "F4",
+              "detail": "F4menu接管编辑功能"
+            },
+            {
+              "key": "F5",
+              "detail": "复制"
+            },
+            {
+              "key": "F6",
+              "detail": "移动"
+            },
+            {
+              "key": "F7",
+              "detail": "新建目录"
+            },
+            {
+              "key": "F8",
+              "detail": "删除"
+            },
+            {
+              "key": "F9",
+              "detail": "调用指定的播放器软件"
+            }
+          ]
+        },
+        {
+          "classification": "压缩/解压缩",
+          "keys": [
+            {
+              "key": "Ctrl+E",
+              "detail": "解压"
+            },
+            {
+              "key": "Alt+E",
+              "detail": "解压至当前目录"
+            },
+            {
+              "key": "Ctrl+shift+E",
+              "detail": "解压至对面面板"
+            }
+          ]
+        },
+        {
+          "classification": "文件名/路径/文件比较",
+          "keys": [
+            {
+              "key": "Ctrl+M",
+              "detail": "批量重命名"
+            },
+            {
+              "key": "Ctrl+Shift+C",
+              "detail": "复制文件名和完整路径"
+            },
+            {
+              "key": "Ctrl+Shift+N",
+              "detail": "复制文件名"
+            },
+            {
+              "key": "Ctrl+Shift+M",
+              "detail": "复制文件名而不要扩展名"
+            },
+            {
+              "key": "Ctrl+Shift+P",
+              "detail": "复制文件路径"
+            },
+            {
+              "key": "Ctrl+Shift+alt+C",
+              "detail": "复制所有的自定义列内容"
+            },
+            {
+              "key": "Ctrl+H",
+              "detail": "比较文件夹"
+            },
+            {
+              "key": "Ctrl+shift+B",
+              "detail": "用BeyondCompare比较"
+            }
+          ]
+        },
+        {
+          "classification": "Ctrl+数字系列按键",
+          "keys": [
+            {
+              "key": "Shift+字母",
+              "detail": "Ctrl+1、2、3、4"
+            },
+            {
+              "key": "ctrl+5",
+              "detail": "窗口分隔条位于50%"
+            },
+            {
+              "key": "Ctrl+6",
+              "detail": "纵向排列面板"
+            },
+            {
+              "key": "Ctrl+0",
+              "detail": "选择文件类型"
+            },
+            {
+              "key": "Ctrl+9",
+              "detail": "显示所有文件"
+            },
+            {
+              "key": "ctrl+8",
+              "detail": "上次选择的文件类型"
+            },
+            {
+              "key": "Ctrl+7",
+              "detail": "仅显示选定的文件"
+            }
+          ]
+        },
+        {
+          "classification": "标签相关",
+          "keys": [
+            {
+              "key": "Alt+1234567890",
+              "detail": "跳转到对应的标签"
+            },
+            {
+              "key": "Shift+[ ]即{ }",
+              "detail": "上/下一个标签"
+            },
+            {
+              "key": "Ctrl+P",
+              "detail": "标签菜单"
+            },
+            {
+              "key": "Alt+P",
+              "detail": "自定义列菜单"
+            }
+          ]
+        },
+        {
+          "classification": "列表/横竖切换",
+          "keys": [
+            {
+              "key": "Alt+E",
+              "detail": "列表显示"
+            },
+            {
+              "key": "Alt+Q",
+              "detail": "预览模式"
+            },
+            {
+              "key": "F11",
+              "detail": "横竖切换效果"
+            }
+          ]
+        },
+        {
+          "classification": "打开/编辑文件",
+          "keys": [
+            {
+              "key": "F4 或 Ctrl+;",
+              "detail": "编辑"
+            },
+            {
+              "key": "'（回车左边的按键）",
+              "detail": "右键菜单"
+            },
+            {
+              "key": "Enter",
+              "detail": "直接打开"
+            },
+            {
+              "key": "Ctrl+Enter",
+              "detail": "用Nircmd调用外部定义方式打开"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Blender",
+      "appkeys": [
+        {
+          "classification": "物体模式&编辑模式",
+          "keys": [
+            {
+              "key": "Shift+中键",
+              "detail": "视图平移"
+            },
+            {
+              "key": "中键",
+              "detail": "视图旋转"
+            },
+            {
+              "key": "中键滚动",
+              "detail": "视图缩放"
+            },
+            {
+              "key": "Shift+A",
+              "detail": "创建菜单"
+            },
+            {
+              "key": "~",
+              "detail": "视图菜单"
+            },
+            {
+              "key": "Ctrl+J",
+              "detail": "合并物体"
+            },
+            {
+              "key": "Ctrl＋Z",
+              "detail": "撤回"
+            },
+            {
+              "key": "Shift+R",
+              "detail": "重复上步操作"
+            },
+            {
+              "key": "A",
+              "detail": "全选物体"
+            },
+            {
+              "key": "AA",
+              "detail": "取消全选"
+            },
+            {
+              "key": "Ctrl+I",
+              "detail": "反选"
+            },
+            {
+              "key": "X",
+              "detail": "删除菜单"
+            },
+            {
+              "key": "Tab",
+              "detail": "编辑模式"
+            }
+          ]
+        },
+        {
+          "classification": "视图",
+          "keys": [
+            {
+              "key": "鼠标右键",
+              "detail": "前视图"
+            },
+            {
+              "key": "Ctrl+A",
+              "detail": "顶视图"
+            },
+            {
+              "key": ",",
+              "detail": "右视图"
+            },
+            {
+              "key": "Ctrl+I",
+              "detail": "底视图"
+            },
+            {
+              "key": "Alt+＝",
+              "detail": "相机视图"
+            },
+            {
+              "key": "Ctrl+Shift+D",
+              "detail": "切换透视图"
+            },
+            {
+              "key": "Ctrl+Shift+D",
+              "detail": "切换线框视图"
             }
           ]
         },
