@@ -903,8 +903,44 @@
           "classification": "通用",
           "keys": [
             {
-              "key": "Ctrl+Shift+P",
-              "detail": "命令窗口"
+              "key": "Ctrl+a",
+              "detail": "全选"
+            },
+            {
+              "key": "Ctrl+c",
+              "detail": "拷贝"
+            },
+            {
+              "key": "Ctrl+x",
+              "detail": "剪切"
+            },
+            {
+              "key": "Ctrl+v",
+              "detail": "粘贴"
+            },
+            {
+              "key": "Ctrl+w",
+              "detail": "复制"
+            },
+            {
+              "key": "Delete",
+              "detail": "删除"
+            },
+            {
+              "key": "Ctrl+w",
+              "detail": "撤销"
+            },
+            {
+              "key": "Ctrl+y",
+              "detail": "重做"
+            },
+            {
+              "key": "F2",
+              "detail": "重命名"
+            },
+            {
+              "key": "Ctrl+Alt",
+              "detail": "提示"
             }
           ]
         },
@@ -912,8 +948,32 @@
           "classification": "编辑器",
           "keys": [
             {
-              "key": "Ctrl+X",
-              "detail": "剪切行"
+              "key": "shift+1",
+              "detail": "模式-放置"
+            },
+            {
+              "key": "shift+2",
+              "detail": "模式-绘制"
+            },
+            {
+              "key": "shift+3",
+              "detail": "模式-地形"
+            },
+            {
+              "key": "shift+4",
+              "detail": "模式-植物"
+            },
+            {
+              "key": "shift+5",
+              "detail": "模式-几何体编辑"
+            },
+            {
+              "key": "Ctrl+Tab",
+              "detail": "标签导航"
+            },
+            {
+              "key": "Ctrl+F4",
+              "detail": "关闭标签"
             }
           ]
         },
@@ -921,8 +981,32 @@
           "classification": "内容浏览器",
           "keys": [
             {
-              "key": "Ctrl+X",
-              "detail": "剪切行"
+              "key": "Ctrl+Shift+f",
+              "detail": "打开内容浏览器"
+            },
+            {
+              "key": "Ctrl+b",
+              "detail": "内容浏览器中定位"
+            },
+            {
+              "key": "Ctrl+Shift+n",
+              "detail": "新建文件夹"
+            },
+            {
+              "key": "Space",
+              "detail": "更新资源预览"
+            },
+            {
+              "key": "Ctrl+n",
+              "detail": "新建关卡"
+            },
+            {
+              "key": "Ctrl+o",
+              "detail": "打开关卡"
+            },
+            {
+              "key": "Ctrl+e",
+              "detail": "编辑关卡选中Actor"
             }
           ]
         },
@@ -930,8 +1014,32 @@
           "classification": "游戏",
           "keys": [
             {
-              "key": "Ctrl+X",
-              "detail": "剪切行"
+              "key": "Alt+p",
+              "detail": "运行"
+            },
+            {
+              "key": "Alt+s",
+              "detail": "模拟"
+            },
+            {
+              "key": "Alt+Shift+p",
+              "detail": "启动"
+            },
+            {
+              "key": "F8",
+              "detail": "弹出"
+            },
+            {
+              "key": "Pause",
+              "detail": "暂停"
+            },
+            {
+              "key": "Esc",
+              "detail": "退出"
+            },
+            {
+              "key": "Shift+F1",
+              "detail": "弹出鼠标"
             }
           ]
         },
@@ -939,8 +1047,36 @@
           "classification": "额外功能",
           "keys": [
             {
-              "key": "Ctrl+X",
-              "detail": "剪切行"
+              "key": "·",
+              "detail": "控制台"
+            },
+            {
+              "key": "Alt+Shift+A",
+              "detail": "审计资源"
+            },
+            {
+              "key": "Alt+Shift+A",
+              "detail": "引用查看器"
+            },
+            {
+              "key": "Alt+Shift+A",
+              "detail": "大小贴图"
+            },
+            {
+              "key": "Alt+Shift+A",
+              "detail": "GPU查看器"
+            },
+            {
+              "key": "Alt+Shift+A",
+              "detail": "控件反射器"
+            },
+            {
+              "key": "Alt+Shift+A",
+              "detail": "打开资源"
+            },
+            {
+              "key": "Alt+Shift+A",
+              "detail": "构建光照"
             }
           ]
         },
@@ -948,8 +1084,36 @@
           "classification": "视图位置",
           "keys": [
             {
-              "key": "Ctrl+X",
-              "detail": "剪切行"
+              "key": "Alt+q",
+              "detail": "视图-透视"
+            },
+            {
+              "key": "Alt+q",
+              "detail": "视图-前"
+            },
+            {
+              "key": "Alt+q",
+              "detail": "视图-后"
+            },
+            {
+              "key": "Alt+q",
+              "detail": "视图-顶"
+            },
+            {
+              "key": "Alt+q",
+              "detail": "视图-底"
+            },
+            {
+              "key": "Alt+q",
+              "detail": "视图-左"
+            },
+            {
+              "key": "Alt+q",
+              "detail": "视图-右"
+            },
+            {
+              "key": "Alt+q",
+              "detail": "视图-轮换"
             }
           ]
         },
