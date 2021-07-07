@@ -617,7 +617,6 @@ Return
     runMaxScriptCommands("BatchRender.ms")
     return
 }
-
 <3DsMax_Double_E>:
 {
     ; 缩放
