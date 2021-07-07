@@ -575,23 +575,23 @@ return
 		!RButton:: Browser_Back
 		; 定位输入栏
 		F6::
-			GV_KeyClickAction1 := "SendInput,^l"
-			GV_KeyClickAction2 := "SendInput,^k"
+			GV_KeyClickAction1 := "SendInput,^k"
+			GV_KeyClickAction2 := "SendInput,^+{o}"
 			GoSub,Sub_KeyClick
 		return
 		; 打开书签&Google
 		; 键鼠操作
-		~LButton & q::
-			GV_KeyClickAction1 := "OpenWebURL,google.com"
-			GV_KeyClickAction2 := "SendInput,^+{o}"
-			GoSub,Sub_KeyClick
-		return
-		; 键盘操作
-		~Alt & q::
-			GV_KeyClickAction1 := "OpenWebURL,google.com"
-			GV_KeyClickAction2 := "SendInput,^+{o}"
-			GoSub,Sub_KeyClick
-		return
+		; ~LButton & q::
+		; 	GV_KeyClickAction1 := "OpenWebURL,google.com"
+		; 	GV_KeyClickAction2 := "SendInput,^+{o}"
+		; 	GoSub,Sub_KeyClick
+		; return
+		; ; 键盘操作
+		; ~Alt & q::
+		; 	GV_KeyClickAction1 := "OpenWebURL,google.com"
+		; 	GV_KeyClickAction2 := "SendInput,^+{o}"
+		; 	GoSub,Sub_KeyClick
+		; return
 
 		~Alt::
 		{

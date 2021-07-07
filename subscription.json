@@ -764,6 +764,69 @@
       ]
     },
     {
+      "name": "Google Chrome",
+      "appkeys": [
+        {
+          "classification": "常用",
+          "keys": [
+            {
+              "key": "Ctrl + D",
+              "detail": "存为收藏夹"
+            },
+            {
+              "key": "F1",
+              "detail": "新建标签页"
+            },
+            {
+              "key": "F2",
+              "detail": "◀切换标签"
+            },
+            {
+              "key": "F3",
+              "detail": "▶切换标签"
+            },
+            {
+              "key": "F4",
+              "detail": "✖关闭标签页"
+            }
+          ]
+        },
+        {
+          "classification": "切换 & 打开",
+          "keys": [
+            {
+              "key": "F6",
+              "detail": "地址栏切换至谷歌搜索"
+            },
+            {
+              "key": "F6 + F6",
+              "detail": "书签"
+            },
+            {
+              "key": "F8",
+              "detail": "打开Google网站"
+            },
+            {
+              "key": "F8 + F8",
+              "detail": "打开隐私模式"
+            },
+            {
+              "key": "Shift + ?",
+              "detail": "高级按键"
+            },
+            {
+              "key": "Alt + Alt",
+              "detail": "书签菜单"
+            },
+            {
+              "key": "Alt",
+              "detail": "编辑地址栏"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "Word",
       "appkeys": [
         {
@@ -2238,16 +2301,8 @@
           {"key": "Win+F","detail": "Everything搜索"},
           {"key": "Win+E","detail": "启动TotalCMD"},
           {"key": "Win+滚轮上下","detail": "音量+-"},
-          {"key": "Shift+滚轮上下","detail": "透明+-"} 
-        ]
-      },
-      {
-        "classification": "输入法",
-        "keys": [
-          {"key": "Ctrl+.","detail": "中/英文标点"},
-          {"key": "Shift+空","detail": "全/半角"},
-          {"key": "Ctrl+Shift+F","detail": "简/繁"},
-          {"key": "Win+空","detail": "切换输入法"} 
+          {"key": "Shift+滚轮上下","detail": "透明+-"},
+          {"key": "CapsLock+左键","detail": "移动窗口"} 
         ]
       }
     ]
