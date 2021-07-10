@@ -12,9 +12,9 @@
 
 str=maxfilename
 
-strName=replaceSub str ".max" ""+"\\"
+strName=replaceSub str ".max" ""
 
-outPutDir=maxfilepath + strName +"FumeFXdate"
+outPutDir=maxfilepath + strName +"_FumeFXdate"
 -- 创建文件夹
 -- makeDir outPutDir
 if selection.count==0 
