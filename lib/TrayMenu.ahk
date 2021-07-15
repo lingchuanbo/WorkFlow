@@ -10,23 +10,25 @@ menu, Tray, add
 
 Menu, LangSet, add, 中文,中文
 Menu, LangSet, add, English,English
-Menu, tray, add, %_Language%, :LangSet
-
+Menu, tray, add, %_Language%(&L), :LangSet
 
 Menu, aboutMe, add, %_Help%(&H), <VIMD_Help>
 
 Menu, aboutMe, add, %_Web%(&W), <VIMD_WorkFlowWeb>
 Menu, tray, add, %_aboutMe%(&L), :aboutMe
 
+Menu, FunctionSet, add, %_ShortCutHelper%, Run_ShortCutHelper
+Menu, FunctionSet, add, %_MouseInc%, Run_MouseInc
+Menu, FunctionSet, add, &RunZ搜索, Run_RunZ
+Menu, tray, add, 功能(&F), :FunctionSet
 
 Menu, OptionSet, add, %_Initialization%, <VIMD_Initialization>
 Menu, OptionSet, add, 将 %_AppName% 目录添加为系统变量(&B), <VIMD_EnvSystem>
 Menu, OptionSet, add, 将 FFmpeg添加为系统变量(非必要)(&B), <VIMD_EnvSystemFFmpeg>
-Menu, OptionSet, add, %_ShortCutHelper%, Run_ShortCutHelper
 Menu, OptionSet, add, %_WindowsActivation%, Run_WindowsActivation
 Menu, OptionSet, add, %_BackupRestore%, <VIMD_BackupRestore>
+Menu, tray, add, %_Option%(&O), :OptionSet
 
-Menu, tray, add, %_Option%, :OptionSet
 Menu, Tray, Add, %_Pause%(&P), <Pause>
 Menu, Tray, Add, %_Restart%(&R), <Reload>
 Menu, Tray, Add, %_Exit%(&X), Exit

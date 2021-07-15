@@ -11,6 +11,7 @@ If Language=CN
     global _Author:="BoBO"
     global _Authors="BoBO(lingchuanbo@gmail.com)"
     global _ShortCutHelper="快捷键助手【Win+S】" 
+    global _MouseInc="MouseInc手势" 
     global _Exit="退出"
     global _Pause="暂停"
     global _Restart="重启"

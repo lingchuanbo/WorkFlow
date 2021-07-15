@@ -21,20 +21,22 @@
 			GV_KeyClickAction2 := "Gosub,Run_ClsClose"
 			GoSub,Sub_KeyClick
 		return
+	; 搜索
+	#/::Gosub,menuBase
 	;功能：关闭(Alt + x)
 		!x::send, ^w
 	;功能：最小化窗口
 		~Alt & `::
 		~LButton & `::WinMinimize, A ;窗口最小化
 	;功能：快捷键获取当前选中文件路径
-		^!c:: ;用快捷键得到当前选中文件的路径
-			send ^c
-			sleep,200
-			clipboard=%clipboard% ;windows 复制的时候，剪贴板保存的是“路径”。只是路径不是字符串，只要转换成字符串就可以粘贴出来了
-			tooltip,已经拷贝%clipboard% ;提示文本
-			sleep,500
-			tooltip,
-		return
+		; ^!c:: ;用快捷键得到当前选中文件的路径
+		; 	send ^c
+		; 	sleep,200
+		; 	clipboard=%clipboard% ;windows 复制的时候，剪贴板保存的是“路径”。只是路径不是字符串，只要转换成字符串就可以粘贴出来了
+		; 	tooltip,已经拷贝%clipboard% ;提示文本
+		; 	sleep,500
+		; 	tooltip,
+		; return
 	;功能：字母跳转
 		; #q::
 		; SendInput,^!{q}
@@ -311,19 +313,19 @@
 	CapsLock & q::SendInput,{Blind}{PgUp}
 	CapsLock & f::SendInput,{Blind}{PgDn}
 
-	; ;显示 复制和剪切的内容
-		~^x::
-		~^c::		;~ 表示次热键并不屏蔽按键原有功能
-			GV_KeyClickAction1 := "Gosub,CopyTip"
-			GV_KeyClickAction2 := "Gosub,menuBase"
-			GoSub,Sub_KeyClick
-		Return
-CopyTip:
-	Sleep, 100	;等待0.1s 强制机械等待剪贴板出现内容 
-	StringLeft,clipboard_left,clipboard,500
-	ToolTip 已复制：%clipboard_left%
-	SetTimer, ToolTipOff, -1000
-return
+	; ; ;显示 复制和剪切的内容
+	; 	~^x::
+	; 	~^c::		;~ 表示次热键并不屏蔽按键原有功能
+	; 		GV_KeyClickAction1 := "Gosub,CopyTip"
+	; 		GV_KeyClickAction2 := "Gosub,menuBase"
+	; 		GoSub,Sub_KeyClick
+	; 	Return
+; CopyTip:
+; 	Sleep, 100	;等待0.1s 强制机械等待剪贴板出现内容 
+; 	StringLeft,clipboard_left,clipboard,500
+; 	ToolTip 已复制：%clipboard_left%
+; 	SetTimer, ToolTipOff, -1000
+; return
 ; ################# Tab相关 #################
 	#If GV_ToggleTabKeys=1
 		Tab & s::SendInput,{Blind}{Down}
@@ -835,7 +837,9 @@ return
 			!w::openPathTc() ;Explorer到 TC 互相调用【alt+w】
 			NumpadDiv::HideShowfiles() ;显示隐藏文件
 			^!t::Gosub,<BoBO_OpenLocalDirCommander>
-			^!w::Run,%A_ScriptDir%\custom\apps\TaskSwch\ClsFoldr.EXE ;关闭重复窗口
+			LButton & x::Gosub,Run_ClsClose ;关闭重复窗口
+			^!w::Gosub,Run_ClsClose ;关闭重复窗口
+			; 1::Gosub,ZipDirectory ;关闭重复窗口
 			^#z::Gosub,ZipDirectory
 			~MButton::Send !{Up} ;中键上一级
 			`::Send !{Up} ;中键上一级
@@ -883,30 +887,33 @@ return
 			; ~Alt & RButton::
 			; 	PopSel("work.lst")
 			; 	return
-			#RButton::
-				PopSel("System.lst")
-				return
+			#RButton::Gosub,PopSelSystem
 			~Alt::
-				{
-					t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
-					settimer, tappedkey_TrayWnd, %t%
-					if (t == "off")
-					goto double_TrayWnd
-					return
-					tappedkey_TrayWnd:
-						{
-							run %A_ScriptDir%\custom\apps\TaskSwch\TaskSwch.exe /t
-							return
-						}
-					return
+				GV_KeyClickAction1 := "Gosub,<TaskSwch>"
+				GV_KeyClickAction2 := "Gosub,PopSelSystem"
+				GoSub,Sub_KeyClick
+				return
+				; {
+				; 	t := A_PriorHotkey == A_ThisHotkey && A_TimeSincePriorHotkey < 200 ? "off" : -200
+				; 	settimer, tappedkey_TrayWnd, %t%
+				; 	if (t == "off")
+				; 	goto double_TrayWnd
+				; 	return
+				; 	tappedkey_TrayWnd:
+				; 		{
+				; 			run %A_ScriptDir%\custom\apps\TaskSwch\TaskSwch.exe /t
+				; 			return
+				; 		}
+				; 	return
 
-					double_TrayWnd:
-						{
-							PopSel("work.lst")
-							return
-						}
-					return
-				}
+				; 	double_TrayWnd:
+				; 		{
+				; 			PopSel("work.lst")
+				; 			return
+				; 		}
+				; 	return
+				; }
+
 		}
 		#If
 ; ##########程序便捷.Total Commander##########
@@ -1372,7 +1379,7 @@ return
 				Menu,SearchSet , add, Google搜索文件名,<em_Search_GoogleName>
 				Menu,SearchSet , add, Google翻译文件名,<em_Search_GoogleTranslator>
 				Menu,SearchSet , add, 百度-搜索文件名,<em_Search_Baidu>
-				Menu,SearchSet , add, 多吉-搜索文件名,<em_Search_Doge>
+				; Menu,SearchSet , add, 多吉-搜索文件名,<em_Search_Doge>
 				Menu,SearchSet , add, 萌搜-搜索文件名,<em_Search_Mengso>
 			Menu, menuTc, add,菜单栏, <em_TrackMainMenu>
 			Menu, menuTc, Show
@@ -1848,15 +1855,11 @@ return
 	return	
 }
 
-
 Sub_MaxRestore:
 	WinGet, Status_minmax ,MinMax,A
 	If (Status_minmax=1){
 		WinRestore A
 	}
-    ; If (Status_minmax=2){
-	; 	GoSub,Sub_MaxRestore
-	; }
 	else{
 		WinMaximize A
 	}
@@ -1927,6 +1930,11 @@ Sub_MaxAllWindows:
 	}
 return
 
+<TaskSwch>:
+{
+	Run, %A_ScriptDir%\custom\apps\TaskSwch\TaskSwch.exe /t
+	return
+}
 
 
 ; 窗口居中
@@ -1936,7 +1944,6 @@ return
 		CenterWindow(var_title)
 		return
 	}
-; 窗口居中	
 <BoBO_TaskSwch>:
 {
 	IniRead, TaskMuEx,config.ini, config, TaskMuEx, 1
@@ -2003,8 +2010,38 @@ Run_ShortCutHelper:
 		return
 	}
 }
-	
-
+Run_MouseInc:
+{
+	Process, Wait, MouseInc.exe, 1
+	NewPID := ErrorLevel  ; 由于 ErrorLevel 会经常发生改变, 所以要立即保存这个值.
+	if not NewPID
+	{
+		; 如果进程没有ShortCutHelper则运行
+		Run,%A_ScriptDir%\custom\apps\MouseInc\MouseInc.exe
+		return
+	}
+	if NewPID
+	{
+		sendinput,!s
+		return
+	}
+}
+Run_RunZ:
+{
+	; Process, Wait, MouseInc.exe, 1
+	; NewPID := ErrorLevel  ; 由于 ErrorLevel 会经常发生改变, 所以要立即保存这个值.
+	; if not NewPID
+	; {
+		; 如果进程没有ShortCutHelper则运行
+		Run,%A_ScriptDir%\runz\RunZ.ahk
+		return
+	; }
+	; if NewPID
+	; {
+	; 	sendinput,!s
+	; 	return
+	; }
+}
 Run_ClsClose:
 {
 	Run,%A_ScriptDir%\custom\apps\TaskSwch\ClsClose.exe
@@ -2026,3 +2063,13 @@ Run_WindowsActivation:
 	Run,%A_ScriptDir%\\KMS_VL_ALL_AIO.cmd
 	return
 }
+PopSelWork:
+{
+	PopSel("work.lst")
+	return
+}
+PopSelSystem:
+{
+	PopSel("System.lst")
+	return
+}	
